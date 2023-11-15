@@ -73,6 +73,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-优化页面及文件保密" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" class="article-date">
+  <time class="dt-published" datetime="2023-11-15T07:36:41.000Z" itemprop="datePublished">2023-11-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/">优化页面及文件保密</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="优化页面"><a href="#优化页面" class="headerlink" title="优化页面"></a>优化页面</h2><blockquote>
+<p>1.<strong>加背景图</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;之间加入</span><br><span class="line">bady&#123;</span><br><span class="line">	background:url(&quot;图片的命名&quot;)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：图片要放到同意文件夹中，也就是www文件夹下。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154549975.png" alt="image-20231115154549975"></p>
+<p>效果为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154653469.png" alt="image-20231115154653469"></p>
+<p>2.<strong>实现文字框水平居中</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;中间加入：</span><br><span class="line">		.center &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line">在&lt;body&gt;&lt;/body&gt;中间加入：</span><br><span class="line">&lt;div class=&quot;center&quot;&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">//文本</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//对上面的.center进行引用。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115155714005.png" alt="image-20231115155714005"></p>
+<p>3.<strong>使图片能够自动根据页面的大小和比例变化</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background:url(&quot;tu.jpg&quot;);</span><br><span class="line">background-size: cover; /* or contain */</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="对上传的文件进行保密"><a href="#对上传的文件进行保密" class="headerlink" title="对上传的文件进行保密"></a>对上传的文件进行保密</h2><blockquote>
+<ul>
+<li>对文件名和文件位置进行加密</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在uploud.php文件中添加</span><br><span class="line">	// 生成随机的文件名</span><br><span class="line">    $random_name = time().uniqid() . &#x27;_&#x27; . $file_name;</span><br><span class="line">    // 移动文件到目标位置</span><br><span class="line">    $target_path = $upload_dir .&quot;\\&quot;. md5($random_name).$file_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115160634932.png" alt="image-20231115160634932"></p>
+<ul>
+<li>进行参数绑定</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在link.php中加入：</span><br><span class="line">    // 使用预编译语句</span><br><span class="line">    $sql = &quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;;</span><br><span class="line">    $stmt = mysqli_prepare($link, $sql);</span><br><span class="line">    // 绑定参数</span><br><span class="line">    mysqli_stmt_bind_param($stmt, &quot;ss&quot;, $u, $p);</span><br><span class="line">    // 执行查询</span><br><span class="line">    mysqli_stmt_execute($stmt);</span><br><span class="line">    // 获取结果集</span><br><span class="line">    $result = mysqli_stmt_get_result($stmt);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115161308846.png" alt="image-20231115161308846"></p>
+</blockquote>
+<p><strong>在主页加入注销</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&lt;a href=&quot;?logout=true&quot;&gt;注销&lt;/a&gt;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162425393.png" alt="image-20231115162425393"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162449961.png" alt="image-20231115162449961"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" data-id="clozj15j10000ugu4481ba5fj" data-title="优化页面及文件保密" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-php上传文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="article-date">
@@ -813,58 +885,12 @@
 
 
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/07/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-11-07T08:10:17.369Z" itemprop="datePublished">2023-11-07</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/07/hello-world/" data-id="cloo1xpuq00003gu445zm3qsm" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -895,6 +921,10 @@
       <ul>
         
           <li>
+            <a href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/">优化页面及文件保密</a>
+          </li>
+        
+          <li>
             <a href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">php上传文件</a>
           </li>
         
@@ -908,10 +938,6 @@
         
           <li>
             <a href="/2023/11/08/1/">1</a>
-          </li>
-        
-          <li>
-            <a href="/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/">我的博客</a>
           </li>
         
       </ul>
