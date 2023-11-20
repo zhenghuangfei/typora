@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>安装centos7并搭建lamp | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="安装centos7https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;  进入设置密码。 完成页面：  centos7搭建lamp rm -f &#x2F;var&#x2F;run&#x2F;yum.pid     清理睡眠状态  1234567891011121314151617rm -f &#x2F;var&#x2F;run&#x2F;yum.pidfirewall-cmd --permanent -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装centos7并搭建lamp">
+<meta property="og:url" content="http://example.com/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装centos7https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;  进入设置密码。 完成页面：  centos7搭建lamp rm -f &#x2F;var&#x2F;run&#x2F;yum.pid     清理睡眠状态  1234567891011121314151617rm -f &#x2F;var&#x2F;run&#x2F;yum.pidfirewall-cmd --permanent -">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120201209998.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120201415447.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120111224746.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120202757391.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120203100637.png">
+<meta property="article:published_time" content="2023-11-20T02:30:42.000Z">
+<meta property="article:modified_time" content="2023-11-20T12:31:43.920Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120201209998.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-安装centos7并搭建lamp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/" class="article-date">
+  <time class="dt-published" datetime="2023-11-20T02:30:42.000Z" itemprop="datePublished">2023-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      安装centos7并搭建lamp
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="安装centos7"><a href="#安装centos7" class="headerlink" title="安装centos7"></a>安装centos7</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120201209998.png" alt="image-20231120201209998"></p>
+<p>进入设置密码。</p>
+<p>完成页面：</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120201415447.png" alt="image-20231120201415447"></p>
+<h2 id="centos7搭建lamp"><a href="#centos7搭建lamp" class="headerlink" title="centos7搭建lamp"></a>centos7搭建lamp</h2><ul>
+<li>rm -f &#x2F;var&#x2F;run&#x2F;yum.pid     清理睡眠状态</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">rm -f /var/run/yum.pid</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">3306</span>/tcp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">3306</span>/udp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">80</span>/tcp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">80</span>/udp</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">vi /etc/selinux/config      <span class="comment">#将SELINUX=enforcing这一行修改为SELINUX=disabled</span></span><br><span class="line">reboot</span><br><span class="line">yum remove mariadb-libs.x86_64</span><br><span class="line">yum install httpd -y</span><br><span class="line">systemctl enable httpd</span><br><span class="line">systemctl restart httpd</span><br><span class="line">systemctl status httpd</span><br><span class="line">yum -y install mariadb mariadb-server</span><br><span class="line">systemctl enable mariadb</span><br><span class="line">systemctl start mariadb</span><br><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>开放防火墙<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;3306&#x2F;tcp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;3306&#x2F;udp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;udp<br>firewall-cmd –reload</p>
+</li>
+<li><p>关闭selinux<br>vi &#x2F;etc&#x2F;selinux&#x2F;config<br>将SELINUX&#x3D;enforcing这一行修改为SELINUX&#x3D;disabled</p>
+</li>
+<li><p>reboot （重启）</p>
+</li>
+<li><p>删除默认数据库<br>rpm -qa | grep mariadb 查找出默认数据库mariadb的包名。<br>yum remove mariadb-libs.x86_64    删除</p>
+</li>
+<li><p>yum install httpd -y<br>systemctl enable httpd<br>systemctl restart httpd<br>systemctl status httpd           &#x2F;&#x2F;查看服务状态<br>此时访问成功回显apache测试页，网站根目录&#x2F;var&#x2F;www&#x2F;html</p>
+</li>
+<li><p>安装mysql<br>yum -y install mariadb mariadb-server<br>systemctl enable mariadb<br>systemctl start mariadb<br>mysql_secure_installation</p>
+</li>
+<li><p>Enter current password for root (enter for none):&lt;–初次运行直接回车Set root password? [Y&#x2F;n]&lt;– 是否设置root用户密码，输入y并回车或直接回车<br>New password:&lt;– 设置root用户的密码<br>Re-enter new password:&lt;– 再输入一次你设置的密码<br>其他配置<br>Remove anonymous users? [Y&#x2F;n]&lt;– 是否删除匿名用户，回车<br>Disallow root login remotely? [Y&#x2F;n]&lt;–是否禁止root远程登录,回车,<br>Remove test database and access to it? [Y&#x2F;n]&lt;– 是否删除test数据库，回车<br>Reload privilege tables now? [Y&#x2F;n]&lt;– 是否重新加载权限表，回车<br>初始化MariaDB完成，接下来测试登录<br>mysql -uroot -p你的密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root‘@’%’ IDENTIFIED BY ‘你的密码的明文’ WITH GRANT OPTION;<br>FLUSH PRIVILEGES;                  远程登陆<br>完成。</p>
+</li>
+<li><p>php安装</p>
+</li>
+</ul>
+<ol>
+<li><p>rpm -Uvh <a target="_blank" rel="noopener" href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a> </p>
+</li>
+<li><p>yum -y remove php*</p>
+</li>
+<li><p>yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel php72w-embedded php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml</p>
+</li>
+<li><p>systemctl enable php-fpm.service<br>systemctl start php-fpm.service</p>
+</li>
+</ol>
+<ul>
+<li><strong>配置Apache解析php文件并自动关联</strong></li>
+</ul>
+<ol>
+<li><ol>
+<li>vi &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</li>
+<li>找到：DirectoryIndex index.html改为：DirectoryIndex index.html index.htm index.php</li>
+<li>找到：AddType application&#x2F;x-gzip .gz .tgz在该行下面添加：AddType application&#x2F;x-httpd-php .php</li>
+<li>重启Apache：systemctl restart httpd</li>
+<li>在浏览器输入服务器IP地址或者绑定的域名访问即可，html文件下是网站主目录，如果是里面有个文件夹才是主目录可以在配置文件修改主目录路径，或者在IP地址访问后面加上文件夹名字。</li>
+</ol>
+</li>
+</ol>
+<p>配置完后即可即可在网页打开centos7的ip地址。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120111224746.png" alt="image-20231120111224746"></p>
+<p>进入win10的任务管理器</p>
+<p>ssh <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#x32;&#46;&#x31;&#54;&#x38;&#46;&#49;&#x31;&#x30;&#46;&#49;&#x33;&#x31;">&#114;&#x6f;&#x6f;&#x74;&#64;&#49;&#x39;&#x32;&#46;&#x31;&#54;&#x38;&#46;&#49;&#x31;&#x30;&#46;&#49;&#x33;&#x31;</a>(远程登入centos7)</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120202757391.png" alt="image-20231120202757391"></p>
+<p>scp -r .\WWW.zip <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#x32;&#46;&#49;&#x36;&#56;&#46;&#x32;&#x34;&#50;&#46;&#49;&#x34;&#51;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#x32;&#46;&#49;&#x36;&#56;&#46;&#x32;&#x34;&#50;&#46;&#49;&#x34;&#51;</a>:\var\www\html(传送压缩包)</p>
+<p>cd &#x2F;var&#x2F;www&#x2F;html&#x2F;(跳转到&#x2F;var&#x2F;www&#x2F;html&#x2F;目录下)</p>
+<p>unzip WWW.zip(解压WWW.zip)</p>
+<p>打开网页192.168.110.131</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120203100637.png" alt="image-20231120203100637"></p>
+<p>即可打开里php文件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/" data-id="clp6vzzqi000070u47wiwa1au" data-title="安装centos7并搭建lamp" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/11/17/%E6%9C%AA%E5%91%BD%E5%90%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/">安装centos7并搭建lamp</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/17/%E6%9C%AA%E5%91%BD%E5%90%8D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">kali linux的目录结构</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/">优化页面及文件保密</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">php上传文件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
