@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="sqlmap常用命令-h                                           显示基本帮助信息 -hh                                         显示高级帮助信息 –version                                显示版本号 -v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/11/27/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sqlmap常用命令-h                                           显示基本帮助信息 -hh                                         显示高级帮助信息 –version                                显示版本号 -v">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-27T01:12:05.569Z">
+<meta property="article:modified_time" content="2023-11-27T12:06:34.660Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-sqlmap常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T01:12:05.569Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>sqlmap常用命令<br>-h                                           显示基本帮助信息</p>
+<p>-hh                                         显示高级帮助信息</p>
+<p>–version                                显示版本号</p>
+<p>-v                                           详细等级（0-6 默认 1）</p>
+<pre><code>                                          0：只显示python错误以及重要信息
+
+                                          1：显示信息以及警告
+
+                                          2：显示debug消息
+
+                                          3：显示注入payload
+
+                                          4：显示http请求
+
+                                          5：显示http响应头·
+
+                                          6：显示http响应内容
+</code></pre>
+<p>Target：                                </p>
+<p>-u                                          指定目标url</p>
+<p>-d                                          直接连接数据库</p>
+<p>-l                                           从burp代理日志的解析目标</p>
+<p>-r                                           从文件中加载http请求</p>
+<p>-g                                          从google dork的结果作为目标url</p>
+<p>-c                                          从INI配置文件中加载选项</p>
+<p>Request</p>
+<p>-A                                         指定user-agent头</p>
+<p>-H                                         额外的header</p>
+<p>-method&#x3D;                              指定HTTP方法（GET&#x2F;POST）</p>
+<p>–data&#x3D;                                 通过POST提交数据    </p>
+<p>–param-del&#x3D;                        指定参数分隔符</p>
+<p>–cookie&#x3D;                              指定cookie的值</p>
+<p>–cookie-del&#x3D;                        指定cookie分隔符</p>
+<p>–drop-set-cookie                  扔掉response中的set-cookie头</p>
+<p>–random-agent                    使用随机的user-agent头</p>
+<p>–host&#x3D;                                  设置host头 </p>
+<p>–referer&#x3D;                              指定referer头</p>
+<p>–headers&#x3D;                            额外的headers</p>
+<p>–auth-type&#x3D;                          http认证类型（Basic，NTLM，Digest）</p>
+<p>–auith-cred&#x3D;                         http认证凭证（账号：密码）</p>
+<p>–ignore-proxy                       忽略系统代理（常用于扫描本地文件）</p>
+<p>–proxy&#x3D;                                使用代理</p>
+<p>–proxy-cred&#x3D;                        代理认证证书（账号：密码）</p>
+<p>–delay&#x3D;                                 设置延迟时间（两个请求之间）</p>
+<p>–timeout&#x3D;                              超时时来连接前等待（默认 30）</p>
+<p>–retries&#x3D;                                连接超时时重试次数（默认 3）</p>
+<p>–randomize&#x3D;                         随机更改指定的参数的值</p>
+<p>–safe-url&#x3D;                             在测试期间经常访问的URL</p>
+<p>–safe-post&#x3D;                           POST数据发送到安全的URL</p>
+<p>–safe-freq&#x3D;                           两次请求之间穿插一个安全的URL   </p>
+<p>–skip-urlencode                    跳过payload数据的URL编码</p>
+<p>–chunked                             使用HTTP分块传输加密POST请求</p>
+<p>–hpp                                    使用HTTP参数pollution方法（常用于绕过IPS&#x2F;IDS检测）</p>
+<p>–force-ssl                             强制使用SSL&#x2F;HTTPS</p>
+<p>–eval&#x3D;value                         请求之前提供Python代码（eg：”import hashlib;id2&#x3D;hashlib.md5(id).hexdigest()”）</p>
+<p>Optimization</p>
+<p>-o                                         打开所有优化开关</p>
+<p>–predict-output                   预测输出（与–threads不兼容）</p>
+<p>–keep-alive                         建立长久的HTTP(S)连接 (与–proxy不兼容)</p>
+<p>–null-connection                 空连接</p>
+<p>–threads&#x3D;value                  设置线程(默认 1)</p>
+<p>Injection</p>
+<p>-p                                       指定测试参数</p>
+<p>–skip&#x3D;                               跳过指定参数的测试</p>
+<p>–skip-static                        跳过测试静态的参数</p>
+<p>–dbms&#x3D;                             指定具体DBMS</p>
+<p>–os&#x3D;                                  指定DBMS操作系统</p>
+<p>–invalid-bignum                使用大数字使值无效</p>
+<p>–invalid-logical                  使用逻辑符使值无效</p>
+<p>–invalid-string                   使用字符串使值无效</p>
+<p>–no-cast                             关闭payload铸造机制</p>
+<p>–no-escape                       关闭字符转义机制（默认自动开启）</p>
+<p>–prefix&#x3D;                             加入payload前缀</p>
+<p>–suffix&#x3D;                              加入payload后缀</p>
+<p>–tamper&#x3D;                          指定使用的脚本</p>
+<p>Detectiong</p>
+<p>–level&#x3D;                              指定测试的等级（1-5 默认为1）</p>
+<p>–risk&#x3D;                               指定测试的风险（0-3 默认为1）</p>
+<p>–string&#x3D;                            登录成功时，页面所含有的“关键字” 用于证明已经登录成功</p>
+<p>–not-string&#x3D;                      登录成功时，页面所含有的“关键字” 用于证明已经登录失败</p>
+<p>–code&#x3D;                             查询为真时，匹配的HTTP代码</p>
+<p>–smart                              当有大量检测目标时，只选择基于错误的检测结果</p>
+<p>–text-only                         仅基于文本内容比较网页</p>
+<p>–titles                               仅基于标题比较网页</p>
+<p>Techniques</p>
+<p>–technique&#x3D;                      指定sql注入技术（默认BEUSTQ）</p>
+<p>–time-sec&#x3D;                        基于时间注入检测相应的延迟时间（默认为5秒）</p>
+<p>–union-clos&#x3D;                     进行查询时，指定列的范围</p>
+<p>–union-char&#x3D;                    指定暴力破解列数的字符</p>
+<p>Fingerprint</p>
+<p>-f                                      查询目标DBMS版本指纹信息</p>
+<p>Emuneration</p>
+<p>-a                                    查询所有  </p>
+<p>-b                                    查询目标DBMS banner信息</p>
+<p>–current-user                 查询目标DBMS当前用户</p>
+<p>–current-db                    查询目标DBMS当前数据库</p>
+<p>–is-dba                          查询目标DBMS当前用户是否为DBA</p>
+<p>–users                            枚举目标DBMS所有的用户</p>
+<p>–paswords                     枚举目标DBMS用户密码哈希值</p>
+<p>–privileges                     枚举目标DBMS用户的权限</p>
+<p>–roles                            枚举DBMS用户的角色</p>
+<p>–dbs                              枚举DBMS所有的数据库</p>
+<p>–tables                          枚举DBMS数据库中所有的表</p>
+<p>–columns                      枚举DBMS数据库表中所有的列</p>
+<p>–count                         检索表的条目的数量</p>
+<p>–dump                         存储DBMS数据库的表中的条目</p>
+<p>–dump-all                     存储DBMS所有数据库表中的条目</p>
+<p>–D db                          指定进行枚举的数据库名称</p>
+<p>–T   table                     指定进行枚举的数据库表名称</p>
+<p>–C   column                 指定进行枚举的数据库列名称</p>
+<p>–exclude-sysdbs          枚举表时排除系统数据库</p>
+<p>–sql-query                    指定查询的sql语句</p>
+<p>–sql-shell                     提示输入一个交互式sql shell</p>
+<p>Brute force</p>
+<p>–common-tables                       暴力破解表 </p>
+<p>–common-colomns                    暴力破解列</p>
+<p>File system access</p>
+<p>–file-read                            从目标数据库管理文件系统读取文件</p>
+<p>–file-write                           上传文件到目标数据库管理文件系统</p>
+<p>–file-dest                             指定写入文件的绝对路径</p>
+<p>–os-cmd&#x3D;                           执行操作系统命令</p>
+<p>–os-shell                            交互式的系统shell</p>
+<p>–os-pwn                             获取一个OOB shell，Meterpreter或者VNC</p>
+<p>–os-smbrelay                    一键 获取一个OOB shell，Meterpreter或者VNC</p>
+<p>–os-bof                              储存过程缓冲区溢出利用</p>
+<p>–os-esc                              数据库进程用户权限提升</p>
+<p>–msf-path&#x3D;                        Metasploit  Framework本地安装路径</p>
+<p>General</p>
+<p>-s                                     sqlite会话文件保存位置</p>
+<p>-t                                      记录所有HTTP流量到指定文件中</p>
+<p>–batch                             测试过程中， 执行所有默认配置</p>
+<p>–charset&#x3D;v                      强制用于数据检索的字符编码 </p>
+<p>–crawl&#x3D;                           从目标URL开始爬取网站</p>
+<p>–crawl-exclude&#x3D;              禁止爬取某个页面（eg：logout）</p>
+<p>–csv-del&#x3D;                        指定CSV输出中使用的的字符</p>
+<p>–dump-format&#x3D;               储存数据的方式（CSV(default)，HTML，SQLITE）</p>
+<p>–flush-session                 刷新当前目标的会话文件</p>
+<p>–fresh-queries                 忽略会话文件中储存的查询结果，重新查询</p>
+<p>–hex                                使用DBMS hex函数进行数据检索</p>
+<p>–outpout-dir&#x3D;                  自定义输出目录</p>
+<p>–save&#x3D;                            保存选项到INI配置文件中</p>
+<p>–scope&#x3D;                          使用正则表达式从提供的日志中guo’l</p>
+<p>–alert                               再找到SQL注入时运行主机操作系统命令</p>
+<p>–purge-output                  安全的从输出目录中删除所有内容</p>
+<p>–sqlmap-shell                  提示输入交互式sqlmap  shell</p>
+<p>–update                           更新sqlmap</p>
+<p>sqlmap注入技术简介<br>–technique&#x3D;     （默认全部使用）</p>
+<p>B       基于布尔的盲注</p>
+<p>T       基于时间的盲注</p>
+<p>E      基于报错的注入</p>
+<p>U      基于UNION查询注入</p>
+<p>S      基于多语句查询注入</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/27/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="clpgv5xcs0000hcu4aiqh5tua" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          注册tg号
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">下载BurpSuite与SQL注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/">注册tg号</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/27/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/">下载BurpSuite与SQL注入</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/22/phpMyAdmin/">phpMyAdmin</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/">在centos7中下载及使用docker</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
