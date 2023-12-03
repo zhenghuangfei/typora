@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>kali linux的目录结构 | Hexo</title>
+  <title>kali linux的目录结构linux基本操作 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="kali linux的目录结构  处理目录的常用命令  12345678ls（英文全拼：list files）: 列出目录及文件名cd（英文全拼：change directory）：切换目录pwd（英文全拼：print work directory）：显示目前的目录mkdir（英文全拼：make directory）：创建一个新的目录rmdir（英文全拼：remove directory）：删除一">
+  <meta name="description" content="kali linux的目录结构 12345678910111213141516&#x2F;：根目录，系统中所有其他目录和文件的起点。&#x2F;bin&#x2F;：二进制可执行文件目录，包含系统启动和运行所需的基本命令。&#x2F;boot&#x2F;：包含启动Linux系统所需的文件，如内核和引导加载程序。&#x2F;dev&#x2F;：设备文件目录，包含与系统中各种设备（硬件和软件）相关的文件。&#x2F;etc&#x2F;：系统配置文件目录，包含系统级别的配置文件，如网络配置、用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kali linux的目录结构">
+<meta property="og:title" content="kali linux的目录结构linux基本操作">
 <meta property="og:url" content="http://example.com/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="kali linux的目录结构  处理目录的常用命令  12345678ls（英文全拼：list files）: 列出目录及文件名cd（英文全拼：change directory）：切换目录pwd（英文全拼：print work directory）：显示目前的目录mkdir（英文全拼：make directory）：创建一个新的目录rmdir（英文全拼：remove directory）：删除一">
+<meta property="og:description" content="kali linux的目录结构 12345678910111213141516&#x2F;：根目录，系统中所有其他目录和文件的起点。&#x2F;bin&#x2F;：二进制可执行文件目录，包含系统启动和运行所需的基本命令。&#x2F;boot&#x2F;：包含启动Linux系统所需的文件，如内核和引导加载程序。&#x2F;dev&#x2F;：设备文件目录，包含与系统中各种设备（硬件和软件）相关的文件。&#x2F;etc&#x2F;：系统配置文件目录，包含系统级别的配置文件，如网络配置、用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116100512889.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116145151803.png">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimgimage-20231116150214462.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116171636778.png">
 <meta property="article:published_time" content="2023-11-16T02:04:30.000Z">
-<meta property="article:modified_time" content="2023-11-17T11:40:58.924Z">
+<meta property="article:modified_time" content="2023-12-01T06:03:49.268Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116100512889.png">
@@ -53,7 +53,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>24</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>0</strong><br>标签</div></a>
     </div>
@@ -96,7 +96,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      kali linux的目录结构
+      kali linux的目录结构linux基本操作
     </h1>
   
 
@@ -112,6 +112,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="kali-linux的目录结构"><a href="#kali-linux的目录结构" class="headerlink" title="kali linux的目录结构"></a>kali linux的目录结构</h2><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116100512889.png" alt="image-20231116100512889"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/：根目录，系统中所有其他目录和文件的起点。</span><br><span class="line">/bin/：二进制可执行文件目录，包含系统启动和运行所需的基本命令。</span><br><span class="line">/boot/：包含启动Linux系统所需的文件，如内核和引导加载程序。</span><br><span class="line">/dev/：设备文件目录，包含与系统中各种设备（硬件和软件）相关的文件。</span><br><span class="line">/etc/：系统配置文件目录，包含系统级别的配置文件，如网络配置、用户账户配置等。</span><br><span class="line">/home/：用户主目录的父目录，每个用户在此目录下拥有一个独立的子目录，用于存储个人文件和设置。</span><br><span class="line">/lib/：库文件目录，包含系统所需的共享库文件。</span><br><span class="line">/media/：可移动媒体设备挂载点目录，用于挂载光盘、U盘等可移动设备。</span><br><span class="line">/mnt/：临时挂载目录，用于挂载其他文件系统或网络共享。</span><br><span class="line">/opt/：可选应用程序目录，用于存放第三方应用程序。</span><br><span class="line">/proc/：虚拟文件系统，包含系统运行时的各种信息。</span><br><span class="line">/root/：超级用户（root）的主目录。</span><br><span class="line">/sbin/：系统管理员命令目录，包含系统管理和维护所需的命令。</span><br><span class="line">/tmp/：临时文件目录，用于存放临时文件。</span><br><span class="line">/usr/：用户程序和文件目录，包含系统范围的应用程序、库文件、文档等。</span><br><span class="line">/var/：可变数据目录，包含经常变化的数据，如日志文件、缓存等。</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>处理目录的常用命令</li>
 </ul>
@@ -394,7 +396,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>23</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>24</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>0</strong><br>标签</div></a>
     </div>
