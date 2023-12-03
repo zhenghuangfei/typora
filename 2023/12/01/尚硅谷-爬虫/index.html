@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>尚硅谷-爬虫 | Hexo</title>
+  <title>python基础 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="python基础变量以及数据类型变量的定义对于需要重复使用的，并且需要修改数据的，可以定义为变量。 格式：变量的名字 &#x3D; 变量的值 12a &#x3D; &quot;晴天&quot;print(a)  变量的类型Python里为了应对不同的业务需求，也把数据分为不同的类型。   查看变量的数据类型在python中，只要定义了一个变量，而且它有数据，那么它的类型就已经确定了，不需要咱们开发者主动的去">
 <meta property="og:type" content="article">
-<meta property="og:title" content="尚硅谷-爬虫">
+<meta property="og:title" content="python基础">
 <meta property="og:url" content="http://example.com/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="python基础变量以及数据类型变量的定义对于需要重复使用的，并且需要修改数据的，可以定义为变量。 格式：变量的名字 &#x3D; 变量的值 12a &#x3D; &quot;晴天&quot;print(a)  变量的类型Python里为了应对不同的业务需求，也把数据分为不同的类型。   查看变量的数据类型在python中，只要定义了一个变量，而且它有数据，那么它的类型就已经确定了，不需要咱们开发者主动的去">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231201171506279.png">
 <meta property="article:published_time" content="2023-12-01T08:59:46.000Z">
-<meta property="article:modified_time" content="2023-12-03T03:04:32.171Z">
+<meta property="article:modified_time" content="2023-12-03T05:01:18.449Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231201171506279.png">
@@ -92,7 +92,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      尚硅谷-爬虫
+      python基础
     </h1>
   
 
@@ -337,9 +337,14 @@
 
 <h4 id="if-elif"><a href="#if-elif" class="headerlink" title="if elif"></a>if elif</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">elif 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">else:</span><br><span class="line">		条件不成立时做的事</span><br><span class="line">score = int(input(&quot;请输入你的成绩&quot;))</span><br><span class="line">if score &gt;= 90:</span><br><span class="line">		print(&quot;优秀&quot;)</span><br><span class="line">elif score &gt;= 60:</span><br><span class="line">		print(&quot;及格&quot;)</span><br><span class="line">else:</span><br><span class="line">		print(&quot;不及格&quot;)</span><br></pre></td></tr></table></figure>
 
-<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for 变量 in 要遍历的数据:</span><br><span class="line">		方法体</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for 变量 in 要遍历的数据:</span><br><span class="line">		方法体</span><br><span class="line">a = print(&quot;请输入要遍历的数据&quot;)</span><br><span class="line">for i in a:</span><br><span class="line">		print(i)</span><br></pre></td></tr></table></figure>
 
+<h4 id="range语句"><a href="#range语句" class="headerlink" title="range语句"></a>range语句</h4><p>range(起始值，结束值，步长)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#输出0,1,2</span><br><span class="line">for i in range(0,2,1)</span><br><span class="line">		print(i)</span><br><span class="line">#起始值为0，步长为1时可省略</span><br></pre></td></tr></table></figure>
 
+<p>#判断元素的个数</p>
+<p>len()</p>
+<h3 id="数据类型高级"><a href="#数据类型高级" class="headerlink" title="数据类型高级"></a>数据类型高级</h3><h4 id="字符串高级"><a href="#字符串高级" class="headerlink" title="字符串高级"></a>字符串高级</h4>
       
     </div>
     <footer class="article-footer">
