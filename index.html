@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>24</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>0</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,213 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-HTML5" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/06/HTML5/" class="article-date">
+  <time class="post-time" datetime="2023-12-06T08:05:18.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/06/HTML5/">HTML5</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206211419992.png" alt="image-20231206211419992"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt; 声明为 HTML5 文档</span><br><span class="line">&lt;html&gt; 元素是 HTML 页面的根元素</span><br><span class="line">&lt;head&gt; 元素包含了文档的元（meta）数据，如 &lt;meta charset=&quot;utf-8&quot;&gt; 定义网页编码格式为 utf-8。</span><br><span class="line">&lt;title&gt; 元素描述了文档的标题</span><br><span class="line">&lt;body&gt; 元素包含了可见的页面内容</span><br><span class="line">&lt;h1&gt; 元素定义一个大标题</span><br><span class="line">&lt;p&gt; 元素定义一个段落</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">开始标签 *</th>
+<th align="left">元素内容</th>
+<th align="left">结束标签 *</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><p></td>
+<td align="left">这是一个段落</td>
+<td align="left"></p></td>
+</tr>
+<tr>
+<td align="left"><a href="default.htm"></td>
+<td align="left">这是一个链接</td>
+<td align="left"></a></td>
+</tr>
+<tr>
+<td align="left"><br></td>
+<td align="left">换行</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">class</td>
+<td align="left">为html元素定义一个或多个类名（classname）(类名从样式文件引入)</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">定义元素的唯一id</td>
+</tr>
+<tr>
+<td align="left">style</td>
+<td align="left">规定元素的行内样式（inline style）</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">描述了元素的额外信息 (作为工具条使用)</td>
+</tr>
+</tbody></table>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    &lt;h1&gt;hello world&lt;/h1&gt;</span><br><span class="line">    &lt;em&gt;斜体&lt;/em&gt;</span><br><span class="line">   &lt;strong&gt;加粗&lt;/strong&gt;</span><br><span class="line">    &lt;b&gt;加粗&lt;/b&gt;</span><br><span class="line">    &lt;i&gt;斜体&lt;/i&gt;</span><br><span class="line">    &lt;br&gt;&lt;!--换行--&gt;</span><br><span class="line">    &lt;hr&gt;&lt;!--分割线--&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">    注释</span><br><span class="line">--&gt;</span><br><span class="line">    &lt;sup&gt;上标&lt;/sup&gt;</span><br><span class="line">    &lt;sub&gt;下标&lt;/sub&gt;</span><br><span class="line">    &lt;u&gt;下划线&lt;/u&gt;</span><br><span class="line">    &lt;s&gt;删除&lt;/s&gt;</span><br><span class="line">    &lt;del&gt;删除&lt;/del&gt;</span><br><span class="line">    &lt;a href=&quot;http://www.google.com&quot;&gt;谷歌&lt;/a&gt;&lt;!--超链接--&gt;&lt;br&gt;</span><br><span class="line">    &lt;img src=&quot;./1.jpg&quot; width=&quot;500&quot; alt=&quot;好看&quot;&gt;&lt;!--图片--&gt;</span><br><span class="line">    &lt;p&gt;一段话&lt;img src=&quot;./1.jpg&quot; width=&quot;100&quot; alt=&quot;好看&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;table &gt;&lt;!--表格--&gt;</span><br><span class="line">        &lt;tr&gt;&lt;!--行--&gt;</span><br><span class="line">            &lt;td&gt;1&lt;/td&gt;&lt;!--lei--&gt;</span><br><span class="line">            &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;3&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;4&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206211748595.png" alt="image-20231206211748595"></p>
+<h3 id="css创建布局"><a href="#css创建布局" class="headerlink" title="css创建布局"></a>css创建布局</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .container &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            flex-wrap: wrap;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .block &#123;</span><br><span class="line">            width: 48%;</span><br><span class="line">            height: 100px;</span><br><span class="line">            margin: 10px;</span><br><span class="line">            background-color: rgb(144, 73, 73)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .block.center &#123;</span><br><span class="line">            width: 800px;</span><br><span class="line">            height: 400px;</span><br><span class="line">            margin: 10px;</span><br><span class="line">            background-image: url(1.jpg);</span><br><span class="line">            background-size: cover;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block center&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206212056982.png" alt="image-20231206212056982"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/06/HTML5/" data-id="clptth8um0000u4u453ub5vqb" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-网络模式，ip设置和代理设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" class="article-date">
+  <time class="post-time" datetime="2023-12-05T07:26:40.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">05</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">网络模式，ip设置和代理设置</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205093335588.png" alt="image-20231205093335588"></p>
+<p>当路由器给静态ip设置为192.168.2.2，同时有人将ip动态改为192.168.2.2时，优先网给静态，也可能都没网。</p>
+<p>osi七层模型:</p>
+<ol>
+<li>物理层（Physical Layer）：该层负责在物理媒介上传输比特流（bits），处理与硬件相关的电气、光学和物理接口。</li>
+<li>数据链路层（Data Link Layer）：该层负责在直连的节点之间传输帧（frames），处理数据的帧同步、错误检测和纠正。</li>
+<li>网络层（Network Layer）：该层负责在网络上传输分组（packets），处理数据的路由、寻址和分组转发。</li>
+<li>传输层（Transport Layer）：该层负责端到端的数据传输，提供可靠的数据传输和错误恢复机制，以及数据的分段和重组。</li>
+<li>会话层（Session Layer）：该层负责建立、管理和终止会话（sessions）连接，支持跨网络节点之间的进程通信。</li>
+<li>表示层（Presentation Layer）：该层负责数据的格式化、加密和压缩，以确保不同系统之间的数据能够正确解释和传输。</li>
+<li>应用层（Application Layer）：该层负责提供应用程序之间的高级服务和协议，例如电子邮件、文件传输和远程登录。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205101249067.png" alt="image-20231205101249067"></p>
+<p>子网掩码（Subnet Mask）是用于划分网络的一种技术，它与IP地址一起使用来确定网络中主机的地址范围。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205140404962.png" alt="image-20231205140404962"></p>
+<p>windows设置ip</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205143833478.png" alt="image-20231205143833478"></p>
+<p>pc1不能访问pc2，pc3。</p>
+<p>pc2应为是通过物理机ip出去的，所以可以访问pc1。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205144946418.png" alt="image-20231205144946418"></p>
+<h3 id="使用SwitchyOmega，google链接代理"><a href="#使用SwitchyOmega，google链接代理" class="headerlink" title="使用SwitchyOmega，google链接代理"></a>使用SwitchyOmega，google链接代理</h3><p>打开扩展-》点击应用商店</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231205192504560.png" alt="image-20231205192504560"></p>
+<p>搜索SwitchyOmega</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231205193105711.png" alt="image-20231205193105711"></p>
+<p>点击加入Chrome</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231205193210297.png" alt="image-20231205193210297"></p>
+<p>点击右上角的拼图图案，点击选择选项。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231205193603422.png" alt="image-20231205193603422"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231205193703218.png" alt="image-20231205193703218"></p>
+<h3 id="ssh-链接代理服务器"><a href="#ssh-链接代理服务器" class="headerlink" title="ssh 链接代理服务器"></a>ssh 链接代理服务器</h3><ul>
+<li>下载Proxifier</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205154217474.png" alt="image-20231205154217474"></p>
+<p>下载地址：[Proxifier][<a target="_blank" rel="noopener" href="http://192.168.2.6:5244/d/%E7%BD%91%E7%9B%98/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98/%E8%BD%AF%E4%BB%B6%E5%A4%A7%E5%85%A8/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/proxifier_137484.rar]">http://192.168.2.6:5244/d/%E7%BD%91%E7%9B%98/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98/%E8%BD%AF%E4%BB%B6%E5%A4%A7%E5%85%A8/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/proxifier_137484.rar]</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155039790.png" alt="image-20231205155039790"></p>
+<p>并下载安装。</p>
+<ul>
+<li>使用</li>
+</ul>
+<p>点击配置文件-》代理服务器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155631480.png" alt="image-20231205155631480"></p>
+<p>点击添加</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155723822.png" alt="image-20231205155723822"></p>
+<p>地址输入本机地址：127.0.0.1，端口输入：7890，协议选择SOCKS 版本5，再点击确定。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155955010.png" alt="image-20231205155955010"></p>
+<p>点击配置文件-》代理规则-》添加-》在应用程序中输入：ssh*;-》点击确定</p>
+<p>以后如果想在里面添加代理，只需在后面加软件名和；如：steam.exe;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205160315007.png" alt="image-20231205160315007"></p>
+<p>将Default的动作处改为Direct</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205160600017.png" alt="image-20231205160600017"></p>
+<p>验证是否成功：win加r，输入cmd进入，输入ssh。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205152914263.png" alt="image-20231205152914263"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205152925732.png" alt="image-20231205152925732"></p>
+<p>说明放包成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" data-id="clptth8ut0002u4u472bxfv9m" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-sqlmap常用命令-1" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -382,6 +589,12 @@
 <h3 id="post请求翻译"><a href="#post请求翻译" class="headerlink" title="post请求翻译"></a>post请求翻译</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#爬取翻译网页https://fanyi.baidu.com/sug，并翻译spider</span><br><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line">import json</span><br><span class="line">url = &#x27;https://fanyi.baidu.com/sug&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;kw&#x27;:&#x27;spider&#x27;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(data).encode(&#x27;utf-8&#x27;)</span><br><span class="line">request = urllib.request.Request(url=url, data=data)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">data = json.loads(content)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
 
 <p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231204211536280.png" alt="image-20231204211536280"></p>
+<h3 id="aiax的get请求-豆瓣电影"><a href="#aiax的get请求-豆瓣电影" class="headerlink" title="aiax的get请求(豆瓣电影)"></a>aiax的get请求(豆瓣电影)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">url = &quot;https://movie.douban.com/chart&quot;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line">#请求对象的定制</span><br><span class="line">request = urllib.request.Request(url, headers=headers)</span><br><span class="line">#获取响应的数据</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">#print(html)</span><br><span class="line">#数据下载到本地</span><br><span class="line">fp = open(&#x27;douban.json&#x27;, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;)</span><br><span class="line">fp.write(html)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231206100322476.png" alt="image-20231206100322476"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231206100349435.png" alt="image-20231206100349435"></p>
+<h3 id="aiax的get请求-豆瓣电影全"><a href="#aiax的get请求-豆瓣电影全" class="headerlink" title="aiax的get请求(豆瓣电影全)"></a>aiax的get请求(豆瓣电影全)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">def create_request(page):</span><br><span class="line">    base_url = &quot;https://movie.douban.com/chart/top list?type=5&amp;interval id=100%3A90&amp;action=&amp;&quot;</span><br><span class="line">    data = &#123;</span><br><span class="line">        &#x27;start&#x27;:(page-1) * 20,</span><br><span class="line">        &#x27;limit&#x27;:20</span><br><span class="line">    &#125;</span><br><span class="line">    data = urllib.parse.urlencode(data)</span><br><span class="line">    url = base_url + data</span><br><span class="line">#    print(url)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    #请求对象的定制</span><br><span class="line">    request = urllib.request.Request(url, headers=headers)</span><br><span class="line">    return request</span><br><span class="line"></span><br><span class="line">#获取响应的数据</span><br><span class="line">def get_content(request):</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">    return content</span><br><span class="line"></span><br><span class="line">#下载</span><br><span class="line">def down_load(page,content):</span><br><span class="line">    with open(&#x27;douban_&#x27; + str(page) + &#x27;.jaon&#x27;,&#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as fp:</span><br><span class="line">        fp.write(get_content(request))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#程序的入口</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    start_page = int(input(&#x27;请输入起始页码：&#x27;))</span><br><span class="line">    end_page = int(input(&#x27;请输入结束页码：&#x27;))</span><br><span class="line">    for page in range(start_page,end_page+1):</span><br><span class="line">        request = create_request(page)</span><br><span class="line">        content = get_content(request)</span><br><span class="line">        down_load(page,content)</span><br><span class="line">#        print(page)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -398,9 +611,9 @@
 
 
   
-    <article id="post-cs模式" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-cs模式和安卓远控" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F/" class="article-date">
+    <a href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/" class="article-date">
   <time class="post-time" datetime="2023-12-04T02:59:49.000Z" itemprop="datePublished">
     <span class="post-month">12月</span><br/>
     <span class="post-day">04</span>
@@ -415,7 +628,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F/">cs模式和安卓远控</a>
+      <a class="article-title" href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/">cs模式和安卓远控</a>
     </h1>
   
 
@@ -478,7 +691,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/04/cs%E6%A8%A1%E5%BC%8F/" data-id="clprnfuqx0000oku4hi57f2ix" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/" data-id="clptth8up0001u4u4chhle0ev" class="article-share-link">分享</a>
       
       
     </footer>
@@ -1394,157 +1607,6 @@
 
 
   
-    <article id="post-注册tg号" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" class="article-date">
-  <time class="post-time" datetime="2023-11-27T11:56:43.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">27</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/">注册tg号</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="注册tg号"><a href="#注册tg号" class="headerlink" title="注册tg号"></a>注册tg号</h1><p>华为手机可能接收不到验证码。</p>
-<p>Telegram提供手机版（Android、iOS、Windows Phone）、桌面版（Windows、macOS、Linux）和网页版等多个平台客户端。这里需要提醒，Telegram的官网是<a target="_blank" rel="noopener" href="https://telegram.org/">telegram.org</a>，不是.com。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.打开Telegram应用程序并输入手机号码</span><br><span class="line">2.在接收到短信验证码后，输入验证码并设置密码。</span><br><span class="line">3.编辑个人资料、添加联系人、加入频道和群组、发送消息等等。</span><br></pre></td></tr></table></figure>
-
-<p>理论上来说，可以使用国内的+86电话号码注册，不过不建议。一是保护隐私，二是Telegram官方已将+86手机号用户拉入黑名单, 新注册用户会被直接定义为spam用户，无法进行私聊和加密对话。可以去获得一个国外号码进行注册。</p>
-<p>Telegram 默认情况下不会加密对话, 如果需要加密对话，需要手动开启。设置方法如下，点击联系人，然后点击对话框右上角三个点，然后选择“Start Secret Chat”。</p>
-<ul>
-<li>tg汉化</li>
-</ul>
-<p>tg:&#x2F;&#x2F;setlanguage?lang&#x3D;zhcncc</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" data-id="clplzuha6000lq8u40xgsd3xz" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-下载BurpSuite" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/" class="article-date">
-  <time class="post-time" datetime="2023-11-23T03:25:09.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">23</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/">下载BurpSuite与SQL注入</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="下载BurpSuite及使用"><a href="#下载BurpSuite及使用" class="headerlink" title="下载BurpSuite及使用"></a>下载BurpSuite及使用</h2><p>下载好BurpSuite v2.1中文版.zip，并进行解压，把解压的文件后缀中文去掉。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123113028158.png" alt="image-20231123113028158"></p>
-<p>双击jdk8进行安装（需要在java8环境中），再点击文件Start.vbs进入，会显示需要激活码。</p>
-<p>在当前文件夹中进入命令行模式（在文件上方输入cmd）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123192903041.png" alt="image-20231123192903041"></p>
-<p>输入java -jar burp-loader-keygen-2.jar回车</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123193424800.png" alt="image-20231123193424800"></p>
-<p>生成的license粘贴进burp的框框</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281372776-3da8d69d-6132-4811-a32f-27b2996bfe5a.png" alt="image.png"></p>
-<p>然后next，选择manual activation。将request复制到 burp-keygen-scz 的 Activation Request。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281564516-76012302-ef85-4fbd-b26c-0cc7329bfc8c.png" alt="image.png"></p>
-<p>把自动生成的 Activation Response 复制回 BurpSuite</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281603398-e82ff9a3-b19a-4d00-aeae-05fcd7e66f9c.png" alt="image.png"></p>
-<p>然后next就可以了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195424210.png" alt="image-20231123195424210"></p>
-<p>选一个浏览器，打开扩展程序添加代理（如google添加<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>）。</p>
-<p>并进入修改，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195828915.png" alt="image-20231123195828915"></p>
-<p>点击应用选项即可保存，并开启代理。</p>
-<p>在进入Burp点击代理，点击拦截代理。现在浏览器打不开网页，且网页可被Burp获取。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123200058746.png" alt="image-20231123200058746"></p>
-<p>在文本中右键点击发送给Repeater。即可在重发器中单独进行网页控制。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123200447709.png" alt="image-20231123200447709"></p>
-<p>进入重发器点击发送，再在右侧点击Click to render page。可查看截取页面。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123210205229.png" alt="image-20231123210205229"></p>
-<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>进入WWW根目录（phpstudy的根目录）</p>
-<p>下载压缩包pikachu-master.zip，解压缩到WWW目录下。并改名为pikachu。</p>
-<p>启动phpstudy的mysql和apache。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123194702369.png" alt="image-20231123194702369"></p>
-<p>打开网页192.168.110.132&#x2F;pikachu回车，即可进入pikachu网页。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195215116.png" alt="image-20231123195215116"></p>
-<p>点击SQL-lnject，数字型注入（post）</p>
-<p>选一个数字进行查询。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203052052.png" alt="image-20231123203052052"></p>
-<p>用Burp进行拦截。并发送给重发器。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203237540.png" alt="image-20231123203237540"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; or 1=1  万能密码</span><br><span class="line">1 and 1=1  查看页面是否正常查询</span><br><span class="line">1 and 1=2  页面是否有变化带入数据库进行查询，如果有变化一般存在漏洞</span><br></pre></td></tr></table></figure>
-
-<p>用这些进行判断是否能进行aql注入。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205956256.png" alt="image-20231123205956256"></p>
-<p>然后课依次输入下列语句查看数据库内容。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205040169.png" alt="image-20231123205040169"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203501165.png" alt="image-20231123203501165"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205034527.png" alt="image-20231123205034527"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205050727.png" alt="image-20231123205050727"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite/" data-id="clplzuha2000dq8u43ppygqi2" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1589,7 +1651,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>24</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>0</strong><br>标签</div></a>
     </div>
