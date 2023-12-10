@@ -43,9 +43,9 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -70,6 +70,160 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/29/%E7%88%AC%E8%99%AB/" class="article-date">
+  <time class="post-time" datetime="2023-11-29T12:01:38.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">29</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/29/%E7%88%AC%E8%99%AB/">爬虫</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基础爬虫概念"><a href="#基础爬虫概念" class="headerlink" title="基础爬虫概念"></a>基础爬虫概念</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen //模块，打开网址</span><br><span class="line">url = &quot;http://www.baidu.com&quot;//将网址赋值给url</span><br><span class="line">resp = urlopen(url)//打开url并赋值给resp</span><br><span class="line">print(resp.read())//print(resp)输出的是Response,要用read()将其读出</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129202448551.png" alt="image-20231129202448551"></p>
+<p>虽然输出了，但开头是b，代表我们现在拿到的是一个字节。</p>
+<p>因此需要添加字符级。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(resp.read().decode(&quot;utf-8&quot;))</span><br></pre></td></tr></table></figure>
+
+<p>在输出栏里可以找到charest&#x3D;xxx，一般是utf-8或gbk</p>
+<p>再重新运行就可以获取页面源代码了。</p>
+<ul>
+<li>将代码复制到文件里</li>
+</ul>
+<p>创建文件baidu.com，并将获取到的源码复制到里面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen </span><br><span class="line">url = &quot;http://www.baidu.com&quot;</span><br><span class="line">resp = urlopen(url)</span><br><span class="line">with open(&quot;baidu.html&quot;,mode=&quot;w&quot;,encoding=&quot;utf-8&quot;) as f:</span><br><span class="line">	f.write(resp.read().decode(&quot;utf-8&quot;))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129205413108.png" alt="image-20231129205413108"></p>
+<p>HTTP协议把一条消息分为三大块内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129211246522.png" alt="image-20231129211246522"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129212039206.png" alt="image-20231129212039206"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231129212301690.png" alt="image-20231129212301690"></p>
+<ul>
+<li>安装requests</li>
+</ul>
+<p>打开vc，按住ctrl和~打开终端</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130094549936.png" alt="image-20231130094549936"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requese</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130094652682.png" alt="image-20231130094652682"></p>
+<p>这时就可以直接调用requests模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url = &quot;http://www.baidu.com&quot;</span><br><span class="line">resp = requests.get(url)</span><br><span class="line">resp.encoding = &quot;utf-8&quot;</span><br><span class="line">print(resp.text)#拿到页面源代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130102632130.png" alt="image-20231130102632130"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130103011822.png" alt="image-20231130103011822"></p>
+<h2 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h2><ul>
+<li>正则表达式</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130105442282.png" alt="image-20231130105442282"></p>
+<p>在线测试正则表达式：<a target="_blank" rel="noopener" href="https://tool.oschina.net/regex/">https://tool.oschina.net/regex/</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130105713109.png" alt="image-20231130105713109"></p>
+<ul>
+<li>常用元字符</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130110518519.png" alt="image-20231130110518519"></p>
+<ul>
+<li>量词：控制前面的元字符出现的次数</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130111825706.png" alt="image-20231130111825706"></p>
+<ul>
+<li>贪婪匹配和惰性匹配（主要用惰性匹配）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130140015840.png" alt="image-20231130140015840"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130140246721.png" alt="image-20231130140246721"></p>
+<ul>
+<li>re模块</li>
+</ul>
+<p>1.re.findall 正则匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">re.findall()#查找所用被匹配得内容</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">result = re.findall(r&quot;\d+&quot;,&quot;我18，我20000&quot;)#前引号输入正则表达式，后引号输入正文。</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130141233862.png" alt="image-20231130141233862"></p>
+<p>2.re.finditer 正则迭代，重点（会使程序效率提高）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">result = re.finditer(r&quot;\d+&quot;,&quot;我18，我20000&quot;)</span><br><span class="line">for item in result:#从迭代器中获取内容</span><br><span class="line">	print(item.group())#group()获取数据</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130142623533.png" alt="image-20231130142623533"></p>
+<p>3.re.search 正则搜索，只会匹配到第一次匹配的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">result = re.search (r&quot;\d+&quot;,&quot;我18，我20000&quot;)</span><br><span class="line">print(result.group())</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130143345024.png" alt="image-20231130143345024"></p>
+<p>4.re.match 在匹配的时候，从字符串开头进行匹配，类似加一个^</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">result = re.match (r&quot;\d+&quot;,&quot;我18，我20000&quot;)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130143844088.png" alt="image-20231130143844088"></p>
+<p>5.re.compile预加载,提前把正则对象加载完毕</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line">obj = re.compile(r&quot;\d+&quot;)</span><br><span class="line">result = obj.findall(&quot;我18，我20000&quot;)</span><br><span class="line">for item in result:</span><br><span class="line">	print(item)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130145310644.png" alt="image-20231130145310644"></p>
+<ul>
+<li>想要提取数据必须用小括号括起来,可以单独起名字</li>
+<li>( ?P&lt;名字&gt;正则)</li>
+<li>提取数据的时候。需要group(“名字”)</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130150052101.png" alt="image-20231130150052101"></p>
+<ul>
+<li>列子</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import io//</span><br><span class="line">import sys//</span><br><span class="line">import urllib.request//</span><br><span class="line">import re//</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)//#改变标准输出的默认编码</span><br><span class="line">f = open(&quot;top250.csv&quot;, mode=&quot;w&quot;, encoding=&quot;utf-8&quot;)#创建文件</span><br><span class="line">url = &quot;https://movie.douban.com/top250&quot;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&quot;</span><br><span class="line">&#125;</span><br><span class="line">resp = requests.get(url, headers=headers)</span><br><span class="line">resp.encoding = &quot;utf-8&quot;</span><br><span class="line">a = resp.text</span><br><span class="line">obj = re.compile(r&#x27;&lt;div class=&quot;item&quot;&gt;.*?&lt;span class=&quot;title&quot;&gt;(?P&lt;name&gt;.*?)&lt;/span&gt;.*?&lt;p class=&quot;&quot;&gt;.*?导演: (?P&lt;daoyian&gt;.*?)&amp;nbsp;&amp;nbsp;(?P&lt;zhuyian&gt;.*?)&lt;br&gt;(?P&lt;shijian&gt;.*?)&amp;nbsp;/&amp;nbsp;(?P&lt;guojai&gt;.*?)&amp;nbsp;/&amp;nbsp;(?P&lt;leixing&gt;.*?)&lt;/p&gt;.*?&lt;span&gt;(?P&lt;renshu&gt;.*?)&lt;/span&gt;&#x27;,re.S)    #re.S可以包括换行</span><br><span class="line">result = obj.finditer(a)</span><br><span class="line">for item in result:</span><br><span class="line">    name = item.group(&quot;name&quot;)</span><br><span class="line">    daoyian = item.group(&quot;daoyian&quot;)</span><br><span class="line">    zhuyian = item.group(&quot;zhuyian&quot;)</span><br><span class="line">    shijian = item.group(&quot;shijian&quot;).strip()  #去掉字符串两端的空白</span><br><span class="line">    guojai = item.group(&quot;guojai&quot;)</span><br><span class="line">    leixing = item.group(&quot;leixing&quot;)</span><br><span class="line">    renshu = item.group(&quot;renshu&quot;)</span><br><span class="line">    f.write(f&quot;&#123;name&#125;,&#123;daoyian&#125;,&#123;zhuyian&#125;,&#123;shijian&#125;,&#123;guojai&#125;,&#123;leixing&#125;,&#123;renshu&#125;\n&quot;)</span><br><span class="line">f.close()#关闭</span><br><span class="line">resp.close()</span><br><span class="line">print(&quot;wnag&quot;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="爬取https-dy2018-com-部分信息用例"><a href="#爬取https-dy2018-com-部分信息用例" class="headerlink" title="爬取https://dy2018.com/部分信息用例"></a>爬取<a target="_blank" rel="noopener" href="https://dy2018.com/%E9%83%A8%E5%88%86%E4%BF%A1%E6%81%AF%E7%94%A8%E4%BE%8B">https://dy2018.com/部分信息用例</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line"></span><br><span class="line">#将页面源码保存到resp中</span><br><span class="line">url = &quot;https://dy2018.com/&quot;</span><br><span class="line">resp = requests.get(url)</span><br><span class="line">resp.encoding = &quot;gbk&quot;</span><br><span class="line">#print(resp.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">obj = re.compile(r&#x27;2023必看热片.*?&lt;ul&gt;(?P&lt;wenben&gt;.*?)&lt;/ul&gt;&#x27;, re.S)</span><br><span class="line">result = obj.search(resp.text)</span><br><span class="line">wenben = result.group(&quot;wenben&quot;)</span><br><span class="line">#print(wenben)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">obj1 = re.compile(r&quot;&lt;li&gt;&lt;a href=&#x27;(?P&lt;ip&gt;.*?)&#x27; title=&quot;)</span><br><span class="line">result1 = obj1.finditer(wenben)</span><br><span class="line">for item in result1:</span><br><span class="line">    ip = item.group(&quot;ip&quot;)</span><br><span class="line">#    print(ip)</span><br><span class="line"></span><br><span class="line">    url1 = url.strip(&quot;/&quot;) + ip   #去掉/</span><br><span class="line">#    print(url1)</span><br><span class="line">    resp1 = requests.get(url1)</span><br><span class="line">    resp1.encoding = &quot;gbk&quot;</span><br><span class="line">    html = resp1.text</span><br><span class="line">#    print(resp1.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    obj2 = re.compile(r&#x27;◎片　　名　(?P&lt;name&gt;.*?)&lt;br /&gt;&#x27;)</span><br><span class="line">    result2 = obj2.finditer(html)</span><br><span class="line">    for item in result2:</span><br><span class="line">        name = item.group(&quot;name&quot;)</span><br><span class="line">        print(name)</span><br><span class="line">    print(url1)</span><br></pre></td></tr></table></figure>
+
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130215614163.png" alt="image-20231130215614163"></p>
+<h1 id="bs4基本使用"><a href="#bs4基本使用" class="headerlink" title="bs4基本使用"></a>bs4基本使用</h1><h2 id="安装bs4"><a href="#安装bs4" class="headerlink" title="安装bs4"></a>安装bs4</h2><p>打开终端，输入pip install bs4，下载bs4模块。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bs4</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>调用BeautifulSoup</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br></pre></td></tr></table></figure>
+
+<h3 id="初始化BeautifulSoup对象"><a href="#初始化BeautifulSoup对象" class="headerlink" title="初始化BeautifulSoup对象"></a>初始化BeautifulSoup对象</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">page = BeautifulSoup(对象,&quot;html.parser&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">page.find(&quot;标签名&quot;,attrs=&#123;&quot;属性&quot;:&quot;值&quot;&#125;)  #查找某个元素，只差找一个值</span><br><span class="line">page.find_all(&quot;标签名&quot;,attrs=&#123;&quot;属性&quot;:&quot;值&quot;&#125;) #查找全部值</span><br></pre></td></tr></table></figure>
+
+<h4 id="列子"><a href="#列子" class="headerlink" title="列子"></a>列子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">page = BeautifulSoup(html,&quot;html.parser&quot;)</span><br><span class="line">li = page.find(&quot;li&quot;,attrs=&#123;&quot;id&quot;:&quot;abc&quot;&#125;)</span><br><span class="line">a = li.find(&quot;a&quot;)</span><br><span class="line">print(a.text)  #拿文本</span><br><span class="line">print(a.get(&quot;href&quot;))  #拿属性，get(&quot;属性名&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231201145008784.png" alt="image-20231201145008784"></p>
+<h2 id="bs4实战"><a href="#bs4实战" class="headerlink" title="bs4实战"></a>bs4实战</h2><h3 id="爬取北京新发地蔬菜的数据"><a href="#爬取北京新发地蔬菜的数据" class="headerlink" title="爬取北京新发地蔬菜的数据"></a>爬取北京新发地蔬菜的数据</h3><p>打开官网，<a target="_blank" rel="noopener" href="http://www.xinfadi.com.cn/priceDetail.html">http://www.xinfadi.com.cn/priceDetail.html</a></p>
+<p>首先打开页面源代码，查看代码中是否又要用的信息。</p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/29/%E7%88%AC%E8%99%AB/" data-id="clplzuha7000nq8u492l485cs" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-远程控制和网页" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -1084,76 +1238,6 @@
 
 
   
-    <article id="post-php上传文件" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="article-date">
-  <time class="post-time" datetime="2023-11-14T07:14:17.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">14</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">php上传文件</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="php上传文件"><a href="#php上传文件" class="headerlink" title="php上传文件"></a>php上传文件</h2><blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114151518280.png" alt="image-20231114151518280"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114151704303.png" alt="image-20231114151704303"></p>
-<p>[注]：目录下不能有中文。</p>
-<ul>
-<li>需要新建一个名为upload的文件夹。存放在www文件夹下。</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114192444949.png" alt="image-20231114192444949"></p>
-<p>上传成功：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114152243398.png" alt="image-20231114152243398"></p>
-<ul>
-<li>在zhuye.php中加入include ‘upload.php’;即可以引用upload.php页面。</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114191622658.png" alt="image-20231114191622658"></p>
-</blockquote>
-<h2 id="创建论坛区"><a href="#创建论坛区" class="headerlink" title="创建论坛区"></a>创建论坛区</h2><blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114192150422.png" alt="image-20231114192150422"></p>
-<ul>
-<li>在zhuye.php中加入include ‘luntan.php’;即可以引用luntan.php页面。</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114193658173.png" alt="image-20231114193658173"></p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" data-id="clplzuha0000aq8u40ru7gf64" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1198,9 +1282,9 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>26</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>27</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>0</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
 
 
