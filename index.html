@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>29</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>30</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,82 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Element" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/17/Element/" class="article-date">
+  <time class="post-time" datetime="2023-12-17T01:20:42.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/17/Element/">Element</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>使用npm方式安装</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i element-ui -S</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;!-- import CSS --&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/element-ui/lib/theme-chalk/index.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-button @click=&quot;visible = true&quot;&gt;Button&lt;/el-button&gt;</span><br><span class="line">    &lt;el-dialog :visible.sync=&quot;visible&quot; title=&quot;Hello world&quot;&gt;</span><br><span class="line">      &lt;p&gt;Try Element&lt;/p&gt;</span><br><span class="line">    &lt;/el-dialog&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">  &lt;!-- import Vue before Element --&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/vue@2/dist/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;!-- import JavaScript --&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/element-ui/lib/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">      el: &#x27;#app&#x27;,</span><br><span class="line">      data: function() &#123;</span><br><span class="line">        return &#123; visible: false &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://unpkg.com/element-ui/lib/theme-chalk/index.css</span><br><span class="line">unpkg.com/vue@2/dist/vue.js</span><br><span class="line">unpkg.com/element-ui/lib/index.js</span><br><span class="line">上方调用了这三个，要是用外网，可以复制到本地重新调用</span><br></pre></td></tr></table></figure>
+
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="Layout布局"><a href="#Layout布局" class="headerlink" title="Layout布局"></a>Layout布局</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;24&quot;&gt;&lt;div class=&quot;grid-content bg-purple-dark&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;12&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;12&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .el-row &#123;</span><br><span class="line">    margin-bottom: 20px;</span><br><span class="line">    &amp;:last-child &#123;</span><br><span class="line">      margin-bottom: 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  .el-col &#123;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple-dark &#123;</span><br><span class="line">    background: #99a9bf;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple &#123;</span><br><span class="line">    background: #d3dce6;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple-light &#123;</span><br><span class="line">    background: #e5e9f2;</span><br><span class="line">  &#125;</span><br><span class="line">  .grid-content &#123;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    min-height: 36px;</span><br><span class="line">  &#125;</span><br><span class="line">  .row-bg &#123;</span><br><span class="line">    padding: 10px 0;</span><br><span class="line">    background-color: #f9fafc;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204027054.png" alt="image-20231216204027054"></p>
+<h4 id="Typography字体"><a href="#Typography字体" class="headerlink" title="Typography字体"></a>Typography字体</h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204555936.png" alt="image-20231216204555936"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: &quot;Helvetica Neue&quot;,Helvetica,&quot;PingFang SC&quot;,&quot;Hiragino Sans GB&quot;,&quot;Microsoft YaHei&quot;,&quot;微软雅黑&quot;,Arial,sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204340999.png" alt="image-20231216204340999"></p>
+<h4 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;el-icon-edit&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;el-icon-share&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;el-icon-delete&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-search&quot;&gt;搜索&lt;/el-button&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216205443499.png" alt="image-20231216205443499"></p>
+<h4 id="按钮-1"><a href="#按钮-1" class="headerlink" title="按钮"></a>按钮</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button&gt;默认按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot;&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot;&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot;&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot;&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot;&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button plain&gt;朴素按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; plain&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; plain&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; plain&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; plain&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; plain&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button round&gt;圆角按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; round&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; round&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; round&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; round&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; round&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button icon=&quot;el-icon-search&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; icon=&quot;el-icon-check&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; icon=&quot;el-icon-message&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; icon=&quot;el-icon-star-off&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; icon=&quot;el-icon-delete&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216213527192.png" alt="image-20231216213527192"></p>
+<h4 id="文字链接"><a href="#文字链接" class="headerlink" title="文字链接"></a>文字链接</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;el-link href=&quot;https://element.eleme.io&quot; target=&quot;_blank&quot;&gt;默认链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;primary&quot;&gt;主要链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;success&quot;&gt;成功链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;warning&quot;&gt;警告链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;danger&quot;&gt;危险链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;info&quot;&gt;信息链接&lt;/el-link&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216213641463.png" alt="image-20231216213641463"></p>
+<p>当加入disabied是出于禁用状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-link type=&quot;primary&quot; disabled&gt;主要链接&lt;/el-link&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/17/Element/" data-id="clq8swwnj0000vku40vkb8cmm" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-php基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -947,88 +1023,6 @@
 
 
   
-    <article id="post-尚硅谷-爬虫-python爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" class="article-date">
-  <time class="post-time" datetime="2023-12-04T05:31:20.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/">尚硅谷—爬虫-python爬虫</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="python爬虫"><a href="#python爬虫" class="headerlink" title="python爬虫"></a>python爬虫</h2><h3 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">    table 表格</span><br><span class="line">    tr    行</span><br><span class="line">    td    列</span><br><span class="line">    ul   li    无序列表</span><br><span class="line">    ol   li    有序列表</span><br><span class="line">    &lt;a href=&quot;链接&quot;&gt;&lt;/a&gt;     超文本</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="爬虫基本使用"><a href="#爬虫基本使用" class="headerlink" title="爬虫基本使用"></a>爬虫基本使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request</span><br><span class="line">url = &quot;http://www.baidu.com&quot;</span><br><span class="line">resp = urlopen.request.urlopen(url)</span><br><span class="line">content = resp.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(content)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204173459242.png" alt="image-20231204173459242"></p>
-<h3 id="一个类型和6个方法"><a href="#一个类型和6个方法" class="headerlink" title="一个类型和6个方法"></a>一个类型和6个方法</h3><blockquote>
-<ul>
-<li>一个类型HTTPResponse</li>
-<li>六个方法read  readline  readlines  getcode  geturl  getheaders</li>
-</ul>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个类型指的是response是HTTPResponse类型</span><br><span class="line">print(type(response))</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204185730132.png" alt="image-20231204185730132"></p>
-<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.request.urlretrieve(url,&quot;文件要加后最名&quot;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>uA介绍:user Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU类型、浏览器及版本。浏览器内核、浏览器渲染引擎、浏览器语言、浏览器插件等。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法: request = urllib.request.Request()</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204192039265.png" alt="image-20231204192039265"></p>
-<h3 id="初级代码"><a href="#初级代码" class="headerlink" title="初级代码"></a>初级代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">#https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6</span><br><span class="line"></span><br><span class="line"># 定义一个函数，用于获取百度搜索结果</span><br><span class="line">url = &quot;https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&quot;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url)   </span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
-
-<h3 id="get请求urlencode方法"><a href="#get请求urlencode方法" class="headerlink" title="get请求urlencode方法"></a>get请求urlencode方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">date = &#123;</span><br><span class="line">	&#x27;wd&#x27;:&#x27;周杰伦&#x27;</span><br><span class="line">	&#x27;sex&#x27;:&#x27;男&#x27;</span><br><span class="line">	&#x27;location&#x27;:&#x27;中国台湾省&#x27;</span><br><span class="line">&#125;</span><br><span class="line">a = urllib.parse.urlencode(date)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204202050234.png" alt="image-20231204202050234"></p>
-<h3 id="post请求翻译"><a href="#post请求翻译" class="headerlink" title="post请求翻译"></a>post请求翻译</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#爬取翻译网页https://fanyi.baidu.com/sug，并翻译spider</span><br><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line">import json</span><br><span class="line">url = &#x27;https://fanyi.baidu.com/sug&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;kw&#x27;:&#x27;spider&#x27;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(data).encode(&#x27;utf-8&#x27;)</span><br><span class="line">request = urllib.request.Request(url=url, data=data)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">data = json.loads(content)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204211536280.png" alt="image-20231204211536280"></p>
-<h3 id="aiax的get请求-豆瓣电影"><a href="#aiax的get请求-豆瓣电影" class="headerlink" title="aiax的get请求(豆瓣电影)"></a>aiax的get请求(豆瓣电影)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">url = &quot;https://movie.douban.com/chart&quot;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line">#请求对象的定制</span><br><span class="line">request = urllib.request.Request(url, headers=headers)</span><br><span class="line">#获取响应的数据</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">#print(html)</span><br><span class="line">#数据下载到本地</span><br><span class="line">fp = open(&#x27;douban.json&#x27;, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;)</span><br><span class="line">fp.write(html)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206100322476.png" alt="image-20231206100322476"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206100349435.png" alt="image-20231206100349435"></p>
-<h3 id="aiax的get请求-豆瓣电影全"><a href="#aiax的get请求-豆瓣电影全" class="headerlink" title="aiax的get请求(豆瓣电影全)"></a>aiax的get请求(豆瓣电影全)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">def create_request(page):</span><br><span class="line">    base_url = &quot;https://movie.douban.com/chart/top list?type=5&amp;interval id=100%3A90&amp;action=&amp;&quot;</span><br><span class="line">    data = &#123;</span><br><span class="line">        &#x27;start&#x27;:(page-1) * 20,</span><br><span class="line">        &#x27;limit&#x27;:20</span><br><span class="line">    &#125;</span><br><span class="line">    data = urllib.parse.urlencode(data)</span><br><span class="line">    url = base_url + data</span><br><span class="line">#    print(url)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    #请求对象的定制</span><br><span class="line">    request = urllib.request.Request(url, headers=headers)</span><br><span class="line">    return request</span><br><span class="line"></span><br><span class="line">#获取响应的数据</span><br><span class="line">def get_content(request):</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">    return content</span><br><span class="line"></span><br><span class="line">#下载</span><br><span class="line">def down_load(page,content):</span><br><span class="line">    with open(&#x27;douban_&#x27; + str(page) + &#x27;.jaon&#x27;,&#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as fp:</span><br><span class="line">        fp.write(get_content(request))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#程序的入口</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    start_page = int(input(&#x27;请输入起始页码：&#x27;))</span><br><span class="line">    end_page = int(input(&#x27;请输入结束页码：&#x27;))</span><br><span class="line">    for page in range(start_page,end_page+1):</span><br><span class="line">        request = create_request(page)</span><br><span class="line">        content = get_content(request)</span><br><span class="line">        down_load(page,content)</span><br><span class="line">#        print(page)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" data-id="clprnfur10002oku40f693f9q" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1073,7 +1067,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>29</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>30</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
