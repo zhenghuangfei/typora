@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>30</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,113 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-在centos中使用docker" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" class="article-date">
+  <time class="post-time" datetime="2023-11-21T08:08:26.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/">在centos7中下载及使用docker</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下载docker并使用镜像和容器"><a href="#下载docker并使用镜像和容器" class="headerlink" title="下载docker并使用镜像和容器"></a>下载docker并使用镜像和容器</h2><p>（可以进入win10管理员模式远程连接centos7并进入其管理员模式：ssh <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yun update  (更新系统)</span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo(添加yum)</span><br><span class="line">sudo yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>可以使用docker -v 查看docker是否下载</p>
+<p>在&#x2F;etc&#x2F;docker&#x2F;daemon.json文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json(进入)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在里面添加</span><br><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br><span class="line">再 ctrl 加 ： 打开输入模式输入wq！（强制退出并保存）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121192119422.png" alt="image-20231121192119422"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line">systemctl status docker(打开docker)</span><br><span class="line">docker pull mysql:5.7(下载mysql57)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193103854.png" alt="image-20231121193103854"></p>
+<ul>
+<li><strong>更新docker版本</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">删除原本的docker</span><br><span class="line">yum erase docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br><span class="line">下载</span><br><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<p>输入docker -v 查看docker版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193437411.png" alt="image-20231121193437411"></p>
+<p>输入docker images -a 查看所有镜像</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121194338577.png" alt="image-20231121194338577"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql57 -v mysql57:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d(如果3306已占用可改为3307)</span><br><span class="line"></span><br><span class="line">docker inspect mysql57</span><br><span class="line">docker exec -it mysql57 bash(进入容器)</span><br><span class="line">mysql -V (查看mysql57是否加进容器)</span><br><span class="line">exit(退出)</span><br><span class="line">docker pull phpmyadmin/phpmyadmin</span><br><span class="line">sudo docker run --name phpmyadmin --link mysql57:db -p 9998:80 -d phpmyadmin/phpmyadmin</span><br><span class="line">docker images(查看镜像是否有phpmyadmin/phpmyadmin)</span><br></pre></td></tr></table></figure>
+
+<p>登入网页192.168.110.131：9998进入网页，输入用户root，密码123456</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121195505684.png" alt="image-20231121195505684"></p>
+<h2 id="使用docker"><a href="#使用docker" class="headerlink" title="使用docker"></a>使用docker</h2><ul>
+<li><strong>docker基本命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker version    #查看docker版本</span><br><span class="line">docker cp --help  #帮助信息</span><br><span class="line">docker info       #查看docker系统</span><br><span class="line">docker stats      #查看docker的cpu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker    #启动</span><br><span class="line">systemctl stop docker     #停止</span><br><span class="line">systemctl restart docker  #重启</span><br><span class="line">systemctl status docker   #查看docker服务状态</span><br><span class="line">systemctl enable docker   #设置开机启动docker服务</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>镜像命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker images                                 #查看本地存在的镜像</span><br><span class="line">docker images -a                              #查看所有镜像</span><br><span class="line">docker images -aq                             #查看所有镜像，只显示镜像id</span><br><span class="line">docker search mysql                           #在docker远程仓库搜索mysql的镜像</span><br><span class="line">docker search mysql--filter stars=3000        #在docker 远程仓库搜索mysql的镜像，且搜藏大于3000                                                的</span><br><span class="line">docker pull mysql                             #下载mysql镜像默认使用最新版的</span><br><span class="line">docker pull mysql:5.7                         #下载mysql 5.7版本的镜像</span><br><span class="line">docker rmi-f 镜像id                            #通过镜像id 删除镜像docker </span><br><span class="line">docker rmi -f $(docker images -aq)            #删除所有的镜像(递归删除)</span><br></pre></td></tr></table></figure>
+
+<p>REPOSITORY   镜像仓库源</p>
+<p>TAG                  镜像的标签</p>
+<p>IMAGE ID         镜像的id</p>
+<p>CREATED          镜像的创建时间</p>
+<p>SIZE 				  镜像的大小</p>
+<ul>
+<li><strong>容器命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看正在运行的容器docker ps</span><br><span class="line">#查看所有的容器docker ps -a</span><br><span class="line">#查看所有的容器,只显示容器的iddocker ps -aq</span><br><span class="line">#通过容器id 删除容器docker rm容器id</span><br><span class="line">#通过容器id 删除所有的容器docker rm -f $(docker ps -aq)</span><br><span class="line">#通过容器名字启动容器并进入到容器里docker run -it centos(容器名字)/bin/bash</span><br><span class="line">#从容器里退出，回到主机，且停止容器的运行exit</span><br><span class="line">#从容器里退出，回到主机，不停止容器的运行Ctrl + p +q</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通过容器id 启动容器 docker start容器id</span><br><span class="line">#通过容器id重新启动容器 docker restart容器id</span><br><span class="line">#通过容器id 停止正在运行的容器 docker stop容器id</span><br><span class="line">#通过容器id 强制停止正在运行的容器 docker kill容器id</span><br><span class="line">#通过镜像的名字的以后台运行的方式进行启动(没有前台服务会停止) docker run -d centos</span><br><span class="line">#以后台方式启动nginx,起名 docker run -d --name nginx001 -p 80:8001 nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器信息查看</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看容器的进程信息docker top容器id</span><br><span class="line">#查看容器的元数据(容器的具体信息)docker inspect容器id</span><br><span class="line">#进入正在运行的容器后开启一个新的终端，可以在里面操作docker exec -it 容器id /bin/bash</span><br><span class="line">#进入正在运行的容器后使用正在运行的终端，可以在里面操作docker attach容器id</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" data-id="clplzuha3000fq8u47z7q2aj1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-安装centos7并搭建lamp" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -1113,71 +1220,10 @@
 
 
   
-    <article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/07/hello-world/" class="article-date">
-  <time class="post-time" datetime="2023-11-07T08:10:17.369Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">07</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/07/hello-world/" data-id="clplzuh9x0004q8u4caxmfjz8" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">next &amp;raquo;</a>
   </nav>
 </section>
         
@@ -1218,7 +1264,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>30</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>31</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
