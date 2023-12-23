@@ -3,21 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我的博客 | Hexo</title>
+  <title>爬虫_逆向爬虫 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="提前准备1.提前安装好node.js左边的那个2.提前安装好GIt3.提前注册好一个github账号 操作步骤1.在本地找个目录放博客源文件，路径不要有中文 2.在选定的目录中，右键Git Bash Here 3.使用npm命令安装Hexo，输入：  npm install -g hexo-clihexo init blogcd bloghexo g  构建好的效果如下：  4.检查网站雏形  h">
+  <meta name="description" content="发送请求到浏览器时，等待服务器回应会消耗大量的时间，这时cpu是停止的状态，称之为阻塞。 IO（输入，输出）操作最容易引起阻塞。 携程携程基础协程是我要重点去讲解的一个知识点，它能够更加高效的利用CPU. event loop 携程中检查是否有请求结束了IO。  就形成了这样一种模型,在程序遇到了IO操作(费时不费力的操作)时,自动切换到其他任务.该模型被称为协程. 代码1234567891011">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://example.com/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="爬虫_逆向爬虫">
+<meta property="og:url" content="http://example.com/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="提前准备1.提前安装好node.js左边的那个2.提前安装好GIt3.提前注册好一个github账号 操作步骤1.在本地找个目录放博客源文件，路径不要有中文 2.在选定的目录中，右键Git Bash Here 3.使用npm命令安装Hexo，输入：  npm install -g hexo-clihexo init blogcd bloghexo g  构建好的效果如下：  4.检查网站雏形  h">
+<meta property="og:description" content="发送请求到浏览器时，等待服务器回应会消耗大量的时间，这时cpu是停止的状态，称之为阻塞。 IO（输入，输出）操作最容易引起阻塞。 携程携程基础协程是我要重点去讲解的一个知识点，它能够更加高效的利用CPU. event loop 携程中检查是否有请求结束了IO。  就形成了这样一种模型,在程序遇到了IO操作(费时不费力的操作)时,自动切换到其他任务.该模型被称为协程. 代码1234567891011">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/12431291/1697534665972-adf4dbdc-43e3-4cb7-89c3-5751f01b4b59.png">
-<meta property="article:published_time" content="2023-11-08T08:56:17.000Z">
-<meta property="article:modified_time" content="2023-11-08T09:02:57.884Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220202557370.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220205928743.png">
+<meta property="article:published_time" content="2023-12-20T12:02:00.000Z">
+<meta property="article:modified_time" content="2023-12-20T13:08:50.449Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/12431291/1697534665972-adf4dbdc-43e3-4cb7-89c3-5751f01b4b59.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220202557370.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -75,12 +76,12 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-我的博客" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-爬虫-逆向爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="post-time" datetime="2023-11-08T08:56:17.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">08</span>
+    <a href="/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" class="article-date">
+  <time class="post-time" datetime="2023-12-20T12:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
   </time>
 </a>
    
@@ -92,7 +93,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的博客
+      爬虫_逆向爬虫
     </h1>
   
 
@@ -107,65 +108,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="提前准备"><a href="#提前准备" class="headerlink" title="提前准备"></a>提前准备</h2><p>1.提前安装好<a target="_blank" rel="noopener" href="https://nodejs.org/en]">node.js</a>左边的那个<br>2.提前安装好<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">GIt</a><br>3.提前注册好一个<a target="_blank" rel="noopener" href="https://github.com/">github</a>账号</p>
-<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>1.在本地找个目录放博客源文件，路径不要有中文</p>
-<p>2.在选定的目录中，右键Git Bash Here</p>
-<p>3.使用npm命令安装Hexo，输入：</p>
-<blockquote>
-<p>npm install -g hexo-cli<br>hexo init blog<br>cd blog<br>hexo g</p>
-</blockquote>
-<p>构建好的效果如下：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/12431291/1697534665972-adf4dbdc-43e3-4cb7-89c3-5751f01b4b59.png" alt="img"></p>
-<p>4.检查网站雏形</p>
-<blockquote>
-<p>hexo new x<br>新建一个名为x的网页模块<br>hexo g<br>hexo s<br>完成后可以通过本机IP地址：4000预览页面</p>
-</blockquote>
-<p>5.配置ssh</p>
-<blockquote>
-<p>cd ~&#x2F;.ssh #检查本机已存在的ssh密钥</p>
-</blockquote>
-<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “邮件地址”</p>
-</blockquote>
-<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
-<ul>
-<li><p>key填写C:\Users\当前用户名.ssh\id_rsa.pub中的内容</p>
-</li>
-<li><p>尝试ssh连接,测试是否成功</p>
-</li>
-</ul>
-<p>ssh -T <a href="mailto:git@github.com">git@github.com</a> # 注意邮箱地址不用改</p>
-<ul>
-<li><p>如果提示Are you sure you want to continue connecting (yes&#x2F;no)?，输入yes，然后会看到下面这个，就算成功：</p>
-</li>
-<li><p>在选中的位置(blog目录下)打开cmd(以管理员身份)</p>
-</li>
-</ul>
-<p>npm install hexo-deployer-git –save</p>
-<ul>
-<li>在上一个<em>Git Bash Here</em>还需要继续配置</li>
-</ul>
-<p>git config –global user.name “xxx”&#x2F;&#x2F; 你的github用户名，非昵称<br>git config –global user.email “<a href="mailto:xxx@qq.com">xxx@qq.com</a>“&#x2F;&#x2F; 填写你的github注册邮箱</p>
-<p> 6.准备上传代码 </p>
-<ul>
-<li><p>在github上新建一个存储库，命名为github的用户名.github.io（必须与自己github注册用户名一致，因为Github 仅能使用一个同名仓库的代码托管一个静态站点）</p>
-</li>
-<li><p>编辑_config.yml文件，在最后改成这样</p>
-<blockquote>
-<p>deploy:<br>    type: git<br>    repository: <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:xxx&#x2F;xxx.github.io.git<br>    branch: main</p>
-</blockquote>
-</li>
-<li><p>注意保持格式，缩进不对，会导致一会儿，上传不成功</p>
-</li>
-<li><p>最后上传</p>
-</li>
-</ul>
+        <p>发送请求到浏览器时，等待服务器回应会消耗大量的时间，这时cpu是停止的状态，称之为阻塞。</p>
+<p>IO（输入，输出）操作最容易引起阻塞。</p>
+<h2 id="携程"><a href="#携程" class="headerlink" title="携程"></a>携程</h2><h3 id="携程基础"><a href="#携程基础" class="headerlink" title="携程基础"></a>携程基础</h3><p>协程是我要重点去讲解的一个知识点，它能够更加高效的利用CPU.</p>
+<p>event loop 携程中检查是否有请求结束了IO。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220202557370.png" alt="image-20231220202557370"></p>
+<p>就形成了这样一种模型,在程序遇到了IO操作(费时不费力的操作)时,自动切换到其他任务.该模型被称为协程.</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import asyncio</span><br><span class="line"></span><br><span class="line">async def func():</span><br><span class="line">  print(&quot;我是&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;: #程序入口</span><br><span class="line"></span><br><span class="line">  f = func()</span><br><span class="line">  # 携程对象想要执行，必须借助与 event_loop</span><br><span class="line">  loop = asyncio.get_event_loop()</span><br><span class="line">  # event_loop执行携程对象，直到对象内容执行完毕为止</span><br><span class="line">  loop.run_until_complete(f)</span><br><span class="line"></span><br><span class="line">  asyncio.run(func())</span><br><span class="line">  # 如果电脑报错：Event loop has closed !!!</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220205928743.png" alt="image-20231220205928743"></p>
+<p>58</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="clplzuha4000hq8u4fcdyh5ge" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" data-id="clqhz8pno00037ku49p6l1ilm" class="article-share-link">分享</a>
       
       
     </footer>
@@ -174,19 +131,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/11/08/%E6%B3%A8%E5%86%8Cgithub/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/12/22/SQL%E6%B3%A8%E5%85%A5-sqlmap%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          注册github
+          SQL注入_sqlmap使用
         
       </div>
     </a>
   
   
-    <a href="/2023/11/08/%E8%99%9A%E6%8B%9F%E6%9C%BAIPv4%E5%9C%B0%E5%9D%80%20%EF%BC%9A192.168.0.41/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2023/12/20/SQL%E6%B3%A8%E5%85%A5-sqli/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">SQL注入_sqli</div>
     </a>
   
 </nav>

