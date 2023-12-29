@@ -5,12 +5,12 @@
   
   <title>SQL注入_sqlmap使用 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6 (默认 1)">
+  <meta name="description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 -r  选择文件 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入_sqlmap使用">
 <meta property="og:url" content="http://example.com/2023/12/22/SQL%E6%B3%A8%E5%85%A5-sqlmap%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6 (默认 1)">
+<meta property="og:description" content="sqlmap功能kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。 -r  选择文件 选项:1234-h, --help            显示基本帮助信息并退出 -hh                   显示高级帮助信息并退出 --version             显示程序的版本号并退出 -v VERBOSE            冗长级别: 0-6">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170007200.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170832700.png">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171411835.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222171734913.png">
 <meta property="article:published_time" content="2023-12-22T08:02:57.000Z">
-<meta property="article:modified_time" content="2023-12-22T09:19:18.753Z">
+<meta property="article:modified_time" content="2023-12-27T08:39:44.535Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222170007200.png">
@@ -53,7 +53,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>36</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -112,6 +112,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="sqlmap功能"><a href="#sqlmap功能" class="headerlink" title="sqlmap功能"></a>sqlmap功能</h3><p>kali中自带sqlmap功能，在vscode中使用要到gitup中下载相应压缩包。</p>
+<p>-r  选择文件</p>
 <h4 id="选项"><a href="#选项" class="headerlink" title="选项:"></a>选项:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-h, --help            显示基本帮助信息并退出 </span><br><span class="line">-hh                   显示高级帮助信息并退出 </span><br><span class="line">--version             显示程序的版本号并退出 </span><br><span class="line">-v VERBOSE            冗长级别: 0-6 (默认 1)</span><br></pre></td></tr></table></figure>
 
 <h4 id="目标-必须提供这些选项中的至少一个来定义目标"><a href="#目标-必须提供这些选项中的至少一个来定义目标" class="headerlink" title="目标: 必须提供这些选项中的至少一个来定义目标"></a>目标: 必须提供这些选项中的至少一个来定义目标</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-u URL, --url=URL   目标URL (例如 &quot;http://www.site.com/vuln.php?id=1&quot;)</span><br><span class="line">-g GOOGLEDORK       处理Google Dork结果作为目标URL</span><br></pre></td></tr></table></figure>
@@ -160,11 +161,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2023/12/23/sqli%E9%A2%98%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/12/23/sqli%E9%9D%B6%E5%9C%BA%E9%A2%98%E7%9B%AE/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
-          sqli题目
+          sqli靶场题目
         
       </div>
     </a>
@@ -221,7 +222,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>35</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>36</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
