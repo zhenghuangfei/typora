@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,517 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-尚硅谷-爬虫-python基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="post-time" datetime="2023-12-01T08:59:46.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/">python基础</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h2><h3 id="变量以及数据类型"><a href="#变量以及数据类型" class="headerlink" title="变量以及数据类型"></a>变量以及数据类型</h3><h4 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h4><p>对于需要重复使用的，并且需要修改数据的，可以定义为变量。</p>
+<p>格式：变量的名字 &#x3D; 变量的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &quot;晴天&quot;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h4><p><strong>Python里为了应对不同的业务需求，也把数据分为不同的类型。</strong></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231201171506279.png" alt="image-20231201171506279"></p>
+<h4 id="查看变量的数据类型"><a href="#查看变量的数据类型" class="headerlink" title="查看变量的数据类型"></a>查看变量的数据类型</h4><p>在python中，只要定义了一个变量，而且它有数据，那么它的类型就已经确定了，不需要咱们开发者主动的去说明它的类型，系统会自动辨别。也就是说在使用的时候“变量没有类型，数据才有类型”。</p>
+<p><strong>如果临时想要查看一个变量存储的数据类型，可以使用type(变量的名字)，来查看变量存储的数据类型。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">print(type(a))</span><br></pre></td></tr></table></figure>
+
+<h3 id="标识符和关键字"><a href="#标识符和关键字" class="headerlink" title="标识符和关键字"></a>标识符和关键字</h3><p>计算机编程语言中，标识符是用户编程时使用的名字，用于给变量、常量、函数、语句块等命名，以建立起名称与使用之间的关系。</p>
+<h4 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h4><p>1.标识符由字母、下划线和数字组成，且数字不能开头。</p>
+<p>2.严格区分大小写。</p>
+<p>3.不能使用关键字。</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>关键字的概念。<br>一些具有特殊功能的标识符，这就是所谓的关键字。<br>关键字是已经被python官方使用了，所以不允许开发者自己定义和关键字相同名字的标识符.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">False      None      True     andasassert      break       class       continue def        del       elif       else           except      finally      for from       global    ifimport    inis           lambda     nonlocal     not orpass     raise     return      try            while       with        yield</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int(x)</td>
+<td>将x转换为整数</td>
+</tr>
+<tr>
+<td>float(x)</td>
+<td>将x转换为浮点数</td>
+</tr>
+<tr>
+<td>str(x)</td>
+<td>将x转换为字符串</td>
+</tr>
+<tr>
+<td>bool(x)</td>
+<td>将x转换为布尔值</td>
+</tr>
+</tbody></table>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>加</td>
+<td>两个对象相加a+ b输出结果30</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减</td>
+<td>得到负数或是一个数减去另一个数a-b输出结果-10</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+<td>两个数相乘或是返回一个被重复若干次的字符串a*b输出结果200</td>
+</tr>
+<tr>
+<td>&#x2F;</td>
+<td>除</td>
+<td>b&#x2F;a输出结果2</td>
+</tr>
+<tr>
+<td>&#x2F;&#x2F;</td>
+<td>取整除</td>
+<td>返回商的整数部分9&#x2F;&#x2F;2输出结果4，9.0&#x2F;&#x2F;2.0输出结果4.0</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取余</td>
+<td>返回除法的余数b % a输出结果0</td>
+</tr>
+<tr>
+<td>**</td>
+<td>指数</td>
+<td>a**b为10的20次方</td>
+</tr>
+<tr>
+<td>()</td>
+<td>小括号</td>
+<td>提高运算优先级，比如: (1+2)* 3</td>
+</tr>
+</tbody></table>
+<p>[注]：越往下优先级越高</p>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>赋值运算符</td>
+<td>把&#x3D;号右边的结果赋给左边的变量，如num &#x3D; 1+2*3，结果num的值为7</td>
+</tr>
+</tbody></table>
+<p>多个变量同时赋值时用，隔开。如  a,b,c &#x3D; 1,2,3</p>
+<h4 id="复合赋值运算符"><a href="#复合赋值运算符" class="headerlink" title="复合赋值运算符"></a>复合赋值运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+&#x3D;</td>
+<td>加法赋值运算符</td>
+<td>c +&#x3D; a 等效于 c &#x3D; c + a</td>
+</tr>
+<tr>
+<td>-&#x3D;</td>
+<td>减法赋值运算符</td>
+<td>c -&#x3D; a 等效于 c &#x3D; c - a</td>
+</tr>
+<tr>
+<td>*&#x3D;</td>
+<td>乘法赋值运算符</td>
+<td>c *&#x3D; a 等效于 c &#x3D; c * a</td>
+</tr>
+<tr>
+<td>&#x2F;&#x3D;</td>
+<td>除法赋值运算符</td>
+<td>c &#x2F;&#x3D; a 等效于 c &#x3D; c &#x2F; a</td>
+</tr>
+<tr>
+<td>&#x2F;&#x2F;&#x3D;</td>
+<td>取整除赋值运算符</td>
+<td>c &#x2F;&#x2F;&#x3D; a 等效于 c &#x3D; c &#x2F;&#x2F; a</td>
+</tr>
+<tr>
+<td>%&#x3D;</td>
+<td>取余赋值运算符</td>
+<td>c %&#x3D; a 等效于 c &#x3D; c % a</td>
+</tr>
+<tr>
+<td>**&#x3D;</td>
+<td>指数赋值运算符</td>
+<td>c **&#x3D; a 等效于 c &#x3D; c ** a</td>
+</tr>
+</tbody></table>
+<h4 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;&#x3D;</td>
+<td>等于:比较对象是否相等</td>
+<td>(a &#x3D;&#x3D; b)返回False</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td>不等于:比较两个对象是否不相等</td>
+<td>(a !&#x3D; b)返回true</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于:返回x是否大于y</td>
+<td>(a &gt; b)返回False</td>
+</tr>
+<tr>
+<td>&#x2F; &gt;&#x3D;</td>
+<td>大于等于:返回x是否大于等于y</td>
+<td>(a &gt;&#x3D; b)返回False</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于:返回x是否小于y。所有比较运算符返回1表示真，返回0表示假。这分别与特殊的变量True和False等价</td>
+<td>(a&lt;b)返回true</td>
+</tr>
+<tr>
+<td>&lt;&#x3D;</td>
+<td>小于等于:返回x是否小于等于y</td>
+<td>(a&lt;&#x3D; b)返回true</td>
+</tr>
+</tbody></table>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>逻辑表达式</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>and</td>
+<td>x and y</td>
+<td>只要有一个运算数是False，结果就是False;<br/>只有所有的运算数都为True时，结果才是True<br/>做取值运算时，取第一个为False的值，如果所有的值都为True,取最后一个值</td>
+<td>True and True and False–&gt;结果为False<br/>True and True and True–&gt;结果为True<br/></td>
+</tr>
+<tr>
+<td>or</td>
+<td>x or y</td>
+<td>只要有一个运算数是True，结果就是True;<br/>只有所有的运算数都为False时，结果才是False&lt;br做取值运算时，取第一个为True的值，如果所有的值都为False,取最后一个值</td>
+<td>False or False or True–&gt;结果为True<br/>False or False or False–&gt;结果为False<br/></td>
+</tr>
+<tr>
+<td>not</td>
+<td>not x</td>
+<td>布尔”非非”-如果x为 True，返回 False 。如果x为False，它返回 True。</td>
+<td>not True –&gt; False</td>
+</tr>
+</tbody></table>
+<h3 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h3><h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><h5 id="普通输出"><a href="#普通输出" class="headerlink" title="普通输出"></a>普通输出</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h5 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h5><p>%s :字符串       %d :数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age = 18</span><br><span class="line">name = 张三</span><br><span class="line">print(&#x27;我的名字是%s，我的年龄是%d&#x27; % (name,age))</span><br></pre></td></tr></table></figure>
+
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input(x)</span><br></pre></td></tr></table></figure>
+
+<h3 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h3><h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">age = 18</span><br><span class="line">if age &gt;= 18:</span><br><span class="line">		print(&quot;你已经成年了。&quot;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">if 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">else:</span><br><span class="line">		条件不成立时做的事</span><br><span class="line">age = 18</span><br><span class="line">if age &gt;= 18:</span><br><span class="line">		print(&quot;你已经成年了。&quot;)</span><br><span class="line">else:</span><br><span class="line">		print(&quot;你还未成年&quot;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="if-elif"><a href="#if-elif" class="headerlink" title="if elif"></a>if elif</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">elif 要判断的条件:</span><br><span class="line">		条件成立时要做的事</span><br><span class="line">else:</span><br><span class="line">		条件不成立时做的事</span><br><span class="line">score = int(input(&quot;请输入你的成绩&quot;))</span><br><span class="line">if score &gt;= 90:</span><br><span class="line">		print(&quot;优秀&quot;)</span><br><span class="line">elif score &gt;= 60:</span><br><span class="line">		print(&quot;及格&quot;)</span><br><span class="line">else:</span><br><span class="line">		print(&quot;不及格&quot;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for 变量 in 要遍历的数据:</span><br><span class="line">		方法体</span><br><span class="line">a = print(&quot;请输入要遍历的数据&quot;)</span><br><span class="line">for i in a:</span><br><span class="line">		print(i)</span><br></pre></td></tr></table></figure>
+
+<h4 id="range语句"><a href="#range语句" class="headerlink" title="range语句"></a>range语句</h4><p>range(起始值，结束值，步长)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#输出0,1,2</span><br><span class="line">for i in range(0,2,1)</span><br><span class="line">		print(i)</span><br><span class="line">#起始值为0，步长为1时可省略</span><br></pre></td></tr></table></figure>
+
+<p>#判断元素的个数</p>
+<p>len()</p>
+<h3 id="数据类型高级"><a href="#数据类型高级" class="headerlink" title="数据类型高级"></a>数据类型高级</h3><h4 id="字符串高级"><a href="#字符串高级" class="headerlink" title="字符串高级"></a>字符串高级</h4><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>描述</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len</td>
+<td>获取长度:len</td>
+<td>len函数可以获取字符串的长度。</td>
+</tr>
+<tr>
+<td>find</td>
+<td>查找内容:find</td>
+<td>查找指定内容在字符串中是否存在，如果存在就返回该内容在字符串中第一次出现的开始位置索引值，如果不存在，则返回1.</td>
+</tr>
+<tr>
+<td>startwith,endswith</td>
+<td>判断:startswith,endswith</td>
+<td>判断字符串是是以谁谁谁开头&#x2F;结尾</td>
+</tr>
+<tr>
+<td>count</td>
+<td>计算出现次数:count</td>
+<td>返回str在start和end之间在mystr里面出现的次数</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换内容:replace</td>
+<td>替换字符串中指定的内容，如果指定次数count，则替换不会超过count次</td>
+</tr>
+<tr>
+<td>split</td>
+<td>切割字符串:split</td>
+<td>通过参数的必容切割字符串</td>
+</tr>
+<tr>
+<td>upper,lower</td>
+<td>修改大小写:upper,lower</td>
+<td>将字符串中的大小写互换</td>
+</tr>
+<tr>
+<td>strip</td>
+<td>空格处理:strip</td>
+<td>去容格</td>
+</tr>
+<tr>
+<td>join</td>
+<td>符串拼接:join</td>
+<td>字符串拼接</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">s = &quot;  china   &quot;</span><br><span class="line"></span><br><span class="line">#获取长度：len()</span><br><span class="line">print(len(s))</span><br><span class="line"></span><br><span class="line">#查看内容：find</span><br><span class="line">print(s.find(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#判断开头结尾：startswith,endswith</span><br><span class="line">print(s.startswith(&quot;c&quot;))</span><br><span class="line">print(s.endswith(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#计算出现的出现的次数：count</span><br><span class="line">print(s.count(&quot;c&quot;))</span><br><span class="line"></span><br><span class="line">#替换内容：replace</span><br><span class="line">print(s.replace(&quot;c&quot;,&quot;b&quot;))</span><br><span class="line"></span><br><span class="line">#切割内容：split</span><br><span class="line">print(s.split(&quot;i&quot;))</span><br><span class="line"></span><br><span class="line">#修改内容大小写：upper,lower</span><br><span class="line">print(s.upper())</span><br><span class="line"></span><br><span class="line">#空格处理：strip</span><br><span class="line">print(s.strip())</span><br><span class="line"></span><br><span class="line">#字符拼接：join</span><br><span class="line">a = &quot;a&quot;</span><br><span class="line">print(a.join(s))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203144513070.png" alt="image-20231203144513070"></p>
+<h4 id="列表高级"><a href="#列表高级" class="headerlink" title="列表高级"></a>列表高级</h4><h5 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h5><ul>
+<li>append 在末尾添加元素</li>
+<li>insert 在指定位置插入元素</li>
+<li>extend 合并两个列表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]</span><br><span class="line"></span><br><span class="line">#append 在末尾添加元素</span><br><span class="line">char.append(&#x27;d&#x27;)</span><br><span class="line">print(char)</span><br><span class="line"></span><br><span class="line">#insert 在指定位置插入元素</span><br><span class="line">char.insert(3,(&#x27;e&#x27;))</span><br><span class="line">print(char)</span><br><span class="line"></span><br><span class="line">#extend 合并两个列表</span><br><span class="line">char_1 = [&#x27;f&#x27;,&#x27;g&#x27;]</span><br><span class="line">char.extend(char_1)</span><br><span class="line">print(char)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203150309578.png" alt="image-20231203150309578"></p>
+<h5 id="修改元素"><a href="#修改元素" class="headerlink" title="修改元素"></a>修改元素</h5><p>我们是通过指定下标来访问列表元素，因此修改元素的时候，为指定的列表下标赋值即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;e&#x27;]</span><br><span class="line">#将列表的元素的值修改</span><br><span class="line">char[3] = &#x27;d&#x27;</span><br><span class="line">print(char)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203152844697.png" alt="image-20231203152844697"></p>
+<h5 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h5><ul>
+<li>in (存在） ,如果存在那么结果为true，否则为false</li>
+<li>not in(不存在)，如果不存在那么结果为true，否则false</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">char = [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;e&#x27;]</span><br><span class="line">#将列表的元素的值修改</span><br><span class="line">s = input(&quot;请输入字母：&quot;)</span><br><span class="line">if s in char:</span><br><span class="line">    print(&quot;在&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;不在&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203165524891.png" alt="image-20231203165524891"></p>
+<h5 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h5><ul>
+<li>del:根据下标进行删除</li>
+<li>pop:删除最后一个元素</li>
+<li>remove:根据元素的值进行删除</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">s = [1,2,2,3,4,5]</span><br><span class="line">#del:根据下标进行删除</span><br><span class="line">del s[1]</span><br><span class="line">print(s)</span><br><span class="line">#pop:删除最后一个元素</span><br><span class="line">s.pop()</span><br><span class="line">print(s)</span><br><span class="line">#remove:根据元素的值进行删除</span><br><span class="line">s.remove(2)</span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203172442657.png" alt="image-20231203172442657"></p>
+<h4 id="元组高级"><a href="#元组高级" class="headerlink" title="元组高级"></a>元组高级</h4><p>元组是不可以修改里面的内容的，</p>
+<p>[注]：定义只有一个元素的元组，需要在唯一的元素后写一个逗号。</p>
+<h4 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h4><ul>
+<li>切片是指对操作的对象截取其中一部分的操作。字符串、列表、元组都支持切片操作。</li>
+<li><strong>切片的语法∶[起始:结束:步长]，也可以简化使用[起始:结束]</strong></li>
+<li>注意:选取的区间从”起始”位开始，到”结束”位的前一位结束(不包含结束位本身)，步长表示选取间隔。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = &#x27;123456789&#x27;</span><br><span class="line">print(s[0,8,3])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203194805539.png" alt="image-20231203194805539"></p>
+<h4 id="字典高级"><a href="#字典高级" class="headerlink" title="字典高级"></a>字典高级</h4><h5 id="查看元素"><a href="#查看元素" class="headerlink" title="查看元素"></a>查看元素</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">print(a[&#x27;name&#x27;])</span><br><span class="line">print(a[&#x27;age&#x27;])</span><br><span class="line">print(a.get(&#x27;name&#x27;))</span><br><span class="line">print(a.get(&#x27;age&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>区别：使用[]的方式，获取字典中不存在的key的时候会发生异常keyerror</p>
+<p>​			使用.的方式，获取字典中不存在的key的时候会返回None值</p>
+<h5 id="修改元素-1"><a href="#修改元素-1" class="headerlink" title="修改元素"></a>修改元素</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a[&#x27;name&#x27;] = &#x27;李四&#x27;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203202101121.png" alt="image-20231203202101121"></p>
+<h5 id="添加元素-1"><a href="#添加元素-1" class="headerlink" title="添加元素"></a>添加元素</h5><p>如果使用变量名字[‘键’]&#x3D;数据时﹑这个键如果在字典中不存在﹑那么就会变成新增元素（如果这个健在字典中存在那么就会变成这个元素，修改）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a[&#x27;sex&#x27;] = &#x27;男&#x27;</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231203202908864.png" alt="image-20231203202908864"></p>
+<h5 id="删除元素-1"><a href="#删除元素-1" class="headerlink" title="删除元素"></a>删除元素</h5><h6 id="del"><a href="#del" class="headerlink" title="del"></a>del</h6><ul>
+<li>删除一个元素</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">del a[&#x27;age&#x27;]</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203203546237.png" alt="image-20231203203546237"></p>
+<ul>
+<li>删除字典</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">del a</span><br></pre></td></tr></table></figure>
+
+<h6 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">a.clear()</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203203927782.png" alt="image-20231203203927782"></p>
+<h5 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h5><ul>
+<li>遍历key</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for key in a.keys():</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204654356.png" alt="image-20231203204654356"></p>
+<ul>
+<li>遍历value</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for value in a.values():</span><br><span class="line">    print(value)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204802813.png" alt="image-20231203204802813"></p>
+<ul>
+<li>遍历key和value</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for key,value in a.items():</span><br><span class="line">    print(key,value)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203204942107.png" alt="image-20231203204942107"></p>
+<ul>
+<li>遍历项</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:&#x27;30&#x27;&#125;</span><br><span class="line">for item in a.items():</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203205130828.png" alt="image-20231203205130828"></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def 函数名():</span><br><span class="line">	代码</span><br></pre></td></tr></table></figure>
+
+<h4 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h4><p>定义了函数之后，就相当于有了一个具有某些功能的代码，想要让这些代码能够执行，需要调用它调用函数很简单的，通过**函数名()**即可完成调用</p>
+<h4 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h4><blockquote>
+<p><strong>定义，调用带有参数的函数</strong></p>
+<ul>
+<li>在定义函数的时候，小括号里写等待赋值的变量名</li>
+<li>在调用函数的时候，小括号里写真正要进行运算的数据</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def sum(a,b):</span><br><span class="line">	c = a + b</span><br><span class="line">	print(c)</span><br><span class="line">#调用	</span><br><span class="line">sum(10,20)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203211418016.png" alt="image-20231203211418016"></p>
+<blockquote>
+<ul>
+<li>定义时小括号中的参数，用来接收参数用的，称为“形参”</li>
+<li>调用时小括号中的参数，用来传递给函数用的，称为“实参”</li>
+</ul>
+</blockquote>
+<h4 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h4><p>想要在函数中把结果返回给调用者，需要在函数中使用return</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def sum(a,b):</span><br><span class="line">	c = a + b</span><br><span class="line">	return(c)</span><br><span class="line">#调用	</span><br><span class="line">a = sum(10,20)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231203212223771.png" alt="image-20231203212223771"></p>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><ul>
+<li><p>局部变量:在面数内部定义的变量我们叫做局部变量</p>
+</li>
+<li><p>全局变量:定义在函数外部的变量我们称之为全局变量</p>
+</li>
+</ul>
+<h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><h4 id="文件的打开和关闭"><a href="#文件的打开和关闭" class="headerlink" title="文件的打开和关闭"></a>文件的打开和关闭</h4><ul>
+<li><strong>创建文件</strong></li>
+</ul>
+<p>在python，使用open函数，可以打开一个已经存在的文件，或者创建一个新文件open(文件路径，访问模式)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open(文件的路径，模式)</span><br><span class="line">模式 ：w 可写</span><br><span class="line">	  r 可读</span><br><span class="line">open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>打开文件</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#写入</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>文件关闭</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#写入</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">#关闭</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="文件的读写"><a href="#文件的读写" class="headerlink" title="文件的读写"></a>文件的读写</h4><ul>
+<li><strong>写数据</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#写数据write方法</span><br><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>w模式：如果文件存在会先清空原来的数据然后再写。</p>
+</li>
+<li><p>a模式：如果模式变为了a那么就会执行追加的操作。</p>
+</li>
+<li><p><strong>读数据</strong></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s = open(&#x27;test.txt&#x27;,&#x27;r&#x27;)</span><br><span class="line">s.write(&quot;hello world&quot;)</span><br><span class="line">con = s.read()</span><br><span class="line">#read是一字节的读，效率比较低</span><br><span class="line">con = s.readline()</span><br><span class="line">#readline是一行一行的读取但是只能读取一行</span><br><span class="line">con = s.readlines()</span><br><span class="line">#readlines可以按照行来读取﹑但是会将所有的数据都读取到并且以一个列表的形式返回</span><br></pre></td></tr></table></figure>
+
+<h4 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h4><p>通过文件操作，我们可以将字符串写入到一个本地文件。但是，如果是一个对象(例如列表、字典、元组等)，就无法直接写入到一个文件里，需要对这个对象进行序列化，然后才能写入到文件里。</p>
+<p>设计一套协议，按照某种规则，把内存中的数据转换为字节序列，保存到文件，这就是序列化，反之，从文件的字节序列恢复到内存中，就是反序列化。</p>
+<blockquote>
+<p>对象—》字节序列&#x3D;&#x3D;&#x3D;序列化</p>
+<p>字节序列–》对象&#x3D;&#x3D;&#x3D;反序列化</p>
+</blockquote>
+<ul>
+<li><strong>序列化</strong></li>
+</ul>
+<p>Python中提供了<strong>JSON</strong>这个模块用来实现数据的序列化和反序列化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#默认情况下对象是无法写入到文件中﹑如果想写入到文件那么必须使用序列化操作</span><br><span class="line">#导入json模块</span><br><span class="line">import json</span><br><span class="line">#创建文件</span><br><span class="line">fp = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">#定义列表</span><br><span class="line">name_list = [&#x27;zs&#x27;,&#x27;ls&#x27;]</span><br><span class="line">#序列化,将python对象变成json字符串</span><br><span class="line">namws = json.dumps(name_list)</span><br><span class="line">#写入文件</span><br><span class="line">fp.write(names)</span><br><span class="line">#关闭文件</span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure>
+
+<p>#dump在将对象转换为字符串的同时，指定一个文件的对象然后把转换后的字符串写入到这个文件里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">fp = open(&#x27;test.txt&#x27;,&#x27;w&#x27;)</span><br><span class="line">name_list = [&#x27;zs&#x27;,&#x27;ls&#x27;]</span><br><span class="line">#namws = json.dumps(name_list)</span><br><span class="line">#fp.write(names)</span><br><span class="line">json.dump(name_list,fp)</span><br><span class="line">fp.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>反序列化</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">content = fp.read()</span><br><span class="line">#反序列化，loads</span><br><span class="line">result = json.loads(content)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">fp = open(&#x27;text.txt&#x27;,&#x27;r&#x27;)</span><br><span class="line">#content = fp.read()</span><br><span class="line">#反序列化，loads</span><br><span class="line">#result = json.loads(content)</span><br><span class="line">result = json.loads(fp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>程序在运行过程中，由于我们的编码不规范，或者其他原因一些客观原因，导致我们的程序无法继续运行，此时，程序就会出现异常。如果我们不对异常进行处理，程序可能会由于异常直接中断掉。为了保证程序的健壮性,我们在程序设计里提出了异常处理这个概念。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/01/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E5%9F%BA%E7%A1%80/" data-id="clprnfur00001oku4assl094o" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -1218,88 +1729,6 @@
 
 
   
-    <article id="post-优化页面及文件保密" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" class="article-date">
-  <time class="post-time" datetime="2023-11-15T07:36:41.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">15</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/">优化页面及文件保密</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="优化页面"><a href="#优化页面" class="headerlink" title="优化页面"></a>优化页面</h2><blockquote>
-<p>1.<strong>加背景图</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;之间加入</span><br><span class="line">bady&#123;</span><br><span class="line">	background:url(&quot;图片的命名&quot;)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注：图片要放到同意文件夹中，也就是www文件夹下。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154549975.png" alt="image-20231115154549975"></p>
-<p>效果为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154653469.png" alt="image-20231115154653469"></p>
-<p>2.<strong>实现文字框水平居中</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;中间加入：</span><br><span class="line">		.center &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line">在&lt;body&gt;&lt;/body&gt;中间加入：</span><br><span class="line">&lt;div class=&quot;center&quot;&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">//文本</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//对上面的.center进行引用。</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115155714005.png" alt="image-20231115155714005"></p>
-<p>3.<strong>使图片能够自动根据页面的大小和比例变化</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background:url(&quot;tu.jpg&quot;);</span><br><span class="line">background-size: cover; /* or contain */</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="对上传的文件进行保密"><a href="#对上传的文件进行保密" class="headerlink" title="对上传的文件进行保密"></a>对上传的文件进行保密</h2><blockquote>
-<ul>
-<li>对文件名和文件位置进行加密</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在uploud.php文件中添加</span><br><span class="line">	// 生成随机的文件名</span><br><span class="line">    $random_name = time().uniqid() . &#x27;_&#x27; . $file_name;</span><br><span class="line">    // 移动文件到目标位置</span><br><span class="line">    $target_path = $upload_dir .&quot;\\&quot;. md5($random_name).$file_name;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115160634932.png" alt="image-20231115160634932"></p>
-<ul>
-<li>进行参数绑定</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在link.php中加入：</span><br><span class="line">    // 使用预编译语句</span><br><span class="line">    $sql = &quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;;</span><br><span class="line">    $stmt = mysqli_prepare($link, $sql);</span><br><span class="line">    // 绑定参数</span><br><span class="line">    mysqli_stmt_bind_param($stmt, &quot;ss&quot;, $u, $p);</span><br><span class="line">    // 执行查询</span><br><span class="line">    mysqli_stmt_execute($stmt);</span><br><span class="line">    // 获取结果集</span><br><span class="line">    $result = mysqli_stmt_get_result($stmt);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115161308846.png" alt="image-20231115161308846"></p>
-</blockquote>
-<p><strong>在主页加入注销</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&lt;a href=&quot;?logout=true&quot;&gt;注销&lt;/a&gt;&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162425393.png" alt="image-20231115162425393"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162449961.png" alt="image-20231115162449961"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" data-id="clplzuha4000gq8u401n3ey02" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1344,7 +1773,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>37</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

