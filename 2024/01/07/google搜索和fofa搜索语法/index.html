@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>google搜索和fofa搜索语法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="google搜索语法[ intitle: ] 按标题搜索帮助google限定了你搜索的结果，只有那些标题含有你指定的关键词的页面会返回给你。例如”intitle: login password” 会返回标题含有login，而页面里面随便什么地方含有password的网页给你。 allintitle: 当你想在标题里面搜索超过2个词的时候，你可以使用”allintitle:” ，当然也可以使用”in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="google搜索和fofa搜索语法">
+<meta property="og:url" content="http://example.com/2024/01/07/google%E6%90%9C%E7%B4%A2%E5%92%8Cfofa%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="google搜索语法[ intitle: ] 按标题搜索帮助google限定了你搜索的结果，只有那些标题含有你指定的关键词的页面会返回给你。例如”intitle: login password” 会返回标题含有login，而页面里面随便什么地方含有password的网页给你。 allintitle: 当你想在标题里面搜索超过2个词的时候，你可以使用”allintitle:” ，当然也可以使用”in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-07T03:02:11.000Z">
+<meta property="article:modified_time" content="2024-01-07T12:59:14.319Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-google搜索和fofa搜索语法" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/07/google%E6%90%9C%E7%B4%A2%E5%92%8Cfofa%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="post-time" datetime="2024-01-07T03:02:11.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">07</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      google搜索和fofa搜索语法
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="google搜索语法"><a href="#google搜索语法" class="headerlink" title="google搜索语法"></a>google搜索语法</h3><p>[ intitle: ]</p>
+<p>按标题搜索帮助google限定了你搜索的结果，只有那些标题含有你指定的关键词的页面会返回给你。例如”intitle: login password” 会返回标题含有login，而页面里面随便什么地方含有password的网页给你。</p>
+<p>allintitle:</p>
+<p>当你想在标题里面搜索超过2个词的时候，你可以使用”allintitle:” ，当然也可以使用”intitle” 来代替搜索，”intitle: login intitle: password” 和”allintitle: login password”的搜索结果是一样的。</p>
+<p>[ inurl: ]</p>
+<p>按 链接搜索返回那些网址url里面包含你指定关键词的页面。例如”inurl: passwd” ，返回那些网址url里面包含你指定关键词passwd的页面。同上，如果你想在网址里搜索多个关键词，你可以使用 “allinurl:”语法。例如”allinurl: etc&#x2F;passwd” 会搜索网址里含有etc和passwd的网页，斜杠”&#x2F;“会被google忽略。</p>
+<p>[ site: ]</p>
+<p>语法”site:” 只搜索指定网域里的关键词，例如”exploits site:hackingspirits.com”将搜索hackingspirits.com网站上的所有包含exploits的页面。</p>
+<p>[ filetype: ]</p>
+<p>按 指定文件类型即后缀搜索（例如doc、pdf或ppt等等）。例如”filetype:doc site:gov confidential”将搜索所有 .gov的政府网站上的.doc文件和含有confidential关键字的页面，或者是.doc文件里面含有关键字confidential的页面，这 意味着搜索结果将返回政府网站上所有机密的.doc文件。</p>
+<p>[ link: ]</p>
+<p>按引用搜索将列出所有包含特定链接的页面，例如 “link:<a target="_blank" rel="noopener" href="http://www.securityfocus.com"将列出所有包含指向/">www.securityfocus.com&quot;将列出所有包含指向</a> Securityfocus主页的网址的页面。</p>
+<p>[ related: ]</p>
+<p>按相似搜索将列出与指定网页相似的页面，例如”related:<a target="_blank" rel="noopener" href="http://www.securityfocus.com"将返回与Securityfocus筑页相似的页面。注意在"related:"与网址间不可以有空格。">www.securityfocus.com&quot;将返回与Securityfocus筑页相似的页面。注意在&quot;related:&quot;与网址间不可以有空格。</a></p>
+<p>[ cache: ]</p>
+<p>网 页快照，google将返回给你他储存下来的历史页面。如果你同时指定了其他查询词，google将在搜索结果里以高亮显示。例如查询”cache: <a target="_blank" rel="noopener" href="http://www.hackingspirits.com/">www.hackingspirits.com</a> guest”在返回的结果里将高亮显示”guest”。（受gfw影响，在大陆应该是用不了的）</p>
+<p>[ intext: ]</p>
+<p>“intext:” 寻找特定网页里的关键字，他不理会网址和文章标标题。例如 “intext:exploits” 将只返回包含指定关键字 “exploits”的网页的地址。</p>
+<p>[ phonebook: ]</p>
+<p>电话簿查询美国街道地址和电话号码信息。例如 “phonebookisa+CA”将查询名字里面包含”Lisa” 并住在加州的人的所有名字。这对黑客使用社会工程学去挖掘个人信息是很有用的。</p>
+<p>[Index of]</p>
+<p>利用”Index of “语法去发现允许目录浏览的web网站，就象在本地的普通目录一样。下面是一些有趣的查询：</p>
+<p>Index of &#x2F;admin</p>
+<p>Index of &#x2F;passwd</p>
+<p>Index of &#x2F;password</p>
+<p>Index of &#x2F;mail</p>
+<p>“Index of &#x2F;“ +passwd</p>
+<p>“Index of &#x2F;“ +password.txt</p>
+<p>“Index of &#x2F;“ +.htaccess</p>
+<p>“Index of &#x2F;root”</p>
+<p>“Index of &#x2F;cgi-bin”</p>
+<p>“Index of &#x2F;logs”</p>
+<p>“Index of &#x2F;config”</p>
+<p>（包含引号）</p>
+<p>[利用”inurl:”或 “allinurl:” 寻找有漏洞的网站或服务器]</p>
+<p>a、利用”allinurl:winnt&#x2F;system32&#x2F;“ 查询：列出的服务器上本来应该受限制的诸如”system32” 等目录，如果你运气足够好，你会发现”system32” 目录里的”cmd.exe” 文件，并能执行他，接下来就是提升权限并攻克了。</p>
+<p>b、 查询”allinurl:wwwboard&#x2F;passwd.txt”将列出所有有”WWWBoard Password vulnerability”漏洞的服务器，阅读更多请参见下面链接。http: &#x2F;&#x2F;<a target="_blank" rel="noopener" href="http://www.securiteam.com/exploits/2BUQ4S0SAW.html">www.securiteam.com/exploits/2BUQ4S0SAW.html</a></p>
+<p>c、查询”inurl:.bash_history” 将列出互联网上可以看见 “inurl:.bash_history” 文件的服务器。这是一个命令历史文件，这个文件包含了管理员执行的命令，有时会包含一些敏感信息比如管理员键入的密码。</p>
+<p>d、查询”inurl:config.txt” 将看见网上暴露了”inurl:config.txt”文件的服务器，这个文件包含了经过哈希编码的管理员的密码和数据库存取的关键信息。</p>
+<p>e、还有一些其他一些使用”inurl:”和”allinurl:”查询组合的例子。</p>
+<p>inurl:admin filetype:txt</p>
+<p>inurl:admin filetype:db</p>
+<p>inurl:admin filetype:cfg</p>
+<p>inurl:mysql filetype:cfg</p>
+<p>inurl:passwd filetype:txt</p>
+<p>inurl:”wwwroot&#x2F;*.”</p>
+<p>inurl:adpassword.txt</p>
+<p>inurl:webeditor.php</p>
+<p>inurl:file_upload.php</p>
+<p>inurl:gov filetype:xls “restricted”</p>
+<p>index of ftp +.mdb allinurl:&#x2F;cgi-bin&#x2F; +mailto</p>
+<p>（以上查询包含引号）</p>
+<p>[利用”intitle:”和”allintitle:” 寻找有漏洞的服务器]</p>
+<p>a、通过[allintitle: “index of &#x2F;root”] 查询列出有”root”目录存取权限的服务器的列表，这个目录经常包含敏感信息，通过这些信息服务器可能会被轻易攻克。</p>
+<p>b、通过[allintitle: “index of &#x2F;admin”] 查询列出有”admin”目录列表权限的服务器的，绝大部分web 程序使用”admin”用户名去储存管理员权限。这个目录下的敏感信息可能会被利用来轻易地攻克服务器。</p>
+<p>inurl:</p>
+<p>inurl: 是駭客重要的搜尋方法，可搜到網址包括的關鍵字，</p>
+<p>例如填上 allinurl:login password 作搜尋，便會很易找到有 login 和 password 的網頁。</p>
+<p>filetype:</p>
+<p>filetype: 是駭客專用語法，例如想找 mdb 的數據庫檔案，可用 password filetype:mdb 作搜尋，</p>
+<p>便會找到密碼文件，進階用法可配合 inurl: 使用，例如 girl filetype:jpg site:com 便可搜到所有標</p>
+<p>題 .com 網站，而檔案為 girl.jp 或網頁內容有 girl 字串的。</p>
+<p>Index of &#x2F;admin</p>
+<p>搜到的結果大多數是容野峇嵺@ index browsing 的網站，隨便按下一個連結便看到網站的資料夾和檔案分佈。</p>
+<p>“Index of &#x2F;“ +password.txt</p>
+<p>有些站長會將密碼儲存成 password.txt 檔案，如配合 index browsing 的弁遄A將 google 的關</p>
+<p>鍵字串成 “Index of &#x2F;“ +password.txt 作搜尋，便找到很多 password.txt</p>
+<h3 id="fofa搜索语法"><a href="#fofa搜索语法" class="headerlink" title="fofa搜索语法"></a>fofa搜索语法</h3><table>
+<thead>
+<tr>
+<th>逻辑连接符</th>
+<th>具体含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x3D;</td>
+<td>匹配，&#x3D;””时，可查询不存在字段或者值为空的情况。</td>
+</tr>
+<tr>
+<td>&#x3D;&#x3D;</td>
+<td>完全匹配，&#x3D;&#x3D;””时，可查询存在且值为空的情况。</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>!&#x3D;</td>
+<td>不匹配，!&#x3D;””时，可查询值为空的情况。</td>
+</tr>
+<tr>
+<td>*&#x3D;</td>
+<td>模糊匹配，使用<em>或者?进行搜索，比如banner</em>&#x3D;”mys??” (个人版及以上可用)。</td>
+</tr>
+<tr>
+<td>()</td>
+<td>确认查询优先级，括号内容优先级最高。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">基础类（General）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">ip</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXA9IjEuMS4xLjEi">ip&#x3D;”1.1.1.1”</a></td>
+<td>通过单一IPv4地址进行查询</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXA9IjIyMC4xODEuMTExLjEvMjQi">ip&#x3D;”220.181.111.1&#x2F;24”</a></td>
+<td>通过IPv4 C段进行查询</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXA9IjI2MDA6OTAwMDoyMDJhOjI2MDA6MTg6NGFiNzpmNjAwOjkzYTEi">ip&#x3D;”2600:9000:202a:2600:18:4ab7:f600:93a1”</a></td>
+<td>通过单一Ipv6地址进行查询</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">port</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cG9ydD0iNjM3OSI=">port&#x3D;”6379”</a></td>
+<td>通过端口号进行查询</td>
+</tr>
+<tr>
+<td align="left">domain</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=ZG9tYWluPSJxcS5jb20i">domain&#x3D;”qq.com”</a></td>
+<td>通过根域名进行查询</td>
+</tr>
+<tr>
+<td align="left">host</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aG9zdD0iLmZvZmEuaW5mbyI=">host&#x3D;”.fofa.info”</a></td>
+<td>通过主机名进行查询</td>
+</tr>
+<tr>
+<td align="left">os</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=b3M9ImNlbnRvcyI=">os&#x3D;”centos”</a></td>
+<td>通过操作系统进行查询</td>
+</tr>
+<tr>
+<td align="left">server</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=c2VydmVyPSJNaWNyb3NvZnQtSUlTLzEwIg==">server&#x3D;”Microsoft-IIS&#x2F;10”</a></td>
+<td>通过服务器进行查询</td>
+</tr>
+<tr>
+<td align="left">asn</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YXNuPSIxOTU1MSI=">asn&#x3D;”19551”</a></td>
+<td>通过自治系统号进行搜索</td>
+</tr>
+<tr>
+<td align="left">org</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=b3JnPSJMTEMgQmF4ZXQi">org&#x3D;”LLC Baxet”</a></td>
+<td>通过所属组织进行查询</td>
+</tr>
+<tr>
+<td align="left">is_domain</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfZG9tYWluPXRydWU=">is_domain&#x3D;true</a></td>
+<td>筛选拥有域名的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfZG9tYWluPWZhbHNl">is_domain&#x3D;false</a></td>
+<td>筛选没有域名的资产</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">is_ipv6</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfaXB2Nj10cnVl">is_ipv6&#x3D;true</a></td>
+<td>筛选是ipv6的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfaXB2Nj1mYWxzZQ==">is_ipv6&#x3D;false</a></td>
+<td>筛选是ipv4的资产</td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">标记类（Special Label）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">app</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YXBwPSJNaWNyb3NvZnQtRXhjaGFuZ2Ui">app&#x3D;”Microsoft-Exchange”</a></td>
+<td>通过FOFA整理的规则进行查询</td>
+</tr>
+<tr>
+<td align="left">fid</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=ZmlkPSJzU1hYR05VTzJGZWZCVGNDTElULzJRPT0i">fid&#x3D;”sSXXGNUO2FefBTcCLIT&#x2F;2Q&#x3D;&#x3D;”</a></td>
+<td>通过FOFA聚合的站点指纹进行查询</td>
+</tr>
+<tr>
+<td align="left">product</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cHJvZHVjdD0iTkdJTlgi">product&#x3D;”NGINX”</a></td>
+<td>通过FOFA标记的产品名进行查询</td>
+</tr>
+<tr>
+<td align="left">category</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2F0ZWdvcnk9IuacjeWKoSI=">category&#x3D;”服务”</a></td>
+<td>通过FOFA标记的分类进行查询</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=dHlwZT0ic2VydmljZSI=">type&#x3D;”service”</a></td>
+<td>筛选协议资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=dHlwZT0ic3ViZG9tYWluIg==">type&#x3D;”subdomain”</a></td>
+<td>筛选服务（网站类）资产</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">cloud_name</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2xvdWRfbmFtZT0iQWxpeXVuZHVuIg==">cloud_name&#x3D;”Aliyundun”</a></td>
+<td>通过云服务商进行查询</td>
+</tr>
+<tr>
+<td align="left">is_cloud</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfY2xvdWQ9dHJ1ZQ==">is_cloud&#x3D;true</a></td>
+<td>筛选是云服务的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfY2xvdWQ9ZmFsc2U=">is_cloud&#x3D;false</a></td>
+<td>筛选不是云服务的资产</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">is_fraud</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfZnJhdWQ9dHJ1ZQ==">is_fraud&#x3D;true</a></td>
+<td>筛选是仿冒垃圾站群的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfZnJhdWQ9ZmFsc2U=">is_fraud&#x3D;false</a></td>
+<td>筛选不是仿冒垃圾站群的资产（已默认筛选）</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">is_honeypot</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfaG9uZXlwb3Q9dHJ1ZQ==">is_honeypot&#x3D;true</a></td>
+<td>筛选是蜜罐的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXNfaG9uZXlwb3Q9ZmFsc2U=">is_honeypot&#x3D;false</a></td>
+<td>筛选不是蜜罐的资产（已默认筛选）</td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">协议类 （type&#x3D;service)</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">protocol</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cHJvdG9jb2w9InF1aWMi">protocol&#x3D;”quic”</a></td>
+<td>通过协议名称进行查询</td>
+</tr>
+<tr>
+<td align="left">banner</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YmFubmVyPSJ1c2VycyI=">banner&#x3D;”users”</a></td>
+<td>通过协议返回信息进行查询</td>
+</tr>
+<tr>
+<td align="left">base_protocol</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idWRwIg==">base_protocol&#x3D;”udp”</a></td>
+<td>查询传输层为udp协议的资产</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YmFzZV9wcm90b2NvbD0idGNwIg==">base_protocol&#x3D;”tcp”</a></td>
+<td>查询传输层为tcp协议的资产</td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">网站类（type&#x3D;subdomain）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=dGl0bGU9ImJlaWppbmci">title&#x3D;”beijing”</a></td>
+<td>通过网站标题进行查询</td>
+</tr>
+<tr>
+<td align="left">header</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aGVhZGVyPSJlbGFzdGljIg==">header&#x3D;”elastic”</a></td>
+<td>通过响应标头进行查询</td>
+</tr>
+<tr>
+<td align="left">header_hash</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aGVhZGVyX2hhc2g9IjEyNTg4NTQyNjUi">header_hash&#x3D;”1258854265”</a></td>
+<td>通过http&#x2F;https响应头计算的hash值进行查询</td>
+</tr>
+<tr>
+<td align="left">body</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Ym9keT0i572R57uc56m66Ze05rWL57uYIg==">body&#x3D;”网络空间测绘”</a></td>
+<td>通过HTML正文进行查询</td>
+</tr>
+<tr>
+<td align="left">body_hash</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Ym9keV9oYXNoPSItMjA5MDk2MjQ1MiI=">body_hash&#x3D;”-2090962452”</a></td>
+<td>通过HTML正文计算的hash值进行查询</td>
+</tr>
+<tr>
+<td align="left">js_name</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=anNfbmFtZT0ianMvanF1ZXJ5LmpzIg==">js_name&#x3D;”js&#x2F;jquery.js”</a></td>
+<td>通过HTML正文包含的JS进行查询</td>
+</tr>
+<tr>
+<td align="left">js_md5</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=anNfbWQ1PSI4MmFjM2YxNDMyN2E4YjdiYTQ5YmFhMjA4ZDRlYWExNSI=">js_md5&#x3D;”82ac3f14327a8b7ba49baa208d4eaa15”</a></td>
+<td>通过JS源码进行查询</td>
+</tr>
+<tr>
+<td align="left">cname</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y25hbWU9ImFwMjEuaW5zdC5zaXRlZm9yY2UuY29tIg==">cname&#x3D;”ap21.inst.siteforce.com”</a></td>
+<td>通过别名记录进行查询</td>
+</tr>
+<tr>
+<td align="left">cname_domain</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y25hbWVfZG9tYWluPSJzaXRlZm9yY2UuY29tIg==">cname_domain&#x3D;”siteforce.com”</a></td>
+<td>通过别名记录解析的主域名进行查询</td>
+</tr>
+<tr>
+<td align="left">icon_hash</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aWNvbl9oYXNoPSItMjQ3Mzg4ODkwIg==">icon_hash&#x3D;”-247388890”</a></td>
+<td>通过网站图标的hash值进行查询</td>
+</tr>
+<tr>
+<td align="left">status_code</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=c3RhdHVzX2NvZGU9IjQwMiI=">status_code&#x3D;”402”</a></td>
+<td>筛选服务状态为402的服务（网站）资产</td>
+</tr>
+<tr>
+<td align="left">icp</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aWNwPSLkuqxJQ1Dor4EwMzAxNzPlj7ci">icp&#x3D;”京ICP证030173号”</a></td>
+<td>通过HTML正文包含的ICP备案号进行查询</td>
+</tr>
+<tr>
+<td align="left">sdk_hash</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=c2RrX2hhc2g9PSJNa2I0TXM0Ujk2Z2x2L1Q2VFJ6d1BXaDNVRGF0QnFlRiI=">sdk_hash&#x3D;&#x3D;”Mkb4Ms4R96glv&#x2F;T6TRzwPWh3UDatBqeF”</a></td>
+<td>通过网站嵌入的第三方代码计算的hash值进行查询</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">地理位置（Location）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">country</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y291bnRyeT0iQ04i">country&#x3D;”CN”</a></td>
+<td>通过国家的简称代码进行查询</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y291bnRyeT0i5Lit5Zu9Ig==">country&#x3D;”中国”</a></td>
+<td>通过国家中文名称进行查询</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">region</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cmVnaW9uPSJaaGVqaWFuZyI=">region&#x3D;”Zhejiang”</a></td>
+<td>通过省份&#x2F;地区英文名称进行查询</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cmVnaW9uPSLmtZnmsZ8i">region&#x3D;”浙江”</a></td>
+<td>通过省份&#x2F;地区中文名称进行查询（仅支持中国地区）</td>
+<td>✓</td>
+</tr>
+<tr>
+<td align="left">city</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2l0eT0iSGFuZ3pob3Ui">city&#x3D;”Hangzhou”</a></td>
+<td>通过城市英文名称进行查询</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">证书类</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">语法</td>
+<td>例句</td>
+</tr>
+<tr>
+<td align="center">cert</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydD0iYmFpZHUi">cert&#x3D;”baidu”</a></td>
+</tr>
+<tr>
+<td align="center">cert.subject</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5zdWJqZWN0PSJPcmFjbGUgQ29ycG9yYXRpb24i">cert.subject&#x3D;”Oracle Corporation”</a></td>
+</tr>
+<tr>
+<td align="center">cert.issuer</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc3N1ZXI9IkRpZ2lDZXJ0Ig==">cert.issuer&#x3D;”DigiCert”</a></td>
+</tr>
+<tr>
+<td align="center">cert.subject.org</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5zdWJqZWN0Lm9yZz0iT3JhY2xlIENvcnBvcmF0aW9uIg==">cert.subject.org&#x3D;”Oracle Corporation”</a></td>
+</tr>
+<tr>
+<td align="center">cert.subject.cn</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5zdWJqZWN0LmNuPSJiYWlkdS5jb20i">cert.subject.cn&#x3D;”baidu.com”</a></td>
+</tr>
+<tr>
+<td align="center">cert.issuer.org</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc3N1ZXIub3JnPSJjUGFuZWwsIEluYy4i">cert.issuer.org&#x3D;”cPanel, Inc.”</a></td>
+</tr>
+<tr>
+<td align="center">cert.issuer.cn</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc3N1ZXIuY249IlN5bm9sb2d5IEluYy4gQ0Ei">cert.issuer.cn&#x3D;”Synology Inc. CA”</a></td>
+</tr>
+<tr>
+<td align="center">cert.is_valid</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc192YWxpZD10cnVl">cert.is_valid&#x3D;true</a></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc192YWxpZD1mYWxzZQ==">cert.is_valid&#x3D;false</a></td>
+<td>筛选证书是无效证书的资产</td>
+</tr>
+<tr>
+<td align="center">cert.is_match</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc19tYXRjaD10cnVl">cert.is_match&#x3D;true</a></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc19tYXRjaD1mYWxzZQ==">cert.is_match&#x3D;false</a></td>
+<td>筛选证书和域名不匹配的资产</td>
+</tr>
+<tr>
+<td align="center">cert.is_expired</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc19leHBpcmVkPXRydWU=">cert.is_expired&#x3D;true</a></td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=Y2VydC5pc19leHBpcmVkPWZhbHNl">cert.is_expired&#x3D;false</a></td>
+<td>筛选证书未过期的资产</td>
+</tr>
+<tr>
+<td align="center">jarm</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=amFybT0iMmFkMmFkMDAwMmFkMmFkMjJjMmFkMmFkMmFkMmFkMmVhYzkyZWMzNGJjYzBjZjc1MjBlOTc1NDdmODNlODEi">jarm&#x3D;”2ad2ad0002ad2ad22c2ad2ad2ad2ad2eac92ec34bcc0cf7520e97547f83e81”</a></td>
+</tr>
+<tr>
+<td align="center">tls.version</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=dGxzLnZlcnNpb249IlRMUyAxLjMi">tls.version&#x3D;”TLS 1.3”</a></td>
+</tr>
+<tr>
+<td align="center">tls.ja3s</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=dGxzLmphM3M9IjE1YWY5NzdjZTI1ZGU0NTJiOTZhZmZhMmFkZGIxMDM2Ig==">tls.ja3s&#x3D;”15af977ce25de452b96affa2addb1036”</a></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">时间类（Last update time）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">after</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YWZ0ZXI9IjIwMjMtMDEtMDEi">after&#x3D;”2023-01-01”</a></td>
+<td>筛选某一时间之后有更新的资产</td>
+</tr>
+<tr>
+<td align="left">before</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YmVmb3JlPSIyMDIzLTEyLTAxIg==">before&#x3D;”2023-12-01”</a></td>
+<td>筛选某一时间之前有更新的资产</td>
+</tr>
+<tr>
+<td align="left">after&amp;before</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=YWZ0ZXI9IjIwMjMtMDEtMDEiICYmIGJlZm9yZT0iMjAyMy0xMi0wMSI=">after&#x3D;”2023-01-01” &amp;&amp; before&#x3D;”2023-12-01”</a></td>
+<td>筛选某一时间区间有更新的资产</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">独立IP语法（独立IP系列语法，不可和上面其他语法共用）</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">语法</td>
+<td>例句</td>
+<td>用途说明</td>
+</tr>
+<tr>
+<td align="left">port_size</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cG9ydF9zaXplPSI2Ig==">port_size&#x3D;”6”</a></td>
+<td>筛选开放端口数量等于6个的独立IP</td>
+</tr>
+<tr>
+<td align="left">port_size_gt</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cG9ydF9zaXplX2d0PSI2Ig==">port_size_gt&#x3D;”6”</a></td>
+<td>筛选开放端口数量大于6个的独立IP</td>
+</tr>
+<tr>
+<td align="left">port_size_lt</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=cG9ydF9zaXplX2x0PSIxMiI=">port_size_lt&#x3D;”12”</a></td>
+<td>筛选开放端口数量小于12个的独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_ports</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfcG9ydHM9IjgwLDE2MSI=">ip_ports&#x3D;”80,161”</a></td>
+<td>筛选同时开放不同端口的独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_country</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfY291bnRyeT0iQ04i">ip_country&#x3D;”CN”</a></td>
+<td>通过国家的简称代码进行查询独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_region</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfcmVnaW9uPSJaaGVqaWFuZyI=">ip_region&#x3D;”Zhejiang”</a></td>
+<td>通过省份&#x2F;地区英文名称进行查询独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_city</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfY2l0eT0iSGFuZ3pob3Ui">ip_city&#x3D;”Hangzhou”</a></td>
+<td>通过城市英文名称进行查询独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_after</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfYWZ0ZXI9IjIwMjEtMDMtMTgi">ip_after&#x3D;”2021-03-18”</a></td>
+<td>筛选某一时间之后有更新的独立IP</td>
+</tr>
+<tr>
+<td align="left">ip_before</td>
+<td><a target="_blank" rel="noopener" href="https://fofa.info/result?qbase64=aXBfYmVmb3JlPSIyMDE5LTA5LTA5Ig==">ip_before&#x3D;”2019-09-09”</a></td>
+<td>筛选某一时间之前有更新的独立IP</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/07/google%E6%90%9C%E7%B4%A2%E5%92%8Cfofa%E6%90%9C%E7%B4%A2%E8%AF%AD%E6%B3%95/" data-id="clr3i3pv40000bgu43oddg7ce" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/07/%E6%95%99%E8%82%B2%E5%9E%8Bsrc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          教育型src
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/01/04/MoneyBox%E9%9D%B6%E5%9C%BA%E6%89%93%E9%9D%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">MoneyBox靶场打靶</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2023 - 2024 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
