@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>45</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -70,6 +70,197 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-vne的安装及使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/08/vne%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="post-time" datetime="2023-12-08T01:53:29.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">08</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/08/vne%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/">vue的安装及使用</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="vue安装"><a href="#vue安装" class="headerlink" title="vue安装"></a>vue安装</h2><h3 id="在vscode安装vue"><a href="#在vscode安装vue" class="headerlink" title="在vscode安装vue"></a>在vscode安装vue</h3><ul>
+<li>进入vscode的终端</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm create vue@latest #下载vue</span><br><span class="line">... vue-project #系统给的，直接回车。这是默认最新版</span><br></pre></td></tr></table></figure>
+
+<p>然后全选否，不需要。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208102251022.png" alt="image-20231208102251022"></p>
+<ul>
+<li>然后按要求执行命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd vue-project</span><br><span class="line">npm install</span><br><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208102448807.png" alt="image-20231208102448807"></p>
+<p>然后在旁边就可以找到下载的文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208102717934.png" alt="image-20231208102717934"></p>
+<p>打开vue-project-&gt;src-&gt;App.vue里的文件可控制网站<a target="_blank" rel="noopener" href="http://localhost:5173/">Vite App</a>【<a target="_blank" rel="noopener" href="http://localhost:5173/%E3%80%91">http://localhost:5173/】</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li>打开App.vue</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将&lt;template&gt;&lt;/template&gt;&lt;style scoped&gt;&lt;/style&gt; 里的内容全部删掉。</span><br><span class="line">在&lt;template&gt;&lt;/template&gt;加入  &lt;div&gt;&lt;h1&gt;hello world&lt;/h1&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208110012139.png" alt="image-20231208110012139"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208110032693.png" alt="image-20231208110032693"></p>
+<p>设置一个按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; ElButton &#125; from &#x27;element-plus&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;el-button type=&quot;danger&quot;&gt;Danger&lt;/el-button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231208105106856.png" alt="image-20231208105106856"></p>
+<h3 id="安装element-plus"><a href="#安装element-plus" class="headerlink" title="安装element-plus"></a>安装element-plus</h3><p>在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-plus --save </span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://element-plus.org/zh-CN/component/button.html#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95">https://element-plus.org/zh-CN/component/button.html#基础用法</a></p>
+<h3 id="列子"><a href="#列子" class="headerlink" title="列子"></a>列子</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-container class=&quot;layout-container-demo&quot; style=&quot;height: 100vh;width: 1200px&quot;&gt;</span><br><span class="line">    &lt;el-aside class=&quot;bei&quot; style=&quot;width=35vh&quot;&gt;</span><br><span class="line">      &lt;el-scrollbar class=&quot;bei&quot;&gt;</span><br><span class="line">        &lt;el-menu :default-openeds=&quot;[&#x27;1&#x27;, &#x27;5&#x27;]&quot;&gt;</span><br><span class="line">          &lt;el-sub-menu class=&quot;bei&quot; index=&quot;1&quot;&gt;</span><br><span class="line">            &lt;template #title&gt;</span><br><span class="line">              &lt;el-icon&gt;</span><br><span class="line">                &lt;UserFilled /&gt;</span><br><span class="line">              &lt;/el-icon&gt;用户管理</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">            &lt;el-menu-item-group style=&quot;background-color:rgb(61,72,130,0.75)&quot;&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;1-1&quot;&gt;用户列表&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">          &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;el-sub-menu class=&quot;bei&quot; index=&quot;2&quot;&gt;</span><br><span class="line">            &lt;template #title&gt;</span><br><span class="line">              &lt;el-icon&gt;</span><br><span class="line">                &lt;setting /&gt;</span><br><span class="line">              &lt;/el-icon&gt;权限管理</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Group 1&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;2-1&quot;&gt;Option 1&lt;/el-menu-item&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;2-2&quot;&gt;Option 2&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot; title=&quot;Group 2&quot;&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;2-3&quot;&gt;Option 3&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-sub-menu class=&quot;bei&quot; index=&quot;2-4&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Option 4&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;2-4-1&quot;&gt;Option 4-1&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;el-sub-menu class=&quot;bei&quot; index=&quot;3&quot;&gt;</span><br><span class="line">            &lt;template #title&gt;</span><br><span class="line">              &lt;el-icon&gt;</span><br><span class="line">                &lt;setting /&gt;</span><br><span class="line">              &lt;/el-icon&gt;商品管理</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Group 1&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;3-1&quot;&gt;Option 1&lt;/el-menu-item&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;3-2&quot;&gt;Option 2&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot; title=&quot;Group 2&quot;&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;3-3&quot;&gt;Option 3&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-sub-menu class=&quot;bei&quot; index=&quot;3-4&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Option 4&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;3-4-1&quot;&gt;Option 4-1&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;el-sub-menu class=&quot;bei&quot; index=&quot;4&quot;&gt;</span><br><span class="line">            &lt;template #title&gt;</span><br><span class="line">              &lt;el-icon&gt;</span><br><span class="line">                &lt;setting /&gt;</span><br><span class="line">              &lt;/el-icon&gt;订单管理</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Group 1&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;4-1&quot;&gt;Option 1&lt;/el-menu-item&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;4-2&quot;&gt;Option 2&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot; title=&quot;Group 2&quot;&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;4-3&quot;&gt;Option 3&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-sub-menu class=&quot;bei&quot; index=&quot;4-4&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Option 4&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;4-4-1&quot;&gt;Option 4-1&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;el-sub-menu class=&quot;bei&quot; index=&quot;5&quot;&gt;</span><br><span class="line">            &lt;template #title&gt;</span><br><span class="line">              &lt;el-icon&gt;</span><br><span class="line">                &lt;setting /&gt;</span><br><span class="line">              &lt;/el-icon&gt;数据统计</span><br><span class="line">            &lt;/template&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Group 1&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;5-1&quot;&gt;Option 1&lt;/el-menu-item&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;5-2&quot;&gt;Option 2&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-menu-item-group class=&quot;bei&quot; title=&quot;Group 5&quot;&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;5-3&quot;&gt;Option 3&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-menu-item-group&gt;</span><br><span class="line">            &lt;el-sub-menu class=&quot;bei&quot; index=&quot;5-4&quot;&gt;</span><br><span class="line">              &lt;template #title&gt;Option 4&lt;/template&gt;</span><br><span class="line">              &lt;el-menu-item index=&quot;5-4-1&quot;&gt;Option 4-1&lt;/el-menu-item&gt;</span><br><span class="line">            &lt;/el-sub-menu&gt;</span><br><span class="line">          &lt;/el-sub-menu&gt;</span><br><span class="line">        &lt;/el-menu&gt;</span><br><span class="line">      &lt;/el-scrollbar&gt;</span><br><span class="line">    &lt;/el-aside&gt;</span><br><span class="line"></span><br><span class="line">    &lt;el-container&gt;</span><br><span class="line">      &lt;el-header&gt;</span><br><span class="line">        &lt;div class=&quot;toolbar&quot;&gt;</span><br><span class="line">          &lt;div style=&quot;flex: flex: 0 0 auto;&quot;&gt;</span><br><span class="line">            &lt;el-dropdown&gt;</span><br><span class="line">              &lt;el-icon style=&quot;margin-right: 8px; margin-top: 1px&quot;&gt;</span><br><span class="line">                &lt;Grid /&gt;</span><br><span class="line">              &lt;/el-icon&gt;</span><br><span class="line">              &lt;!-- &lt;template #dropdown&gt;</span><br><span class="line">              &lt;el-dropdown-menu&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;View&lt;/el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;Add&lt;/el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;Delete&lt;/el-dropdown-item&gt;</span><br><span class="line">              &lt;/el-dropdown-menu&gt;</span><br><span class="line">            &lt;/template&gt; --&gt;</span><br><span class="line">            &lt;/el-dropdown&gt;</span><br><span class="line">            &lt;span&gt;首页&lt;/span&gt;</span><br><span class="line">            &lt;span style=&quot;font-size: 12px; color: #666;&quot;&gt;/用户列表&lt;/span&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">          &lt;div style=&quot;flex: flex: 0 0 auto;&quot;&gt;</span><br><span class="line">            &lt;el-dropdown&gt;</span><br><span class="line">              &lt;el-icon style=&quot;margin-right: 8px; margin-top: 1px&quot;&gt;</span><br><span class="line">                &lt;Share /&gt;</span><br><span class="line">              &lt;/el-icon&gt;</span><br><span class="line">              &lt;!-- &lt;template #dropdown&gt;</span><br><span class="line">              &lt;el-dropdown-menu&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;View&lt;/el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;Add&lt;/el-dropdown-item&gt;</span><br><span class="line">                &lt;el-dropdown-item&gt;Delete&lt;/el-dropdown-item&gt;</span><br><span class="line">              &lt;/el-dropdown-menu&gt;</span><br><span class="line">            &lt;/template&gt; --&gt;</span><br><span class="line">            &lt;/el-dropdown&gt;</span><br><span class="line">            &lt;!-- &lt;span&gt;HomeFilled&lt;/span&gt; --&gt;</span><br><span class="line">            &lt;el-icon style=&quot;margin-right: 8px; margin-top: 1px&quot;&gt;</span><br><span class="line">              &lt;MoreFilled /&gt;</span><br><span class="line">            &lt;/el-icon&gt;</span><br><span class="line">            &lt;el-icon style=&quot;margin-right: 8px; margin-top: 1px&quot;&gt;</span><br><span class="line">              &lt;Promotion /&gt;</span><br><span class="line">            &lt;/el-icon&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/el-header&gt;</span><br><span class="line">      &lt;form method=&quot;get&quot; action=&quot;https://www.google.com/search&quot; target=&quot;_blank&quot; id=&quot;searchform&quot; name=&quot;searchform&quot;</span><br><span class="line">        style=&quot;display: inline;&quot;&gt;</span><br><span class="line">        &lt;input style=&quot;margin-right: 20px;margin-top: 20px;margin-left: 20px;&quot; class=&quot;sr&quot; name=&quot;q&quot; id=&quot;inputid&quot; type=&quot;text&quot;</span><br><span class="line">          placeholder=&quot;请输入关键字&quot; /&gt;</span><br><span class="line">        &lt;input style=&quot;background-color:rgba(25, 48, 158, 0.75);&quot; class=&quot;btn&quot; id=&quot;submitid&quot; type=&quot;submit&quot; value=&quot;搜索&quot; /&gt;</span><br><span class="line">        &lt;input style=&quot;margin-left: 20px; background-color:rgba(25, 48, 158, 0.75);&quot; class=&quot;btn&quot; id=&quot;submitid&quot;</span><br><span class="line">          type=&quot;submit&quot; value=&quot;添加用户&quot; /&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">      &lt;el-main&gt;</span><br><span class="line">        &lt;el-scrollbar&gt;</span><br><span class="line">          &lt;el-table :data=&quot;tableData&quot;&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;date&quot; label=&quot;Date&quot; width=&quot;140&quot; /&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;name&quot; label=&quot;姓名&quot; width=&quot;120&quot; /&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;address&quot; label=&quot;邮箱&quot; /&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;shouji&quot; label=&quot;手机&quot; /&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;juese&quot; label=&quot;角色&quot; /&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;zhuangtai&quot; label=&quot;状态&quot; v-slot=&quot;&#123; row &#125;&quot;&gt;</span><br><span class="line">              &lt;el-switch v-model=&quot;row.value2&quot; class=&quot;ml-2&quot; stv-model=&quot;value2&quot;</span><br><span class="line">                yle=&quot;--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949&quot; /&gt;</span><br><span class="line">            &lt;/el-table-column&gt;</span><br><span class="line">            &lt;el-table-column prop=&quot;caozuo&quot; label=&quot;操作&quot;&gt;</span><br><span class="line">              &lt;div class=&quot;caozuo&quot;&gt;</span><br><span class="line">                &lt;div style=&quot;flex: flex: 0 0 auto;&quot;&gt;</span><br><span class="line">                  &lt;el-row class=&quot;mb-4&quot;&gt;&lt;el-button type=&quot;primary&quot;&gt;&lt;el-icon&gt;</span><br><span class="line">                        &lt;Edit /&gt;</span><br><span class="line">                      &lt;/el-icon&gt;&lt;/el-button&gt;&lt;/el-row&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div style=&quot;flex: flex: 0 0 auto;&quot;&gt;</span><br><span class="line">                  &lt;el-row class=&quot;mb-4&quot;&gt;&lt;el-button type=&quot;danger&quot;&gt;&lt;el-icon&gt;</span><br><span class="line">                        &lt;Delete /&gt;</span><br><span class="line">                      &lt;/el-icon&gt;&lt;/el-button&gt;&lt;/el-row&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div style=&quot;flex: flex: 0 0 auto;&quot;&gt;</span><br><span class="line">                  &lt;el-row class=&quot;mb-4&quot;&gt;&lt;el-button type=&quot;warning&quot;&gt;&lt;el-icon&gt;</span><br><span class="line">                        &lt;setting /&gt;</span><br><span class="line">                      &lt;/el-icon&gt;&lt;/el-button&gt;&lt;/el-row&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">              &lt;/div&gt;</span><br><span class="line">            &lt;/el-table-column&gt;</span><br><span class="line">          &lt;/el-table&gt;</span><br><span class="line">        &lt;/el-scrollbar&gt;</span><br><span class="line">      &lt;/el-main&gt;</span><br><span class="line">    &lt;/el-container&gt;</span><br><span class="line">  &lt;/el-container&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script lang=&quot;ts&quot; setup&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import &#123; Menu as IconMenu, Message, Setting, UserFilled, Grid, Promotion, Delete, MoreFilled, Share, Edit &#125; from &#x27;@element-plus/icons-vue&#x27;</span><br><span class="line">const switchState = &#123;</span><br><span class="line">  value1: ref(true),</span><br><span class="line">  value2: ref(true)</span><br><span class="line">&#125;</span><br><span class="line">interface item &#123;</span><br><span class="line">  date: string,</span><br><span class="line">  name: string,</span><br><span class="line">  address: string,</span><br><span class="line">  shouji: string,</span><br><span class="line">  juese: string,</span><br><span class="line">  zhuangtai: boolean,</span><br><span class="line">  caozuo: string</span><br><span class="line">&#125;</span><br><span class="line">const tableData: item[] = [&#123;</span><br><span class="line">  date: &#x27;2016-05-02&#x27;,</span><br><span class="line">  name: &#x27;Tom&#x27;,</span><br><span class="line">  address: &#x27;123@123.com&#x27;,</span><br><span class="line">  shouji: &#x27;123456789&#x27;,</span><br><span class="line">  juese: &#x27;管理员&#x27;,</span><br><span class="line">  zhuangtai: true,</span><br><span class="line">  caozuo: &#x27;123&#x27;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  date: &#x27;2016-05-02&#x27;,</span><br><span class="line">  name: &#x27;Tom&#x27;,</span><br><span class="line">  address: &#x27;123@123.com&#x27;,</span><br><span class="line">  shouji: &#x27;123456789&#x27;,</span><br><span class="line">  juese: &#x27;管理员&#x27;,</span><br><span class="line">  zhuangtai: true,</span><br><span class="line">  caozuo: &#x27;123&#x27;</span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line">// const tableData = ref(Array.from(&#123; length: 10 &#125;).fill(item))</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;.layout-container-demo .el-header &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  background-color: var(--el-color-primary-light-7);</span><br><span class="line">  color: var(--el-text-color-primary);</span><br><span class="line">  width: 1030px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.layout-container-demo .el-main &#123;</span><br><span class="line">  width: 1050px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bei &#123;</span><br><span class="line">  background-color: rgb(61, 72, 130, 0.75);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.toolbar &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  align-items: center;</span><br><span class="line">  margin-top: 20px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.caozuo &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: space-between;</span><br><span class="line">  align-items: center;</span><br><span class="line">&#125;&lt;/style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231217091301872.png" alt="image-20231217091301872"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/08/vne%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/" data-id="clpyrvl9y0000xku41t6obxmn" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-HTML5" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/12/06/HTML5/" class="article-date">
+  <time class="post-time" datetime="2023-12-06T08:05:18.000Z" itemprop="datePublished">
+    <span class="post-month">12月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/12/06/HTML5/">HTML5</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206211419992.png" alt="image-20231206211419992"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt; 声明为 HTML5 文档</span><br><span class="line">&lt;html&gt; 元素是 HTML 页面的根元素</span><br><span class="line">&lt;head&gt; 元素包含了文档的元（meta）数据，如 &lt;meta charset=&quot;utf-8&quot;&gt; 定义网页编码格式为 utf-8。</span><br><span class="line">&lt;title&gt; 元素描述了文档的标题</span><br><span class="line">&lt;body&gt; 元素包含了可见的页面内容</span><br><span class="line">&lt;h1&gt; 元素定义一个大标题</span><br><span class="line">&lt;p&gt; 元素定义一个段落</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">开始标签 *</th>
+<th align="left">元素内容</th>
+<th align="left">结束标签 *</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><p></td>
+<td align="left">这是一个段落</td>
+<td align="left"></p></td>
+</tr>
+<tr>
+<td align="left"><a href="default.htm"></td>
+<td align="left">这是一个链接</td>
+<td align="left"></a></td>
+</tr>
+<tr>
+<td align="left"><br></td>
+<td align="left">换行</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">class</td>
+<td align="left">为html元素定义一个或多个类名（classname）(类名从样式文件引入)</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">定义元素的唯一id</td>
+</tr>
+<tr>
+<td align="left">style</td>
+<td align="left">规定元素的行内样式（inline style）</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">描述了元素的额外信息 (作为工具条使用)</td>
+</tr>
+</tbody></table>
+<h4 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    &lt;h1&gt;hello world&lt;/h1&gt;</span><br><span class="line">    &lt;em&gt;斜体&lt;/em&gt;</span><br><span class="line">   &lt;strong&gt;加粗&lt;/strong&gt;</span><br><span class="line">    &lt;b&gt;加粗&lt;/b&gt;</span><br><span class="line">    &lt;i&gt;斜体&lt;/i&gt;</span><br><span class="line">    &lt;br&gt;&lt;!--换行--&gt;</span><br><span class="line">    &lt;hr&gt;&lt;!--分割线--&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">    注释</span><br><span class="line">--&gt;</span><br><span class="line">    &lt;sup&gt;上标&lt;/sup&gt;</span><br><span class="line">    &lt;sub&gt;下标&lt;/sub&gt;</span><br><span class="line">    &lt;u&gt;下划线&lt;/u&gt;</span><br><span class="line">    &lt;s&gt;删除&lt;/s&gt;</span><br><span class="line">    &lt;del&gt;删除&lt;/del&gt;</span><br><span class="line">    &lt;a href=&quot;http://www.google.com&quot;&gt;谷歌&lt;/a&gt;&lt;!--超链接--&gt;&lt;br&gt;</span><br><span class="line">    &lt;img src=&quot;./1.jpg&quot; width=&quot;500&quot; alt=&quot;好看&quot;&gt;&lt;!--图片--&gt;</span><br><span class="line">    &lt;p&gt;一段话&lt;img src=&quot;./1.jpg&quot; width=&quot;100&quot; alt=&quot;好看&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;table &gt;&lt;!--表格--&gt;</span><br><span class="line">        &lt;tr&gt;&lt;!--行--&gt;</span><br><span class="line">            &lt;td&gt;1&lt;/td&gt;&lt;!--lei--&gt;</span><br><span class="line">            &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;3&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;4&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206211748595.png" alt="image-20231206211748595"></p>
+<h3 id="css创建布局"><a href="#css创建布局" class="headerlink" title="css创建布局"></a>css创建布局</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .container &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            flex-wrap: wrap;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .block &#123;</span><br><span class="line">            width: 48%;</span><br><span class="line">            height: 100px;</span><br><span class="line">            margin: 10px;</span><br><span class="line">            background-color: rgb(144, 73, 73)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        .block.center &#123;</span><br><span class="line">            width: 800px;</span><br><span class="line">            height: 400px;</span><br><span class="line">            margin: 10px;</span><br><span class="line">            background-image: url(1.jpg);</span><br><span class="line">            background-size: cover;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block center&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;block&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231206212056982.png" alt="image-20231206212056982"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231207172812851.png" alt="image-20231207172812851"></p>
+<h3 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;欢迎光临湖南省人民政府门户网站&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        .baio &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line">        .con_1 &#123;</span><br><span class="line">            width: 50%;</span><br><span class="line">            height: 50px;</span><br><span class="line">            /* background-image: url(1.jpg); */</span><br><span class="line">            background-size: cover;</span><br><span class="line">            border-radius: 10px;</span><br><span class="line">        &#125;</span><br><span class="line">        .con_2 &#123;</span><br><span class="line">            width: 50%;</span><br><span class="line">            height: 50px;</span><br><span class="line">            /* background-image: url(1.jpg); */</span><br><span class="line">            background-size: cover;</span><br><span class="line">            border-radius: 10px;</span><br><span class="line">        &#125;</span><br><span class="line">        .shoutu&#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            background-color: rgba(68, 0, 255, 0.3);</span><br><span class="line">            background-image: url(http://www.hunan.gov.cn/hnszf/xhtml/img/icon_top_furonghua.png);</span><br><span class="line">        &#125;</span><br><span class="line">        .touxia&#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">            background-color: rgba(0, 0, 255, 0.5);</span><br><span class="line">        &#125;</span><br><span class="line">        .zhuxi&#123;</span><br><span class="line">            margin: 24px auto;</span><br><span class="line">            width: 1200px;</span><br><span class="line">            display: block;</span><br><span class="line">            display: flex;</span><br><span class="line">        &#125;</span><br><span class="line">        .container&#123;</span><br><span class="line">            background-color: rgba(0, 0, 0, 0.1);</span><br><span class="line">        &#125;</span><br><span class="line">        .footer&#123;</span><br><span class="line">            background-color: blue;</span><br><span class="line">        &#125;</span><br><span class="line">        .footer2&#123;</span><br><span class="line">            width: 200px;</span><br><span class="line">            height: 100px;</span><br><span class="line">        &#125;</span><br><span class="line">        .friend-link&#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: space-around;</span><br><span class="line">            align-items: center;</span><br><span class="line">            color: white;</span><br><span class="line">            padding: 10px;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;shoutu&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;baio&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;con_1&quot;&gt;</span><br><span class="line">                    &lt;center&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;中国政府网&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;湖南省人大网&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;湖南省政协网&lt;/a&gt;</span><br><span class="line">                        &lt;button type=&quot;submit&quot;&gt;登录&lt;/button&gt;</span><br><span class="line">                        &lt;button type=&quot;button&quot;&gt;创建账号&lt;/button&gt;</span><br><span class="line">                    &lt;/center&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div class=&quot;con_2&quot;&gt;</span><br><span class="line">                    &lt;center&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;繁体中文&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;ENGLISH&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;Français&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;日本語&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;한국어&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;政务邮箱&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_blank&quot;&gt;无障碍浏览&lt;/a&gt;</span><br><span class="line">                    &lt;/center&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">                &lt;center&gt;&lt;img src=&quot;https://hunan.gov.cn/hnszf/xhtml/img/logo.png&quot; alt=&quot;无&quot;&gt;&lt;/center&gt;   </span><br><span class="line">            &lt;div class=&quot;touxia&quot;&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;strong&gt;</span><br><span class="line">                        &lt;img src=&quot;https://hunan.gov.cn/hnszf/xhtml/img/syico1.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;省政府&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;政务要闻&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;政务公开&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;一件事一次办&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;互动交流&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;政府数据&lt;/a&gt;</span><br><span class="line">                        &lt;a target=&quot;_top&quot; href=&quot;&quot;&gt;锦绣潇湘&lt;/a&gt;</span><br><span class="line">                    &lt;/strong&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;select rel=&quot;dropselect&quot; cls=&quot;SimpleSelect&quot; name=&quot;channelid&quot; id=&quot;searchtype&quot;&gt;  </span><br><span class="line">                        &lt;option value=&quot;news&quot;&gt;本站&lt;/option&gt;  </span><br><span class="line">                        &lt;option value=&quot;all&quot;&gt;全省&lt;/option&gt;  </span><br><span class="line">                    &lt;/select&gt;</span><br><span class="line">                    &lt;form method=&quot;get&quot; action=&quot;https://www.google.com/search&quot; target=&quot;_blank&quot; id=&quot;searchform&quot; name=&quot;searchform&quot; style=&quot;display: inline;&quot;&gt;</span><br><span class="line">                        &lt;input class=&quot;sr&quot; name=&quot;q&quot; id=&quot;inputid&quot; type=&quot;text&quot; placeholder=&quot;请输入关键字&quot; /&gt;</span><br><span class="line">                        &lt;input class=&quot;btn&quot; id=&quot;submitid&quot; type=&quot;submit&quot; value=&quot;搜索&quot; /&gt;</span><br><span class="line">                    &lt;/form&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;div class=&quot;zhuxi&quot;&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;img src=&quot;https://hunan.gov.cn/hnszf/xhtml/img/sy_zl2.jpg&quot; style=&quot;width: 1200px; height: 144px;&quot;&gt;</span><br><span class="line">                &lt;/div&gt;            </span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;center&gt;</span><br><span class="line">                &lt;h1&gt;&lt;div class=&quot;sytt_news&quot;&gt; &lt;a href=&quot;http://www.hunan.gov.cn/hnszf/hnyw/sy/tt1/202312/t20231207_32471980.html&quot; target=&quot;_blank&quot;  &gt;植根人民 造福人民——习近平同志倡导践行“四下基层”闪耀时代光彩&lt;/a&gt;&lt;/div&gt;&lt;/h1&gt;</span><br><span class="line">                &lt;div class=&quot;syxw_xq&quot;&gt;&lt;a href=&quot;http://www.hunan.gov.cn/hnszf/hnyw/sy/tt1/202312/t20231207_32471928.html&quot;&gt;“把心贴近人民”——解码“四下基层”&lt;/a&gt; | &lt;a href=&quot;http://www.hunan.gov.cn/hnszf/hnyw/sy/tt1/202312/t20231207_32471922.html&quot;&gt;传承弘扬“四下基层”优良作风&lt;/a&gt; | &lt;a href=&quot;http://www.hunan.gov.cn/hnszf/hnyw/sy/tt1/202312/t20231207_32471917.html&quot;&gt;用好“四下基层”这个重要抓手&lt;/a&gt;&lt;/div&gt;</span><br><span class="line">            &lt;/center&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;wo&quot;&gt;</span><br><span class="line">        &lt;img src=&quot;./6.jpg&quot; alt=&quot;&quot; style=&quot;width: 100%;&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;footer&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;footer_1&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;footer_2&quot;&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;a class=&quot;friend-link&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;国家部委&lt;/a&gt;</span><br><span class="line">                    &lt;a class=&quot;friend-link&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;省市政府&lt;/a&gt;</span><br><span class="line">                    &lt;a class=&quot;friend-link&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;省直单位&lt;/a&gt;</span><br><span class="line">                    &lt;a class=&quot;friend-link&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;市州县区&lt;/a&gt;</span><br><span class="line">                    &lt;a class=&quot;friend-link&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;站点地图&lt;/a&gt;</span><br><span class="line">                    </span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231207185939849.png" alt="image-20231207185939849"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/06/HTML5/" data-id="clptth8um0000u4u453ub5vqb" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-网络模式，ip设置和代理设置" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -1462,166 +1653,6 @@
 
 
   
-    <article id="post-kali中设置钓鱼网站" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" class="article-date">
-  <time class="post-time" datetime="2023-11-28T03:15:53.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">28</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/">kali中设置钓鱼网站</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="kali中设置钓鱼网站"><a href="#kali中设置钓鱼网站" class="headerlink" title="kali中设置钓鱼网站"></a>kali中设置钓鱼网站</h2><ul>
-<li>下载文件</li>
-</ul>
-<p>输入sudo su进入管理员模式</p>
-<p>vim  &#x2F;etc&#x2F;proxychains4.conf</p>
-<p>进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128154710552.png" alt="image-20231128154710552"></p>
-<p>点esc退出插入模式，输入：wq！（强制保存退出）</p>
-<p>proxychains4 git clone <a target="_blank" rel="noopener" href="https://github.com/makdosx/mip22%EF%BC%88%E4%B8%8B%E8%BD%BDgithub%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%89">https://github.com/makdosx/mip22（下载github中的文件）</a></p>
-<p>ls（查看是否有mip22文件夹）</p>
-<p>cd mip22(转到mip22文件夹)</p>
-<p>chomod +x .&#x2F;*(加x权限)</p>
-<p>proxychains4 bash .&#x2F;mip22.sh(设置钓鱼网站)</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128160601296.png" alt="image-20231128160601296"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161045346.png" alt="image-20231128161045346"></p>
-<p>接下来输入</p>
-<p>1</p>
-<p>19（选择需要的网站）</p>
-<p>3</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161324649.png" alt="image-20231128161324649"></p>
-<p>看到网子就成功了。</p>
-<p>在网站中打开网址<a target="_blank" rel="noopener" href="http://asking-wars-mozambique-vincent.trycloudflare.com/">http://asking-wars-mozambique-vincent.trycloudflare.com</a></p>
-<p>这时候别人点击网站输入账号密码就可以获取。</p>
-<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual-Studio-Code"></a>Visual-Studio-Code</h2><ul>
-<li>安装与下载</li>
-</ul>
-<p>官方网站：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
-<ul>
-<li>配置</li>
-</ul>
-<p>点击扩展</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128172755036.png" alt="image-20231128172755036"></p>
-<p>下载Chinese（简体），Code Runner,Pylance,再重启vs即可使用。</p>
-<p>输入代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests;</span><br><span class="line">url = &quot;https://httpbin.org/get&quot;</span><br><span class="line">r = requests.get(url)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
-
-<p>点击右上角运行</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190504339.png" alt="image-20231128190504339"></p>
-<p>会报错，再同时点击ctrl和~打开终端。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190648462.png" alt="image-20231128190648462"></p>
-<p>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install (chardet) -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com</span><br><span class="line">括号中写入要安装的</span><br></pre></td></tr></table></figure>
-
-<p>安装完后再运行</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191027136.png" alt="image-20231128191027136"></p>
-<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>要关闭防火墙和实时保护。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191835337.png" alt="image-20231128191835337"></p>
-<p>下载windows病毒监听&#x2F;DHLv9.5.zip并打开。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192616861.png" alt="image-20231128192616861"></p>
-<p>再点击服务生成，域名ip改成本机ip，再点击生成服务。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192852101.png" alt="image-20231128192852101"></p>
-<p>再将生成的Server.exe放在要控制的电脑上。</p>
-<p>这时软件上会多一个控制电脑的信息，就可以对这台电脑进行控制了。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128193204132.png" alt="image-20231128193204132"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" data-id="clplzuh9z0008q8u493f91lo4" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-注册tg号" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" class="article-date">
-  <time class="post-time" datetime="2023-11-27T11:56:43.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">27</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/">注册tg号</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="注册tg号"><a href="#注册tg号" class="headerlink" title="注册tg号"></a>注册tg号</h1><p>华为手机可能接收不到验证码。</p>
-<p>Telegram提供手机版（Android、iOS、Windows Phone）、桌面版（Windows、macOS、Linux）和网页版等多个平台客户端。这里需要提醒，Telegram的官网是<a target="_blank" rel="noopener" href="https://telegram.org/">telegram.org</a>，不是.com。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.打开Telegram应用程序并输入手机号码</span><br><span class="line">2.在接收到短信验证码后，输入验证码并设置密码。</span><br><span class="line">3.编辑个人资料、添加联系人、加入频道和群组、发送消息等等。</span><br></pre></td></tr></table></figure>
-
-<p>理论上来说，可以使用国内的+86电话号码注册，不过不建议。一是保护隐私，二是Telegram官方已将+86手机号用户拉入黑名单, 新注册用户会被直接定义为spam用户，无法进行私聊和加密对话。可以去获得一个国外号码进行注册。</p>
-<p>Telegram 默认情况下不会加密对话, 如果需要加密对话，需要手动开启。设置方法如下，点击联系人，然后点击对话框右上角三个点，然后选择“Start Secret Chat”。</p>
-<ul>
-<li>tg汉化</li>
-</ul>
-<p>tg:&#x2F;&#x2F;setlanguage?lang&#x3D;zhcncc</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" data-id="clplzuha6000lq8u40xgsd3xz" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -1666,7 +1697,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>43</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>45</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
